@@ -1,0 +1,10 @@
+{
+  "urlRandomness": "cxTbi0o",
+  "dev": true,
+  "minify": false,
+  "https": false,
+  "hostType": "lan",
+  "lanType": "ip",
+  "scheme": "exp+awesomeproject",
+  "devClient": false
+}
