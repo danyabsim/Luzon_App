@@ -3,12 +3,17 @@ import {Text, TextInput, TouchableOpacity, View} from 'react-native';
 import {StackScreenProps} from "@react-navigation/stack";
 import {MainStackParamList} from "../../navigation/AppNavigation";
 import {styles} from "./styles";
+import {RootState} from "../../redux/store";
+import {useDispatch, useSelector} from "react-redux";
+import {setUser} from "../../redux/User/userSlice";
+import {initialUserState} from "../../redux/User/initialUserState";
 
 type Props = StackScreenProps<MainStackParamList, 'Home'>;
 
 export default function HomeScreen({navigation}: Props) {
-    const [username, setUsername] = React.useState("");
-    const [password, setPassword] = React.useState("");
+    const [username, setUsername] = React.useState(useSelector((state: RootState) => state.user.name));
+    const [password, setPassword] = React.useState(useSelector((state: RootState) => state.user.pass));
+    const dispatch = useDispatch();
 
     const inputContainers = [
         {label: 'Username:', state: username, setState: setUsername},
@@ -30,8 +35,9 @@ export default function HomeScreen({navigation}: Props) {
             <TouchableOpacity style={styles.button} onPress={() => {
                 if (username === 'admin' && password === 'admin') {
                     navigation.navigate('Calendar');
-                    setUsername('');
-                    setPassword('');
+                    dispatch(setUser({name: username, pass: password}));
+                    setUsername(initialUserState.name);
+                    setPassword(initialUserState.pass);
                 }
             }}>
                 <Text style={styles.textStyle}>Log In</Text>
