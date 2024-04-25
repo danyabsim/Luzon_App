@@ -1,6 +1,9 @@
 import {StyleSheet} from "react-native";
 
 export const styles = StyleSheet.create({
+    container: {
+        flex: 1
+    },
     item: {
         backgroundColor: 'white',
         flex: 1,
@@ -16,10 +19,17 @@ export const styles = StyleSheet.create({
     inputContainer: {
         flexDirection: 'row',
         alignItems: 'center',
+        paddingLeft: 20,
+    },
+    inputLabel: {
+        width: 80,
+        marginRight: 10,
     },
     input: {
         flex: 1,
-        marginLeft: 10,
+        borderBottomWidth: 1,
+        marginRight: 20,
+        paddingLeft: 4,
     },
     modalView: {
         margin: 20,
@@ -50,13 +60,7 @@ export const styles = StyleSheet.create({
     },
     modalText: {
         marginBottom: 15,
-        textAlign: 'center',
-        fontSize: 20
-    },
-    addEventButton: {
-        padding: 20,
-        fontSize: 24,
-        textAlign: 'center',
-        backgroundColor: 'lightblue'
+        fontSize: 20,
+        paddingRight: 10
     },
 });

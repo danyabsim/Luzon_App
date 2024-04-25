@@ -31,7 +31,7 @@ export default function NewEventButton() {
                 <View style={styles.modalView}>
                     {inputContainers.map((input, index) => (
                         <View key={index} style={styles.inputContainer}>
-                            <Text style={styles.modalText}>{input.label}</Text>
+                            <Text style={styles.modalText}>{input.label}</Text> {/* Removed styles.container */}
                             <TextInput style={[styles.modalText, styles.input]}
                                        onChangeText={input.setState} value={input.state}
                             />
@@ -51,8 +51,8 @@ export default function NewEventButton() {
                     </View>
                 </View>
             </Modal>
-            <TouchableOpacity onPress={() => setModalVisible(true)}>
-                <Text style={styles.addEventButton}>Add new Event</Text>
+            <TouchableOpacity style={styles.button} onPress={() => setModalVisible(true)}>
+                <Text style={styles.textStyle}>Add new Event</Text>
             </TouchableOpacity>
         </View>
     );
