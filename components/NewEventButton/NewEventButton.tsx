@@ -31,7 +31,7 @@ export default function NewEventButton() {
                 <View style={styles.modalView}>
                     {inputContainers.map((input, index) => (
                         <View key={index} style={styles.inputContainer}>
-                            <Text style={styles.modalText}>{input.label}</Text> {/* Removed styles.container */}
+                            <Text style={styles.modalText}>{input.label}</Text>
                             <TextInput style={[styles.modalText, styles.input]}
                                        onChangeText={input.setState} value={input.state}
                             />
