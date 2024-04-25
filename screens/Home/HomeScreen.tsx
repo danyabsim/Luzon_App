@@ -1,23 +1,24 @@
 import React from 'react';
-import {Text, TextInput, TouchableOpacity, View} from 'react-native';
-import {StackScreenProps} from "@react-navigation/stack";
-import {MainStackParamList} from "../../navigation/AppNavigation";
-import {styles} from "./styles";
-import {RootState} from "../../redux/store";
-import {useDispatch, useSelector} from "react-redux";
-import {setUser} from "../../redux/User/userSlice";
-import {initialUserState} from "../../redux/User/initialUserState";
+import { Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { StackScreenProps } from "@react-navigation/stack";
+import { MainStackParamList } from "../../navigation/AppNavigation";
+import { styles } from "./styles";
+import { RootState } from "../../redux/store";
+import { useDispatch, useSelector } from "react-redux";
+import { setUser } from "../../redux/User/userSlice";
+import { initialUserState } from "../../redux/User/initialUserState";
+import {setEvents} from "../../redux/Events/eventsSlice";
 
 type Props = StackScreenProps<MainStackParamList, 'Home'>;
 
-export default function HomeScreen({navigation}: Props) {
+export default function HomeScreen({ navigation }: Props) {
     const [username, setUsername] = React.useState(useSelector((state: RootState) => state.user.name));
     const [password, setPassword] = React.useState(useSelector((state: RootState) => state.user.pass));
     const dispatch = useDispatch();
 
     const inputContainers = [
-        {label: 'Username:', state: username, setState: setUsername},
-        {label: 'Password:', state: password, setState: setPassword}
+        { label: 'Username:', state: username, setState: setUsername },
+        { label: 'Password:', state: password, setState: setPassword }
     ];
 
     return (
@@ -33,12 +34,24 @@ export default function HomeScreen({navigation}: Props) {
                 </View>
             ))}
             <TouchableOpacity style={styles.button} onPress={() => {
-                if (username === 'admin' && password === 'admin') {
-                    navigation.navigate('Calendar');
-                    dispatch(setUser({name: username, pass: password}));
-                    setUsername(initialUserState.name);
-                    setPassword(initialUserState.pass);
-                }
+                const xhr = new XMLHttpRequest();
+                xhr.open('POST', 'http://localhost:3000/connect');
+                xhr.setRequestHeader('Content-Type', 'application/json');
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState === XMLHttpRequest.DONE) {
+                        if (xhr.status === 200) {
+                            console.log(xhr.responseText);
+                            navigation.navigate('Calendar');
+                            dispatch(setUser({ name: username, pass: password }));
+                            dispatch(setEvents(JSON.parse(xhr.responseText)));
+                            setUsername(initialUserState.name);
+                            setPassword(initialUserState.pass);
+                        } else {
+                            console.error('Error sending message:', xhr.statusText);
+                        }
+                    }
+                };
+                xhr.send(JSON.stringify({ name: username, pass: password }));
             }}>
                 <Text style={styles.textStyle}>Log In</Text>
             </TouchableOpacity>

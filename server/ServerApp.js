@@ -7,9 +7,9 @@ const users = [
 ];
 
 const userHistory = [
-    { name: 'temp', date: '2024-04-25', description: '17:00 – Cooking some meal' },
-    { name: 'temp', date: '2024-04-25', description: '10:00 – Going to the gym' },
-    { name: 'admin', date: '2024-04-20', description: '20:00 – Eating some chips' }
+    { name: '17:00 – Cooking some meal (temp)', height: 10, day: '2024-04-25' },
+    { name: '10:00 – Going to the gym (temp)', height: 10, day: '2024-04-25'},
+    { name: '20:00 – Eating some chips (admin)', height: 10, day: '2024-04-20' }
 ];
 
 const corsOptions = {
@@ -36,7 +36,10 @@ const server = createServer((req, res) => {
                         res.end(JSON.stringify(userHistory));
                     } else {
                         // Return only user's history
-                        const userSpecificHistory = userHistory.filter(entry => entry.name === user.name);
+                        const userSpecificHistory = userHistory.filter(entry => {
+                            const regex = new RegExp(`\\(${user.name}\\)$`);
+                            return regex.test(entry.description);
+                        });
                         res.writeHead(200, { 'Content-Type': 'application/json' });
                         res.end(JSON.stringify(userSpecificHistory));
                     }

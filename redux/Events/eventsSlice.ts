@@ -25,9 +25,12 @@ const settingsSlice = createSlice({
         },
         setSelected: (state, action) => {
             state.selected = action.payload;
+        },
+        setEvents: (state, action) => {
+            state.events = action.payload;
         }
     },
 });
 
-export const {addNewEvent, removeEvent, setSelected} = settingsSlice.actions;
+export const {addNewEvent, removeEvent, setSelected, setEvents} = settingsSlice.actions;
 export default settingsSlice.reducer;
