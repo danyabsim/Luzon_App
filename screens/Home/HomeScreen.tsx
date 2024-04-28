@@ -41,11 +41,23 @@ export default function HomeScreen({ navigation }: Props) {
                     if (xhr.readyState === XMLHttpRequest.DONE) {
                         if (xhr.status === 200) {
                             console.log(xhr.responseText);
-                            navigation.navigate('Calendar');
-                            dispatch(setUser({ name: username, pass: password }));
-                            dispatch(setEvents(JSON.parse(xhr.responseText)));
-                            setUsername(initialUserState.name);
-                            setPassword(initialUserState.pass);
+                            const response = JSON.parse(xhr.responseText);
+                            // Ensure that response is an array
+                            if (Array.isArray(response)) {
+                                const eventsByDay = {};
+                                // Organize events by day
+                                response.forEach(event => {
+                                    if (!eventsByDay[event.day]) eventsByDay[event.day] = [];
+                                    eventsByDay[event.day].push(event);
+                                });
+                                dispatch(setUser({ name: username, pass: password }));
+                                dispatch(setEvents(eventsByDay));
+                                setUsername(initialUserState.name);
+                                setPassword(initialUserState.pass);
+                                navigation.navigate('Calendar');
+                            } else {
+                                console.error('Invalid response format: expected an array.');
+                            }
                         } else {
                             console.error('Error sending message:', xhr.statusText);
                         }
