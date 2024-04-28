@@ -1,24 +1,24 @@
 import React from 'react';
-import { Text, TextInput, TouchableOpacity, View } from 'react-native';
-import { StackScreenProps } from "@react-navigation/stack";
-import { MainStackParamList } from "../../navigation/AppNavigation";
-import { styles } from "./styles";
-import { RootState } from "../../redux/store";
-import { useDispatch, useSelector } from "react-redux";
-import { setUser } from "../../redux/User/userSlice";
-import { initialUserState } from "../../redux/User/initialUserState";
+import {Text, TextInput, TouchableOpacity, View} from 'react-native';
+import {StackScreenProps} from "@react-navigation/stack";
+import {MainStackParamList} from "../../navigation/AppNavigation";
+import {styles} from "./styles";
+import {RootState} from "../../redux/store";
+import {useDispatch, useSelector} from "react-redux";
+import {setUser} from "../../redux/User/userSlice";
+import {initialUserState} from "../../redux/User/initialUserState";
 import {setEvents} from "../../redux/Events/eventsSlice";
 
 type Props = StackScreenProps<MainStackParamList, 'Home'>;
 
-export default function HomeScreen({ navigation }: Props) {
+export default function HomeScreen({navigation}: Props) {
     const [username, setUsername] = React.useState(useSelector((state: RootState) => state.user.name));
     const [password, setPassword] = React.useState(useSelector((state: RootState) => state.user.pass));
     const dispatch = useDispatch();
 
     const inputContainers = [
-        { label: 'Username:', state: username, setState: setUsername },
-        { label: 'Password:', state: password, setState: setPassword }
+        {label: 'Username:', state: username, setState: setUsername},
+        {label: 'Password:', state: password, setState: setPassword}
     ];
 
     return (
@@ -27,8 +27,7 @@ export default function HomeScreen({ navigation }: Props) {
             {inputContainers.map((input, index) => (
                 <View key={index} style={styles.inputContainer}>
                     <Text style={styles.inputLabel}>{input.label}</Text>
-                    <TextInput style={styles.input}
-                               onChangeText={input.setState} value={input.state}
+                    <TextInput style={styles.input} onChangeText={input.setState} value={input.state}
                                secureTextEntry={input.label === 'Password:'} // Hide password
                     />
                 </View>
@@ -49,7 +48,9 @@ export default function HomeScreen({ navigation }: Props) {
                                     if (!eventsByDay[event.day]) eventsByDay[event.day] = [];
                                     eventsByDay[event.day].push(event);
                                 });
-                                dispatch(setUser({ name: username, pass: password }));
+                                // Sort events within each day by their name
+                                for (const day in eventsByDay) eventsByDay[day].sort((a, b) => a.name.localeCompare(b.name));
+                                dispatch(setUser({name: username, pass: password}));
                                 dispatch(setEvents(eventsByDay));
                                 setUsername(initialUserState.name);
                                 setPassword(initialUserState.pass);
@@ -62,7 +63,7 @@ export default function HomeScreen({ navigation }: Props) {
                         }
                     }
                 };
-                xhr.send(JSON.stringify({ name: username, pass: password }));
+                xhr.send(JSON.stringify({name: username, pass: password}));
             }}>
                 <Text style={styles.textStyle}>Log In</Text>
             </TouchableOpacity>
