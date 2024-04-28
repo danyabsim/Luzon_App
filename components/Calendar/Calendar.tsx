@@ -1,4 +1,4 @@
-import {Agenda, DateData} from "react-native-calendars";
+import {Agenda} from "react-native-calendars";
 import {Alert, Modal, Text, TouchableOpacity, View} from "react-native";
 import React from "react";
 import {styles} from './styles';
@@ -17,7 +17,7 @@ export default function Calendar() {
         <ErrorBoundary fallback={<Text>Something went wrong</Text>}>
             <Agenda
                 items={events} selected={selected} collapsable={true} enableSwipeMonths={true} scrollEnabled={true}
-                onDayPress={(day: DateData) => dispatch(setSelected(day))}
+                onDayPress={(day) => dispatch(setSelected(day))}
                 renderItem={(item) => (
                     <TouchableOpacity style={styles.item} onLongPress={() => setSureModalVisible(true)}>
                         <Modal
