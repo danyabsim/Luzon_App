@@ -1,24 +1,22 @@
 import {Alert, Modal, Text, TextInput, TouchableOpacity, View} from "react-native";
 import React from "react";
 import {styles} from './styles';
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {addNewEvent} from "../../redux/Events/eventsSlice";
+import {RootState} from "../../redux/store";
 
 export default function NewEventButton() {
     const [modalVisible, setModalVisible] = React.useState(false);
 
     const [title, setTitle] = React.useState("");
-    const [color, setColor] = React.useState("");
     const [hours, setHours] = React.useState("");
-    const [notes, setNotes] = React.useState("");
 
     const inputContainers = [
         {label: 'Title:', state: title, setState: setTitle},
-        {label: 'Color:', state: color, setState: setColor},
         {label: 'Hours:', state: hours, setState: setHours},
-        {label: 'Notes:', state: notes, setState: setNotes}
     ];
     const dispatch = useDispatch();
+    const user = useSelector((state: RootState) => state.user);
 
     return (
         <View>
@@ -43,7 +41,7 @@ export default function NewEventButton() {
                         </TouchableOpacity>
                         <TouchableOpacity style={styles.button}
                                           onPress={() => {
-                                              dispatch(addNewEvent(title));
+                                              dispatch(addNewEvent(hours + " – " + title + " (" + user.name + ")"));
                                               setModalVisible(!modalVisible);
                                           }}>
                             <Text style={styles.textStyle}>Add</Text>
