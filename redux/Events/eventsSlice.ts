@@ -14,16 +14,14 @@ const settingsSlice = createSlice({
         },
         removeEvent: (state, action) => {
             const updatedEvents = {...state.events};
-            if (updatedEvents[state.selected]) {
-                const indexToRemove = updatedEvents[state.selected].findIndex(event => event.name === action.payload);
-                if (indexToRemove !== -1) {
-                    updatedEvents[state.selected].splice(indexToRemove, 1);
-                    if (updatedEvents[state.selected].length === 0) updatedEvents[state.selected] = null;
-                }
+            const indexToRemove = updatedEvents[action.payload.day].findIndex(event => event.name === action.payload.name);
+            if (indexToRemove !== -1) {
+                updatedEvents[action.payload.day].splice(indexToRemove, 1);
+                if (updatedEvents[action.payload.day].length === 0) updatedEvents[action.payload.day] = null;
             }
             state.events = updatedEvents;
         },
-        setSelected: (state, action) => {
+        setReduxSelected: (state, action) => {
             state.selected = action.payload;
         },
         setEvents: (state, action) => {
@@ -32,5 +30,5 @@ const settingsSlice = createSlice({
     },
 });
 
-export const {addNewEvent, removeEvent, setSelected, setEvents} = settingsSlice.actions;
+export const {addNewEvent, removeEvent, setReduxSelected, setEvents} = settingsSlice.actions;
 export default settingsSlice.reducer;

@@ -4,12 +4,12 @@ import React from "react";
 import {styles} from './styles';
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../redux/store";
-import {removeEvent, setSelected} from "../../redux/Events/eventsSlice";
+import {removeEvent, setReduxSelected} from "../../redux/Events/eventsSlice";
 import {ErrorBoundary} from "react-error-boundary";
 
 export default function Calendar() {
     const [sureModalVisible, setSureModalVisible] = React.useState(false);
-    const selected = useSelector((state: RootState) => state.events.selected);
+    const [selected, setSelected] = React.useState(useSelector((state: RootState) => state.events.selected));
     const events = useSelector((state: RootState) => state.events.events);
     const dispatch = useDispatch();
 
@@ -17,7 +17,10 @@ export default function Calendar() {
         <ErrorBoundary fallback={<Text>Something went wrong</Text>}>
             <Agenda
                 items={events} selected={selected} collapsable={true} enableSwipeMonths={true} scrollEnabled={true}
-                onDayPress={(day) => dispatch(setSelected(day))}
+                onDayPress={(day) => {
+                    setSelected(day.dateString);
+                    dispatch(setReduxSelected(day));
+                }}
                 renderItem={(item) => (
                     <TouchableOpacity style={styles.item} onLongPress={() => setSureModalVisible(true)}>
                         <Modal
@@ -39,7 +42,7 @@ export default function Calendar() {
                                     <TouchableOpacity
                                         style={styles.button}
                                         onPress={() => {
-                                            dispatch(removeEvent(item.name));
+                                            dispatch(removeEvent(item));
                                             setSureModalVisible(false);
                                         }}>
                                         <Text style={styles.textStyle}>Yes</Text>

@@ -40,7 +40,6 @@ export default function HomeScreen({ navigation }: Props) {
                 xhr.onreadystatechange = function () {
                     if (xhr.readyState === XMLHttpRequest.DONE) {
                         if (xhr.status === 200) {
-                            console.log(xhr.responseText);
                             const response = JSON.parse(xhr.responseText);
                             // Ensure that response is an array
                             if (Array.isArray(response)) {
