@@ -1,12 +1,10 @@
 import {setEvents} from "../redux/Events/eventsSlice";
-import {useDispatch} from "react-redux";
 import {IUserReduceState} from "../redux/User/IUserReduceState";
 import {AgendaEntry} from "react-native-calendars";
 import {UnknownAction} from "@reduxjs/toolkit";
 import {Dispatch} from "react";
 
 export function XHRRequest(dispatch: Dispatch<UnknownAction>, urlFunction: string, itemToSend: IUserReduceState | AgendaEntry, extraCode?: () => void) {
-    // const dispatch = useDispatch();
     const xhr = new XMLHttpRequest();
     xhr.open('POST', 'http://localhost:3000' + urlFunction);
     xhr.setRequestHeader('Content-Type', 'application/json');
