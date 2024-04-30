@@ -8,6 +8,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {setUser} from "../../redux/User/userSlice";
 import {initialUserState} from "../../redux/User/initialUserState";
 import {setEvents} from "../../redux/Events/eventsSlice";
+import {XHRRequest} from "../../UserServerIntegration/XHR";
 
 type Props = StackScreenProps<MainStackParamList, 'Home'>;
 
@@ -33,37 +34,12 @@ export default function HomeScreen({navigation}: Props) {
                 </View>
             ))}
             <TouchableOpacity style={styles.button} onPress={() => {
-                const xhr = new XMLHttpRequest();
-                xhr.open('POST', 'http://localhost:3000/connect');
-                xhr.setRequestHeader('Content-Type', 'application/json');
-                xhr.onreadystatechange = function () {
-                    if (xhr.readyState === XMLHttpRequest.DONE) {
-                        if (xhr.status === 200) {
-                            const response = JSON.parse(xhr.responseText);
-                            // Ensure that response is an array
-                            if (Array.isArray(response)) {
-                                const eventsByDay = {};
-                                // Organize events by day
-                                response.forEach(event => {
-                                    if (!eventsByDay[event.day]) eventsByDay[event.day] = [];
-                                    eventsByDay[event.day].push(event);
-                                });
-                                // Sort events within each day by their name
-                                for (const day in eventsByDay) eventsByDay[day].sort((a, b) => a.name.localeCompare(b.name));
-                                dispatch(setUser({name: username, pass: password}));
-                                dispatch(setEvents(eventsByDay));
-                                setUsername(initialUserState.name);
-                                setPassword(initialUserState.pass);
-                                navigation.navigate('Calendar');
-                            } else {
-                                console.error('Invalid response format: expected an array.');
-                            }
-                        } else {
-                            console.error('Error sending message:', xhr.statusText);
-                        }
-                    }
-                };
-                xhr.send(JSON.stringify({name: username, pass: password}));
+                XHRRequest(dispatch, '/connect', {name: username, pass: password}, () => {
+                    dispatch(setUser({name: username, pass: password}));
+                    setUsername(initialUserState.name);
+                    setPassword(initialUserState.pass);
+                    navigation.navigate('Calendar');
+                });
             }}>
                 <Text style={styles.textStyle}>Log In</Text>
             </TouchableOpacity>

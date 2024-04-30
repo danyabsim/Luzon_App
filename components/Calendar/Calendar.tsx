@@ -4,8 +4,9 @@ import React from "react";
 import {styles} from './styles';
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../redux/store";
-import {removeEvent, setReduxSelected} from "../../redux/Events/eventsSlice";
+import {setReduxSelected} from "../../redux/Events/eventsSlice";
 import {ErrorBoundary} from "react-error-boundary";
+import {XHRRequest} from "../../UserServerIntegration/XHR";
 
 export default function Calendar() {
     const [sureModalVisible, setSureModalVisible] = React.useState(false);
@@ -52,7 +53,7 @@ export default function Calendar() {
                         <TouchableOpacity
                             style={styles.button}
                             onPress={() => {
-                                dispatch(removeEvent(itemToRemove));
+                                XHRRequest(dispatch, '/removeEvent', itemToRemove);
                                 setItemToRemove(null);
                                 setSureModalVisible(false);
                             }}>
