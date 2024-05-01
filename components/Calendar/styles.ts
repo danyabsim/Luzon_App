@@ -1,8 +1,10 @@
 import {StyleSheet} from "react-native";
 
+const currentHour = new Date().getHours();
+
 export const styles = StyleSheet.create({
     item: {
-        backgroundColor: 'white',
+        backgroundColor: (currentHour > 18 && currentHour < 6) ? '#212121' : 'white',
         flex: 1,
         borderRadius: 5,
         padding: 10,
@@ -10,8 +12,8 @@ export const styles = StyleSheet.create({
         marginTop: 17,
     },
     itemText: {
-        color: '#888',
         fontSize: 16,
+        color: (currentHour > 18 && currentHour < 6) ? 'white' : 'black',
     },
     inputContainer: {
         flexDirection: 'row',

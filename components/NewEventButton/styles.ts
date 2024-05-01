@@ -1,5 +1,7 @@
 import {StyleSheet} from "react-native";
 
+const currentHour = new Date().getHours();
+
 export const styles = StyleSheet.create({
     container: {
         flex: 1
@@ -50,13 +52,13 @@ export const styles = StyleSheet.create({
         borderRadius: 20,
         padding: 10,
         elevation: 2,
-        backgroundColor: '#2196F3',
+        backgroundColor: (currentHour > 18 && currentHour < 6) ? '#212121' : '#2196F3',
         marginHorizontal: 5
     },
     textStyle: {
-        color: 'white',
         fontWeight: 'bold',
         textAlign: 'center',
+        color: (currentHour > 18 && currentHour < 6) ? 'white' : 'black',
     },
     modalText: {
         marginBottom: 15,
