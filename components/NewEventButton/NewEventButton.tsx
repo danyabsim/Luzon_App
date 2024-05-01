@@ -4,6 +4,7 @@ import {styles} from './styles';
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../redux/store";
 import {XHRRequest} from "../../UserServerIntegration/XHR";
+import {setEvents} from "../../redux/Events/eventsSlice";
 
 export default function NewEventButton() {
     const [modalVisible, setModalVisible] = React.useState(false);
@@ -14,7 +15,7 @@ export default function NewEventButton() {
         {label: 'Hours:', state: hours, setState: setHours},
     ];
     const dispatch = useDispatch();
-    const username = useSelector((state: RootState) => state.user.name);
+    const user = useSelector((state: RootState) => state.user);
     const selected = useSelector((state: RootState) => state.events.selected);
 
     return (
@@ -40,8 +41,10 @@ export default function NewEventButton() {
                         <TouchableOpacity
                             style={styles.button}
                             onPress={() => {
+                                dispatch(setEvents({}));
                                 XHRRequest(dispatch, '/addEvent', {
-                                    name: hours + " – " + title + " (" + username + ")",
+                                    username: user.username, password: user.password,
+                                    name: hours + " – " + title + " (" + user.username + ")",
                                     height: 10,
                                     day: selected
                                 });

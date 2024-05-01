@@ -4,7 +4,7 @@ import React from "react";
 import {styles} from './styles';
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../redux/store";
-import {setReduxSelected} from "../../redux/Events/eventsSlice";
+import {setEvents, setReduxSelected} from "../../redux/Events/eventsSlice";
 import {ErrorBoundary} from "react-error-boundary";
 import {XHRRequest} from "../../UserServerIntegration/XHR";
 
@@ -12,6 +12,7 @@ export default function Calendar() {
     const [sureModalVisible, setSureModalVisible] = React.useState(false);
     const [selected, setSelected] = React.useState(useSelector((state: RootState) => state.events.selected));
     const events = useSelector((state: RootState) => state.events.events);
+    const user = useSelector((state: RootState) => state.user);
     const dispatch = useDispatch();
     const [itemToRemove, setItemToRemove] = React.useState<AgendaEntry>();
 
@@ -53,7 +54,8 @@ export default function Calendar() {
                         <TouchableOpacity
                             style={styles.button}
                             onPress={() => {
-                                XHRRequest(dispatch, '/removeEvent', itemToRemove);
+                                dispatch(setEvents({}));
+                                XHRRequest(dispatch,'/removeEvent', {...user, ...itemToRemove});
                                 setItemToRemove(null);
                                 setSureModalVisible(false);
                             }}>

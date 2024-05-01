@@ -1,10 +1,10 @@
-import {setEvents} from "../redux/Events/eventsSlice";
 import {IUserReduceState} from "../redux/User/IUserReduceState";
 import {AgendaEntry} from "react-native-calendars";
 import {UnknownAction} from "@reduxjs/toolkit";
 import {Dispatch} from "react";
+import {setEvents} from "../redux/Events/eventsSlice";
 
-export function XHRRequest(dispatch: Dispatch<UnknownAction>, urlFunction: string, itemToSend: IUserReduceState | AgendaEntry, extraCode?: () => void) {
+export function XHRRequest(dispatch: Dispatch<UnknownAction>/*, setEvents: ActionCreatorWithPayload<any, "events/setEvents">*/, urlFunction: string, itemToSend: IUserReduceState & AgendaEntry, extraCode?: () => void) {
     const xhr = new XMLHttpRequest();
     xhr.open('POST', 'http://localhost:3000' + urlFunction);
     xhr.setRequestHeader('Content-Type', 'application/json');

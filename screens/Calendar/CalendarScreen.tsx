@@ -9,6 +9,7 @@ import {setUser} from "../../redux/User/userSlice";
 import {useDispatch, useSelector} from "react-redux";
 import {XHRRequest} from "../../UserServerIntegration/XHR";
 import {RootState} from "../../redux/store";
+import {setEvents} from "../../redux/Events/eventsSlice";
 
 type Props = StackScreenProps<MainStackParamList, 'Calendar'>;
 
@@ -19,7 +20,10 @@ export default function CalendarScreen({navigation}: Props) {
 
     const onRefresh = React.useCallback(() => {
         setRefreshing(true);
-        XHRRequest(dispatch, '/connect', user, () => setRefreshing(false));
+        dispatch(setEvents({}));
+        XHRRequest(dispatch,'/connect', {
+            ...user, name: "", height: 10, day: ""
+        }, () => setRefreshing(false));
     }, []);
 
     return (
@@ -32,7 +36,7 @@ export default function CalendarScreen({navigation}: Props) {
             <Calendar/>
             <NewEventButton/>
             <TouchableOpacity style={styles.button} onPress={() => {
-                dispatch(setUser({name: '', pass: ''}));
+                dispatch(setUser({username: '', password: ''}));
                 navigation.navigate('Home');
             }}>
                 <Text style={styles.textStyle}>Exit</Text>

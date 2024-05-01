@@ -1,7 +1,5 @@
 import {createSlice} from '@reduxjs/toolkit';
 import {initialEventsState} from "./initialEventsState";
-import {setUser} from "../User/userSlice";
-import {initialUserState} from "../User/initialUserState";
 
 const settingsSlice = createSlice({
     name: 'events',

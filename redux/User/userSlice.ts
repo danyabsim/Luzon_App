@@ -6,8 +6,8 @@ const userSlice = createSlice({
     initialState: initialUserState,
     reducers: {
         setUser: (state, action) => {
-            state.name = action.payload.name;
-            state.pass = action.payload.pass;
+            state.username = action.payload.username;
+            state.password = action.payload.password;
         }
     }
 });

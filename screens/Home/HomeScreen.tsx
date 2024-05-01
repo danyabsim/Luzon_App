@@ -7,14 +7,13 @@ import {RootState} from "../../redux/store";
 import {useDispatch, useSelector} from "react-redux";
 import {setUser} from "../../redux/User/userSlice";
 import {initialUserState} from "../../redux/User/initialUserState";
-import {setEvents} from "../../redux/Events/eventsSlice";
 import {XHRRequest} from "../../UserServerIntegration/XHR";
 
 type Props = StackScreenProps<MainStackParamList, 'Home'>;
 
 export default function HomeScreen({navigation}: Props) {
-    const [username, setUsername] = React.useState(useSelector((state: RootState) => state.user.name));
-    const [password, setPassword] = React.useState(useSelector((state: RootState) => state.user.pass));
+    const [username, setUsername] = React.useState(useSelector((state: RootState) => state.user.username));
+    const [password, setPassword] = React.useState(useSelector((state: RootState) => state.user.password));
     const dispatch = useDispatch();
 
     const inputContainers = [
@@ -34,10 +33,12 @@ export default function HomeScreen({navigation}: Props) {
                 </View>
             ))}
             <TouchableOpacity style={styles.button} onPress={() => {
-                XHRRequest(dispatch, '/connect', {name: username, pass: password}, () => {
-                    dispatch(setUser({name: username, pass: password}));
-                    setUsername(initialUserState.name);
-                    setPassword(initialUserState.pass);
+                XHRRequest(dispatch, '/connect', {
+                    username: username, password: password, name: "", height: 10, day: ""
+                }, () => {
+                    dispatch(setUser({username: username, password: password}));
+                    setUsername(initialUserState.username);
+                    setPassword(initialUserState.password);
                     navigation.navigate('Calendar');
                 });
             }}>

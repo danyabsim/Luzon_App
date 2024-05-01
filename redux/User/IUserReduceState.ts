@@ -1,4 +1,4 @@
 export interface IUserReduceState {
-    name: string,
-    pass: string
+    username: string,
+    password: string
 }
