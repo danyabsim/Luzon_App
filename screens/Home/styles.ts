@@ -39,7 +39,7 @@ export const styles = StyleSheet.create({
         borderRadius: 20,
         padding: 10,
         elevation: 2,
-        backgroundColor: styleByTime( '#2196F3', '#212121'),
+        backgroundColor: styleByTime('#2196F3', '#373737'),
         marginHorizontal: 5,
         marginTop: 10,
         color: styleByTime('black', 'white'),
