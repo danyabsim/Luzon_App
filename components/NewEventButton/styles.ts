@@ -1,6 +1,5 @@
 import {StyleSheet} from "react-native";
-
-const currentHour = new Date().getHours();
+import {styleByTime} from "../../constants/AppStyles";
 
 export const styles = StyleSheet.create({
     container: {
@@ -29,13 +28,15 @@ export const styles = StyleSheet.create({
     },
     input: {
         flex: 1,
+        color: styleByTime('black', 'white'),
+        borderColor: styleByTime('black', 'white'),
         borderBottomWidth: 1,
         marginRight: 20,
         paddingLeft: 4,
     },
     modalView: {
         margin: 20,
-        backgroundColor: 'white',
+        backgroundColor: styleByTime('white', '#212121'),
         borderRadius: 20,
         padding: 35,
         alignItems: 'center',
@@ -47,22 +48,25 @@ export const styles = StyleSheet.create({
         shadowOpacity: 0.25,
         shadowRadius: 4,
         elevation: 5,
+        borderColor: styleByTime('#212121', 'white'),
+        borderWidth: 1
     },
     button: {
         borderRadius: 20,
         padding: 10,
         elevation: 2,
-        backgroundColor: (currentHour > 18 && currentHour < 6) ? '#212121' : '#2196F3',
+        backgroundColor: styleByTime('#2196F3', '#373737'),
         marginHorizontal: 5
     },
     textStyle: {
         fontWeight: 'bold',
         textAlign: 'center',
-        color: (currentHour > 18 && currentHour < 6) ? 'white' : 'black',
+        color: 'white',
     },
     modalText: {
         marginBottom: 15,
         fontSize: 20,
-        paddingRight: 10
+        paddingRight: 10,
+        color: styleByTime('black', 'white')
     },
 });

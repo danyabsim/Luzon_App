@@ -1,12 +1,11 @@
 import {StyleSheet} from "react-native";
-
-const currentHour = new Date().getHours();
+import {styleByTime} from "../../constants/AppStyles";
 
 export const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
-        backgroundColor: (currentHour > 18 && currentHour < 6) ? 'black' : 'white',
+        backgroundColor: styleByTime('white', 'black'),
         elevation: 2,
     },
     mainText: {
@@ -16,13 +15,13 @@ export const styles = StyleSheet.create({
         fontSize: 24,
         paddingTop: 50,
         paddingBottom: 10,
-        color: (currentHour > 18 && currentHour < 6) ? 'white' : 'black',
+        color: styleByTime('black', 'white')
     },
     button: {
         borderRadius: 20,
         padding: 10,
         elevation: 2,
-        backgroundColor: (currentHour > 18 && currentHour < 6) ? '#212121' : '#2196F3',
+        backgroundColor: styleByTime( '#2196F3', '#212121'),
         marginHorizontal: 5,
         marginVertical: 5
     },

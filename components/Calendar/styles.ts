@@ -1,10 +1,13 @@
 import {StyleSheet} from "react-native";
-
-const currentHour = new Date().getHours();
+import {styleByTime} from "../../constants/AppStyles";
 
 export const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: styleByTime('white', 'black'),
+    },
     item: {
-        backgroundColor: (currentHour > 18 && currentHour < 6) ? '#212121' : 'white',
+        backgroundColor: styleByTime('white', '#212121'),
         flex: 1,
         borderRadius: 5,
         padding: 10,
@@ -13,7 +16,7 @@ export const styles = StyleSheet.create({
     },
     itemText: {
         fontSize: 16,
-        color: (currentHour > 18 && currentHour < 6) ? 'white' : 'black',
+        color: styleByTime('black', 'white'),
     },
     inputContainer: {
         flexDirection: 'row',
@@ -25,7 +28,7 @@ export const styles = StyleSheet.create({
     },
     modalView: {
         margin: 20,
-        backgroundColor: 'white',
+        backgroundColor: styleByTime('white', '#212121'),
         borderRadius: 20,
         padding: 35,
         alignItems: 'center',
@@ -37,12 +40,14 @@ export const styles = StyleSheet.create({
         shadowOpacity: 0.25,
         shadowRadius: 4,
         elevation: 5,
+        borderColor: styleByTime('#212121', 'white'),
+        borderWidth: 1
     },
     button: {
         borderRadius: 20,
         padding: 10,
         elevation: 2,
-        backgroundColor: '#2196F3',
+        backgroundColor: styleByTime('#2196F3', '#373737'),
         marginHorizontal: 5
     },
     textStyle: {
@@ -53,6 +58,7 @@ export const styles = StyleSheet.create({
     modalText: {
         marginBottom: 15,
         textAlign: 'center',
-        fontSize: 20
-    },
+        fontSize: 20,
+        color: styleByTime('black', 'white')
+    }
 });
