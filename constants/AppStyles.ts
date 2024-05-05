@@ -49,7 +49,7 @@ export function getDatesBetween(startDate: string, endDate: string) {
     return dates;
 }
 
-export const hexToRgbInt = (hex) => {
+export function hexToRgbInt(hex: string) {
     // Remove '#' if present
     hex = hex.replace(/^#/, '');
 
@@ -60,9 +60,9 @@ export const hexToRgbInt = (hex) => {
 
     // Combine components into a single integer
     return (red << 16) | (green << 8) | blue;
-};
+}
 
-export const rgbIntToHex = (rgbInt) => {
+export function rgbIntToHex(rgbInt: number) {
     // Extract individual color components
     const red = (rgbInt >> 16) & 255;
     const green = (rgbInt >> 8) & 255;
@@ -70,4 +70,4 @@ export const rgbIntToHex = (rgbInt) => {
 
     // Convert each component to hexadecimal and concatenate
     return `#${(red << 16 | green << 8 | blue).toString(16).padStart(6, '0')}`;
-};
+}
