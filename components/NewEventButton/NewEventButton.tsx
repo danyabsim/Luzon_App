@@ -50,7 +50,7 @@ export default function NewEventButton() {
                             <View key={index}>
                                 <TouchableOpacity style={styles.button}
                                                   onPress={() => setDatePickerVisibility(true)}>
-                                    <Text style={styles.textStyle}>Show Date Picker</Text>
+                                    <Text style={styles.textStyle}>{time.label}</Text>
                                 </TouchableOpacity>
                                 <DateTimePickerModal
                                     date={time.state as Date}
@@ -66,16 +66,16 @@ export default function NewEventButton() {
                         ))
                     }
                     <SafeAreaView>
-                    <View style={styles.sectionContainer}>
-                        <ColorPicker
-                            color={color}
-                            onColorChange={(color) => setColor(color)}
-                            thumbSize={50}
-                            sliderSize={50}
-                            noSnap={true}
-                            row={false}
-                        />
-                    </View>
+                        <View style={styles.sectionContainer}>
+                            <ColorPicker
+                                color={color}
+                                onColorChange={(color) => setColor(color)}
+                                thumbSize={50}
+                                sliderSize={50}
+                                noSnap={true}
+                                row={false}
+                            />
+                        </View>
                     </SafeAreaView>
                     <View style={styles.inputContainer}>
                         <TouchableOpacity style={styles.button} onPress={() => setModalVisible(!modalVisible)}>
