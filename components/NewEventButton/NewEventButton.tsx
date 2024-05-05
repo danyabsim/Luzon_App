@@ -98,6 +98,7 @@ export default function NewEventButton() {
                                         });
                                     })
                                     setTitle('');
+                                    setColor('')
                                     setStartDate(undefined);
                                     setEndDate(undefined);
                                     setModalVisible(!modalVisible);
