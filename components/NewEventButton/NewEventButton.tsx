@@ -29,6 +29,14 @@ export default function NewEventButton() {
     const dispatch = useDispatch();
     const user = useSelector((state: RootState) => state.user);
 
+    const closeModal = () => {
+        setTitle('');
+        setColor('')
+        setStartDate(undefined);
+        setEndDate(undefined);
+        setModalVisible(!modalVisible);
+    }
+
     return (
         <View>
             <Modal
@@ -78,7 +86,7 @@ export default function NewEventButton() {
                         </View>
                     </SafeAreaView>
                     <View style={styles.inputContainer}>
-                        <TouchableOpacity style={styles.button} onPress={() => setModalVisible(!modalVisible)}>
+                        <TouchableOpacity style={styles.button} onPress={closeModal}>
                             <Text style={styles.textStyle}>Close</Text>
                         </TouchableOpacity>
                         <TouchableOpacity
@@ -97,11 +105,7 @@ export default function NewEventButton() {
                                             name: XHRTitle, height: hexToRgbInt(color), day: formatDateAndTime(day).date
                                         });
                                     })
-                                    setTitle('');
-                                    setColor('')
-                                    setStartDate(undefined);
-                                    setEndDate(undefined);
-                                    setModalVisible(!modalVisible);
+                                    closeModal();
                                 }
                             }}>
                             <Text style={styles.textStyle}>Add</Text>
