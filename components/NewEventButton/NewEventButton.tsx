@@ -1,4 +1,4 @@
-import {Alert, Modal, Text, TextInput, TouchableOpacity, View} from "react-native";
+import {Alert, Modal, SafeAreaView, Text, TextInput, TouchableOpacity, View} from "react-native";
 import React from "react";
 import {styles} from './styles';
 import {useDispatch, useSelector} from "react-redux";
@@ -6,7 +6,8 @@ import {RootState} from "../../redux/store";
 import {XHRRequest} from "../../UserServerIntegration/XHR";
 import {setEvents} from "../../redux/Events/eventsSlice";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
-import {formatDateAndTime, getDatesBetween, styleByOS} from "../../constants/AppStyles";
+import {formatDateAndTime, getDatesBetween, hexToRgbInt, styleByOS} from "../../constants/AppStyles";
+import ColorPicker from 'react-native-wheel-color-picker';
 
 export default function NewEventButton() {
     const [modalVisible, setModalVisible] = React.useState(false);
@@ -14,6 +15,7 @@ export default function NewEventButton() {
     const [isDatePickerVisible, setDatePickerVisibility] = React.useState(false);
     const [startDate, setStartDate] = React.useState<string | Date>();
     const [endDate, setEndDate] = React.useState<string | Date>();
+    const [color, setColor] = React.useState('');
 
     const inputContainers = [
         {label: 'Title', state: title, setState: setTitle},
@@ -36,7 +38,7 @@ export default function NewEventButton() {
                     setModalVisible(!modalVisible);
                 }}>
                 <View style={styles.modalView}>
-                    {[...inputContainers, ...timeContainers].map((input, index) => (
+                    {(styleByOS() ? [...inputContainers] : [...inputContainers, ...timeContainers]).map((input, index) => (
                         <View key={index} style={styles.inputContainer}>
                             <Text style={styles.modalText}>{input.label}:</Text>
                             <TextInput style={[styles.modalText, styles.input]} onChangeText={input.setState}
@@ -63,6 +65,18 @@ export default function NewEventButton() {
                             </View>
                         ))
                     }
+                    <SafeAreaView>
+                    <View style={styles.sectionContainer}>
+                        <ColorPicker
+                            color={color}
+                            onColorChange={(color) => setColor(color)}
+                            thumbSize={50}
+                            sliderSize={50}
+                            noSnap={true}
+                            row={false}
+                        />
+                    </View>
+                    </SafeAreaView>
                     <View style={styles.inputContainer}>
                         <TouchableOpacity style={styles.button} onPress={() => setModalVisible(!modalVisible)}>
                             <Text style={styles.textStyle}>Close</Text>
@@ -79,7 +93,7 @@ export default function NewEventButton() {
                                         dispatch(setEvents({}));
                                         XHRRequest(dispatch, '/addEvent', {
                                             username: user.username, password: user.password,
-                                            name: XHRTitle, height: 10, day: day
+                                            name: XHRTitle, height: hexToRgbInt(color), day: day
                                         });
                                     })
                                     setModalVisible(!modalVisible);

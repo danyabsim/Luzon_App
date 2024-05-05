@@ -7,7 +7,7 @@ import {RootState} from "../../redux/store";
 import {setEvents, setReduxSelected} from "../../redux/Events/eventsSlice";
 import {ErrorBoundary} from "react-error-boundary";
 import {XHRRequest} from "../../UserServerIntegration/XHR";
-import {styleByTime} from "../../constants/AppStyles";
+import {rgbIntToHex, styleByTime} from "../../constants/AppStyles";
 
 export default function Calendar() {
     const [sureModalVisible, setSureModalVisible] = React.useState(false);
@@ -59,6 +59,7 @@ export default function Calendar() {
                             setItemToRemove(item);
                             setSureModalVisible(true);
                         }}>
+                            <View style={{ borderRadius: 50, backgroundColor: rgbIntToHex(item.height), width: 30, height: 30 }} />
                             <Text style={styles.itemText}>{item.name}</Text>
                         </TouchableOpacity>
                     )}

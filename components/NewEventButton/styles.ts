@@ -69,4 +69,8 @@ export const styles = StyleSheet.create({
         paddingRight: 10,
         color: styleByTime('black', 'white')
     },
+    sectionContainer: {
+        paddingHorizontal: 12,
+        paddingBottom: 20,
+    },
 });
