@@ -93,7 +93,7 @@ export default function NewEventButton() {
                                         dispatch(setEvents({}));
                                         XHRRequest(dispatch, '/addEvent', {
                                             username: user.username, password: user.password,
-                                            name: XHRTitle, height: hexToRgbInt(color), day: day
+                                            name: XHRTitle, height: hexToRgbInt(color), day: formatDateAndTime(day).date
                                         });
                                     })
                                     setModalVisible(!modalVisible);
