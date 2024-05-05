@@ -13,8 +13,8 @@ export default function NewEventButton() {
     const [modalVisible, setModalVisible] = React.useState(false);
     const [title, setTitle] = React.useState("");
     const [isDatePickerVisible, setDatePickerVisibility] = React.useState(false);
-    const [startDate, setStartDate] = React.useState<string | Date>();
-    const [endDate, setEndDate] = React.useState<string | Date>();
+    const [startDate, setStartDate] = React.useState<string | Date>(undefined);
+    const [endDate, setEndDate] = React.useState<string | Date>(undefined);
     const [color, setColor] = React.useState('');
 
     const inputContainers = [
@@ -84,6 +84,7 @@ export default function NewEventButton() {
                         <TouchableOpacity
                             style={styles.button}
                             onPress={() => {
+                                if (startDate === undefined || endDate === undefined || color === '' || title === '') return;
                                 const startDateAndTime = formatDateAndTime(startDate);
                                 const endDateAndTime = formatDateAndTime(endDate);
                                 const dates = getDatesBetween(startDateAndTime.date, endDateAndTime.date);
@@ -96,6 +97,9 @@ export default function NewEventButton() {
                                             name: XHRTitle, height: hexToRgbInt(color), day: formatDateAndTime(day).date
                                         });
                                     })
+                                    setTitle('');
+                                    setStartDate(undefined);
+                                    setEndDate(undefined);
                                     setModalVisible(!modalVisible);
                                 }
                             }}>
