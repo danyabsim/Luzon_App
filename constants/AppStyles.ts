@@ -15,7 +15,7 @@ export function formatDateAndTime(dateString: Date | string) {
         // Format: "Mon May 29 2024 12:00:00 GMT+0300"
         dateObj = new Date(dateString);
     } else {
-        // Format: "2024-05-01 12:00"
+        // Format: "2024-05-29 12:00"
         const [datePart, timePart] = dateString.toString().split(' ');
         const [year, month, day] = datePart.split('-');
         const [hours, minutes] = timePart.split(':');
