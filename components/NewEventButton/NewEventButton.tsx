@@ -31,7 +31,7 @@ export default function NewEventButton() {
 
     const closeModal = () => {
         setTitle('');
-        setColor('')
+        setColor('');
         setStartDate(undefined);
         setEndDate(undefined);
         setModalVisible(!modalVisible);
@@ -94,7 +94,7 @@ export default function NewEventButton() {
                                     dates.map((day) => {
                                         dispatch(setEvents({}));
                                         XHRRequest(dispatch, '/addEvent', {
-                                            username: user.username, password: user.password,
+                                            ...user,
                                             name: XHRTitle, height: hexToRgbInt(color), day: formatDateAndTime(day).date
                                         });
                                     })

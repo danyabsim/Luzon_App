@@ -8,9 +8,12 @@ const userSlice = createSlice({
         setUser: (state, action) => {
             state.username = action.payload.username;
             state.password = action.payload.password;
+        },
+        setIsAdmin:  (state, action) => {
+            state.isAdmin = action.payload;
         }
     }
 });
 
-export const {setUser} = userSlice.actions;
+export const {setUser, setIsAdmin} = userSlice.actions;
 export default userSlice.reducer;

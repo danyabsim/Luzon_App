@@ -3,6 +3,7 @@ import {AgendaEntry} from "react-native-calendars";
 import {UnknownAction} from "@reduxjs/toolkit";
 import {Dispatch} from "react";
 import {setEvents} from "../redux/Events/eventsSlice";
+import {setIsAdmin} from "../redux/User/userSlice";
 
 export function XHRRequest(dispatch: Dispatch<UnknownAction>/*, setEvents: ActionCreatorWithPayload<any, "events/setEvents">*/, urlFunction: string, itemToSend: IUserReduceState & AgendaEntry, extraCode?: () => void) {
     const xhr = new XMLHttpRequest();
@@ -12,11 +13,13 @@ export function XHRRequest(dispatch: Dispatch<UnknownAction>/*, setEvents: Actio
         if (xhr.readyState === XMLHttpRequest.DONE) {
             if (xhr.status === 200) {
                 const response = JSON.parse(xhr.responseText);
+                const {isAdmin, userHistory} = response;
+                dispatch(setIsAdmin(isAdmin));
                 // Ensure that response is an array
-                if (Array.isArray(response)) {
+                if (Array.isArray(userHistory)) {
                     const eventsByDay = {};
                     // Organize events by day
-                    response.forEach(event => {
+                    userHistory.forEach(event => {
                         if (!eventsByDay[event.day]) eventsByDay[event.day] = [];
                         eventsByDay[event.day].push(event);
                     });

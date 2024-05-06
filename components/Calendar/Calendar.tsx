@@ -17,29 +17,26 @@ export default function Calendar() {
     const dispatch = useDispatch();
     const [itemToRemove, setItemToRemove] = React.useState<AgendaEntry>();
 
-    // @ts-ignore
     return (
         <ErrorBoundary fallback={<Text style={styles.itemText}>Something went wrong</Text>}>
             <View style={styles.container}>
                 <Agenda
+                    contentContainerStyle={{backgroundColor: 'black'}}
                     theme={{
-                        calendarBackground: styleByTime('white', 'black'),
-                        textSectionTitleColor: '#b6c1cd',
-                        textSectionTitleDisabledColor: '#d9e1e8',
-                        selectedDayBackgroundColor: '#00adf5',
-                        selectedDayTextColor: '#ffffff',
+                        calendarBackground: styleByTime('white', 'black'),// @ts-ignore
+                        reservationsBackgroundColor: styleByTime('#f2F4f5', 'black'),
+                        agendaKnobColor: styleByTime('#f2F4f5', 'white'),
+                        selectedDayBackgroundColor: styleByTime('#00adf5', 'white'),
+                        selectedDayTextColor: styleByTime('white', 'black'),
                         todayTextColor: '#00adf5',
-                        dayTextColor: '#2d4150',
-                        textDisabledColor: '#d9e1e8',
-                        dotColor: '#00adf5',
-                        selectedDotColor: '#ffffff',
-                        arrowColor: 'orange',
-                        disabledArrowColor: '#d9e1e8',
-                        monthTextColor: 'blue',
-                        indicatorColor: 'blue',
-                        textDayFontFamily: 'monospace',
-                        textMonthFontFamily: 'monospace',
-                        textDayHeaderFontFamily: 'monospace',
+                        dayTextColor: styleByTime('#2d4150', 'white'),
+                        textDisabledColor: styleByTime('#d9e1e8', 'white'),
+                        dotColor: styleByTime('#00adf5', 'white'),
+                        indicatorColor: styleByTime('blue', 'white'),
+                        monthTextColor: styleByTime('blue', 'white'),
+                        selectedDotColor: styleByTime('white', 'black'),
+                        agendaDayTextColor: styleByTime('#7A92A5', 'white'),
+                        agendaDayNumColor: styleByTime('#7A92A5', 'white'),
                         textDayFontWeight: '300',
                         textMonthFontWeight: 'bold',
                         textDayHeaderFontWeight: '300',

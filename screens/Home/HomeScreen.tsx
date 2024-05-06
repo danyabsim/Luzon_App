@@ -34,7 +34,7 @@ export default function HomeScreen({navigation}: Props) {
             ))}
             <TouchableOpacity style={styles.button} onPress={() => {
                 XHRRequest(dispatch, '/connect', {
-                    username: username, password: password, name: "", height: 10, day: ""
+                    username: username, password: password, isAdmin: false, name: "", height: 10, day: ""
                 }, () => {
                     dispatch(setUser({username: username, password: password}));
                     setUsername(initialUserState.username);
