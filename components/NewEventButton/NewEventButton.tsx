@@ -58,12 +58,10 @@ export default function NewEventButton() {
                             <View key={index}>
                                 <TouchableOpacity style={styles.button}
                                                   onPress={() => setDatePickerVisibility(true)}>
-                                    <Text style={styles.textStyle}>{time.label}</Text>
+                                    <Text style={styles.textStyle}>{time.state === undefined ? `Select ${time.label}` : `You chose ${formatDateAndTime(time.state).date} (${formatDateAndTime(time.state).time})`}</Text>
                                 </TouchableOpacity>
                                 <DateTimePickerModal
-                                    date={time.state as Date}
-                                    isVisible={isDatePickerVisible}
-                                    mode="datetime"
+                                    date={time.state as Date} isVisible={isDatePickerVisible} mode="datetime"
                                     onConfirm={(date) => {
                                         time.setState(date)
                                         setDatePickerVisibility(false);
@@ -76,13 +74,8 @@ export default function NewEventButton() {
                     <SafeAreaView>
                         <View style={styles.sectionContainer}>
                             <ColorPicker
-                                color={color}
-                                onColorChange={(color) => setColor(color)}
-                                thumbSize={50}
-                                sliderSize={50}
-                                noSnap={true}
-                                row={false}
-                            />
+                                color={color} onColorChange={(color) => setColor(color)} thumbSize={50}
+                                sliderSize={50} noSnap={true} row={false} gapSize={30} palette={[]}/>
                         </View>
                     </SafeAreaView>
                     <View style={styles.inputContainer}>

@@ -56,7 +56,8 @@ export const styles = StyleSheet.create({
         padding: 10,
         elevation: 2,
         backgroundColor: styleByTime('#2196F3', '#373737'),
-        marginHorizontal: 5
+        marginHorizontal: 5,
+        marginVertical: 3
     },
     textStyle: {
         fontWeight: 'bold',
