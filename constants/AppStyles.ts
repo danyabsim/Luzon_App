@@ -2,7 +2,7 @@ import {Platform} from "react-native";
 
 export function styleByTime(daySetting: string, nightSetting: string): string {
     const currentHour = new Date().getHours();
-    return (currentHour > 18 && currentHour < 6) ? nightSetting : daySetting;
+    return  (currentHour > 18 && currentHour < 6) ? nightSetting : daySetting;
 }
 
 export function styleByOS() {
