@@ -10,6 +10,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {XHRRequest} from "../../UserServerIntegration/XHR";
 import {RootState} from "../../redux/store";
 import {setEvents} from "../../redux/Events/eventsSlice";
+import Filter from "../../components/Filter/Filter";
 
 type Props = StackScreenProps<MainStackParamList, 'Calendar'>;
 
@@ -33,6 +34,7 @@ export default function CalendarScreen({navigation}: Props) {
                 <RefreshControl refreshing={refreshing} onRefresh={onRefresh}/>
             }>
             <Text style={styles.mainText}>לו"ז מדור פיתוח</Text>
+            {user.isAdmin && <Filter/>}
             <Calendar/>
             <NewEventButton/>
             <TouchableOpacity style={styles.button} onPress={() => {

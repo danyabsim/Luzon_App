@@ -10,9 +10,12 @@ const settingsSlice = createSlice({
         },
         setEvents: (state, action) => {
             state.events = action.payload;
+        },
+        setFilteredOption: (state, action) => {
+            state.filteredOption = action.payload;
         }
     },
 });
 
-export const {setReduxSelected, setEvents} = settingsSlice.actions;
+export const {setReduxSelected, setEvents, setFilteredOption} = settingsSlice.actions;
 export default settingsSlice.reducer;

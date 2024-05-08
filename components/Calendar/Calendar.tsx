@@ -1,4 +1,4 @@
-import {Agenda, AgendaEntry} from "react-native-calendars";
+import {Agenda, AgendaEntry, AgendaSchedule} from "react-native-calendars";
 import {Alert, Modal, Text, TouchableOpacity, View} from "react-native";
 import React from "react";
 import {styles} from './styles';
@@ -14,9 +14,18 @@ export default function Calendar() {
     const [selected, setSelected] = React.useState(useSelector((state: RootState) => state.events.selected));
     const events = useSelector((state: RootState) => state.events.events);
     const user = useSelector((state: RootState) => state.user);
+    const filteredOption = useSelector((state: RootState) => state.events.filteredOption);
     const dispatch = useDispatch();
     const [itemToRemove, setItemToRemove] = React.useState<AgendaEntry>();
 
+    const FilteredItems = () : AgendaSchedule => {
+        if (filteredOption == 'All') return events;
+        if (filteredOption == 'None') return {};
+        return Object.fromEntries(
+            Object.entries(events).map(([key, value]) => [key, value.filter(item => item.name.includes(`(${filteredOption})`))])
+        );
+        // run on all the users and filter it.
+    }
     return (
         <ErrorBoundary fallback={<Text style={styles.itemText}>Something went wrong</Text>}>
             <View style={styles.container}>
@@ -44,7 +53,8 @@ export default function Calendar() {
                         textMonthFontSize: 16,
                         textDayHeaderFontSize: 16,
                     }}
-                    items={events} selected={selected} collapsable={true} enableSwipeMonths={true} scrollEnabled={true}
+                    items={FilteredItems()}
+                    selected={selected} collapsable={true} enableSwipeMonths={true} scrollEnabled={true}
                     showOnlySelectedDayItems={true}
 
                     onDayPress={(day) => {

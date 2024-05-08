@@ -40,9 +40,7 @@ export default function HomeScreen({navigation}: Props) {
     }, []);
 
     function logIn() {
-        XHRRequest(dispatch, '/connect', {
-            username: username, password: password, isAdmin: false, name: "", height: 10, day: ""
-        }, async () => {
+        XHRRequest(dispatch, '/connect', {username: username, password: password}, async () => {
             dispatch(setUser({username: username, password: password}));
             await AsyncStorage.setItem('username', JSON.stringify(rememberMe ? username : ''));
             await AsyncStorage.setItem('password', JSON.stringify(rememberMe ? password : ''));
