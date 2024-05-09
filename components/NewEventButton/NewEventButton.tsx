@@ -97,6 +97,7 @@ export default function NewEventButton() {
                                             ...user,
                                             name: XHRTitle, height: hexToRgbInt(color), day: formatDateAndTime(day).date
                                         });
+                                        XHRRequest(dispatch, '/connect', {...user});
                                     })
                                     closeModal();
                                 }

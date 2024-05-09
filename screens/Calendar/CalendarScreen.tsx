@@ -22,9 +22,7 @@ export default function CalendarScreen({navigation}: Props) {
     const onRefresh = React.useCallback(() => {
         setRefreshing(true);
         dispatch(setEvents({}));
-        XHRRequest(dispatch,'/connect', {
-            ...user, name: "", height: 10, day: ""
-        }, () => setRefreshing(false));
+        XHRRequest(dispatch,'/connect', {...user}, () => setRefreshing(false));
     }, []);
 
     return (

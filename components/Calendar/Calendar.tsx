@@ -94,6 +94,7 @@ export default function Calendar() {
                                 onPress={() => {
                                     dispatch(setEvents({}));
                                     XHRRequest(dispatch, '/removeEvent', {...user, ...itemToRemove});
+                                    XHRRequest(dispatch, '/connect', {...user});
                                     setItemToRemove(null);
                                     setSureModalVisible(false);
                                 }}>
