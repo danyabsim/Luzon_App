@@ -30,7 +30,7 @@ export function XHRRequest(dispatch: Dispatch<UnknownAction>, urlFunction: strin
                     } else {
                         console.error('Invalid response format: expected an array.');
                     }
-                } else if (urlFunction === '/getAllUserNames') {
+                } else if (urlFunction === '/getAllUserNames' || urlFunction === '/addUser' || urlFunction === '/removeUser') {
                     dispatch(setUsernames(response));
                 }
             } else {
