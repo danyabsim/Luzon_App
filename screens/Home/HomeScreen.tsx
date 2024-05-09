@@ -44,6 +44,8 @@ export default function HomeScreen({navigation}: Props) {
             dispatch(setUser({username: username, password: password}));
             await AsyncStorage.setItem('username', JSON.stringify(rememberMe ? username : ''));
             await AsyncStorage.setItem('password', JSON.stringify(rememberMe ? password : ''));
+            setUsername(rememberMe ? username : '');
+            setPassword(rememberMe ? password : '');
             navigation.navigate('Calendar');
         });
     }

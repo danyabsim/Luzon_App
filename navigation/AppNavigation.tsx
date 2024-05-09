@@ -4,6 +4,7 @@ import HomeScreen from "../screens/Home/HomeScreen";
 import {StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import ProfileScreen from "../screens/Profile/ProfileScreen";
 import SettingsScreen from "../screens/Settings/SettingsScreen";
+import MenuImage from "../components/MenuImage/MenuImage";
 
 const Stack = createStackNavigator();
 
@@ -52,9 +53,7 @@ export const CalendarNavigator = () => {
                     return {
                         headerStyle: styles.headerStyle,
                         headerLeft: () => (
-                            <TouchableOpacity onPress={() => navigation.openDrawer()}>
-                                <Text>Hello</Text>
-                            </TouchableOpacity>
+                            <MenuImage onPress={() => {navigation.openDrawer()}}/>
                         )
                     };
                 }}
@@ -95,10 +94,9 @@ export const CalendarNavigator = () => {
 
 const styles = StyleSheet.create({
     headerStyle: {
-        backgroundColor: '#ECECEC',
+        backgroundColor: '#F4F6FA',
         elevation: 0,
-        height: 80,
         shadowColor: 'transparent',
-        borderBottomWidth: 0
+        borderBottomWidth: 0,
     }
 });
