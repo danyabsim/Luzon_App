@@ -12,7 +12,7 @@ export function XHRRequest(dispatch: Dispatch<UnknownAction>, urlFunction: strin
         if (xhr.readyState === XMLHttpRequest.DONE) {
             if (xhr.status === 200) {
                 const response = JSON.parse(xhr.responseText);
-                if (urlFunction === '/connect' || urlFunction === '/addEvent' || urlFunction === '/removeEvent') {
+                if (urlFunction === '/connect') {
                     const {isAdmin, userHistory} = response;
                     dispatch(setIsAdmin(isAdmin));
                     // Ensure that response is an array
@@ -30,7 +30,7 @@ export function XHRRequest(dispatch: Dispatch<UnknownAction>, urlFunction: strin
                     } else {
                         console.error('Invalid response format: expected an array.');
                     }
-                } else if (urlFunction === '/getAllUserNames' || urlFunction === '/addUser' || urlFunction === '/removeUser') {
+                } else if (urlFunction === '/getAllUserNames') {
                     dispatch(setUsernames(response));
                 }
             } else {
