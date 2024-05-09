@@ -1,5 +1,5 @@
 import React from 'react';
-import {Image, Text, View} from 'react-native';
+import {Image, View, Text} from 'react-native';
 import {styleByTime} from "../../constants/AppStyles";
 import {useSelector} from "react-redux";
 import {RootState} from "../../redux/store";
@@ -11,15 +11,10 @@ export default function SettingsScreen() {
 
     return (
         <View style={styles.container}>
-            {styleByTime(
-                <Image
-                    style={styles.imageHeader}
-                    source={require('../../assets/user-_black_.png')}
-                />,
-                <Image
-                    style={styles.imageHeader}
-                    source={require('../../assets/user-_white_.png')}
-                />)}
+            <Image
+                style={styles.imageHeader}
+                source={styleByTime(require('../../assets/user-_black_.png'), require('../../assets/user-_white_.png'))}
+            />
             <Text style={styles.text}>{username}</Text>
             <Text style={styles.text}>{isAdmin ? 'Admin' : 'Regular User'}</Text>
         </View>
