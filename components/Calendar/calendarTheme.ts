@@ -22,4 +22,5 @@ export const calendarTheme: Theme = {
     textDayFontSize: 16,
     textMonthFontSize: 16,
     textDayHeaderFontSize: 16,
+    todayButtonFontWeight: '300'
 }

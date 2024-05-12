@@ -10,13 +10,13 @@ export const styles = StyleSheet.create({
     },
     settingItem: {
         borderBottomWidth: 1,
-        borderBottomColor: '#DDD',
+        borderBottomColor: styleByTime('black', 'white'),
         paddingVertical: 10,
     },
     settingText: {
         fontFamily: 'Roboto',
         fontSize: 16,
-        color: '#000',
+        color: styleByTime('black', 'white'),
     },
     button: {
         borderRadius: 20,

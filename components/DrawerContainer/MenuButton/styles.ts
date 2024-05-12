@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import {styleByTime} from "../../../constants/AppStyles";
 
 const styles = StyleSheet.create({
     btnClickContain: {
@@ -19,7 +20,8 @@ const styles = StyleSheet.create({
     btnText: {
         fontSize: 16,
         marginLeft: 10,
-        marginTop: 2
+        marginTop: 2,
+        color: styleByTime( 'black', 'white'),
     }
 });
 

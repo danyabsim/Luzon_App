@@ -1,4 +1,5 @@
 import {StyleSheet} from "react-native";
+import {styleByTime} from "../../constants/AppStyles";
 
 export const styles = StyleSheet.create({
     container: {
@@ -14,10 +15,11 @@ export const styles = StyleSheet.create({
     },
     menuText: {
         fontSize: 16,
+        color: styleByTime('black','white')
     },
     menuContainer: {
         position: 'absolute',
-        backgroundColor: 'white',
+        backgroundColor: styleByTime('white', 'black'),
         borderWidth: 1,
         borderColor: '#ccc',
         borderRadius: 5,
