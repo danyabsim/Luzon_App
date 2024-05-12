@@ -1,4 +1,4 @@
-import {styles} from "../../styles";
+import {styles} from "./styles";
 import {Text, TouchableOpacity} from "react-native";
 import React from "react";
 import {CloseButtonProps} from "./CloseButtonProps";

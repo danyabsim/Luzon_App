@@ -1,5 +1,5 @@
 import {StyleSheet} from "react-native";
-import {styleByTime} from "../../constants/AppStyles";
+import {styleByTime} from "../../../../constants/AppStyles";
 
 export const styles = StyleSheet.create({
     button: {
@@ -14,5 +14,5 @@ export const styles = StyleSheet.create({
         fontWeight: 'bold',
         textAlign: 'center',
         color: 'white',
-    },
+    }
 });

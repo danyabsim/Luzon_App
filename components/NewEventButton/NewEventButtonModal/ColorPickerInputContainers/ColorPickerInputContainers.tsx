@@ -1,5 +1,5 @@
 import {SafeAreaView, View} from "react-native";
-import {styles} from "../../styles";
+import {styles} from "./styles";
 import ColorPicker from "react-native-wheel-color-picker";
 import React from "react";
 import {ColorPickerInputContainersProps} from "./ColorPickerInputContainersProps";

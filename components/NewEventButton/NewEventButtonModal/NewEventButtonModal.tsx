@@ -1,5 +1,5 @@
 import {Alert, Modal, View} from "react-native";
-import {styles} from "../styles";
+import {styles} from "./styles";
 import {formatDateAndTime, getDatesBetween, hexToRgbInt} from "../../../constants/AppStyles";
 import {setEvents} from "../../../redux/Events/eventsSlice";
 import {XHRRequest} from "../../../UserServerIntegration/XHR";
