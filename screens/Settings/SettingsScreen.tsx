@@ -6,9 +6,11 @@ import {ChangePasswordModal} from "../../components/ChangePasswordModal/ChangePa
 import {AddUserModal} from "../../components/AddUserModal/AddUserModal";
 import {RemoveUserModal} from "../../components/RemoveUserModal/RemoveUserModal";
 import {DarkModeModal} from "../../components/DarkModeModal/DarkModeModal";
+import {useSelector} from "react-redux";
+import {RootState} from "../../redux/store";
 
 export default function Settings() {
-    const isAdmin = true;
+    const isAdmin = useSelector((state: RootState) => state.user.isAdmin);
     const [modalVisible, setModalVisible] = React.useState(false);
     const [whoIsOn, setWhoIsOn] = React.useState('');
 
