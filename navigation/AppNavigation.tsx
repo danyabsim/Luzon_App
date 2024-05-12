@@ -1,16 +1,21 @@
 import {createStackNavigator} from '@react-navigation/stack';
+import {createDrawerNavigator} from "@react-navigation/drawer";
 import CalendarScreen from "../screens/Calendar/CalendarScreen";
 import HomeScreen from "../screens/Home/HomeScreen";
-import {StyleSheet, Text, TouchableOpacity, View} from "react-native";
+import {StyleSheet} from "react-native";
 import ProfileScreen from "../screens/Profile/ProfileScreen";
 import SettingsScreen from "../screens/Settings/SettingsScreen";
 import MenuImage from "../components/MenuImage/MenuImage";
+import {DrawerContainer} from "../components/DrawerContainer/DrawerContainer";
+import {NavigationContainer} from "@react-navigation/native";
 
 const Stack = createStackNavigator();
-
+const Drawer = createDrawerNavigator();
 export type MainStackParamList = {
     Home: undefined;
     Calendar: undefined;
+    Profile: undefined;
+    Settings: undefined;
 };
 
 export const AppNavigator = () => {
@@ -22,81 +27,75 @@ export const AppNavigator = () => {
                 component={HomeScreen}
             />
             <Stack.Screen
-                options={{headerShown: false}}
-                name="Calendar"
-                component={CalendarScreen}
+                options={({navigation}) => {
+                    return {
+                        title: "",
+                        headerStyle: styles.headerStyle,
+                        headerLeft: () => <MenuImage onPress={() => {
+                            navigation.openDrawer()
+                        }}/>
+                    };
+                }}
+                name="Calendar" component={CalendarScreen}
+            />
+            <Stack.Screen
+                options={({navigation}) => {
+                    return {
+                        title: "",
+                        headerStyle: styles.headerStyle,
+                        headerLeft: () => <MenuImage onPress={() => {
+                            navigation.openDrawer()
+                        }}/>
+                    };
+                }}
+                name="Profile" component={ProfileScreen}
+            />
+            <Stack.Screen
+                options={({navigation}) => {
+                    return {
+                        title: "",
+                        headerStyle: styles.headerStyle,
+                        headerLeft: () => <MenuImage onPress={() => {
+                            navigation.openDrawer()
+                        }}/>
+                    };
+                }}
+                name="Settings" component={SettingsScreen}
             />
         </Stack.Navigator>
     );
 };
 
-export type CalendarStackParamList = {
-    Calendar: undefined;
-    Profile: undefined;
-    Settings: undefined;
-};
-
-export const CalendarNavigator = () => {
+const DrawerStack = () => {
     return (
-        <Stack.Navigator
-            screenOptions={{
-                headerTitleStyle: {
-                    fontWeight: 'bold',
-                    textAlign: 'center',
-                    alignSelf: 'center'
-                },
-                headerRight: () => <View/>
+        <Drawer.Navigator
+            //drawerPosition="left"
+            initialRouteName="App"
+            //drawerWidth={250}
+            drawerContent={({navigation}) => {
+                return <DrawerContainer navigation={navigation}/>;
             }}
         >
-            <Stack.Screen
-                options={({navigation}) => {
-                    return {
-                        headerStyle: styles.headerStyle,
-                        headerLeft: () => (
-                            <MenuImage onPress={() => {navigation.openDrawer()}}/>
-                        )
-                    };
-                }}
-                name="Calendar"
-                component={CalendarScreen}
-            />
-            <Stack.Screen
-                options={({navigation}) => {
-                    return {
-                        headerStyle: styles.headerStyle,
-                        headerLeft: () => (
-                            <TouchableOpacity onPress={() => navigation.openDrawer()}>
-                                <Text>Hello</Text>
-                            </TouchableOpacity>
-                        )
-                    };
-                }}
-                name="Profile"
-                component={ProfileScreen}
-            />
-            <Stack.Screen
-                options={({navigation}) => {
-                    return {
-                        headerStyle: styles.headerStyle,
-                        headerLeft: () => (
-                            <TouchableOpacity onPress={() => navigation.openDrawer()}>
-                                <Text>Hello</Text>
-                            </TouchableOpacity>
-                        )
-                    };
-                }}
-                name="Settings"
-                component={SettingsScreen}
-            />
-        </Stack.Navigator>
+            <Drawer.Screen options={{headerShown: false}} name="App" component={AppNavigator}/>
+        </Drawer.Navigator>
     );
-}
+};
+
+export const AppContainer = () => {
+    return (
+        <NavigationContainer>
+            {/*<AppNavigator />*/}
+            <DrawerStack/>
+        </NavigationContainer>
+    );
+};
 
 const styles = StyleSheet.create({
     headerStyle: {
-        backgroundColor: '#F4F6FA',
+        backgroundColor: 'white',
         elevation: 0,
         shadowColor: 'transparent',
         borderBottomWidth: 0,
+        marginVertical: 0,
     }
 });

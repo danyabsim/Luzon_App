@@ -1,20 +1,15 @@
 import React from 'react';
-import {RefreshControl, ScrollView, Text, TouchableOpacity} from 'react-native';
+import {RefreshControl, ScrollView, Text} from 'react-native';
 import Calendar from "../../components/Calendar/Calendar";
 import NewEventButton from "../../components/NewEventButton/NewEventButton";
 import {styles} from './styles';
-import {StackScreenProps} from "@react-navigation/stack";
-import {MainStackParamList} from "../../navigation/AppNavigation";
-import {setUser} from "../../redux/User/userSlice";
 import {useDispatch, useSelector} from "react-redux";
 import {XHRRequest} from "../../UserServerIntegration/XHR";
 import {RootState} from "../../redux/store";
 import {setEvents} from "../../redux/Events/eventsSlice";
 import Filter from "../../components/Filter/Filter";
 
-type Props = StackScreenProps<MainStackParamList, 'Calendar'>;
-
-export default function CalendarScreen({navigation}: Props) {
+export default function CalendarScreen() {
     const dispatch = useDispatch();
     const [refreshing, setRefreshing] = React.useState(false);
     const user = useSelector((state: RootState) => state.user);
@@ -22,7 +17,7 @@ export default function CalendarScreen({navigation}: Props) {
     const onRefresh = React.useCallback(() => {
         setRefreshing(true);
         dispatch(setEvents({}));
-        XHRRequest(dispatch,'/connect', {...user}, () => setRefreshing(false));
+        XHRRequest(dispatch, '/connect', {...user}, () => setRefreshing(false));
     }, []);
 
     return (
@@ -35,12 +30,6 @@ export default function CalendarScreen({navigation}: Props) {
             {user.isAdmin && <Filter/>}
             <Calendar/>
             <NewEventButton/>
-            <TouchableOpacity style={styles.button} onPress={() => {
-                dispatch(setUser({username: '', password: ''}));
-                navigation.navigate('Home');
-            }}>
-                <Text style={styles.textStyle}>Exit</Text>
-            </TouchableOpacity>
         </ScrollView>
     );
 }

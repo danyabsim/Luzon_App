@@ -13,7 +13,7 @@ export default function SettingsScreen() {
         <View style={styles.container}>
             <Image
                 style={styles.imageHeader}
-                source={styleByTime(require('../../assets/user-_black_.png'), require('../../assets/user-_white_.png'))}
+                source={styleByTime(require('../../assets/user (black).png'), require('../../assets/user (white).png'))}
             />
             <Text style={styles.text}>{username}</Text>
             <Text style={styles.text}>{isAdmin ? 'Admin' : 'Regular User'}</Text>
