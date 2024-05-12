@@ -1,4 +1,4 @@
-import {Alert, Modal, View} from "react-native";
+import {View} from "react-native";
 import {styles} from "./styles";
 import {formatDateAndTime, getDatesBetween, hexToRgbInt} from "../../../constants/AppStyles";
 import {setEvents} from "../../../redux/Events/eventsSlice";
@@ -12,6 +12,7 @@ import {DatePickerInputContainers} from "./DatePickerInputContainers/DatePickerI
 import {ColorPickerInputContainers} from "./ColorPickerInputContainers/ColorPickerInputContainers";
 import {CloseButton} from "./CloseButton/CloseButton";
 import {AddButton} from "./AddButton/AddButton";
+import {ModalApp} from "../../ModalApp/ModalApp";
 
 export function NewEventButtonModal(props: NewEventButtonModalProps) {
     const [title, setTitle] = React.useState("");
@@ -39,12 +40,8 @@ export function NewEventButtonModal(props: NewEventButtonModalProps) {
     ];
 
     return (
-        <Modal
-            animationType="slide" transparent={true} visible={props.modalVisible} onRequestClose={() => {
-            Alert.alert('Modal has been closed.');
-            props.setModalVisible(!props.modalVisible);
-        }}>
-            <View style={styles.modalView}>
+        <ModalApp modalVisible={props.modalVisible} setModalVisible={props.setModalVisible} children={
+            <View>
                 <TextInputContainers inputContainers={inputContainers} timeContainers={timeContainers}/>
                 <DatePickerInputContainers timeContainers={timeContainers}/>
                 <ColorPickerInputContainers color={color} setColor={setColor}/>
@@ -70,6 +67,6 @@ export function NewEventButtonModal(props: NewEventButtonModalProps) {
                     }}/>
                 </View>
             </View>
-        </Modal>
+        }/>
     );
 }

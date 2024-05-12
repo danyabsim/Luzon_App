@@ -1,14 +1,15 @@
-import {Modal, Text, TouchableOpacity, View} from "react-native";
+import {Text, TouchableOpacity, View} from "react-native";
 import {styles} from "./styles";
 import React from "react";
 import {SureModalProps} from "./SureModalProps";
+import {ModalApp} from "../../ModalApp/ModalApp";
 
 export function SureModal(props: SureModalProps) {
+    const [modalVisible, setModalVisible] = React.useState(false);
+
     return (
-        <Modal
-            animationType="slide" transparent={true} visible={props.visible} onRequestClose={props.onRequestCloseModal}
-        >
-            <View style={styles.modalView}>
+        <ModalApp modalVisible={modalVisible} setModalVisible={setModalVisible} children={
+            <View>
                 <Text style={styles.modalText}>Are You Sure?</Text>
                 <View style={styles.inputContainer}>
                     <TouchableOpacity style={styles.button} onPress={props.onPressNo}>
@@ -19,6 +20,6 @@ export function SureModal(props: SureModalProps) {
                     </TouchableOpacity>
                 </View>
             </View>
-        </Modal>
+        }/>
     );
 }

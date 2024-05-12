@@ -1,6 +1,7 @@
 import React from 'react';
-import { Alert, Modal, Text, View, TouchableOpacity } from 'react-native';
+import {Text, TouchableOpacity, View} from 'react-native';
 import {styles} from "./styles";
+import {ModalApp} from "../../components/ModalApp/ModalApp";
 
 export default function Settings() {
     const isAdmin = true;
@@ -24,21 +25,13 @@ export default function Settings() {
             <TouchableOpacity style={styles.settingItem} onPress={() => setModalVisible(true)}>
                 <Text style={styles.settingText}>Dark Mode</Text>
             </TouchableOpacity>
-            <Modal
-                animationType="slide"
-                transparent={true}
-                visible={modalVisible}
-                onRequestClose={() => {
-                    Alert.alert('Modal has been closed.');
-                    setModalVisible(!modalVisible);
-                }}
-            >
-                <View style={styles.modalView}>
+            <ModalApp modalVisible={modalVisible} setModalVisible={setModalVisible} children={
+                <View>
                     <TouchableOpacity style={styles.button} onPress={() => setModalVisible(false)}>
                         <Text style={styles.textStyle}>Click Me!</Text>
                     </TouchableOpacity>
                 </View>
-            </Modal>
+            }/>
         </View>
     );
 }
