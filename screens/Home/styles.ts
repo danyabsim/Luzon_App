@@ -54,16 +54,5 @@ export const styles = StyleSheet.create({
         marginBottom: 15,
         fontSize: 20,
         paddingRight: 10,
-    },
-    rememberMeButton: {
-        width: 40,
-        height: 40,
-        borderRadius: 20,
-        backgroundColor: styleByTime('#2196F3', '#373737'),
-        marginRight: 10,
-    },
-    rememberMeButtonText: {
-        fontSize: 18,
-        color: styleByTime('black', 'white'),
     }
 });

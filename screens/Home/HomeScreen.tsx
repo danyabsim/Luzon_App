@@ -8,6 +8,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {setUser} from "../../redux/User/userSlice";
 import {XHRRequest} from "../../UserServerIntegration/XHR";
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {RememberMeButton} from "../../components/RememberMeButton/RememberMeButton";
 
 type Props = StackScreenProps<MainStackParamList, 'Home'>;
 
@@ -16,7 +17,6 @@ export default function HomeScreen({navigation}: Props) {
     const [password, setPassword] = React.useState(useSelector((state: RootState) => state.user.password));
     const [rememberMe, setRememberMe] = React.useState(false);
     const dispatch = useDispatch();
-
     const inputContainers = [
         {label: 'Username:', state: username, setState: setUsername},
         {label: 'Password:', state: password, setState: setPassword}
@@ -29,7 +29,10 @@ export default function HomeScreen({navigation}: Props) {
                 if (storedRememberMe !== null) setRememberMe(JSON.parse(storedRememberMe));
                 const storedUserName = await AsyncStorage.getItem('username');
                 const storedPassword = await AsyncStorage.getItem('password');
-                if (storedUserName !== null && storedPassword !== null) dispatch(setUser({username: JSON.parse(storedUserName), password: JSON.parse(storedPassword)}));
+                if (storedUserName !== null && storedPassword !== null) dispatch(setUser({
+                    username: JSON.parse(storedUserName),
+                    password: JSON.parse(storedPassword)
+                }));
                 setUsername(JSON.parse(storedUserName));
                 setPassword(JSON.parse(storedPassword));
             } catch (error) {
@@ -38,17 +41,6 @@ export default function HomeScreen({navigation}: Props) {
         };
         getRememberMeStatus().then(r => r);
     }, []);
-
-    function logIn() {
-        XHRRequest(dispatch, '/connect', {username: username, password: password}, async () => {
-            dispatch(setUser({username: username, password: password}));
-            await AsyncStorage.setItem('username', JSON.stringify(rememberMe ? username : ''));
-            await AsyncStorage.setItem('password', JSON.stringify(rememberMe ? password : ''));
-            setUsername(rememberMe ? username : '');
-            setPassword(rememberMe ? password : '');
-            navigation.navigate('Calendar');
-        });
-    }
 
     return (
         <View style={styles.container}>
@@ -61,15 +53,21 @@ export default function HomeScreen({navigation}: Props) {
                     />
                 </View>
             ))}
-            <View style={styles.inputContainer}>
-                <TouchableOpacity style={[styles.rememberMeButton, {backgroundColor: rememberMe ? 'green' : 'red'}]}
-                                  onPress={async () => {
-                                      setRememberMe(!rememberMe);
-                                      await AsyncStorage.setItem('rememberMe', JSON.stringify(!rememberMe));
-                                  }}/>
-                <Text style={styles.rememberMeButtonText}>{rememberMe ? 'Forget Me' : 'Remember Me'}</Text>
-            </View>
-            <TouchableOpacity style={styles.button} onPress={logIn}>
+            <RememberMeButton rememberMe={rememberMe} onPress={async () => {
+                setRememberMe(!rememberMe);
+                await AsyncStorage.setItem('rememberMe', JSON.stringify(!rememberMe));
+            }}/>
+            <TouchableOpacity style={styles.button} onPress={() => XHRRequest(dispatch, '/connect', {
+                username: username,
+                password: password
+            }, async () => {
+                dispatch(setUser({username: username, password: password}));
+                await AsyncStorage.setItem('username', JSON.stringify(rememberMe ? username : ''));
+                await AsyncStorage.setItem('password', JSON.stringify(rememberMe ? password : ''));
+                setUsername(rememberMe ? username : '');
+                setPassword(rememberMe ? password : '');
+                navigation.navigate('Calendar');
+            })}>
                 <Text style={styles.textStyle}>Log In</Text>
             </TouchableOpacity>
         </View>
