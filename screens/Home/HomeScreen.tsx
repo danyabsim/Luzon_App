@@ -1,7 +1,7 @@
 import React from 'react';
 import {Text, TextInput, TouchableOpacity, View} from 'react-native';
 import {StackScreenProps} from "@react-navigation/stack";
-import {MainStackParamList} from "../../navigation/AppNavigation";
+import {MainStackParamList} from "../../navigation/MainStackParamList";
 import {styles} from "./styles";
 import {RootState} from "../../redux/store";
 import {useDispatch, useSelector} from "react-redux";

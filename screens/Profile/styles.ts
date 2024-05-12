@@ -16,6 +16,6 @@ export const styles = StyleSheet.create({
     },
     text: {
         fontSize: 20,
-        color: styleByTime('white', 'black')
+        color: styleByTime( 'black', 'white')
     }
 });
