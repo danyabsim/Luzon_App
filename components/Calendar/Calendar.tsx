@@ -32,9 +32,8 @@ export default function Calendar() {
         <ErrorBoundary fallback={<Text style={styles.itemText}>Something went wrong</Text>}>
             <View style={styles.container}>
                 <Agenda
-                    theme={calendarTheme} items={FilteredItems()}
-                    selected={selected} collapsable={true} enableSwipeMonths={true} scrollEnabled={true}
-                    showOnlySelectedDayItems={true}
+                    theme={calendarTheme} items={FilteredItems()} selected={selected} collapsable={true}
+                    enableSwipeMonths={true} scrollEnabled={true} showOnlySelectedDayItems={true}
                     onDayPress={(day) => {
                         setSelected(day.dateString);
                         dispatch(setReduxSelected(day));
