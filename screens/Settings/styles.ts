@@ -4,6 +4,7 @@ import {styleByTime} from "../../constants/AppStyles";
 export const styles = StyleSheet.create({
     container: {
         flex: 1,
+        backgroundColor: styleByTime('white', 'black'),
         paddingHorizontal: 20,
         paddingTop: 20,
     },
