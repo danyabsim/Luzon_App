@@ -15,7 +15,7 @@ export function DrawerContainer({navigation}: any) {
                     title="Home"
                     source={styleByTime(require('../../assets/home (black).png'), require('../../assets/home (white).png'))}
                     onPress={() => {
-                        navigation.navigate('Home');
+                        navigation.navigate('Calendar');
                         navigation.closeDrawer();
                     }}
                 />
