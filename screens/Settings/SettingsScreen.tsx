@@ -8,8 +8,12 @@ import {RemoveUserModal} from "../../components/RemoveUserModal/RemoveUserModal"
 import {DarkModeModal} from "../../components/DarkModeModal/DarkModeModal";
 import {useSelector} from "react-redux";
 import {RootState} from "../../redux/store";
+import {StackScreenProps} from "@react-navigation/stack";
+import {MainStackParamList} from "../../navigation/MainStackParamList";
 
-export default function Settings() {
+type Props = StackScreenProps<MainStackParamList, 'Settings'>;
+
+export default function Settings({navigation}: Props) {
     const isAdmin = useSelector((state: RootState) => state.user.isAdmin);
     const [modalVisible, setModalVisible] = React.useState(false);
     const [whoIsOn, setWhoIsOn] = React.useState('');
@@ -49,7 +53,7 @@ export default function Settings() {
                     {whoIsOn === 'Change Password' && <ChangePasswordModal/>}
                     {whoIsOn === 'Add User' && <AddUserModal/>}
                     {whoIsOn === 'Remove User' && <RemoveUserModal/>}
-                    {whoIsOn === 'Dark Mode' && <DarkModeModal/>}
+                    {whoIsOn === 'Dark Mode' && <DarkModeModal navigation={navigation}/>}
                     <TouchableOpacity style={styles.button} onPress={() => setModalVisible(false)}>
                         <Text style={styles.textStyle}>Close</Text>
                     </TouchableOpacity>

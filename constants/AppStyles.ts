@@ -2,7 +2,7 @@ import {Platform} from "react-native";
 
 export let mode: 'dark' | 'light' | 'auto' = 'auto';
 
-export function setDarkMode(newMode: 'dark' | 'light' | 'auto') {
+export function setDarkMode(newMode: typeof mode) {
     mode = newMode;
 }
 
