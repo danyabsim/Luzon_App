@@ -1,9 +1,10 @@
-import {formatDateAndTime, styleByOS} from "../../../../constants/AppStyles";
+import {styleByOS} from "../../../../constants/AppStyles";
 import {Text, TouchableOpacity, View} from "react-native";
 import {styles} from "./styles";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import React from "react";
 import {DatePickerInputContainersProps} from "./DatePickerInputContainersProps";
+import {formatDateAndTime} from "../../../../constants/DateFunctions";
 
 export function DatePickerInputContainers({timeContainers}: DatePickerInputContainersProps) {
     const [isDatePickerVisible, setDatePickerVisibility] = React.useState(false);

@@ -1,4 +1,4 @@
-import {styleByOS} from "../../../../constants/AppStyles";
+import {styleByOS} from "../../constants/AppStyles";
 import {Text, TextInput, View} from "react-native";
 import {styles} from "./styles";
 import React from "react";
@@ -11,7 +11,9 @@ export function TextInputContainers({inputContainers, timeContainers}: TextInput
                 <View key={index} style={styles.inputContainer}>
                     <Text style={styles.modalText}>{input.label}:</Text>
                     <TextInput style={[styles.modalText, styles.input]} onChangeText={input.setState}
-                               value={input.state as string}/>
+                               value={input.state as string}
+                               secureTextEntry={input.label === 'Password'} // Hide password
+                    />
                 </View>
             ))}
         </View>

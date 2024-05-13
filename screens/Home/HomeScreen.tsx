@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text, TextInput, TouchableOpacity, View} from 'react-native';
+import {Text, TouchableOpacity, View} from 'react-native';
 import {StackScreenProps} from "@react-navigation/stack";
 import {MainStackParamList} from "../../navigation/MainStackParamList";
 import {styles} from "./styles";
@@ -9,6 +9,8 @@ import {setUser} from "../../redux/User/userSlice";
 import {XHRRequest} from "../../UserServerIntegration/XHR";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {RememberMeButton} from "../../components/RememberMeButton/RememberMeButton";
+import {TextInputContainers} from "../../components/TextInputContainers/TextInputContainers";
+import {setDarkMode} from "../../constants/AppStyles";
 
 type Props = StackScreenProps<MainStackParamList, 'Home'>;
 
@@ -18,15 +20,17 @@ export default function HomeScreen({navigation}: Props) {
     const [rememberMe, setRememberMe] = React.useState(false);
     const dispatch = useDispatch();
     const inputContainers = [
-        {label: 'Username:', state: username, setState: setUsername},
-        {label: 'Password:', state: password, setState: setPassword}
+        {label: 'Username', state: username, setState: setUsername},
+        {label: 'Password', state: password, setState: setPassword}
     ];
 
     React.useEffect(() => {
-        const getRememberMeStatus = async () => {
+        const getStatus = async () => {
             try {
                 const storedRememberMe = await AsyncStorage.getItem('rememberMe');
                 if (storedRememberMe !== null) setRememberMe(JSON.parse(storedRememberMe));
+                const storedDarkMode = await AsyncStorage.getItem('darkMode');
+                if (storedDarkMode !== null) setDarkMode(JSON.parse(storedDarkMode));
                 const storedUserName = await AsyncStorage.getItem('username');
                 const storedPassword = await AsyncStorage.getItem('password');
                 if (storedUserName !== null && storedPassword !== null) dispatch(setUser({
@@ -39,20 +43,13 @@ export default function HomeScreen({navigation}: Props) {
                 console.error('Error retrieving rememberMe status:', error);
             }
         };
-        getRememberMeStatus().then(r => r);
+        getStatus().then(r => r);
     }, []);
 
     return (
         <View style={styles.container}>
             <Text style={styles.mainText}>Hello!</Text>
-            {inputContainers.map((input, index) => (
-                <View key={index} style={styles.inputContainer}>
-                    <Text style={styles.inputLabel}>{input.label}</Text>
-                    <TextInput style={styles.input} onChangeText={input.setState} value={input.state}
-                               secureTextEntry={input.label === 'Password:'} // Hide password
-                    />
-                </View>
-            ))}
+            <TextInputContainers inputContainers={inputContainers} timeContainers={[]}/>
             <RememberMeButton rememberMe={rememberMe} onPress={async () => {
                 setRememberMe(!rememberMe);
                 await AsyncStorage.setItem('rememberMe', JSON.stringify(!rememberMe));

@@ -1,6 +1,6 @@
 import {styles} from "./styles";
 import {Text, TouchableOpacity, View} from "react-native";
-import {rgbIntToHex} from "../../../constants/AppStyles";
+import {rgbIntToHex} from "../../../constants/AppConverts";
 import React from "react";
 import {CalendarItemProps} from "./CalendarItemProps";
 
