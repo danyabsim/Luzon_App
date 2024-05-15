@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {styleByTime} from "../../constants/AppStyles";
+import {styleByTime} from "../../../constants/AppStyles";
 
 export function styles(mode) {
     return StyleSheet.create({

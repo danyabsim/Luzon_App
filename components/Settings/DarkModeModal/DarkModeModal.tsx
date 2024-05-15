@@ -3,8 +3,8 @@ import {Text, TouchableOpacity, View} from 'react-native';
 import {styles} from './styles';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useDispatch, useSelector} from "react-redux";
-import {setDarkMode} from "../../redux/DarkMode/darkModeSlice";
-import {RootState} from "../../redux/store";
+import {setDarkMode} from "../../../redux/DarkMode/darkModeSlice";
+import {RootState} from "../../../redux/store";
 
 export function DarkModeModal() {
     const [mode, setMode] = React.useState(useSelector((state: RootState) => state.darkMode.mode));

@@ -2,10 +2,10 @@ import React from 'react';
 import {Text, TouchableOpacity, View} from 'react-native';
 import {styles} from "./styles";
 import {ModalApp} from "../../components/ModalApp/ModalApp";
-import {ChangePasswordModal} from "../../components/ChangePasswordModal/ChangePasswordModal";
-import {AddUserModal} from "../../components/AddUserModal/AddUserModal";
-import {RemoveUserModal} from "../../components/RemoveUserModal/RemoveUserModal";
-import {DarkModeModal} from "../../components/DarkModeModal/DarkModeModal";
+import {ChangePasswordModal} from "../../components/Settings/ChangePasswordModal/ChangePasswordModal";
+import {AddUserModal} from "../../components/Settings/AddUserModal/AddUserModal";
+import {RemoveUserModal} from "../../components/Settings/RemoveUserModal/RemoveUserModal";
+import {DarkModeModal} from "../../components/Settings/DarkModeModal/DarkModeModal";
 import {useSelector} from "react-redux";
 import {RootState} from "../../redux/store";
 
