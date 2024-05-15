@@ -1,6 +1,7 @@
 import {AgendaEntry} from "react-native-calendars";
+import {GestureResponderEvent} from "react-native";
 
 export interface CalendarItemProps {
     item: AgendaEntry;
-    onLongPressItem: () => void;
+    onLongPressItem: (event: GestureResponderEvent) => void;
 }

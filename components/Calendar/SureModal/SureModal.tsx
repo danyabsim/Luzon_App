@@ -7,11 +7,10 @@ import {useSelector} from "react-redux";
 import {RootState} from "../../../redux/store";
 
 export function SureModal(props: SureModalProps) {
-    const [modalVisible, setModalVisible] = React.useState(false);
     const mode = useSelector((state: RootState) => state.darkMode.mode);
 
     return (
-        <ModalApp modalVisible={modalVisible} setModalVisible={setModalVisible} children={
+        <ModalApp modalVisible={props.visible} setModalVisible={props.setVisible} children={
             <View>
                 <Text style={styles(mode).modalText}>Are You Sure?</Text>
                 <View style={styles(mode).inputContainer}>

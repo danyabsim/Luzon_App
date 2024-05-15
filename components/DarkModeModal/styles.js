@@ -11,6 +11,7 @@ export function styles(mode) {
         title: {
             fontSize: 24,
             fontWeight: 'bold',
+            color: styleByTime('black', 'white', mode),
             marginBottom: 20,
         },
         optionButton: {

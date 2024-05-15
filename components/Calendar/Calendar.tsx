@@ -46,7 +46,7 @@ export default function Calendar() {
                         }}/>
                     )}
                 />
-                <SureModal visible={sureModalVisible} onRequestCloseModal={() => {
+                <SureModal visible={sureModalVisible} setVisible={setSureModalVisible} onRequestCloseModal={() => {
                     Alert.alert('Modal has been closed.');
                     setSureModalVisible(false);
                 }} onPressNo={() => {
