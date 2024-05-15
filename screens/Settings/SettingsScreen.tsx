@@ -47,13 +47,10 @@ export default function Settings() {
             </TouchableOpacity>
             <ModalApp modalVisible={modalVisible} setModalVisible={setModalVisible} children={
                 <View>
-                    {whoIsOn === 'Change Password' && <ChangePasswordModal/>}
-                    {whoIsOn === 'Add User' && <AddUserModal/>}
-                    {whoIsOn === 'Remove User' && <RemoveUserModal/>}
-                    {whoIsOn === 'Dark Mode' && <DarkModeModal/>}
-                    <TouchableOpacity style={styles(mode).button} onPress={() => setModalVisible(false)}>
-                        <Text style={styles(mode).textStyle}>Close</Text>
-                    </TouchableOpacity>
+                    {whoIsOn === 'Change Password' && <ChangePasswordModal onClose={() => setModalVisible(false)}/>}
+                    {whoIsOn === 'Add User' && <AddUserModal onClose={() => setModalVisible(false)}/>}
+                    {whoIsOn === 'Remove User' && <RemoveUserModal onClose={() => setModalVisible(false)}/>}
+                    {whoIsOn === 'Dark Mode' && <DarkModeModal onClose={() => setModalVisible(false)}/>}
                 </View>
             }/>
         </View>

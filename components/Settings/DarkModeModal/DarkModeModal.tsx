@@ -6,7 +6,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {setDarkMode} from "../../../redux/DarkMode/darkModeSlice";
 import {RootState} from "../../../redux/store";
 
-export function DarkModeModal() {
+export function DarkModeModal({onClose}: {onClose: () => void}) {
     const [mode, setMode] = React.useState(useSelector((state: RootState) => state.darkMode.mode));
     const dispatch = useDispatch();
 
@@ -32,6 +32,9 @@ export function DarkModeModal() {
                         style={styles(mode).optionText}>Use {innerMode.charAt(0).toUpperCase() + innerMode.slice(1)} Theme</Text>
                 </TouchableOpacity>
             ))}
+            <TouchableOpacity style={styles(mode).button} onPress={onClose}>
+                <Text style={styles(mode).textStyle}>Close</Text>
+            </TouchableOpacity>
         </View>
     );
 }

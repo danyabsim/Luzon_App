@@ -16,7 +16,7 @@ export function TextInputContainers({inputContainers, timeContainers}: TextInput
                     <Text style={styles(mode).modalText}>{input.label}:</Text>
                     <TextInput style={[styles(mode).modalText, styles(mode).input]} onChangeText={input.setState}
                                value={input.state as string}
-                               secureTextEntry={input.label === 'Password'} // Hide password
+                               secureTextEntry={input.label.includes('Password')} // Hide password
                     />
                 </View>
             ))}

@@ -24,5 +24,24 @@ export function styles(mode) {
             fontSize: 18,
             fontWeight: 'bold',
         },
+        button: {
+            borderRadius: 20,
+            padding: 10,
+            elevation: 2,
+            backgroundColor: styleByTime('#2196F3', '#373737', mode),
+            marginHorizontal: 5,
+            marginVertical: 3
+        },
+        textStyle: {
+            fontWeight: 'bold',
+            textAlign: 'center',
+            color: 'white',
+        },
+        inputContainer: {
+            flex: 1,
+            alignContent: 'center',
+            flexDirection: 'row',
+            alignItems: 'center',
+        },
     });
 }
