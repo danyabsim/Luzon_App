@@ -5,10 +5,14 @@ import MenuImage from "../components/MenuImage/MenuImage";
 import ProfileScreen from "../screens/Profile/ProfileScreen";
 import SettingsScreen from "../screens/Settings/SettingsScreen";
 import {createStackNavigator} from "@react-navigation/stack";
+import {useSelector} from "react-redux";
+import {RootState} from "../redux/store";
 
 const Stack = createStackNavigator();
 
 export const AppNavigator = () => {
+    const mode = useSelector((state: RootState) => state.darkMode.mode);
+
     return (
         <Stack.Navigator initialRouteName="Home">
             <Stack.Screen options={{headerShown: false}} name="Home" component={HomeScreen}/>
@@ -17,7 +21,7 @@ export const AppNavigator = () => {
                 options={({navigation}) => {
                     return {
                         title: "",
-                        headerStyle: styles.headerStyle,
+                        headerStyle: styles(mode).headerStyle,
                         headerLeft: () => <MenuImage onPress={() => {
                             navigation.openDrawer()
                         }}/>
@@ -28,7 +32,7 @@ export const AppNavigator = () => {
                 options={({navigation}) => {
                     return {
                         title: "",
-                        headerStyle: styles.headerStyle,
+                        headerStyle: styles(mode).headerStyle,
                         headerLeft: () => <MenuImage onPress={() => {
                             navigation.openDrawer()
                         }}/>
@@ -39,7 +43,7 @@ export const AppNavigator = () => {
                 options={({navigation}) => {
                     return {
                         title: "",
-                        headerStyle: styles.headerStyle,
+                        headerStyle: styles(mode).headerStyle,
                         headerLeft: () => <MenuImage onPress={() => {
                             navigation.openDrawer()
                         }}/>

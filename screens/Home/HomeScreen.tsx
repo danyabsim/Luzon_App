@@ -10,7 +10,7 @@ import {XHRRequest} from "../../UserServerIntegration/XHR";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {RememberMeButton} from "../../components/RememberMeButton/RememberMeButton";
 import {TextInputContainers} from "../../components/TextInputContainers/TextInputContainers";
-import {setDarkMode} from "../../constants/AppStyles";
+import {setDarkMode} from "../../redux/DarkMode/darkModeSlice";
 
 type Props = StackScreenProps<MainStackParamList, 'Home'>;
 
@@ -19,6 +19,7 @@ export default function HomeScreen({navigation}: Props) {
     const [password, setPassword] = React.useState(useSelector((state: RootState) => state.user.password));
     const [rememberMe, setRememberMe] = React.useState(false);
     const dispatch = useDispatch();
+    const mode = useSelector((state: RootState) => state.darkMode.mode);
     const inputContainers = [
         {label: 'Username', state: username, setState: setUsername},
         {label: 'Password', state: password, setState: setPassword}
@@ -30,7 +31,7 @@ export default function HomeScreen({navigation}: Props) {
                 const storedRememberMe = await AsyncStorage.getItem('rememberMe');
                 if (storedRememberMe !== null) setRememberMe(JSON.parse(storedRememberMe));
                 const storedDarkMode = await AsyncStorage.getItem('darkMode');
-                if (storedDarkMode !== null) setDarkMode(JSON.parse(storedDarkMode));
+                if (storedDarkMode !== null) dispatch(setDarkMode(JSON.parse(storedDarkMode)));
                 const storedUserName = await AsyncStorage.getItem('username');
                 const storedPassword = await AsyncStorage.getItem('password');
                 if (storedUserName !== null && storedPassword !== null) dispatch(setUser({
@@ -47,14 +48,14 @@ export default function HomeScreen({navigation}: Props) {
     }, []);
 
     return (
-        <View style={styles.container}>
-            <Text style={styles.mainText}>Hello!</Text>
+        <View style={styles(mode).container}>
+            <Text style={styles(mode).mainText}>Hello!</Text>
             <TextInputContainers inputContainers={inputContainers} timeContainers={[]}/>
             <RememberMeButton rememberMe={rememberMe} onPress={async () => {
                 setRememberMe(!rememberMe);
                 await AsyncStorage.setItem('rememberMe', JSON.stringify(!rememberMe));
             }}/>
-            <TouchableOpacity style={styles.button} onPress={() => XHRRequest(dispatch, '/connect', {
+            <TouchableOpacity style={styles(mode).button} onPress={() => XHRRequest(dispatch, '/connect', {
                 username: username,
                 password: password
             }, async () => {
@@ -65,7 +66,7 @@ export default function HomeScreen({navigation}: Props) {
                 setPassword(rememberMe ? password : '');
                 navigation.navigate('Calendar');
             })}>
-                <Text style={styles.textStyle}>Log In</Text>
+                <Text style={styles(mode).textStyle}>Log In</Text>
             </TouchableOpacity>
         </View>
     );

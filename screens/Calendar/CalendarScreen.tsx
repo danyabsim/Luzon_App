@@ -13,6 +13,7 @@ export default function CalendarScreen() {
     const dispatch = useDispatch();
     const [refreshing, setRefreshing] = React.useState(false);
     const user = useSelector((state: RootState) => state.user);
+    const mode = useSelector((state: RootState) => state.darkMode.mode);
 
     const onRefresh = React.useCallback(() => {
         setRefreshing(true);
@@ -22,11 +23,11 @@ export default function CalendarScreen() {
 
     return (
         <ScrollView
-            contentContainerStyle={styles.container}
+            contentContainerStyle={styles(mode).container}
             refreshControl={
                 <RefreshControl refreshing={refreshing} onRefresh={onRefresh}/>
             }>
-            <Text style={styles.mainText}>לו"ז מדור פיתוח</Text>
+            <Text style={styles(mode).mainText}>לו"ז מדור פיתוח</Text>
             {user.isAdmin && <Filter/>}
             <Calendar/>
             <NewEventButton/>

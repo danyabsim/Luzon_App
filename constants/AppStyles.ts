@@ -1,12 +1,6 @@
 import {Platform} from "react-native";
 
-export let mode: 'dark' | 'light' | 'auto' = 'auto';
-
-export function setDarkMode(newMode: typeof mode) {
-    mode = newMode;
-}
-
-export function styleByTime(daySetting: any, nightSetting: any): any {
+export function styleByTime(daySetting: any, nightSetting: any, mode: 'dark' | 'light' | 'auto'): any {
     if (mode === 'dark') return nightSetting;
     if (mode === 'light') return daySetting;
     const currentHour = new Date().getHours();

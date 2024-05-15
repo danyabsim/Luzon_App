@@ -2,13 +2,17 @@ import {styles} from "./styles";
 import {Text, TouchableOpacity, View} from "react-native";
 import React from "react";
 import {RememberMeButtonProps} from "./RememberMeButtonProps";
+import {useSelector} from "react-redux";
+import {RootState} from "../../redux/store";
 
 export function RememberMeButton({rememberMe, onPress}: RememberMeButtonProps) {
+    const mode = useSelector((state: RootState) => state.darkMode.mode);
+
     return (
-        <View style={styles.inputContainer}>
-            <TouchableOpacity style={[styles.rememberMeButton, {backgroundColor: rememberMe ? 'green' : 'red'}]}
+        <View style={styles(mode).inputContainer}>
+            <TouchableOpacity style={[styles(mode).rememberMeButton, {backgroundColor: rememberMe ? 'green' : 'red'}]}
                               onPress={onPress}/>
-            <Text style={styles.rememberMeButtonText}>{rememberMe ? 'Forget Me' : 'Remember Me'}</Text>
+            <Text style={styles(mode).rememberMeButtonText}>{rememberMe ? 'Forget Me' : 'Remember Me'}</Text>
         </View>
     );
 }

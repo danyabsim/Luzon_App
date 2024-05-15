@@ -8,15 +8,16 @@ import {styles} from "./styles";
 export default function SettingsScreen() {
     const username = useSelector((state: RootState) => state.user.username);
     const isAdmin = useSelector((state: RootState) => state.user.isAdmin);
+    const mode = useSelector((state: RootState) => state.darkMode.mode);
 
     return (
-        <View style={styles.container}>
+        <View style={styles(mode).container}>
             <Image
-                style={styles.imageHeader}
-                source={styleByTime(require('../../assets/user (black).png'), require('../../assets/user (white).png'))}
+                style={styles(mode).imageHeader}
+                source={styleByTime(require('../../assets/user (black).png'), require('../../assets/user (white).png'), mode)}
             />
-            <Text style={styles.text}>{username}</Text>
-            <Text style={styles.text}>{isAdmin ? 'Admin' : 'Regular User'}</Text>
+            <Text style={styles(mode).text}>{username}</Text>
+            <Text style={styles(mode).text}>{isAdmin ? 'Admin' : 'Regular User'}</Text>
         </View>
     );
 }

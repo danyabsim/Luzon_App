@@ -16,38 +16,39 @@ export default function Filter() {
     options.unshift({ id: 0, label: 'All' }, { id: 1, label: 'None' });
 
     const buttonWidth = Dimensions.get('window').width * 0.4; // Adjust the percentage as needed
+    const mode = useSelector((state: RootState) => state.darkMode.mode);
 
     React.useEffect(() => {
         XHRRequest(dispatch, '/getAllUserNames', {});
     }, []);
 
     return (
-        <View style={styles.container}>
-            <Text style={styles.menuText}>Select Calendar:</Text>
-            <TouchableOpacity onPress={() => setMenuOpen(!isMenuOpen)} style={[styles.menuButton, {width: buttonWidth}]}
+        <View style={styles(mode).container}>
+            <Text style={styles(mode).menuText}>Select Calendar:</Text>
+            <TouchableOpacity onPress={() => setMenuOpen(!isMenuOpen)} style={[styles(mode).menuButton, {width: buttonWidth}]}
                               ref={buttonRef}>
-                <Text style={styles.menuText}>{selectedOption ? selectedOption.label : 'All'}</Text>
+                <Text style={styles(mode).menuText}>{selectedOption ? selectedOption.label : 'All'}</Text>
             </TouchableOpacity>
             {isMenuOpen && (
                 <View
                     style={[
-                        styles.menuContainer,
+                        styles(mode).menuContainer,
                         {
                             top: buttonRef.current ? buttonRef.current.offsetTop + buttonRef.current.offsetHeight : 0,
                             width: buttonWidth,
                         },
                     ]}
                 >
-                    <ScrollView style={styles.optionList} contentContainerStyle={styles.optionListContent}>
+                    <ScrollView style={styles(mode).optionList} contentContainerStyle={styles(mode).optionListContent}>
                         {options.map((option) => (
                             <TouchableOpacity
-                                key={option.id} style={styles.optionItem}
+                                key={option.id} style={styles(mode).optionItem}
                                 onPress={() => {
                                     setSelectedOption(option);
                                     dispatch(setFilteredOption(option.label));
                                     setMenuOpen(false);
                                 }}>
-                                <Text style={styles.menuText}>{option.label}</Text>
+                                <Text style={styles(mode).menuText}>{option.label}</Text>
                             </TouchableOpacity>
                         ))}
                     </ScrollView>

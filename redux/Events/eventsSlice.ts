@@ -1,7 +1,7 @@
 import {createSlice} from '@reduxjs/toolkit';
 import {initialEventsState} from "./initialEventsState";
 
-const settingsSlice = createSlice({
+const eventsSlice = createSlice({
     name: 'events',
     initialState: initialEventsState,
     reducers: {
@@ -17,5 +17,5 @@ const settingsSlice = createSlice({
     },
 });
 
-export const {setReduxSelected, setEvents, setFilteredOption} = settingsSlice.actions;
-export default settingsSlice.reducer;
+export const {setReduxSelected, setEvents, setFilteredOption} = eventsSlice.actions;
+export default eventsSlice.reducer;

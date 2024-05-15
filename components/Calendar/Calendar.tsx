@@ -19,6 +19,7 @@ export default function Calendar() {
     const filteredOption = useSelector((state: RootState) => state.events.filteredOption);
     const dispatch = useDispatch();
     const [itemToRemove, setItemToRemove] = React.useState<AgendaEntry>();
+    const mode = useSelector((state: RootState) => state.darkMode.mode);
 
     const FilteredItems = (): AgendaSchedule => {
         if (filteredOption == 'All') return events;
@@ -29,10 +30,10 @@ export default function Calendar() {
     }
 
     return (
-        <ErrorBoundary fallback={<Text style={styles.itemText}>Something went wrong</Text>}>
-            <View style={styles.container}>
+        <ErrorBoundary fallback={<Text style={styles(mode).itemText}>Something went wrong</Text>}>
+            <View style={styles(mode).container}>
                 <Agenda
-                    theme={calendarTheme} items={FilteredItems()} selected={selected} collapsable={true}
+                    theme={calendarTheme(mode)} items={FilteredItems()} selected={selected} collapsable={true}
                     enableSwipeMonths={true} scrollEnabled={true} showOnlySelectedDayItems={true}
                     onDayPress={(day) => {
                         setSelected(day.dateString);

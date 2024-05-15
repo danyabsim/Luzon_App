@@ -8,54 +8,51 @@ import {RemoveUserModal} from "../../components/RemoveUserModal/RemoveUserModal"
 import {DarkModeModal} from "../../components/DarkModeModal/DarkModeModal";
 import {useSelector} from "react-redux";
 import {RootState} from "../../redux/store";
-import {StackScreenProps} from "@react-navigation/stack";
-import {MainStackParamList} from "../../navigation/MainStackParamList";
 
-type Props = StackScreenProps<MainStackParamList, 'Settings'>;
-
-export default function Settings({navigation}: Props) {
+export default function Settings() {
     const isAdmin = useSelector((state: RootState) => state.user.isAdmin);
     const [modalVisible, setModalVisible] = React.useState(false);
     const [whoIsOn, setWhoIsOn] = React.useState('');
+    const mode = useSelector((state: RootState) => state.darkMode.mode);
 
     return (
-        <View style={styles.container}>
-            <TouchableOpacity style={styles.settingItem} onPress={() => {
+        <View style={styles(mode).container}>
+            <TouchableOpacity style={styles(mode).settingItem} onPress={() => {
                 setWhoIsOn('Change Password');
                 setModalVisible(true);
             }}>
-                <Text style={styles.settingText}>Change Password</Text>
+                <Text style={styles(mode).settingText}>Change Password</Text>
             </TouchableOpacity>
             {isAdmin && (
                 <>
-                    <TouchableOpacity style={styles.settingItem} onPress={() => {
+                    <TouchableOpacity style={styles(mode).settingItem} onPress={() => {
                         setWhoIsOn('Add User');
                         setModalVisible(true);
                     }}>
-                        <Text style={styles.settingText}>Add User</Text>
+                        <Text style={styles(mode).settingText}>Add User</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.settingItem} onPress={() => {
+                    <TouchableOpacity style={styles(mode).settingItem} onPress={() => {
                         setWhoIsOn('Remove User');
                         setModalVisible(true);
                     }}>
-                        <Text style={styles.settingText}>Remove User</Text>
+                        <Text style={styles(mode).settingText}>Remove User</Text>
                     </TouchableOpacity>
                 </>
             )}
-            <TouchableOpacity style={styles.settingItem} onPress={() => {
+            <TouchableOpacity style={styles(mode).settingItem} onPress={() => {
                 setWhoIsOn('Dark Mode');
                 setModalVisible(true);
             }}>
-                <Text style={styles.settingText}>Dark Mode</Text>
+                <Text style={styles(mode).settingText}>Dark Mode</Text>
             </TouchableOpacity>
             <ModalApp modalVisible={modalVisible} setModalVisible={setModalVisible} children={
                 <View>
                     {whoIsOn === 'Change Password' && <ChangePasswordModal/>}
                     {whoIsOn === 'Add User' && <AddUserModal/>}
                     {whoIsOn === 'Remove User' && <RemoveUserModal/>}
-                    {whoIsOn === 'Dark Mode' && <DarkModeModal navigation={navigation}/>}
-                    <TouchableOpacity style={styles.button} onPress={() => setModalVisible(false)}>
-                        <Text style={styles.textStyle}>Close</Text>
+                    {whoIsOn === 'Dark Mode' && <DarkModeModal/>}
+                    <TouchableOpacity style={styles(mode).button} onPress={() => setModalVisible(false)}>
+                        <Text style={styles(mode).textStyle}>Close</Text>
                     </TouchableOpacity>
                 </View>
             }/>
