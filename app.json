@@ -23,6 +23,10 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
+      "permissions": [
+        "android.permission.INTERNET",
+        "com.google.android.c2dm.permission.RECEIVE"
+      ],
       "package": "com.danyabsim.CalendarOfDevelopment"
     },
     "web": {
