@@ -56,7 +56,7 @@ export function NewEventButtonModal(props: NewEventButtonModalProps) {
                         const startDateAndTime = formatDateAndTime(startDate);
                         const endDateAndTime = formatDateAndTime(endDate);
                         const dates = getDatesBetween(startDateAndTime.date, endDateAndTime.date);
-                        const XHRTitle = `${startDateAndTime.date} (${startDateAndTime.time}) – ${endDateAndTime.date} (${endDateAndTime.time}): ${title} (${user.username});${notes}`;
+                        const XHRTitle = `${startDateAndTime.date} (${startDateAndTime.time}) – ${endDateAndTime.date} (${endDateAndTime.time}): ${title} (${user.username})\0${notes}`;
                         if (dates !== null) {
                             dates.map((day) => {
                                 dispatch(setEvents({}));

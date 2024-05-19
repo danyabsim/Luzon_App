@@ -12,8 +12,8 @@ export function CalendarItem({item, onLongPressItem}: CalendarItemProps) {
     return (
         <TouchableOpacity style={styles(mode).item} onLongPress={onLongPressItem}>
             <View style={{ borderRadius: 50, backgroundColor: rgbIntToHex(item.height), width: 30, height: 30 }} />
-            <Text style={styles(mode).itemText}>{item.name.split(';')[0]}</Text>
-            <Text style={styles(mode).itemText}>Notes: {item.name.split(';')[1]}</Text>
+            <Text style={styles(mode).itemText}>{item.name.split('\0')[0]}</Text>
+            <Text style={styles(mode).itemText}>Notes: {item.name.split('\0')[1]}</Text>
         </TouchableOpacity>
     );
 }
