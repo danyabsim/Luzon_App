@@ -19,6 +19,7 @@ export function NewEventButtonModal(props: NewEventButtonModalProps) {
     const [title, setTitle] = React.useState("");
     const [startDate, setStartDate] = React.useState<string | Date>(undefined);
     const [endDate, setEndDate] = React.useState<string | Date>(undefined);
+    const [notes, setNotes] = React.useState('');
     const [color, setColor] = React.useState('');
     const dispatch = useDispatch();
     const user = useSelector((state: RootState) => state.user);
@@ -26,6 +27,7 @@ export function NewEventButtonModal(props: NewEventButtonModalProps) {
     const closeModal = () => {
         setTitle('');
         setColor('');
+        setNotes('');
         setStartDate(undefined);
         setEndDate(undefined);
         props.setModalVisible(!props.modalVisible);
@@ -33,6 +35,7 @@ export function NewEventButtonModal(props: NewEventButtonModalProps) {
 
     const inputContainers = [
         {label: 'Title', state: title, setState: setTitle},
+        {label: 'Notes', state: notes, setState: setNotes},
     ];
 
     const timeContainers = [
@@ -53,7 +56,7 @@ export function NewEventButtonModal(props: NewEventButtonModalProps) {
                         const startDateAndTime = formatDateAndTime(startDate);
                         const endDateAndTime = formatDateAndTime(endDate);
                         const dates = getDatesBetween(startDateAndTime.date, endDateAndTime.date);
-                        const XHRTitle = `${startDateAndTime.date} (${startDateAndTime.time}) – ${endDateAndTime.date} (${endDateAndTime.time}): ${title} (${user.username})`;
+                        const XHRTitle = `${startDateAndTime.date} (${startDateAndTime.time}) – ${endDateAndTime.date} (${endDateAndTime.time}): ${title} (${user.username});${notes}`;
                         if (dates !== null) {
                             dates.map((day) => {
                                 dispatch(setEvents({}));
