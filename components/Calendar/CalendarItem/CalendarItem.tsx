@@ -7,13 +7,16 @@ import {useSelector} from "react-redux";
 import {RootState} from "../../../redux/store";
 
 export function CalendarItem({item, onLongPressItem}: CalendarItemProps) {
+    const [isExpanded, setExpanded] = React.useState(false);
     const mode = useSelector((state: RootState) => state.darkMode.mode);
 
     return (
-        <TouchableOpacity style={styles(mode).item} onLongPress={onLongPressItem}>
-            <View style={{ borderRadius: 50, backgroundColor: rgbIntToHex(item.height), width: 30, height: 30 }} />
+        <TouchableOpacity
+            style={styles(mode).item} onPress={() => setExpanded(!isExpanded)} onLongPress={onLongPressItem}
+        >
+            <View style={{borderRadius: 50, backgroundColor: rgbIntToHex(item.height), width: 30, height: 30}}/>
             <Text style={styles(mode).itemText}>{item.name.split('\0')[0]}</Text>
-            <Text style={styles(mode).itemText}>Notes: {item.name.split('\0')[1]}</Text>
+            {isExpanded && <Text style={styles(mode).itemText}>Notes: {item.name.split('\0')[1]}</Text>}
         </TouchableOpacity>
     );
 }
