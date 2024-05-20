@@ -5,6 +5,7 @@ import {RootState} from "../../../redux/store";
 import {styles} from "./styles";
 import {TextInputContainers} from "../../TextInputContainers/TextInputContainers";
 import {XHRRequest} from "../../../UserServerIntegration/XHR";
+import {TimeOutDelay} from "../../../constants/TimeOutDelay";
 
 export function AddUserModal({onClose}: {
     onClose: () => void
@@ -29,9 +30,10 @@ export function AddUserModal({onClose}: {
             <Text style={styles(mode).title}>Add User</Text>
             <TextInputContainers inputContainers={inputContainers} timeContainers={[]}/>
             <View style={styles(mode).inputContainer}>
-                <TouchableOpacity style={styles(mode).button} onPress={() => {
+                <TouchableOpacity style={styles(mode).button} onPress={async () => {
                     if (username !== "" && password !== "") {
                         XHRRequest(dispatch, '/addUser', {username: username, password: password, isAdmin: false});
+                        await TimeOutDelay(300);
                         XHRRequest(dispatch, '/getAllUserNames', {});
                     }
                     onCloseThisModal();

@@ -5,6 +5,7 @@ import {RootState} from "../../../redux/store";
 import {styles} from "./styles";
 import {TextInputContainers} from "../../TextInputContainers/TextInputContainers";
 import {XHRRequest} from "../../../UserServerIntegration/XHR";
+import {TimeOutDelay} from "../../../constants/TimeOutDelay";
 
 export function RemoveUserModal({onClose}: {
     onClose: () => void
@@ -26,9 +27,10 @@ export function RemoveUserModal({onClose}: {
             <Text style={styles(mode).title}>Remove User</Text>
             <TextInputContainers inputContainers={inputContainers} timeContainers={[]}/>
             <View style={styles(mode).inputContainer}>
-                <TouchableOpacity style={styles(mode).button} onPress={() => {
+                <TouchableOpacity style={styles(mode).button} onPress={async () => {
                     if (username !== "") {
                         XHRRequest(dispatch, '/removeUser', {username: username});
+                        await TimeOutDelay(300);
                         XHRRequest(dispatch, '/getAllUserNames', {});
                     }
                     onCloseThisModal();

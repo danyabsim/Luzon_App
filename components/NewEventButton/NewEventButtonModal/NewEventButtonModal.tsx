@@ -14,6 +14,7 @@ import {AddButton} from "./AddButton/AddButton";
 import {ModalApp} from "../../ModalApp/ModalApp";
 import {hexToRgbInt} from "../../../constants/AppConverts";
 import {formatDateAndTime, getDatesBetween} from "../../../constants/DateFunctions";
+import {TimeOutDelay} from "../../../constants/TimeOutDelay";
 
 export function NewEventButtonModal(props: NewEventButtonModalProps) {
     const [title, setTitle] = React.useState("");
@@ -23,6 +24,13 @@ export function NewEventButtonModal(props: NewEventButtonModalProps) {
     const [color, setColor] = React.useState('');
     const dispatch = useDispatch();
     const user = useSelector((state: RootState) => state.user);
+    const inputContainers = [
+        {label: 'Title', state: title, setState: setTitle}, {label: 'Notes', state: notes, setState: setNotes},
+    ];
+    const timeContainers = [
+        {label: 'Start Date', state: startDate, setState: setStartDate},
+        {label: 'End Date', state: endDate, setState: setEndDate},
+    ];
 
     const closeModal = () => {
         setTitle('');
@@ -32,16 +40,6 @@ export function NewEventButtonModal(props: NewEventButtonModalProps) {
         setEndDate(undefined);
         props.setModalVisible(!props.modalVisible);
     }
-
-    const inputContainers = [
-        {label: 'Title', state: title, setState: setTitle},
-        {label: 'Notes', state: notes, setState: setNotes},
-    ];
-
-    const timeContainers = [
-        {label: 'Start Date', state: startDate, setState: setStartDate},
-        {label: 'End Date', state: endDate, setState: setEndDate},
-    ];
 
     return (
         <ModalApp modalVisible={props.modalVisible} setModalVisible={props.setModalVisible} children={
@@ -58,12 +56,13 @@ export function NewEventButtonModal(props: NewEventButtonModalProps) {
                         const dates = getDatesBetween(startDateAndTime.date, endDateAndTime.date);
                         const XHRTitle = `${startDateAndTime.date} (${startDateAndTime.time}) – ${endDateAndTime.date} (${endDateAndTime.time}): ${title} (${user.username})\0${notes}`;
                         if (dates !== null) {
-                            dates.map((day) => {
+                            dates.map(async (day) => {
                                 dispatch(setEvents({}));
                                 XHRRequest(dispatch, '/addEvent', {
                                     ...user,
                                     name: XHRTitle, height: hexToRgbInt(color), day: formatDateAndTime(day).date
                                 });
+                                await TimeOutDelay(300);
                                 XHRRequest(dispatch, '/connect', {...user});
                             })
                             closeModal();

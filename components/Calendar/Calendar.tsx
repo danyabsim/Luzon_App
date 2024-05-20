@@ -10,6 +10,7 @@ import {XHRRequest} from "../../UserServerIntegration/XHR";
 import {calendarTheme} from "./calendarTheme";
 import {CalendarItem} from "./CalendarItem/CalendarItem";
 import {SureModal} from "./SureModal/SureModal";
+import {TimeOutDelay} from "../../constants/TimeOutDelay";
 
 export default function Calendar() {
     const [sureModalVisible, setSureModalVisible] = React.useState(false);
@@ -52,9 +53,10 @@ export default function Calendar() {
                 }} onPressNo={() => {
                     setItemToRemove(null);
                     setSureModalVisible(false);
-                }} onPressYes={() => {
+                }} onPressYes={async () => {
                     dispatch(setEvents({}));
                     XHRRequest(dispatch, '/removeEvent', {...user, ...itemToRemove});
+                    await TimeOutDelay(300);
                     XHRRequest(dispatch, '/connect', {...user});
                     setItemToRemove(null);
                     setSureModalVisible(false);
