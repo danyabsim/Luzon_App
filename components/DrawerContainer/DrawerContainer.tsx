@@ -9,6 +9,7 @@ import {RootState} from "../../redux/store";
 export function DrawerContainer({navigation}: any) {
     const dispatch = useDispatch();
     const mode = useSelector((state: RootState) => state.darkMode.mode);
+    const image = useSelector((state: RootState) => state.user.image);
 
     return (
         <View style={styles(mode).content}>
@@ -23,7 +24,7 @@ export function DrawerContainer({navigation}: any) {
                 />
                 <MenuButton
                     title="Profile"
-                    source={styleByTime(require('../../assets/user (black).png'), require('../../assets/user (white).png'), mode)}
+                    source={image ? image : styleByTime(require('../../assets/user (black).png'), require('../../assets/user (white).png'), mode)}
                     onPress={() => {
                         navigation.navigate('Profile');
                         navigation.closeDrawer();
