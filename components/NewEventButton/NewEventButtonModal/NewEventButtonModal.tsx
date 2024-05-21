@@ -15,6 +15,7 @@ import {ModalApp} from "../../ModalApp/ModalApp";
 import {hexToRgbInt} from "../../../constants/AppConverts";
 import {formatDateAndTime, getDatesBetween} from "../../../constants/DateFunctions";
 import {TimeOutDelay} from "../../../constants/TimeOutDelay";
+import {ErrorModalApp} from "../../ErrorModalApp/ErrorModalApp";
 
 export function NewEventButtonModal(props: NewEventButtonModalProps) {
     const [title, setTitle] = React.useState("");
@@ -22,6 +23,7 @@ export function NewEventButtonModal(props: NewEventButtonModalProps) {
     const [endDate, setEndDate] = React.useState<string | Date>(undefined);
     const [notes, setNotes] = React.useState('');
     const [color, setColor] = React.useState('');
+    const [isErrorModalVisible, setErrorModalVisible] = React.useState(false);
     const dispatch = useDispatch();
     const user = useSelector((state: RootState) => state.user);
     const inputContainers = [
@@ -50,7 +52,10 @@ export function NewEventButtonModal(props: NewEventButtonModalProps) {
                 <View style={styles.inputContainer}>
                     <CloseButton closeModal={closeModal}/>
                     <AddButton onPress={() => {
-                        if (startDate === undefined || endDate === undefined || color === '' || title === '') return;
+                        if (startDate === undefined || endDate === undefined || color === '' || title === '') {
+                            setErrorModalVisible(true);
+                            return;
+                        }
                         const startDateAndTime = formatDateAndTime(startDate);
                         const endDateAndTime = formatDateAndTime(endDate);
                         const dates = getDatesBetween(startDateAndTime.date, endDateAndTime.date);
@@ -69,6 +74,8 @@ export function NewEventButtonModal(props: NewEventButtonModalProps) {
                         }
                     }}/>
                 </View>
+                <ErrorModalApp modalVisible={isErrorModalVisible} setModalVisible={setErrorModalVisible}
+                               errorText={"One of the fields is incomplete. Please fill them out."}/>
             </View>
         }/>
     );
