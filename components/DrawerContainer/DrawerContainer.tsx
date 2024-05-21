@@ -8,7 +8,7 @@ import {RootState} from "../../redux/store";
 
 export function DrawerContainer({navigation}: any) {
     const dispatch = useDispatch();
-    const mode = useSelector((state: RootState) => state.darkMode.mode);
+    const mode = useSelector((state: RootState) => state.theme.mode);
     const image = useSelector((state: RootState) => state.user.image);
 
     return (

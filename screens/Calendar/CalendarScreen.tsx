@@ -13,7 +13,7 @@ export default function CalendarScreen() {
     const dispatch = useDispatch();
     const [refreshing, setRefreshing] = React.useState(false);
     const user = useSelector((state: RootState) => state.user);
-    const mode = useSelector((state: RootState) => state.darkMode.mode);
+    const mode = useSelector((state: RootState) => state.theme.mode);
 
     const onRefresh = React.useCallback(() => {
         setRefreshing(true);

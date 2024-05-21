@@ -10,7 +10,7 @@ import {XHRRequest} from "../../UserServerIntegration/XHR";
 
 export default function SettingsScreen() {
     const user = useSelector((state: RootState) => state.user);
-    const mode = useSelector((state: RootState) => state.darkMode.mode);
+    const mode = useSelector((state: RootState) => state.theme.mode);
     const dispatch = useDispatch();
 
     return (

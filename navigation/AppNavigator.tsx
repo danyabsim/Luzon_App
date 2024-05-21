@@ -11,7 +11,7 @@ import {RootState} from "../redux/store";
 const Stack = createStackNavigator();
 
 export const AppNavigator = () => {
-    const mode = useSelector((state: RootState) => state.darkMode.mode);
+    const mode = useSelector((state: RootState) => state.theme.mode);
 
     return (
         <Stack.Navigator initialRouteName="Home">

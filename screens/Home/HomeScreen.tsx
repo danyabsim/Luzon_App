@@ -10,7 +10,7 @@ import {XHRRequest} from "../../UserServerIntegration/XHR";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {RememberMeButton} from "../../components/RememberMeButton/RememberMeButton";
 import {TextInputContainers} from "../../components/TextInputContainers/TextInputContainers";
-import {setDarkMode} from "../../redux/DarkMode/darkModeSlice";
+import {setDarkMode} from "../../redux/Theme/themeSlice";
 
 type Props = StackScreenProps<MainStackParamList, 'Home'>;
 
@@ -19,7 +19,7 @@ export default function HomeScreen({navigation}: Props) {
     const [password, setPassword] = React.useState(useSelector((state: RootState) => state.user.password));
     const [rememberMe, setRememberMe] = React.useState(false);
     const dispatch = useDispatch();
-    const mode = useSelector((state: RootState) => state.darkMode.mode);
+    const mode = useSelector((state: RootState) => state.theme.mode);
     const inputContainers = [
         {label: 'Username', state: username, setState: setUsername},
         {label: 'Password', state: password, setState: setPassword}

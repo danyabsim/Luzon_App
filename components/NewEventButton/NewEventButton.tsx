@@ -7,7 +7,7 @@ import {RootState} from "../../redux/store";
 
 export default function NewEventButton() {
     const [modalVisible, setModalVisible] = React.useState(false);
-    const mode = useSelector((state: RootState) => state.darkMode.mode);
+    const mode = useSelector((state: RootState) => state.theme.mode);
 
     return (
         <View>

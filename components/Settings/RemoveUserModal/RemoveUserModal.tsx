@@ -11,7 +11,7 @@ export function RemoveUserModal({onClose}: {
     onClose: () => void
 }) {
     const [username, setUsername] = React.useState('');
-    const mode = useSelector((state: RootState) => state.darkMode.mode);
+    const mode = useSelector((state: RootState) => state.theme.mode);
     const dispatch = useDispatch();
     const inputContainers = [
         {label: 'Username', state: username, setState: setUsername},
@@ -28,7 +28,7 @@ export function RemoveUserModal({onClose}: {
             <TextInputContainers inputContainers={inputContainers} timeContainers={[]}/>
             <View style={styles(mode).inputContainer}>
                 <TouchableOpacity style={styles(mode).button} onPress={async () => {
-                    if (username !== "") {
+                    if (username !== "" && username !== "admin") {
                         XHRRequest(dispatch, '/removeUser', {username: username});
                         await TimeOutDelay(300);
                         XHRRequest(dispatch, '/getAllUserNames', {});

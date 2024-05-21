@@ -20,7 +20,7 @@ export default function Calendar() {
     const filteredOption = useSelector((state: RootState) => state.events.filteredOption);
     const dispatch = useDispatch();
     const [itemToRemove, setItemToRemove] = React.useState<AgendaEntry>();
-    const mode = useSelector((state: RootState) => state.darkMode.mode);
+    const mode = useSelector((state: RootState) => state.theme.mode);
 
     const FilteredItems = (): AgendaSchedule => {
         if (filteredOption == 'All') return events;

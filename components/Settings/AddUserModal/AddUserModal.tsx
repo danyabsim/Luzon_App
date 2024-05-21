@@ -12,7 +12,7 @@ export function AddUserModal({onClose}: {
 }) {
     const [username, setUsername] = React.useState('');
     const [password, setPassword] = React.useState('');
-    const mode = useSelector((state: RootState) => state.darkMode.mode);
+    const mode = useSelector((state: RootState) => state.theme.mode);
     const dispatch = useDispatch();
     const inputContainers = [
         {label: 'Username', state: username, setState: setUsername},

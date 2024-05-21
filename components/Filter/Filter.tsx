@@ -16,7 +16,7 @@ export default function Filter() {
     options.unshift({ id: 0, label: 'All' }, { id: 1, label: 'None' });
 
     const buttonWidth = Dimensions.get('window').width * 0.4; // Adjust the percentage as needed
-    const mode = useSelector((state: RootState) => state.darkMode.mode);
+    const mode = useSelector((state: RootState) => state.theme.mode);
 
     React.useEffect(() => {
         XHRRequest(dispatch, '/getAllUserNames', {});

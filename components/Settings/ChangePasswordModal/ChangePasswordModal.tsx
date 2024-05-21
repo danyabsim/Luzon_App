@@ -11,7 +11,7 @@ export function ChangePasswordModal({onClose}: {
 }) {
     const [newPassword, setNewPassword] = React.useState('');
     const user = useSelector((state: RootState) => state.user);
-    const mode = useSelector((state: RootState) => state.darkMode.mode);
+    const mode = useSelector((state: RootState) => state.theme.mode);
     const dispatch = useDispatch();
     const inputContainers = [
         {label: 'New Password', state: newPassword, setState: setNewPassword}

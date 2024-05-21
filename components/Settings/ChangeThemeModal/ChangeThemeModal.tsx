@@ -3,11 +3,11 @@ import {Text, TouchableOpacity, View} from 'react-native';
 import {styles} from './styles';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useDispatch, useSelector} from "react-redux";
-import {setDarkMode} from "../../../redux/DarkMode/darkModeSlice";
+import {setDarkMode} from "../../../redux/Theme/themeSlice";
 import {RootState} from "../../../redux/store";
 
-export function DarkModeModal({onClose}: {onClose: () => void}) {
-    const [mode, setMode] = React.useState(useSelector((state: RootState) => state.darkMode.mode));
+export function ChangeThemeModal({onClose}: {onClose: () => void}) {
+    const [mode, setMode] = React.useState(useSelector((state: RootState) => state.theme.mode));
     const dispatch = useDispatch();
 
     const handleThemeSelection = async (theme: typeof mode) => {
@@ -19,7 +19,7 @@ export function DarkModeModal({onClose}: {onClose: () => void}) {
 
     return (
         <View style={styles(mode).container}>
-            <Text style={styles(mode).title}>Choose Theme</Text>
+            <Text style={styles(mode).title}>Choose your Theme</Text>
             {['auto', 'light', 'dark'].map(innerMode => (
                 <TouchableOpacity
                     key={innerMode}

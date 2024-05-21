@@ -5,7 +5,7 @@ import {ModalApp} from "../../components/ModalApp/ModalApp";
 import {ChangePasswordModal} from "../../components/Settings/ChangePasswordModal/ChangePasswordModal";
 import {AddUserModal} from "../../components/Settings/AddUserModal/AddUserModal";
 import {RemoveUserModal} from "../../components/Settings/RemoveUserModal/RemoveUserModal";
-import {DarkModeModal} from "../../components/Settings/DarkModeModal/DarkModeModal";
+import {ChangeThemeModal} from "../../components/Settings/ChangeThemeModal/ChangeThemeModal";
 import {useSelector} from "react-redux";
 import {RootState} from "../../redux/store";
 
@@ -13,7 +13,7 @@ export default function Settings() {
     const isAdmin = useSelector((state: RootState) => state.user.isAdmin);
     const [modalVisible, setModalVisible] = React.useState(false);
     const [whoIsOn, setWhoIsOn] = React.useState('');
-    const mode = useSelector((state: RootState) => state.darkMode.mode);
+    const mode = useSelector((state: RootState) => state.theme.mode);
 
     return (
         <View style={styles(mode).container}>
@@ -43,14 +43,14 @@ export default function Settings() {
                 setWhoIsOn('Dark Mode');
                 setModalVisible(true);
             }}>
-                <Text style={styles(mode).settingText}>Dark Mode</Text>
+                <Text style={styles(mode).settingText}>Change Theme</Text>
             </TouchableOpacity>
             <ModalApp modalVisible={modalVisible} setModalVisible={setModalVisible} children={
                 <View>
                     {whoIsOn === 'Change Password' && <ChangePasswordModal onClose={() => setModalVisible(false)}/>}
                     {whoIsOn === 'Add User' && <AddUserModal onClose={() => setModalVisible(false)}/>}
                     {whoIsOn === 'Remove User' && <RemoveUserModal onClose={() => setModalVisible(false)}/>}
-                    {whoIsOn === 'Dark Mode' && <DarkModeModal onClose={() => setModalVisible(false)}/>}
+                    {whoIsOn === 'Dark Mode' && <ChangeThemeModal onClose={() => setModalVisible(false)}/>}
                 </View>
             }/>
         </View>

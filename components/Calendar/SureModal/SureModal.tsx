@@ -7,7 +7,7 @@ import {useSelector} from "react-redux";
 import {RootState} from "../../../redux/store";
 
 export function SureModal(props: SureModalProps) {
-    const mode = useSelector((state: RootState) => state.darkMode.mode);
+    const mode = useSelector((state: RootState) => state.theme.mode);
 
     return (
         <ModalApp modalVisible={props.visible} setModalVisible={props.setVisible} children={

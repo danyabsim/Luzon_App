@@ -7,7 +7,7 @@ import {useSelector} from "react-redux";
 import {RootState} from "../../redux/store";
 
 export default function MenuImage ({onPress}: MenuImageProps) {
-    const mode = useSelector((state: RootState) => state.darkMode.mode);
+    const mode = useSelector((state: RootState) => state.theme.mode);
 
     return (
         <TouchableOpacity style={styles.headerButtonContainer} onPress={onPress}>

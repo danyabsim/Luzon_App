@@ -6,7 +6,7 @@ import {useSelector} from "react-redux";
 import {RootState} from "../../../../redux/store";
 
 export function CloseButton({closeModal}: CloseButtonProps) {
-    const mode = useSelector((state: RootState) => state.darkMode.mode);
+    const mode = useSelector((state: RootState) => state.theme.mode);
 
     return (
         <TouchableOpacity style={styles(mode).button} onPress={closeModal}>
