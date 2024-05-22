@@ -30,7 +30,7 @@ export default function CalendarScreen() {
             }>
             <Text style={[styles(mode).mainText, styles(mode).plainText]}>לו"ז מדור פיתוח</Text>
             {user.isAdmin && <Filter/>}
-            <Text style={styles(mode).plainText}>The events data was last updated in {lastUpdated.toLocaleString('en-GB', {
+            <Text style={styles(mode).plainText}>The events data was last updated on {lastUpdated.toLocaleString('en-GB', {
                 day: '2-digit',
                 month: 'short',
                 year: 'numeric',
