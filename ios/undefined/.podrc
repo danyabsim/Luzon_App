@@ -1,0 +1,7 @@
+{
+    "root": "C:\\Users\\Hadar\\Documents\\random_app\\ios",
+    "node_env": "development",
+    "default_script": "app.js",
+    "apps": {},
+    "web": {}
+}
