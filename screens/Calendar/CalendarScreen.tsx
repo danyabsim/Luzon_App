@@ -14,6 +14,7 @@ export default function CalendarScreen() {
     const [refreshing, setRefreshing] = React.useState(false);
     const user = useSelector((state: RootState) => state.user);
     const mode = useSelector((state: RootState) => state.theme.mode);
+    const lastUpdated = useSelector((state: RootState) => state.events.lastUpdated);
 
     const onRefresh = React.useCallback(() => {
         setRefreshing(true);
@@ -27,8 +28,16 @@ export default function CalendarScreen() {
             refreshControl={
                 <RefreshControl refreshing={refreshing} onRefresh={onRefresh}/>
             }>
-            <Text style={styles(mode).mainText}>לו"ז מדור פיתוח</Text>
+            <Text style={[styles(mode).mainText, styles(mode).plainText]}>לו"ז מדור פיתוח</Text>
             {user.isAdmin && <Filter/>}
+            <Text style={styles(mode).plainText}>The events data was last updated in: {lastUpdated.toLocaleString('en-GB', {
+                day: '2-digit',
+                month: 'short',
+                year: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit',
+                hour12: false,
+            })}</Text>
             <Calendar/>
             <NewEventButton/>
         </ScrollView>

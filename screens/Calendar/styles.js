@@ -9,13 +9,15 @@ export function styles(mode) {
             backgroundColor: styleByTime('white', 'black', mode),
             elevation: 2,
         },
-        mainText: {
+        plainText: {
             alignItems: 'center',
             justifyContent: 'center',
             textAlign: 'center',
+            color: styleByTime('black', 'white', mode)
+        },
+        mainText: {
             fontSize: 24,
             paddingBottom: 10,
-            color: styleByTime('black', 'white', mode)
         }
     });
 }
