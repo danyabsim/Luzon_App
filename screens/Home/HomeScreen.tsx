@@ -12,6 +12,7 @@ import {RememberMeButton} from "../../components/RememberMeButton/RememberMeButt
 import {TextInputContainers} from "../../components/TextInputContainers/TextInputContainers";
 import {setDarkMode} from "../../redux/Theme/themeSlice";
 import {ErrorModalApp} from "../../components/ErrorModalApp/ErrorModalApp";
+import {setEvents} from "../../redux/Events/eventsSlice";
 
 type Props = StackScreenProps<MainStackParamList, 'Home'>;
 
@@ -43,10 +44,11 @@ export default function HomeScreen({navigation}: Props) {
                 setUsername(JSON.parse(storedUserName));
                 setPassword(JSON.parse(storedPassword));
             } catch (error) {
-                console.error('Error retrieving rememberMe status:', error);
+                console.error('Error retrieving status:', error);
             }
         };
         getStatus().then(r => r);
+        dispatch(setEvents({}));
     }, []);
 
     return (
