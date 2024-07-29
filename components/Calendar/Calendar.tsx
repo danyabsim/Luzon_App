@@ -55,7 +55,7 @@ export default function Calendar() {
                     setSureModalVisible(false);
                 }} onPressYes={async () => {
                     dispatch(setEvents({}));
-                    XHRRequest(dispatch, '/removeEvent', {...user, ...itemToRemove});
+                    XHRRequest(dispatch, '/removeEvent', {...itemToRemove});
                     await TimeOutDelay(300);
                     XHRRequest(dispatch, '/connect', {...user});
                     setItemToRemove(null);

@@ -64,7 +64,6 @@ export function NewEventButtonModal(props: NewEventButtonModalProps) {
                             dates.map(async (day) => {
                                 dispatch(setEvents({}));
                                 XHRRequest(dispatch, '/addEvent', {
-                                    ...user,
                                     name: XHRTitle, height: hexToRgbInt(color), day: formatDateAndTime(day).date
                                 });
                                 await TimeOutDelay(300);
