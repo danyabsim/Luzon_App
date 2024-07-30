@@ -4,7 +4,7 @@ import Calendar from "../../components/Calendar/Calendar";
 import NewEventButton from "../../components/NewEventButton/NewEventButton";
 import {styles} from './styles';
 import {useDispatch, useSelector} from "react-redux";
-import {XHRRequest} from "../../UserServerIntegration/XHR";
+import {XHRRequest} from "../../utils/XHR";
 import {RootState} from "../../redux/store";
 import {setEvents} from "../../redux/Events/eventsSlice";
 import Filter from "../../components/Filter/Filter";

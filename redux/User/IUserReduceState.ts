@@ -4,5 +4,6 @@ export interface IUserReduceState {
     username: string,
     password: string,
     image: ImageSourcePropType,
-    isAdmin: boolean
+    isAdmin: boolean,
+    token: string
 }

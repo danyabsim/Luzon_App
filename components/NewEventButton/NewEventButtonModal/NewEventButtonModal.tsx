@@ -1,7 +1,7 @@
 import {View} from "react-native";
 import {styles} from "./styles";
 import {setEvents} from "../../../redux/Events/eventsSlice";
-import {XHRRequest} from "../../../UserServerIntegration/XHR";
+import {XHRRequest} from "../../../utils/XHR";
 import React from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../../redux/store";

@@ -6,7 +6,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../redux/store";
 import {setEvents, setReduxSelected} from "../../redux/Events/eventsSlice";
 import {ErrorBoundary} from "react-error-boundary";
-import {XHRRequest} from "../../UserServerIntegration/XHR";
+import {XHRRequest} from "../../utils/XHR";
 import {calendarTheme} from "./calendarTheme";
 import {CalendarItem} from "./CalendarItem/CalendarItem";
 import {SureModal} from "./SureModal/SureModal";

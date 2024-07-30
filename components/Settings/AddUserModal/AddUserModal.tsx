@@ -4,7 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../../redux/store";
 import {styles} from "./styles";
 import {TextInputContainers} from "../../TextInputContainers/TextInputContainers";
-import {XHRRequest} from "../../../UserServerIntegration/XHR";
+import {XHRRequest} from "../../../utils/XHR";
 import {TimeOutDelay} from "../../../constants/TimeOutDelay";
 import {ErrorModalApp} from "../../ErrorModalApp/ErrorModalApp";
 

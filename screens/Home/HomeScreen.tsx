@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {Text, TouchableOpacity, View} from 'react-native';
 import {StackScreenProps} from "@react-navigation/stack";
 import {MainStackParamList} from "../../navigation/MainStackParamList";
@@ -6,21 +6,22 @@ import {styles} from "./styles";
 import {RootState} from "../../redux/store";
 import {useDispatch, useSelector} from "react-redux";
 import {setUser} from "../../redux/User/userSlice";
-import {XHRRequest} from "../../UserServerIntegration/XHR";
+import {XHRRequest} from "../../utils/XHR";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {RememberMeButton} from "../../components/RememberMeButton/RememberMeButton";
 import {TextInputContainers} from "../../components/TextInputContainers/TextInputContainers";
 import {setDarkMode} from "../../redux/Theme/themeSlice";
 import {ErrorModalApp} from "../../components/ErrorModalApp/ErrorModalApp";
 import {setEvents} from "../../redux/Events/eventsSlice";
+//import NotificationNetwork from "../../utils/NotificationNetwork";
 
 type Props = StackScreenProps<MainStackParamList, 'Home'>;
 
 export default function HomeScreen({navigation}: Props) {
-    const [username, setUsername] = React.useState(useSelector((state: RootState) => state.user.username));
-    const [password, setPassword] = React.useState(useSelector((state: RootState) => state.user.password));
-    const [rememberMe, setRememberMe] = React.useState(false);
-    const [isErrorModalVisible, setErrorModalVisible] = React.useState(false);
+    const [username, setUsername] = useState(useSelector((state: RootState) => state.user.username));
+    const [password, setPassword] = useState(useSelector((state: RootState) => state.user.password));
+    const [rememberMe, setRememberMe] = useState(false);
+    const [isErrorModalVisible, setErrorModalVisible] = useState(false);
     const dispatch = useDispatch();
     const mode = useSelector((state: RootState) => state.theme.mode);
     const inputContainers = [
@@ -28,13 +29,13 @@ export default function HomeScreen({navigation}: Props) {
         {label: 'Password', state: password, setState: setPassword}
     ];
 
-    React.useEffect(() => {
+    useEffect(() => {
         const getStatus = async () => {
             try {
                 const storedRememberMe = await AsyncStorage.getItem('rememberMe');
-                if (storedRememberMe !== null) setRememberMe(JSON.parse(storedRememberMe));
+                storedRememberMe && setRememberMe(JSON.parse(storedRememberMe));
                 const storedDarkMode = await AsyncStorage.getItem('darkMode');
-                if (storedDarkMode !== null) dispatch(setDarkMode(JSON.parse(storedDarkMode)));
+                storedDarkMode && dispatch(setDarkMode(JSON.parse(storedDarkMode)));
                 const storedUserName = await AsyncStorage.getItem('username');
                 const storedPassword = await AsyncStorage.getItem('password');
                 if (storedUserName !== null && storedPassword !== null) dispatch(setUser({
@@ -48,6 +49,7 @@ export default function HomeScreen({navigation}: Props) {
             }
         };
         getStatus().then(r => r);
+        //NotificationNetwork(); // run it when server will be possible in non localhost position.
         dispatch(setEvents({}));
     }, []);
 

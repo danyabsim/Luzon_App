@@ -4,7 +4,7 @@ import {styles} from "./styles";
 import {useDispatch, useSelector} from "react-redux";
 import {setFilteredOption} from "../../redux/Events/eventsSlice";
 import {RootState} from "../../redux/store";
-import {XHRRequest} from "../../UserServerIntegration/XHR";
+import {XHRRequest} from "../../utils/XHR";
 
 export default function Filter() {
     const [isMenuOpen, setMenuOpen] = useState(false);

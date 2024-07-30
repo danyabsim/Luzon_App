@@ -6,7 +6,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../redux/store";
 import {styles} from "./styles";
 import {setImage} from "../../redux/User/userSlice";
-import {XHRRequest} from "../../UserServerIntegration/XHR";
+import {XHRRequest} from "../../utils/XHR";
 
 export default function SettingsScreen() {
     const user = useSelector((state: RootState) => state.user);

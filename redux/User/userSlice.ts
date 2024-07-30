@@ -14,9 +14,12 @@ const userSlice = createSlice({
         },
         setImage: (state, action) => {
             state.image = action.payload;
-        }
+        },
+        setToken: (state, action) => {
+            state.token = action.payload;
+        },
     }
 });
 
-export const {setUser, setIsAdmin, setImage} = userSlice.actions;
+export const {setUser, setIsAdmin, setImage, setToken} = userSlice.actions;
 export default userSlice.reducer;

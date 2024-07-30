@@ -5,11 +5,14 @@ import {styleByTime} from "../../constants/AppStyles";
 import {useDispatch, useSelector} from "react-redux";
 import {setUser} from "../../redux/User/userSlice";
 import {RootState} from "../../redux/store";
+import {XHRRequest} from "../../utils/XHR";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export function DrawerContainer({navigation}: any) {
     const dispatch = useDispatch();
     const mode = useSelector((state: RootState) => state.theme.mode);
     const image = useSelector((state: RootState) => state.user.image);
+    const user = useSelector((state: RootState) => state.user);
 
     return (
         <View style={styles(mode).content}>
@@ -41,7 +44,12 @@ export function DrawerContainer({navigation}: any) {
                 <MenuButton
                     title="Logout"
                     source={styleByTime(require('../../assets/logout (black).png'), require('../../assets/logout (white).png'), mode)}
-                    onPress={() => {
+                    onPress={async () => {
+                        const storedRememberMe = await AsyncStorage.getItem('rememberMe');
+                        XHRRequest(dispatch, '/logout', {
+                            username: user.username,
+                            isRememberMeOn: storedRememberMe ? storedRememberMe : false
+                        });
                         dispatch(setUser({username: '', password: ''}));
                         navigation.navigate('Home');
                         navigation.closeDrawer();

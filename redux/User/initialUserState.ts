@@ -5,4 +5,5 @@ export const initialUserState : IUserReduceState = {
     password: '',
     image: null,
     isAdmin: false,
+    token: ''
 }
