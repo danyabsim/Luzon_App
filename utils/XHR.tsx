@@ -6,7 +6,7 @@ import {setUsernames} from "../redux/Filter/filterSlice";
 
 export function XHRRequest(dispatch: Dispatch<UnknownAction>, urlFunction: string, itemToSend: any, extraCode?: () => void) {
     const xhr = new XMLHttpRequest();
-    xhr.open('POST', 'http://localhost:3000' + urlFunction);
+    xhr.open('POST', 'http://51.20.125.239:3000' + urlFunction);
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.onreadystatechange = function () {
         if (xhr.readyState === XMLHttpRequest.DONE) {

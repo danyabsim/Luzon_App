@@ -8,7 +8,6 @@ export function styles(mode) {
             elevation: 0,
             shadowColor: 'transparent',
             borderBottomWidth: 0,
-            marginVertical: 0,
         }
     });
 }
