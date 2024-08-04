@@ -4,9 +4,7 @@ import {styleByTime} from "../../../constants/AppStyles";
 export function styles(mode) {
     return StyleSheet.create({
         container: {
-            flex: 1,
             alignItems: 'center',
-            justifyContent: 'center',
         },
         title: {
             fontSize: 24,
@@ -29,8 +27,7 @@ export function styles(mode) {
             padding: 10,
             elevation: 2,
             backgroundColor: styleByTime('#2196F3', '#373737', mode),
-            marginHorizontal: 5,
-            marginVertical: 3
+            marginHorizontal: 10
         },
         textStyle: {
             fontWeight: 'bold',
@@ -38,10 +35,8 @@ export function styles(mode) {
             color: 'white',
         },
         inputContainer: {
-            flex: 1,
-            alignContent: 'center',
             flexDirection: 'row',
-            alignItems: 'center',
+            marginTop: 20,
         },
     });
 }

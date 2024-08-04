@@ -1,6 +1,6 @@
 import React from 'react';
-import {Image, Text, View, TouchableOpacity} from 'react-native';
-import { launchImageLibrary, ImageLibraryOptions } from 'react-native-image-picker';
+import {Image, Text, TouchableOpacity, View} from 'react-native';
+import {ImageLibraryOptions, launchImageLibrary} from 'react-native-image-picker';
 import {styleByTime} from "../../constants/AppStyles";
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../redux/store";

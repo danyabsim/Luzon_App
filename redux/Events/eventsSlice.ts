@@ -10,7 +10,7 @@ const eventsSlice = createSlice({
         },
         setEvents: (state, action) => {
             state.events = action.payload;
-            state.lastUpdated = new Date();
+            state.lastUpdated = new Date().toISOString();
         },
         setFilteredOption: (state, action) => {
             state.filteredOption = action.payload;

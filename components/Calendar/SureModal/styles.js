@@ -18,7 +18,8 @@ export function styles(mode) {
             padding: 10,
             elevation: 2,
             backgroundColor: styleByTime('#2196F3', '#373737', mode),
-            marginHorizontal: 5
+            marginHorizontal: 5,
+            marginLeft: 15
         },
         textStyle: {
             color: 'white',

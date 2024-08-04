@@ -6,10 +6,11 @@ import {ColorPickerInputContainersProps} from "./ColorPickerInputContainersProps
 
 export function ColorPickerInputContainers({color, setColor}: ColorPickerInputContainersProps) {
     return (
-        <SafeAreaView>
-            <View style={styles.sectionContainer}>
+        <SafeAreaView style={styles.sectionContainer}>
+            <View>
                 <ColorPicker color={color} onColorChange={(color) => setColor(color)} thumbSize={50}
-                             sliderSize={50} noSnap={true} row={false} gapSize={30} palette={[]}/>
+                             sliderSize={50} noSnap={true} row={false} palette={[]}
+                />
             </View>
         </SafeAreaView>
     );

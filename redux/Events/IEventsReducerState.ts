@@ -4,5 +4,5 @@ export interface IEventsReducerState {
     events: AgendaSchedule,
     selected: string,
     filteredOption: string,
-    lastUpdated: Date,
+    lastUpdated: string,
 }

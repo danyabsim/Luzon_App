@@ -5,7 +5,7 @@ import {styles} from "./styles";
 import {useSelector} from "react-redux";
 import {RootState} from "../../redux/store";
 
-export function ModalApp({modalVisible, setModalVisible, children}: ModalAppProps) {
+export function ModalApp({modalVisible, setModalVisible, children, onClose}: ModalAppProps) {
     const mode = useSelector((state: RootState) => state.theme.mode);
 
     return (
@@ -13,6 +13,7 @@ export function ModalApp({modalVisible, setModalVisible, children}: ModalAppProp
             animationType="slide" transparent={true} visible={modalVisible}
             onRequestClose={() => {
                 Alert.alert('Modal has been closed.');
+                onClose && onClose();
                 setModalVisible(!modalVisible);
             }}
         >

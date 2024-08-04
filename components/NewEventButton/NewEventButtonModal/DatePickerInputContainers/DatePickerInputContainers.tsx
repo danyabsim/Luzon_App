@@ -10,28 +10,35 @@ import {RootState} from "../../../../redux/store";
 
 export function DatePickerInputContainers({timeContainers}: DatePickerInputContainersProps) {
     const [isDatePickerVisible, setDatePickerVisibility] = React.useState(false);
+    const [currentIndex, setCurrentIndex] = React.useState(0);
     const mode = useSelector((state: RootState) => state.theme.mode);
 
     return (
         <View>
             {styleByOS() &&
-                timeContainers.map((time, index) => (
-                    <View key={index}>
-                        <TouchableOpacity style={styles(mode).button} onPress={() => setDatePickerVisibility(true)}>
-                            <Text style={styles(mode).textStyle}>
-                                {time.state === undefined ? `Select ${time.label}` : `You chose ${formatDateAndTime(time.state).date} (${formatDateAndTime(time.state).time})`}
-                            </Text>
-                        </TouchableOpacity>
-                        <DateTimePickerModal
-                            date={time.state as Date} isVisible={isDatePickerVisible} mode="datetime"
-                            onConfirm={(date) => {
-                                time.setState(date)
-                                setDatePickerVisibility(false);
-                            }}
-                            onCancel={() => setDatePickerVisibility(false)}
-                        />
-                    </View>
-                ))
+                <View>
+                    {timeContainers.map((time, index) => (
+                        <View key={index}>
+                            <TouchableOpacity style={styles(mode).button} onPress={() => {
+                                setDatePickerVisibility(true);
+                                setCurrentIndex(index);
+                            }}>
+                                <Text style={styles(mode).textStyle}>
+                                    Select {time.label}{time.state !== undefined && ` => ${formatDateAndTime(time.state).date} (${formatDateAndTime(time.state).time})`}
+                                </Text>
+                            </TouchableOpacity>
+                        </View>
+                    ))}
+                    <DateTimePickerModal
+                        date={new Date()} isVisible={isDatePickerVisible} mode="datetime"
+                        isDarkModeEnabled={true}
+                        onConfirm={(date) => {
+                            timeContainers[currentIndex].setState(date);
+                            setDatePickerVisibility(false);
+                        }}
+                        onCancel={() => setDatePickerVisibility(false)}
+                    />
+                </View>
             }
         </View>
     );
