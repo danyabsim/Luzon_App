@@ -40,7 +40,7 @@ export default function NotificationNetwork() {
                     }
 
                     if (finalStatus !== 'granted') {
-                        Alert.alert('Failed to get push token for push notification!');
+                        //Alert.alert('Failed to get push token for push notification!');
                         return;
                     }
 
@@ -53,11 +53,11 @@ export default function NotificationNetwork() {
                     token = (await Notifications.getExpoPushTokenAsync({projectId})).data;
                     console.log(token);
                 } else {
-                    Alert.alert('Must use physical device for Push Notifications');
+                    //Alert.alert('Must use physical device for Push Notifications');
                 }
             } catch (error) {
                 console.error(error);
-                Alert.alert('An error occurred while getting the push token');
+                //Alert.alert('An error occurred while getting the push token');
             }
 
             return token;
@@ -87,5 +87,5 @@ export default function NotificationNetwork() {
         };
     }, [dispatch]);
 
-    return null;  // Adjust this as per your requirement (e.g., return an empty view or a spinner)
+    return null;
 }

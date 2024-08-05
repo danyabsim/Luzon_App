@@ -9,7 +9,7 @@ export function ColorPickerInputContainers({color, setColor}: ColorPickerInputCo
         <SafeAreaView style={styles.sectionContainer}>
             <View>
                 <ColorPicker color={color} onColorChange={(color) => setColor(color)} thumbSize={50}
-                             sliderSize={50} noSnap={true} row={false} palette={[]}
+                             sliderSize={50} row={false} palette={[]}
                 />
             </View>
         </SafeAreaView>

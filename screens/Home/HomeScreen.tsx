@@ -13,7 +13,7 @@ import {TextInputContainers} from "../../components/TextInputContainers/TextInpu
 import {setDarkMode} from "../../redux/Theme/themeSlice";
 import {ErrorModalApp} from "../../components/ErrorModalApp/ErrorModalApp";
 import {setEvents} from "../../redux/Events/eventsSlice";
-// import NotificationNetwork from "../../utils/NotificationNetwork";
+import NotificationNetwork from "../../utils/NotificationNetwork";
 
 type Props = StackScreenProps<MainStackParamList, 'Home'>;
 
@@ -49,13 +49,12 @@ export default function HomeScreen({navigation}: Props) {
             }
         };
         getStatus().then(r => r);
-        //NotificationNetwork(); // run it when server will be possible in non localhost position.
         dispatch(setEvents({}));
     }, []);
 
     return (
         <View style={styles(mode).container}>
-            {/*<NotificationNetwork/>*/}
+            <NotificationNetwork/>
             <Text style={styles(mode).mainText}>Hello!</Text>
             <TextInputContainers inputContainers={inputContainers} timeContainers={[]}/>
             <RememberMeButton rememberMe={rememberMe} onPress={async () => {

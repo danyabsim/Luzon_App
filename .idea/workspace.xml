@@ -7,9 +7,18 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="73c5b549-52c8-4ad5-b8c8-da767a408862" name="Changes" comment="update notifications">
+    <list default="true" id="73c5b549-52c8-4ad5-b8c8-da767a408862" name="Changes" comment="update permissions AND enabling notification and image permissions.">
+      <change beforePath="$PROJECT_DIR$/.expo/devices.json" beforeDir="false" afterPath="$PROJECT_DIR$/.expo/devices.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.json" beforeDir="false" afterPath="$PROJECT_DIR$/app.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Calendar/Calendar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/Calendar/Calendar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Calendar/calendarTheme.ts" beforeDir="false" afterPath="$PROJECT_DIR$/components/Calendar/calendarTheme.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/NewEventButton/NewEventButtonModal/ColorPickerInputContainers/ColorPickerInputContainers.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/NewEventButton/NewEventButtonModal/ColorPickerInputContainers/ColorPickerInputContainers.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/screens/Home/HomeScreen.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/screens/Home/HomeScreen.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/NotificationNetwork.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/utils/NotificationNetwork.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,7 +64,7 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="ProjectErrors" />
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 7
@@ -169,15 +178,7 @@
       <workItem from="1722163816472" duration="19137000" />
       <workItem from="1722426403521" duration="4258000" />
       <workItem from="1722430894039" duration="701000" />
-      <workItem from="1722518095434" duration="19205000" />
-    </task>
-    <task id="LOCAL-00046" summary="final cleanups for now">
-      <option name="closed" value="true" />
-      <created>1715507103460</created>
-      <option name="number" value="00046" />
-      <option name="presentableId" value="LOCAL-00046" />
-      <option name="project" value="LOCAL" />
-      <updated>1715507103460</updated>
+      <workItem from="1722518095434" duration="23032000" />
     </task>
     <task id="LOCAL-00047" summary="fixing the navigator">
       <option name="closed" value="true" />
@@ -563,7 +564,15 @@
       <option name="project" value="LOCAL" />
       <updated>1722777655903</updated>
     </task>
-    <option name="localTasksCounter" value="95" />
+    <task id="LOCAL-00095" summary="update permissions">
+      <option name="closed" value="true" />
+      <created>1722840886480</created>
+      <option name="number" value="00095" />
+      <option name="presentableId" value="LOCAL-00095" />
+      <option name="project" value="LOCAL" />
+      <updated>1722840886480</updated>
+    </task>
+    <option name="localTasksCounter" value="96" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -584,8 +593,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="some package changes that expo can run the app freely (expo-doctor)" />
-    <MESSAGE value="some icon and name changes" />
     <MESSAGE value="add devices" />
     <MESSAGE value="adding notes for the item" />
     <MESSAGE value="replace the ';' with '\0'" />
@@ -609,6 +616,8 @@
     <MESSAGE value="update notifications" />
     <MESSAGE value="fixing bugs (styling, same date, some closing modals did not want to return to the old one)" />
     <MESSAGE value="update workspace.xml" />
-    <option name="LAST_COMMIT_MESSAGE" value="update workspace.xml" />
+    <MESSAGE value="update permissions" />
+    <MESSAGE value="update permissions AND enabling notification and image permissions." />
+    <option name="LAST_COMMIT_MESSAGE" value="update permissions AND enabling notification and image permissions." />
   </component>
 </project>
