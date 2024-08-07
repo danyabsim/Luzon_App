@@ -44,38 +44,41 @@ export function NewEventButtonModal(props: NewEventButtonModalProps) {
     }
 
     return (
-        <ModalApp modalVisible={props.modalVisible} setModalVisible={props.setModalVisible} children={
-            <View>
-                <TextInputContainers inputContainers={inputContainers} timeContainers={timeContainers}/>
-                <DatePickerInputContainers timeContainers={timeContainers}/>
-                <ColorPickerInputContainers color={color} setColor={setColor}/>
-                <View style={styles.inputContainer}>
-                    <CloseButton closeModal={closeModal}/>
-                    <AddButton onPress={() => {
-                        if (startDate === undefined || endDate === undefined || color === '' || title === '') {
-                            setErrorModalVisible(true);
-                            return;
-                        }
-                        const startDateAndTime = formatDateAndTime(startDate);
-                        const endDateAndTime = formatDateAndTime(endDate);
-                        const dates = getDatesBetween(startDateAndTime.date, endDateAndTime.date);
-                        const XHRTitle = `${startDateAndTime.date} (${startDateAndTime.time}) – ${endDateAndTime.date} (${endDateAndTime.time}): ${title} (${user.username})\0${notes}`;
-                        if (dates !== null) {
-                            dates.map(async (day) => {
-                                dispatch(setEvents({}));
-                                XHRRequest(dispatch, '/addEvent', {
-                                    name: XHRTitle, height: hexToRgbInt(color), day: formatDateAndTime(day).date
-                                });
-                                await TimeOutDelay(300);
-                                XHRRequest(dispatch, '/connect', {...user});
-                            })
-                            closeModal();
-                        }
-                    }}/>
-                </View>
-                <ErrorModalApp modalVisible={isErrorModalVisible} setModalVisible={setErrorModalVisible}
-                               errorText={"One of the fields is incomplete. Please fill them out."}/>
-            </View>
-        }/>
+        <ModalApp onClose={closeModal} modalVisible={props.modalVisible} setModalVisible={props.setModalVisible}
+                  children={
+                      <View>
+                          <TextInputContainers inputContainers={inputContainers} timeContainers={timeContainers}/>
+                          <DatePickerInputContainers timeContainers={timeContainers}/>
+                          <ColorPickerInputContainers color={color} setColor={setColor}/>
+                          <View style={styles.inputContainer}>
+                              <CloseButton closeModal={closeModal}/>
+                              <AddButton onPress={() => {
+                                  if (startDate === undefined || endDate === undefined || color === '' || title === '') {
+                                      setErrorModalVisible(true);
+                                      return;
+                                  }
+                                  const startDateAndTime = formatDateAndTime(startDate);
+                                  const endDateAndTime = formatDateAndTime(endDate);
+                                  const dates = getDatesBetween(startDateAndTime.date, endDateAndTime.date);
+                                  const XHRTitle = `${startDateAndTime.date} (${startDateAndTime.time}) – ${endDateAndTime.date} (${endDateAndTime.time}): ${title} (${user.username})\0${notes}`;
+                                  if (dates !== null) {
+                                      dates.map(async (day) => {
+                                          dispatch(setEvents({}));
+                                          XHRRequest(dispatch, '/addEvent', {
+                                              name: XHRTitle,
+                                              height: hexToRgbInt(color),
+                                              day: formatDateAndTime(day).date
+                                          });
+                                          await TimeOutDelay(300);
+                                          XHRRequest(dispatch, '/connect', {...user});
+                                      })
+                                      closeModal();
+                                  }
+                              }}/>
+                          </View>
+                          <ErrorModalApp modalVisible={isErrorModalVisible} setModalVisible={setErrorModalVisible}
+                                         errorText={"One of the fields is incomplete. Please fill them out."}/>
+                      </View>
+                  }/>
     );
 }

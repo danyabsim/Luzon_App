@@ -7,7 +7,7 @@ import {RootState} from "../../redux/store";
 import {setEvents, setReduxSelected} from "../../redux/Events/eventsSlice";
 import {ErrorBoundary} from "react-error-boundary";
 import {XHRRequest} from "../../utils/XHR";
-import {calendarTheme} from "./calendarTheme";
+import {calendarTheme, calendarTheme2} from "./calendarTheme";
 import {CalendarItem} from "./CalendarItem/CalendarItem";
 import {SureModal} from "./SureModal/SureModal";
 import {TimeOutDelay} from "../../constants/TimeOutDelay";
@@ -34,7 +34,7 @@ export default function Calendar() {
         <ErrorBoundary fallback={<Text style={styles(mode).itemText}>Something went wrong</Text>}>
             <View style={styles(mode).container}>
                 <Agenda
-                    theme={calendarTheme(mode)} items={FilteredItems()} selected={selected} collapsable={true}
+                    theme={calendarTheme2(mode)} items={FilteredItems()} selected={selected} collapsable={true}
                     enableSwipeMonths={true} scrollEnabled={true} showOnlySelectedDayItems={true}
                     onDayPress={(day) => {
                         setSelected(day.dateString);
