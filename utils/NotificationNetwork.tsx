@@ -1,10 +1,10 @@
 import * as Notifications from 'expo-notifications';
 import * as Device from 'expo-device';
 import {useEffect, useRef} from 'react';
-import {Alert, Platform} from 'react-native';
+import {Platform} from 'react-native';
 import Constants from 'expo-constants';
-import {setToken} from '../redux/User/userSlice';
 import {useDispatch} from 'react-redux';
+import {setToken} from '../redux/User/userSlice';
 
 Notifications.setNotificationHandler({
     handleNotification: async () => ({
@@ -46,7 +46,7 @@ export default function NotificationNetwork() {
 
                     const projectId = Constants?.expoConfig?.extra?.eas?.projectId ?? Constants?.easConfig?.projectId;
                     if (!projectId) {
-                        Alert.alert('Project ID not found');
+                        //Alert.alert('Project ID not found');
                         return;
                     }
 
