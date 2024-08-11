@@ -21,6 +21,7 @@
     "@types/react": "~18.2.45",
     "cors": "^2.8.5",
     "expo": "^50.0.17",
+    "expo-constants": "~15.4.6",
     "expo-dev-client": "~3.3.12",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

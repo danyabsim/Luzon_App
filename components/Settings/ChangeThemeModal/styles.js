@@ -33,6 +33,14 @@ export function styles(mode) {
             fontWeight: 'bold',
             textAlign: 'center',
             color: 'white',
+        },
+        inputContainer: {
+            flexDirection: 'row',
+            marginTop: 20,
+        },
+        warningTitle: {
+            marginBottom: 20,
+            color: styleByTime('black', 'white', mode),
         }
     });
 }
