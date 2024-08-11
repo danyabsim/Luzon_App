@@ -13,7 +13,6 @@ import {TextInputContainers} from "../../components/TextInputContainers/TextInpu
 import {setDarkMode} from "../../redux/Theme/themeSlice";
 import {ErrorModalApp} from "../../components/ErrorModalApp/ErrorModalApp";
 import {setEvents} from "../../redux/Events/eventsSlice";
-import NotificationNetwork from "../../utils/NotificationNetwork";
 
 type Props = StackScreenProps<MainStackParamList, 'Home'>;
 
@@ -54,7 +53,6 @@ export default function HomeScreen({navigation}: Props) {
 
     return (
         <View style={styles(mode).container}>
-            <NotificationNetwork/>
             <Text style={styles(mode).mainText}>Hello!</Text>
             <TextInputContainers inputContainers={inputContainers} timeContainers={[]}/>
             <RememberMeButton rememberMe={rememberMe} onPress={async () => {
