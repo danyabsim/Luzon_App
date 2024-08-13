@@ -36,7 +36,7 @@ export function ChangeThemeModal({onClose}: {onClose: () => void}) {
     return (
         <View style={styles(mode).container}>
             <Text style={styles(mode).title}>Choose your Theme</Text>
-            <Text style={[styles(mode).textStyle, styles(mode).warningTitle]}>Warning: Changing the mode will auto logout from the account!</Text>
+            <Text style={[styles(mode).textStyle, styles(mode).warningTitle]}>Warning: Changing the theme will auto logout from the account!</Text>
             {['auto', 'light', 'dark'].map(innerMode => (
                 <TouchableOpacity
                     key={innerMode}
