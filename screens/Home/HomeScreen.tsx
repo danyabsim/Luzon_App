@@ -53,29 +53,31 @@ export default function HomeScreen({navigation}: Props) {
 
     return (
         <View style={styles(mode).container}>
-            <Text style={styles(mode).mainText}>Hello!</Text>
-            <TextInputContainers inputContainers={inputContainers} timeContainers={[]}/>
-            <RememberMeButton rememberMe={rememberMe} onPress={async () => {
-                setRememberMe(!rememberMe);
-                await AsyncStorage.setItem('rememberMe', JSON.stringify(!rememberMe));
-            }}/>
-            <TouchableOpacity style={styles(mode).button} onPress={() => {
-                if (username !== "" && password !== "") XHRRequest(dispatch, '/connect', {
-                    username: username, password: password
-                }, async () => {
-                    dispatch(setUser({username: username, password: password}));
-                    await AsyncStorage.setItem('username', JSON.stringify(rememberMe ? username : ''));
-                    await AsyncStorage.setItem('password', JSON.stringify(rememberMe ? password : ''));
-                    setUsername(rememberMe ? username : '');
-                    setPassword(rememberMe ? password : '');
-                    navigation.navigate('Calendar');
-                })
-                else setErrorModalVisible(true);
-            }}>
-                <Text style={styles(mode).textStyle}>Log In</Text>
-            </TouchableOpacity>
-            <ErrorModalApp modalVisible={isErrorModalVisible} setModalVisible={setErrorModalVisible}
-                           errorText={"One of the fields is incomplete. Please fill them out."}/>
+            <View style={{alignSelf: "center"}}>
+                <Text style={styles(mode).mainText}>Hello!</Text>
+                <TextInputContainers inputContainers={inputContainers} timeContainers={[]}/>
+                <RememberMeButton rememberMe={rememberMe} onPress={async () => {
+                    setRememberMe(!rememberMe);
+                    await AsyncStorage.setItem('rememberMe', JSON.stringify(!rememberMe));
+                }}/>
+                <TouchableOpacity style={styles(mode).button} onPress={() => {
+                    if (username !== "" && password !== "") XHRRequest(dispatch, '/connect', {
+                        username: username, password: password
+                    }, async () => {
+                        dispatch(setUser({username: username, password: password}));
+                        await AsyncStorage.setItem('username', JSON.stringify(rememberMe ? username : ''));
+                        await AsyncStorage.setItem('password', JSON.stringify(rememberMe ? password : ''));
+                        setUsername(rememberMe ? username : '');
+                        setPassword(rememberMe ? password : '');
+                        navigation.navigate('Calendar');
+                    })
+                    else setErrorModalVisible(true);
+                }}>
+                    <Text style={styles(mode).textStyle}>Log In</Text>
+                </TouchableOpacity>
+                <ErrorModalApp modalVisible={isErrorModalVisible} setModalVisible={setErrorModalVisible}
+                               errorText={"One of the fields is incomplete. Please fill them out."}/>
+            </View>
         </View>
     );
 }
