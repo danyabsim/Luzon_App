@@ -15,7 +15,7 @@ export default function SettingsScreen() {
 
     return (
         <View style={styles(mode).container}>
-            <TouchableOpacity onLongPress={() => {
+            <TouchableOpacity onPress={() => {
                 const options: ImageLibraryOptions = {
                     mediaType: 'photo',
                     includeBase64: false,
