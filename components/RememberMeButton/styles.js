@@ -6,14 +6,14 @@ export function styles(mode) {
         inputContainer: {
             flexDirection: 'row',
             alignItems: 'center',
-            marginBottom: 15,
+            marginBottom: 15
         },
         rememberMeButton: {
             width: 40,
             height: 40,
             borderRadius: 20,
             backgroundColor: styleByTime('#2196F3', '#373737', mode),
-            marginRight: 10,
+            marginHorizontal: 10
         },
         rememberMeButtonText: {
             fontSize: 18,

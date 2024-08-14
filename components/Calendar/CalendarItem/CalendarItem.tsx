@@ -5,10 +5,12 @@ import React from "react";
 import {CalendarItemProps} from "./CalendarItemProps";
 import {useSelector} from "react-redux";
 import {RootState} from "../../../redux/store";
+import {useTranslation} from "react-i18next";
 
 export function CalendarItem({item, onLongPressItem}: CalendarItemProps) {
     const [isExpanded, setExpanded] = React.useState(false);
     const mode = useSelector((state: RootState) => state.theme.mode);
+    const {t} = useTranslation();
 
     return (
         <TouchableOpacity
@@ -16,7 +18,7 @@ export function CalendarItem({item, onLongPressItem}: CalendarItemProps) {
         >
             <View style={{borderRadius: 50, backgroundColor: rgbIntToHex(item.height), width: 30, height: 30}}/>
             <Text style={styles(mode).itemText}>{item.name.split('\0')[0]}</Text>
-            {isExpanded && <Text style={styles(mode).itemText}>Notes: {item.name.split('\0')[1]}</Text>}
+            {isExpanded && <Text style={styles(mode).itemText}>{t('Notes')}: {item.name.split('\0')[1]}</Text>}
         </TouchableOpacity>
     );
 }

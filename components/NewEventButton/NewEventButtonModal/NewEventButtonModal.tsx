@@ -16,6 +16,7 @@ import {hexToRgbInt} from "../../../constants/AppConverts";
 import {formatDateAndTime, getDatesBetween} from "../../../constants/DateFunctions";
 import {TimeOutDelay} from "../../../constants/TimeOutDelay";
 import {ErrorModalApp} from "../../ErrorModalApp/ErrorModalApp";
+import {useTranslation} from "react-i18next";
 
 export function NewEventButtonModal(props: NewEventButtonModalProps) {
     const [title, setTitle] = React.useState("");
@@ -26,12 +27,15 @@ export function NewEventButtonModal(props: NewEventButtonModalProps) {
     const [isErrorModalVisible, setErrorModalVisible] = React.useState(false);
     const dispatch = useDispatch();
     const user = useSelector((state: RootState) => state.user);
+
+    const {t} = useTranslation();
+
     const inputContainers = [
-        {label: 'Title', state: title, setState: setTitle}, {label: 'Notes', state: notes, setState: setNotes},
+        {label: t('Title'), state: title, setState: setTitle}, {label:t('Notes'), state: notes, setState: setNotes},
     ];
     const timeContainers = [
-        {label: 'Start Date', state: startDate, setState: setStartDate},
-        {label: 'End Date', state: endDate, setState: setEndDate},
+        {label: t('StartDate'), state: startDate, setState: setStartDate},
+        {label: t('EndDate'), state: endDate, setState: setEndDate},
     ];
 
     const closeModal = () => {
@@ -77,7 +81,7 @@ export function NewEventButtonModal(props: NewEventButtonModalProps) {
                               }}/>
                           </View>
                           <ErrorModalApp modalVisible={isErrorModalVisible} setModalVisible={setErrorModalVisible}
-                                         errorText={"One of the fields is incomplete. Please fill them out."}/>
+                                         errorText={t('IncompleteFields')}/>
                       </View>
                   }/>
     );

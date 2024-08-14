@@ -8,6 +8,7 @@ import {XHRRequest} from "../../utils/XHR";
 import {RootState} from "../../redux/store";
 import {setEvents} from "../../redux/Events/eventsSlice";
 import Filter from "../../components/Filter/Filter";
+import {useTranslation} from "react-i18next";
 
 export default function CalendarScreen() {
     const dispatch = useDispatch();
@@ -16,6 +17,8 @@ export default function CalendarScreen() {
     const mode = useSelector((state: RootState) => state.theme.mode);
     const lastUpdated = useSelector((state: RootState) => state.events.lastUpdated);
     const [isMenuOpen, setMenuOpen] = useState(false);
+
+    const { t, i18n } = useTranslation();
 
     const onRefresh = React.useCallback(() => {
         setRefreshing(true);
@@ -30,10 +33,9 @@ export default function CalendarScreen() {
                 refreshControl={
                     <RefreshControl refreshing={refreshing} onRefresh={onRefresh}/>
                 }>
-                <Text style={[styles(mode).mainText, styles(mode).plainText]}>לו"ז מדור פיתוח</Text>
+                <Text style={[styles(mode).mainText, styles(mode).plainText]}>{t('COD')}</Text>
                 {user.isAdmin && <Filter isMenuOpen={isMenuOpen} setMenuOpen={setMenuOpen}/>}
-                <Text style={styles(mode).plainText}>The events data was last updated
-                    on {new Date(lastUpdated).toLocaleString('en-GB', {
+                <Text style={styles(mode).plainText}>{t('LastUpdatedData')}{new Date(lastUpdated).toLocaleString(i18n.language == 'en' ? 'en-GB' : 'he', {
                         day: '2-digit',
                         month: 'short',
                         year: 'numeric',

@@ -7,11 +7,13 @@ import {RootState} from "../../redux/store";
 import {styles} from "./styles";
 import {setImage} from "../../redux/User/userSlice";
 import {XHRRequest} from "../../utils/XHR";
+import {useTranslation} from "react-i18next";
 
 export default function SettingsScreen() {
     const user = useSelector((state: RootState) => state.user);
     const mode = useSelector((state: RootState) => state.theme.mode);
     const dispatch = useDispatch();
+    const {t} = useTranslation();
 
     return (
         <View style={styles(mode).container}>
@@ -31,7 +33,7 @@ export default function SettingsScreen() {
                         dispatch(setImage(uriImage));
                         XHRRequest(dispatch, '/changeImage', {...user, image: uriImage})
                     }
-                }).then(r => r);
+                });
             }}>
                 <Image
                     style={styles(mode).imageHeader}
@@ -39,7 +41,7 @@ export default function SettingsScreen() {
                 />
             </TouchableOpacity>
             <Text style={styles(mode).text}>{user.username}</Text>
-            <Text style={styles(mode).text}>{user.isAdmin ? 'Admin' : 'Regular User'}</Text>
+            <Text style={styles(mode).text}>{user.isAdmin ? t('Admin') : t('RegularUser')}</Text>
         </View>
     );
 }

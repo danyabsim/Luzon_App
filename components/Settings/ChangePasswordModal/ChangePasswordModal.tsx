@@ -6,6 +6,7 @@ import {styles} from "./styles";
 import {TextInputContainers} from "../../TextInputContainers/TextInputContainers";
 import {XHRRequest} from "../../../utils/XHR";
 import {ErrorModalApp} from "../../ErrorModalApp/ErrorModalApp";
+import {useTranslation} from "react-i18next";
 
 export function ChangePasswordModal({onClose}: {
     onClose: () => void
@@ -15,8 +16,11 @@ export function ChangePasswordModal({onClose}: {
     const user = useSelector((state: RootState) => state.user);
     const mode = useSelector((state: RootState) => state.theme.mode);
     const dispatch = useDispatch();
+
+    const {t} = useTranslation();
+
     const inputContainers = [
-        {label: 'New Password', state: newPassword, setState: setNewPassword}
+        {label: t('NewPassword'), state: newPassword, setState: setNewPassword}
     ];
 
     function onCloseThisModal() {
@@ -26,7 +30,7 @@ export function ChangePasswordModal({onClose}: {
 
     return (
         <View style={styles(mode).container}>
-            <Text style={styles(mode).title}>Change Password</Text>
+            <Text style={styles(mode).title}>{t('SettingsCP')}</Text>
             <TextInputContainers inputContainers={inputContainers} timeContainers={[]}/>
             <View style={styles(mode).inputContainer}>
                 <TouchableOpacity style={styles(mode).button} onPress={() => {
@@ -40,10 +44,10 @@ export function ChangePasswordModal({onClose}: {
                         onCloseThisModal();
                     } else setErrorModalVisible(true);
                 }}>
-                    <Text style={styles(mode).textStyle}>Change</Text>
+                    <Text style={styles(mode).textStyle}>{t('Change')}</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles(mode).button} onPress={onCloseThisModal}>
-                    <Text style={styles(mode).textStyle}>Close</Text>
+                    <Text style={styles(mode).textStyle}>{t('Close')}</Text>
                 </TouchableOpacity>
                 <ErrorModalApp modalVisible={isErrorModalVisible} setModalVisible={setErrorModalVisible}
                                errorText={"You did not pass a new password. Please fill it out."}/>

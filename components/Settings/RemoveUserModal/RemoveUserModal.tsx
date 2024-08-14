@@ -7,6 +7,7 @@ import {TextInputContainers} from "../../TextInputContainers/TextInputContainers
 import {XHRRequest} from "../../../utils/XHR";
 import {TimeOutDelay} from "../../../constants/TimeOutDelay";
 import {ErrorModalApp} from "../../ErrorModalApp/ErrorModalApp";
+import {useTranslation} from "react-i18next";
 
 export function RemoveUserModal({onClose}: {
     onClose: () => void
@@ -16,8 +17,10 @@ export function RemoveUserModal({onClose}: {
     const mode = useSelector((state: RootState) => state.theme.mode);
     const usernames = useSelector((state: RootState) => state.filter.usernames);
     const dispatch = useDispatch();
+    const {t} = useTranslation();
+
     const inputContainers = [
-        {label: 'Username', state: username, setState: setUsername},
+        {label: t('Username'), state: username, setState: setUsername},
     ];
 
     function onCloseThisModal() {
@@ -27,7 +30,7 @@ export function RemoveUserModal({onClose}: {
 
     return (
         <View style={styles(mode).container}>
-            <Text style={styles(mode).title}>Remove User</Text>
+            <Text style={styles(mode).title}>{t('SettingsRU')}</Text>
             <TextInputContainers inputContainers={inputContainers} timeContainers={[]}/>
             <View style={styles(mode).inputContainer}>
                 <TouchableOpacity style={styles(mode).button} onPress={async () => {
@@ -38,13 +41,13 @@ export function RemoveUserModal({onClose}: {
                         onCloseThisModal();
                     } else setErrorModalVisible(true);
                 }}>
-                    <Text style={styles(mode).textStyle}>Remove</Text>
+                    <Text style={styles(mode).textStyle}>{t('Remove')}</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles(mode).button} onPress={onCloseThisModal}>
-                    <Text style={styles(mode).textStyle}>Close</Text>
+                    <Text style={styles(mode).textStyle}>{t('Close')}</Text>
                 </TouchableOpacity>
                 <ErrorModalApp modalVisible={isErrorModalVisible} setModalVisible={setErrorModalVisible}
-                               errorText={`You entered ${username === 'admin' ? '"admin" as it is not possible to remove "admin" at all' : `nothing or a user that does not exist`}. Please fill it out properly.`}/>
+                               errorText={t('RemoveError')}/>
             </View>
         </View>
     );

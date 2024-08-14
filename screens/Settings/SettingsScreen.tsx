@@ -1,58 +1,51 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Text, TouchableOpacity, View} from 'react-native';
 import {styles} from "./styles";
 import {ModalApp} from "../../components/ModalApp/ModalApp";
-import {ChangePasswordModal} from "../../components/Settings/ChangePasswordModal/ChangePasswordModal";
-import {AddUserModal} from "../../components/Settings/AddUserModal/AddUserModal";
-import {RemoveUserModal} from "../../components/Settings/RemoveUserModal/RemoveUserModal";
-import {ChangeThemeModal} from "../../components/Settings/ChangeThemeModal/ChangeThemeModal";
+import {
+    AddUserModal,
+    ChangeLanguageModal,
+    ChangePasswordModal,
+    ChangeThemeModal,
+    RemoveUserModal
+} from "../../components/Settings";
 import {useSelector} from "react-redux";
 import {RootState} from "../../redux/store";
+import {useTranslation} from "react-i18next";
 
 export default function Settings() {
     const isAdmin = useSelector((state: RootState) => state.user.isAdmin);
-    const [modalVisible, setModalVisible] = React.useState(false);
-    const [whoIsOn, setWhoIsOn] = React.useState('');
     const mode = useSelector((state: RootState) => state.theme.mode);
+    const {t} = useTranslation();
+    const [modalState, setModalState] = useState({visible: false, type: ''});
+
+    const openModal = (type: string) => setModalState({visible: true, type});
+    const closeModal = () => setModalState({visible: false, type: ''});
+
+    const ModalContent = {
+        'Change Password': ChangePasswordModal,
+        'Add User': AddUserModal,
+        'Remove User': RemoveUserModal,
+        'Dark Mode': ChangeThemeModal,
+        'Language': ChangeLanguageModal
+    }[modalState.type] || null;
 
     return (
         <View style={styles(mode).container}>
-            <TouchableOpacity style={styles(mode).settingItem} onPress={() => {
-                setWhoIsOn('Change Password');
-                setModalVisible(true);
-            }}>
-                <Text style={styles(mode).settingText}>Change Password</Text>
-            </TouchableOpacity>
-            {isAdmin && (
-                <>
-                    <TouchableOpacity style={styles(mode).settingItem} onPress={() => {
-                        setWhoIsOn('Add User');
-                        setModalVisible(true);
-                    }}>
-                        <Text style={styles(mode).settingText}>Add User</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={styles(mode).settingItem} onPress={() => {
-                        setWhoIsOn('Remove User');
-                        setModalVisible(true);
-                    }}>
-                        <Text style={styles(mode).settingText}>Remove User</Text>
-                    </TouchableOpacity>
-                </>
-            )}
-            <TouchableOpacity style={styles(mode).settingItem} onPress={() => {
-                setWhoIsOn('Dark Mode');
-                setModalVisible(true);
-            }}>
-                <Text style={styles(mode).settingText}>Change Theme</Text>
-            </TouchableOpacity>
-            <ModalApp modalVisible={modalVisible} setModalVisible={setModalVisible} children={
-                <View>
-                    {whoIsOn === 'Change Password' && <ChangePasswordModal onClose={() => setModalVisible(false)}/>}
-                    {whoIsOn === 'Add User' && <AddUserModal onClose={() => setModalVisible(false)}/>}
-                    {whoIsOn === 'Remove User' && <RemoveUserModal onClose={() => setModalVisible(false)}/>}
-                    {whoIsOn === 'Dark Mode' && <ChangeThemeModal onClose={() => setModalVisible(false)}/>}
-                </View>
-            }/>
+            {[
+                {label: t('SettingsCP'), type: 'Change Password'},
+                isAdmin && {label: t('SettingsAU'), type: 'Add User'},
+                isAdmin && {label: t('SettingsRU'), type: 'Remove User'},
+                {label: t('SettingsCT'), type: 'Dark Mode'},
+                {label: t('SettingsCL'), type: 'Language'}
+            ].filter(Boolean).map(({label, type}) => (
+                <TouchableOpacity key={type} style={styles(mode).settingItem} onPress={() => openModal(type)}>
+                    <Text style={styles(mode).settingText}>{label}</Text>
+                </TouchableOpacity>
+            ))}
+            <ModalApp modalVisible={modalState.visible} setModalVisible={closeModal}>
+                {ModalContent && <ModalContent onClose={closeModal}/>}
+            </ModalApp>
         </View>
     );
 }

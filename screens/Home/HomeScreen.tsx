@@ -13,6 +13,8 @@ import {TextInputContainers} from "../../components/TextInputContainers/TextInpu
 import {setDarkMode} from "../../redux/Theme/themeSlice";
 import {ErrorModalApp} from "../../components/ErrorModalApp/ErrorModalApp";
 import {setEvents} from "../../redux/Events/eventsSlice";
+import { useTranslation } from 'react-i18next';
+import '../../i18n';
 
 type Props = StackScreenProps<MainStackParamList, 'Home'>;
 
@@ -23,9 +25,11 @@ export default function HomeScreen({navigation}: Props) {
     const [isErrorModalVisible, setErrorModalVisible] = useState(false);
     const dispatch = useDispatch();
     const mode = useSelector((state: RootState) => state.theme.mode);
+    const { t, i18n } = useTranslation();
+
     const inputContainers = [
-        {label: 'Username', state: username, setState: setUsername},
-        {label: 'Password', state: password, setState: setPassword}
+        {label: t('Username'), state: username, setState: setUsername},
+        {label: t('Password'), state: password, setState: setPassword}
     ];
 
     useEffect(() => {
@@ -47,14 +51,27 @@ export default function HomeScreen({navigation}: Props) {
                 console.error('Error retrieving status:', error);
             }
         };
-        getStatus().then(r => r);
+        getStatus();
         dispatch(setEvents({}));
     }, []);
+
+    useEffect(() => {
+        const getLanguage = async () => {
+            try {
+                const storedLanguage = JSON.parse(await AsyncStorage.getItem('language'));
+                await i18n.changeLanguage(storedLanguage == 'en' || storedLanguage == 'he' ? storedLanguage : 'he');
+            } catch (error) {
+                console.error('Error retrieving language:', error);
+            }
+        }
+        getLanguage();
+    }, [i18n]);
+
 
     return (
         <View style={styles(mode).container}>
             <View style={{alignSelf: "center"}}>
-                <Text style={styles(mode).mainText}>Hello!</Text>
+                <Text style={styles(mode).mainText}>{t('COD')}</Text>
                 <TextInputContainers inputContainers={inputContainers} timeContainers={[]}/>
                 <RememberMeButton rememberMe={rememberMe} onPress={async () => {
                     setRememberMe(!rememberMe);
@@ -73,10 +90,10 @@ export default function HomeScreen({navigation}: Props) {
                     })
                     else setErrorModalVisible(true);
                 }}>
-                    <Text style={styles(mode).textStyle}>Log In</Text>
+                    <Text style={styles(mode).textStyle}>{t('Login')}</Text>
                 </TouchableOpacity>
                 <ErrorModalApp modalVisible={isErrorModalVisible} setModalVisible={setErrorModalVisible}
-                               errorText={"One of the fields is incomplete. Please fill them out."}/>
+                               errorText={t("IncompleteFields")}/>
             </View>
         </View>
     );

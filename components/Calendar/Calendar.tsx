@@ -11,6 +11,7 @@ import {calendarTheme} from "./calendarTheme";
 import {CalendarItem} from "./CalendarItem/CalendarItem";
 import {SureModal} from "./SureModal/SureModal";
 import {TimeOutDelay} from "../../constants/TimeOutDelay";
+import {useTranslation} from "react-i18next";
 
 export default function Calendar() {
     const [sureModalVisible, setSureModalVisible] = React.useState(false);
@@ -21,10 +22,11 @@ export default function Calendar() {
     const dispatch = useDispatch();
     const [itemToRemove, setItemToRemove] = React.useState<AgendaEntry>();
     const mode = useSelector((state: RootState) => state.theme.mode);
+    const {t} = useTranslation();
 
     const FilteredItems = (): AgendaSchedule => {
-        if (filteredOption == 'All') return events;
-        if (filteredOption == 'None') return {};
+        if (filteredOption == t('All')) return events;
+        if (filteredOption == t('None')) return {};
         return Object.fromEntries(
             Object.entries(events).map(([key, value]) => [key, value.filter(item => item.name.includes(`(${filteredOption})`))])
         );
@@ -48,7 +50,7 @@ export default function Calendar() {
                     )}
                 />
                 <SureModal visible={sureModalVisible} setVisible={setSureModalVisible} onRequestCloseModal={() => {
-                    Alert.alert('Modal has been closed.');
+                    Alert.alert(t('ModalClosed'));
                     setSureModalVisible(false);
                 }} onPressNo={() => {
                     setItemToRemove(null);
