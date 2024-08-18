@@ -7,11 +7,13 @@ import SettingsScreen from "../screens/Settings/SettingsScreen";
 import {createStackNavigator} from "@react-navigation/stack";
 import {useSelector} from "react-redux";
 import {RootState} from "../redux/store";
+import {useTranslation} from "react-i18next";
 
 const Stack = createStackNavigator();
 
 export const AppNavigator = () => {
     const mode = useSelector((state: RootState) => state.theme.mode);
+    const {i18n} = useTranslation();
 
     return (
         <Stack.Navigator initialRouteName="Home">
@@ -22,7 +24,10 @@ export const AppNavigator = () => {
                     return {
                         title: "",
                         headerStyle: styles(mode).headerStyle,
-                        headerLeft: () => <MenuImage onPress={() => {
+                        headerLeft: () => i18n.language == 'en' && <MenuImage onPress={() => {
+                            navigation.openDrawer()
+                        }}/>,
+                        headerRight: () => i18n.language == 'he' && <MenuImage onPress={() => {
                             navigation.openDrawer()
                         }}/>
                     };
@@ -33,7 +38,10 @@ export const AppNavigator = () => {
                     return {
                         title: "",
                         headerStyle: styles(mode).headerStyle,
-                        headerLeft: () => <MenuImage onPress={() => {
+                        headerLeft: () => i18n.language == 'en' && <MenuImage onPress={() => {
+                            navigation.openDrawer()
+                        }}/>,
+                        headerRight: () => i18n.language == 'he' && <MenuImage onPress={() => {
                             navigation.openDrawer()
                         }}/>
                     };
@@ -44,7 +52,10 @@ export const AppNavigator = () => {
                     return {
                         title: "",
                         headerStyle: styles(mode).headerStyle,
-                        headerLeft: () => <MenuImage onPress={() => {
+                        headerLeft: () => i18n.language == 'en' && <MenuImage onPress={() => {
+                            navigation.openDrawer()
+                        }}/>,
+                        headerRight: () => i18n.language == 'he' && <MenuImage onPress={() => {
                             navigation.openDrawer()
                         }}/>
                     };

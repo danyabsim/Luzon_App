@@ -6,21 +6,20 @@ export function styles(mode) {
         btnClickContain: {
             flexDirection: 'row',
             padding: 5,
-            marginTop: 5,
-            marginBottom: 5
+            marginVertical: 5,
         },
         btnContainer: {
             flex: 1,
-            flexDirection: 'row',
-            alignItems: 'flex-start'
+            flexDirection: 'row'
         },
         btnIcon: {
-            height: 25,
-            width: 25
+            height: 30,
+            width: 30
         },
         btnText: {
-            fontSize: 16,
-            marginLeft: 10,
+            fontSize: 18,
+            alignSelf: 'center',
+            marginHorizontal: 10,
             marginTop: 2,
             color: styleByTime('black', 'white', mode),
         }

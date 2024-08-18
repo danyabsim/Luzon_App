@@ -14,11 +14,11 @@ export function DrawerContainer({navigation}: any) {
     const mode = useSelector((state: RootState) => state.theme.mode);
     const image = useSelector((state: RootState) => state.user.image);
     const user = useSelector((state: RootState) => state.user);
-    const {t} = useTranslation();
+    const {t, i18n} = useTranslation();
 
     return (
         <View style={styles(mode).content}>
-            <View style={styles(mode).container}>
+            <View style={[styles(mode).container, {alignItems: i18n.language == 'en' ? 'flex-start' : "flex-end"}]}>
                 <MenuButton
                     title={t("Home")}
                     source={styleByTime(require('../../assets/home (black).png'), require('../../assets/home (white).png'), mode)}
