@@ -7,6 +7,10 @@ export function styles(mode) {
             alignItems: 'center',
             zIndex: 999,
         },
+        elliptical: {
+            borderCurve: "circular",
+            borderRadius: 10
+        },
         menuButton: {
             borderWidth: 1,
             borderColor: '#ccc',
@@ -21,21 +25,20 @@ export function styles(mode) {
         menuContainer: {
             position: 'absolute',
             backgroundColor: styleByTime('white', 'black', mode),
-            borderWidth: 1,
-            borderColor: '#ccc',
-            borderRadius: 5,
             maxHeight: 200,
             overflow: 'hidden',
         },
         optionList: {
             maxHeight: 150,
-            padding: 10,
         },
         optionListContent: {
             flexGrow: 1,
         },
         optionItem: {
             paddingVertical: 8,
+            alignItems: 'center',
+            borderWidth: 1,
+            borderColor: '#ccc',
         }
     });
 }

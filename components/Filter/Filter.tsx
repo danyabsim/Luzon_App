@@ -30,7 +30,7 @@ export default function Filter({isMenuOpen, setMenuOpen}: FilterProps) {
             <Text style={styles(mode).menuText}>{t('SelectCalendar')}:</Text>
             <TouchableOpacity
                 onPress={() => setMenuOpen(!isMenuOpen)}
-                style={[styles(mode).menuButton, {width: buttonWidth}]}
+                style={[styles(mode).menuButton, {width: buttonWidth}, styles(mode).elliptical]}
                 ref={buttonRef}
             >
                 <Text style={styles(mode).menuText}>{selectedOption ? selectedOption.label : t('All')}</Text>
@@ -38,7 +38,7 @@ export default function Filter({isMenuOpen, setMenuOpen}: FilterProps) {
             {isMenuOpen && (
                 <View
                     style={[
-                        styles(mode).menuContainer,
+                        styles(mode).menuContainer, styles(mode).elliptical,
                         {
                             top: buttonRef.current ? (buttonRef.current.offsetTop + buttonRef.current.offsetHeight || 0) : 0,
                             width: buttonWidth || 0, // Ensure buttonWidth is defined
@@ -50,7 +50,7 @@ export default function Filter({isMenuOpen, setMenuOpen}: FilterProps) {
                         renderItem={({item}) => (
                             <TouchableOpacity
                                 key={item.id}
-                                style={styles(mode).optionItem}
+                                style={[styles(mode).optionItem, styles(mode).elliptical]}
                                 onPress={() => {
                                     setSelectedOption(item);
                                     dispatch(setFilteredOption(item.label));
