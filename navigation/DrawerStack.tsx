@@ -13,7 +13,6 @@ export const DrawerStack = () => {
             initialRouteName="App"
             screenOptions={{
                 drawerPosition: i18n.language == 'en' ? 'left' : 'right',
-                drawerType: 'slide', // Options: 'front', 'back', 'slide', 'permanent'
                 swipeEdgeWidth: 100,
             }}
             drawerContent={({navigation}) => {
