@@ -15,7 +15,7 @@ export default function MenuButton({onPress, source, title}: MenuButtonProps) {
     return (
         <TouchableHighlight
             onPress={onPress}
-            style={[styles(mode).btnClickContain]}
+            style={[styles(mode).btnClickContain, {alignItems: i18n.language == 'en' ? 'flex-start' : "flex-end"}]}
             underlayColor="rgba(128, 128, 128, 0.1)"
         >
             <View style={[styles(mode).btnContainer]}>

@@ -12,7 +12,6 @@ export function styles(mode) {
         },
         container: {
             flex: 1,
-            alignItems: 'flex-start',
             paddingHorizontal: 20
         }
     });

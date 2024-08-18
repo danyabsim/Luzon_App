@@ -16,7 +16,7 @@ export function styles(mode) {
             padding: 10,
             borderRadius: 5,
             marginBottom: 10,
-            width: '50%'
+            width: '100%'
         },
         optionText: {
             color: styleByTime('white', 'black', mode),

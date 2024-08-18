@@ -4,13 +4,11 @@ import {styleByTime} from "../../../constants/AppStyles";
 export function styles(mode) {
     return StyleSheet.create({
         btnClickContain: {
-            flexDirection: 'row',
             padding: 5,
             marginVertical: 5,
         },
         btnContainer: {
-            flex: 1,
-            flexDirection: 'row'
+            flexDirection: 'row',
         },
         btnIcon: {
             height: 30,
