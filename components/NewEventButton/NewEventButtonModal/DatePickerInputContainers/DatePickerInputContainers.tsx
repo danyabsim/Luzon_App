@@ -7,16 +7,22 @@ import {DatePickerInputContainersProps} from "./DatePickerInputContainersProps";
 import {formatDateAndTime} from "../../../../constants/DateFunctions";
 import {useSelector} from "react-redux";
 import {RootState} from "../../../../redux/store";
+import {useTranslation} from "react-i18next";
 
 export function DatePickerInputContainers({timeContainers}: DatePickerInputContainersProps) {
     const [isDatePickerVisible, setDatePickerVisibility] = React.useState(false);
     const [currentIndex, setCurrentIndex] = React.useState(0);
     const mode = useSelector((state: RootState) => state.theme.mode);
+    const {i18n} = useTranslation();
 
     return (
         <View>
             {styleByOS() &&
-                <View>
+                <View style={{
+                    flexDirection: 'row',
+                    marginLeft: i18n.language == 'en' ? 20 : 0,
+                    marginRight: i18n.language == 'he' ? 20 : 0
+                }}>
                     {timeContainers.map((time, index) => (
                         <View key={index}>
                             <TouchableOpacity style={styles(mode).button} onPress={() => {
@@ -24,7 +30,7 @@ export function DatePickerInputContainers({timeContainers}: DatePickerInputConta
                                 setCurrentIndex(index);
                             }}>
                                 <Text style={styles(mode).textStyle}>
-                                    Select {time.label}{time.state !== undefined && ` => ${formatDateAndTime(time.state).date} (${formatDateAndTime(time.state).time})`}
+                                    {time.label ? time.label : (time.state !== undefined && `${formatDateAndTime(time.state).date}\n(${formatDateAndTime(time.state).time})`)}
                                 </Text>
                             </TouchableOpacity>
                         </View>

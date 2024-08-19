@@ -4,7 +4,7 @@ import {styleByTime} from "../../../../constants/AppStyles";
 export function styles(mode) {
     return StyleSheet.create({
         button: {
-            borderRadius: 20,
+            borderRadius: 10,
             padding: 10,
             elevation: 2,
             backgroundColor: styleByTime('#2196F3', '#373737', mode),
