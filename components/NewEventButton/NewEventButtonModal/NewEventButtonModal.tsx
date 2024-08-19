@@ -9,8 +9,8 @@ import {NewEventButtonModalProps} from "./NewEventButtonModalProps";
 import {TextInputContainers} from "../../TextInputContainers/TextInputContainers";
 import {DatePickerInputContainers} from "./DatePickerInputContainers/DatePickerInputContainers";
 import {ColorPickerInputContainers} from "./ColorPickerInputContainers/ColorPickerInputContainers";
-import {CloseButton} from "./CloseButton/CloseButton";
-import {AddButton} from "./AddButton/AddButton";
+import {CancelButton} from "./CancelButton/CancelButton";
+import {SaveButton} from "./SaveButton/SaveButton";
 import {ModalApp} from "../../ModalApp/ModalApp";
 import {hexToRgbInt} from "../../../constants/AppConverts";
 import {formatDateAndTime, getDatesBetween} from "../../../constants/DateFunctions";
@@ -55,8 +55,8 @@ export function NewEventButtonModal(props: NewEventButtonModalProps) {
                           <DatePickerInputContainers timeContainers={timeContainers}/>
                           <ColorPickerInputContainers color={color} setColor={setColor}/>
                           <View style={styles.inputContainer}>
-                              <CloseButton closeModal={closeModal}/>
-                              <AddButton onPress={() => {
+                              <CancelButton closeModal={closeModal}/>
+                              <SaveButton onPress={() => {
                                   if (startDate === undefined || endDate === undefined || color === '' || title === '') {
                                       setErrorModalVisible(true);
                                       return;
