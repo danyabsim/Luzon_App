@@ -5,7 +5,6 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useDispatch, useSelector} from "react-redux";
 import {setDarkMode} from "../../../redux/Theme/themeSlice";
 import {RootState} from "../../../redux/store";
-import {TimeOutDelay} from "../../../constants/TimeOutDelay";
 import {XHRRequest} from "../../../utils/XHR";
 import {setUser} from "../../../redux/User/userSlice";
 import {useTranslation} from "react-i18next";
@@ -32,7 +31,6 @@ export function ChangeThemeModal({onClose}: {onClose: () => void}) {
             isRememberMeOn: storedRememberMe ? storedRememberMe : false
         });
         dispatch(setUser({username: '', password: ''}));
-        await TimeOutDelay(300);
         DevSettings.reload();
     }
 
@@ -40,7 +38,7 @@ export function ChangeThemeModal({onClose}: {onClose: () => void}) {
         <View style={styles(mode).container}>
             <Text style={styles(mode).title}>{t('SettingsCT')}</Text>
             <Text style={[styles(mode).textStyle, styles(mode).warningTitle]}>{t('ChangeThemeWarning')}</Text>
-            {['auto', 'light', 'dark'].map(innerMode => (
+            {['light', 'dark'].map(innerMode => (
                 <TouchableOpacity
                     key={innerMode}
                     style={[styles(mode).optionButton, {

@@ -38,7 +38,7 @@ export default {
     NewPassword: 'New Password',
     Save: 'Save',
     Cancel: 'Cancel',
-    Auto: 'Auto Theme', Light: 'Light Theme', Dark: 'Dark Theme',
+    Light: 'Light Theme', Dark: 'Dark Theme',
     ChangeThemeWarning: 'Warning: Changing the theme will auto logout from the account!',
     RemoveError: 'You entered nothing, your username or a username that does not exist. Please fill it out properly.'
     // other keys...

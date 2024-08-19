@@ -1,7 +1,7 @@
 import {styleByTime} from "../../constants/AppStyles";// @ts-ignore
 import {Theme} from "react-native-calendars";
 
-export function calendarTheme(mode: 'dark' | 'light' | 'auto'): Theme {
+export function calendarTheme(mode: 'dark' | 'light'): Theme {
     return {
         calendarBackground: styleByTime('white', 'black', mode),// @ts-ignore
         reservationsBackgroundColor: styleByTime('#f2F4f5', 'black', mode),
