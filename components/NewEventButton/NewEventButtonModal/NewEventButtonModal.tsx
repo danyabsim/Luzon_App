@@ -31,7 +31,7 @@ export function NewEventButtonModal(props: NewEventButtonModalProps) {
     const {t} = useTranslation();
 
     const inputContainers = [
-        {label: t('Title'), state: title, setState: setTitle}, {label:t('Notes'), state: notes, setState: setNotes},
+        {label: t('Title'), state: title, setState: setTitle}, {label: t('Notes'), state: notes, setState: setNotes},
     ];
     const timeContainers = [
         {label: t('StartDate'), state: startDate, setState: setStartDate},
