@@ -40,6 +40,7 @@ export default {
     Cancel: 'Cancel',
     Light: 'Light Theme', Dark: 'Dark Theme',
     ChangeThemeWarning: 'Warning: Changing the theme will auto logout from the account!',
-    RemoveError: 'You entered nothing, your username or a username that does not exist. Please fill it out properly.'
+    RemoveError: 'You entered nothing, your username or a username that does not exist. Please fill it out properly.',
+    ColorPicker: 'Color Picker'
     // other keys...
 };
