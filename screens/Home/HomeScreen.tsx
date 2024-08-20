@@ -78,7 +78,7 @@ export default function HomeScreen({navigation}: Props) {
                     setRememberMe(!rememberMe);
                     await AsyncStorage.setItem('rememberMe', JSON.stringify(!rememberMe));
                 }}/>
-                <ButtonApp label={t('Login')} onPress={() => {
+                <ButtonApp labelStyle={styles(mode).textStyle} label={t('Login')} onPress={() => {
                     if (username !== "" && password !== "") XHRRequest(dispatch, '/connect', {
                         username: username, password: password
                     }, async () => {

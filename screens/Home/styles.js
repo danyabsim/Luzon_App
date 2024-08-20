@@ -35,15 +35,6 @@ export function styles(mode) {
             fontSize: 18,
             paddingHorizontal: 8,
         },
-        button: {
-            borderRadius: 20,
-            padding: 10,
-            elevation: 2,
-            backgroundColor: styleByTime('#2196F3', '#373737', mode),
-            marginHorizontal: 5,
-            marginTop: 10,
-            color: styleByTime('black', 'white', mode),
-        },
         textStyle: {
             color: 'white',
             fontWeight: 'bold',
