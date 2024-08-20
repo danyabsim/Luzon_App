@@ -5,7 +5,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useDispatch, useSelector} from "react-redux";
 import {setDarkMode} from "../../../redux/Theme/themeSlice";
 import {RootState} from "../../../redux/store";
-import {XHRRequest} from "../../../utils/XHR";
+import {XHR} from "../../../utils/XHR";
 import {setUser} from "../../../redux/User/userSlice";
 import {useTranslation} from "react-i18next";
 import {ButtonApp} from "../../ButtonApp/ButtonApp";
@@ -27,7 +27,7 @@ export function ChangeThemeModal({onClose}: { onClose: () => void }) {
         await AsyncStorage.setItem('darkMode', JSON.stringify(tempMode));
         console.log(`Selected theme: ${tempMode}`);
         const storedRememberMe = await AsyncStorage.getItem('rememberMe');
-        XHRRequest(dispatch, '/logout', {
+        XHR(dispatch, '/logout', {
             username: user.username,
             isRememberMeOn: storedRememberMe ? storedRememberMe : false
         });

@@ -1,7 +1,7 @@
 import {TextInput, TouchableOpacity, View} from "react-native";
 import {styles} from "./styles";
 import {setEvents} from "../../../redux/Events/eventsSlice";
-import {XHRRequest} from "../../../utils/XHR";
+import {XHR} from "../../../utils/XHR";
 import React, {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../../redux/store";
@@ -86,13 +86,13 @@ export function NewEventButtonModal(props: INewEventButtonModalProps) {
                                 if (dates !== null) {
                                     dates.map(async (day) => {
                                         dispatch(setEvents({}));
-                                        XHRRequest(dispatch, '/addEvent', {
+                                        XHR(dispatch, '/addEvent', {
                                             name: XHRTitle,
                                             height: hexToRgbInt(color),
                                             day: formatDateAndTime(day).date
                                         });
                                         await TimeOutDelay(300);
-                                        XHRRequest(dispatch, '/connect', {...user});
+                                        XHR(dispatch, '/connect', {...user});
                                     })
                                     closeModal();
                                 }

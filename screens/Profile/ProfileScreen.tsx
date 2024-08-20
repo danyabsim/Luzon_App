@@ -6,7 +6,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../redux/store";
 import {styles} from "./styles";
 import {setImage} from "../../redux/User/userSlice";
-import {XHRRequest} from "../../utils/XHR";
+import {XHR} from "../../utils/XHR";
 import {useTranslation} from "react-i18next";
 
 export default function SettingsScreen() {
@@ -31,7 +31,7 @@ export default function SettingsScreen() {
                     } else {
                         const uriImage = response.assets[0].uri;
                         dispatch(setImage(uriImage));
-                        XHRRequest(dispatch, '/changeImage', {...user, image: uriImage})
+                        XHR(dispatch, '/changeImage', {...user, image: uriImage})
                     }
                 });
             }}>

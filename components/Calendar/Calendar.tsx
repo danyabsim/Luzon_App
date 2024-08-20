@@ -6,7 +6,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../redux/store";
 import {setEvents, setReduxSelected} from "../../redux/Events/eventsSlice";
 import {ErrorBoundary} from "react-error-boundary";
-import {XHRRequest} from "../../utils/XHR";
+import {XHR} from "../../utils/XHR";
 import {calendarTheme} from "./calendarTheme";
 import {CalendarItem} from "./CalendarItem/CalendarItem";
 import {SureModal} from "./SureModal/SureModal";
@@ -57,9 +57,9 @@ export default function Calendar() {
                     setSureModalVisible(false);
                 }} onPressYes={async () => {
                     dispatch(setEvents({}));
-                    XHRRequest(dispatch, '/removeEvent', {...itemToRemove});
+                    XHR(dispatch, '/removeEvent', {...itemToRemove});
                     await TimeOutDelay(300);
-                    XHRRequest(dispatch, '/connect', {...user});
+                    XHR(dispatch, '/connect', {...user});
                     setItemToRemove(null);
                     setSureModalVisible(false);
                 }}/>

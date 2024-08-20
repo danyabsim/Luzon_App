@@ -5,7 +5,7 @@ import {styleByTime} from "../../constants/AppStyles";
 import {useDispatch, useSelector} from "react-redux";
 import {setUser} from "../../redux/User/userSlice";
 import {RootState} from "../../redux/store";
-import {XHRRequest} from "../../utils/XHR";
+import {XHR} from "../../utils/XHR";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import {useTranslation} from "react-i18next";
 
@@ -48,7 +48,7 @@ export function DrawerContainer({navigation}: any) {
                     source={styleByTime(require('../../assets/logout (black).png'), require('../../assets/logout (white).png'), mode)}
                     onPress={async () => {
                         const storedRememberMe = await AsyncStorage.getItem('rememberMe');
-                        XHRRequest(dispatch, '/logout', {
+                        XHR(dispatch, '/logout', {
                             username: user.username,
                             isRememberMeOn: storedRememberMe ? storedRememberMe : false
                         });

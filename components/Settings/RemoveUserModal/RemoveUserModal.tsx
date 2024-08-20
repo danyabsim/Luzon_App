@@ -4,7 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../../redux/store";
 import {styles} from "./styles";
 import {TextInputContainers} from "../../TextInputContainers/TextInputContainers";
-import {XHRRequest} from "../../../utils/XHR";
+import {XHR} from "../../../utils/XHR";
 import {TimeOutDelay} from "../../../constants/TimeOutDelay";
 import {ErrorModalApp} from "../../ErrorModalApp/ErrorModalApp";
 import {useTranslation} from "react-i18next";
@@ -36,9 +36,9 @@ export function RemoveUserModal({onClose}: {
             <View style={styles(mode).inputContainer}>
                 <ButtonApp label={t('Remove')} onPress={async () => {
                     if (username !== "" && username !== "admin" && usernames.includes(username)) {
-                        XHRRequest(dispatch, '/removeUser', {username: username});
+                        XHR(dispatch, '/removeUser', {username: username});
                         await TimeOutDelay(300);
-                        XHRRequest(dispatch, '/getAllUserNames', {});
+                        XHR(dispatch, '/getAllUserNames', {});
                         onCloseThisModal();
                     } else setErrorModalVisible(true);
                 }}/>

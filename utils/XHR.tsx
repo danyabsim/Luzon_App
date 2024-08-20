@@ -4,7 +4,7 @@ import {setEvents} from "../redux/Events/eventsSlice";
 import {setImage, setIsAdmin} from "../redux/User/userSlice";
 import {setUsernames} from "../redux/Filter/filterSlice";
 
-export function XHRRequest(dispatch: Dispatch<UnknownAction>, urlFunction: string, itemToSend: any, extraCode?: () => void) {
+export function XHR(dispatch: Dispatch<UnknownAction>, urlFunction: string, itemToSend: any, extraCode?: () => void) {
     const xhr = new XMLHttpRequest();
     xhr.open('POST', 'http://51.20.125.239:3000' + urlFunction);
     xhr.setRequestHeader('Content-Type', 'application/json');

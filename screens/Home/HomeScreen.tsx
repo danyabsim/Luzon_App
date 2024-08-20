@@ -6,7 +6,7 @@ import {styles} from "./styles";
 import {RootState} from "../../redux/store";
 import {useDispatch, useSelector} from "react-redux";
 import {setUser} from "../../redux/User/userSlice";
-import {XHRRequest} from "../../utils/XHR";
+import {XHR} from "../../utils/XHR";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {RememberMeButton} from "../../components/RememberMeButton/RememberMeButton";
 import {TextInputContainers} from "../../components/TextInputContainers/TextInputContainers";
@@ -79,7 +79,7 @@ export default function HomeScreen({navigation}: Props) {
                     await AsyncStorage.setItem('rememberMe', JSON.stringify(!rememberMe));
                 }}/>
                 <ButtonApp labelStyle={styles(mode).textStyle} label={t('Login')} onPress={() => {
-                    if (username !== "" && password !== "") XHRRequest(dispatch, '/connect', {
+                    if (username !== "" && password !== "") XHR(dispatch, '/connect', {
                         username: username, password: password
                     }, async () => {
                         dispatch(setUser({username: username, password: password}));

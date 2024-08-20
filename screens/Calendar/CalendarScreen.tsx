@@ -4,7 +4,7 @@ import Calendar from "../../components/Calendar/Calendar";
 import NewEventButton from "../../components/NewEventButton/NewEventButton";
 import {styles} from './styles';
 import {useDispatch, useSelector} from "react-redux";
-import {XHRRequest} from "../../utils/XHR";
+import {XHR} from "../../utils/XHR";
 import {RootState} from "../../redux/store";
 import {setEvents} from "../../redux/Events/eventsSlice";
 import Filter from "../../components/Filter/Filter";
@@ -23,7 +23,7 @@ export default function CalendarScreen() {
     const onRefresh = React.useCallback(() => {
         setRefreshing(true);
         dispatch(setEvents({}));
-        XHRRequest(dispatch, '/connect', {...user}, () => setRefreshing(false));
+        XHR(dispatch, '/connect', {...user}, () => setRefreshing(false));
     }, []);
 
     return (

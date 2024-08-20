@@ -4,7 +4,7 @@ import {styles} from "./styles";
 import {useDispatch, useSelector} from "react-redux";
 import {setFilteredOption} from "../../redux/Events/eventsSlice";
 import {RootState} from "../../redux/store";
-import {XHRRequest} from "../../utils/XHR";
+import {XHR} from "../../utils/XHR";
 import {IFilterProps} from "./IFilterProps";
 import {useTranslation} from "react-i18next";
 
@@ -22,7 +22,7 @@ export default function Filter({isMenuOpen, setMenuOpen}: IFilterProps) {
     const mode = useSelector((state: RootState) => state.theme.mode);
 
     React.useEffect(() => {
-        XHRRequest(dispatch, '/getAllUserNames', {});
+        XHR(dispatch, '/getAllUserNames', {});
     }, []);
 
     return (
