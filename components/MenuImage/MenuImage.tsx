@@ -1,12 +1,12 @@
 import React from 'react';
 import { TouchableOpacity, Image } from 'react-native';
 import styles from './styles';
-import {MenuImageProps} from "./MenuImageProps";
+import {IMenuImageProps} from "./IMenuImageProps";
 import {styleByTime} from "../../constants/AppStyles";
 import {useSelector} from "react-redux";
 import {RootState} from "../../redux/store";
 
-export default function MenuImage ({onPress}: MenuImageProps) {
+export default function MenuImage ({onPress}: IMenuImageProps) {
     const mode = useSelector((state: RootState) => state.theme.mode);
 
     return (

@@ -1,12 +1,12 @@
 import {styles} from "./styles";
 import {Text, TouchableOpacity, View} from "react-native";
 import React from "react";
-import {RememberMeButtonProps} from "./RememberMeButtonProps";
+import {IRememberMeButtonProps} from "./IRememberMeButtonProps";
 import {useSelector} from "react-redux";
 import {RootState} from "../../redux/store";
 import {useTranslation} from "react-i18next";
 
-export function RememberMeButton({rememberMe, onPress}: RememberMeButtonProps) {
+export function RememberMeButton({rememberMe, onPress}: IRememberMeButtonProps) {
     const mode = useSelector((state: RootState) => state.theme.mode);
     const { t, i18n } = useTranslation();
 

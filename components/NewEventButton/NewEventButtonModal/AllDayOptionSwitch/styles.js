@@ -1,17 +1,15 @@
+
 import {StyleSheet} from "react-native";
-import {styleByTime} from "../../../constants/AppStyles";
+import {styleByTime} from "../../../../constants/AppStyles";
 
 export function styles(mode) {
     return StyleSheet.create({
         modalText: {
+            width: 120,
             marginBottom: 15,
-            textAlign: 'center',
             fontSize: 20,
+            paddingRight: 10,
             color: styleByTime('black', 'white', mode)
-        },
-        inputContainer: {
-            flexDirection: 'row',
-            alignItems: 'center',
         },
     });
 }

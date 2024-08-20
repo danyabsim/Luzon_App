@@ -1,6 +1,6 @@
 import {AgendaEntry} from "react-native-calendars";
 
-export interface CalendarItemProps {
+export interface ICalendarItemProps {
     item: AgendaEntry;
     onLongPressItem: () => void;
 }

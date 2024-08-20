@@ -1,18 +1,15 @@
 import {styleByOS} from "../../../../constants/AppStyles";
-import {Text, TouchableOpacity, View} from "react-native";
-import {styles} from "./styles";
+import {View} from "react-native";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import React from "react";
-import {DatePickerInputContainersProps} from "./DatePickerInputContainersProps";
+import {IDatePickerInputContainersProps} from "./IDatePickerInputContainersProps";
 import {formatDateAndTime} from "../../../../constants/DateFunctions";
-import {useSelector} from "react-redux";
-import {RootState} from "../../../../redux/store";
 import {useTranslation} from "react-i18next";
+import {ButtonApp} from "../../../ButtonApp/ButtonApp";
 
-export function DatePickerInputContainers({timeContainers}: DatePickerInputContainersProps) {
+export function DatePickerInputContainers(props: IDatePickerInputContainersProps) {
     const [isDatePickerVisible, setDatePickerVisibility] = React.useState(false);
     const [currentIndex, setCurrentIndex] = React.useState(0);
-    const mode = useSelector((state: RootState) => state.theme.mode);
     const {i18n} = useTranslation();
 
     return (
@@ -23,23 +20,26 @@ export function DatePickerInputContainers({timeContainers}: DatePickerInputConta
                     marginLeft: i18n.language == 'en' ? 20 : 0,
                     marginRight: i18n.language == 'he' ? 20 : 0
                 }}>
-                    {timeContainers.map((time, index) => (
+                    {props.timeContainers.map((time, index) => (
                         <View key={index}>
-                            <TouchableOpacity style={styles(mode).button} onPress={() => {
-                                setDatePickerVisibility(true);
-                                setCurrentIndex(index);
-                            }}>
-                                <Text style={styles(mode).textStyle}>
-                                    {time.label}{(time.state !== undefined && `\n${formatDateAndTime(time.state).date}\n(${formatDateAndTime(time.state).time})`)}
-                                </Text>
-                            </TouchableOpacity>
+                            <ButtonApp
+                                onPress={() => {
+                                    setDatePickerVisibility(true);
+                                    setCurrentIndex(index);
+                                }}
+                                label={time.label + "" + (time.state !== undefined ? `\n${formatDateAndTime(time.state).date}\n(${formatDateAndTime(time.state).time})` : "")}
+                            />
                         </View>
                     ))}
                     <DateTimePickerModal
-                        date={new Date()} isVisible={isDatePickerVisible} mode="datetime"
+                        date={new Date()} isVisible={isDatePickerVisible} mode={props.isEnabled ? "date" : "datetime"}
                         isDarkModeEnabled={true}
                         onConfirm={(date) => {
-                            timeContainers[currentIndex].setState(date);
+                            if (props.isEnabled) {
+                                date.setHours(currentIndex == 0 ? 0 : 23);
+                                date.setMinutes(currentIndex == 0 ? 0 : 59);
+                            }
+                            props.timeContainers[currentIndex].setState(date);
                             setDatePickerVisibility(false);
                         }}
                         onCancel={() => setDatePickerVisibility(false)}

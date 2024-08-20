@@ -1,6 +1,6 @@
 import {Dispatch, SetStateAction} from "react";
 
-export interface SureModalProps {
+export interface ISureModalProps {
     visible: boolean;
     setVisible: Dispatch<SetStateAction<boolean>>;
     onRequestCloseModal: () => void;

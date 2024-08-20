@@ -1,6 +1,6 @@
 import {Dispatch, SetStateAction} from "react";
 
-export interface ColorPickerModalProps {
+export interface IColorPickerModalProps {
     modalVisible: boolean;
     setModalVisible: Dispatch<SetStateAction<boolean>>;
     color: string;

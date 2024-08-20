@@ -1,8 +1,6 @@
 import {Dispatch, SetStateAction} from "react";
 
-export interface ModalAppProps {
+export interface INewEventButtonModalProps {
     modalVisible: boolean;
     setModalVisible: Dispatch<SetStateAction<boolean>>;
-    children: JSX.Element;
-    onClose?: () => void;
 }

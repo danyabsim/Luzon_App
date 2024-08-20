@@ -1,4 +1,4 @@
-import {Text, TouchableOpacity, View} from "react-native";
+import {Text, View} from "react-native";
 import React from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../../redux/store";
@@ -8,6 +8,7 @@ import {XHRRequest} from "../../../utils/XHR";
 import {TimeOutDelay} from "../../../constants/TimeOutDelay";
 import {ErrorModalApp} from "../../ErrorModalApp/ErrorModalApp";
 import {useTranslation} from "react-i18next";
+import {ButtonApp} from "../../ButtonApp/ButtonApp";
 
 export function AddUserModal({onClose}: {
     onClose: () => void
@@ -36,19 +37,15 @@ export function AddUserModal({onClose}: {
             <Text style={styles(mode).title}>{t('SettingsAU')}</Text>
             <TextInputContainers inputContainers={inputContainers} timeContainers={[]}/>
             <View style={styles(mode).inputContainer}>
-                <TouchableOpacity style={styles(mode).button} onPress={async () => {
+                <ButtonApp label={t('Add')} onPress={async () => {
                     if (username !== "" && password !== "") {
                         XHRRequest(dispatch, '/addUser', {username: username, password: password, isAdmin: false});
                         await TimeOutDelay(300);
                         XHRRequest(dispatch, '/getAllUserNames', {});
                         onCloseThisModal();
                     } else setErrorModalVisible(true);
-                }}>
-                    <Text style={styles(mode).textStyle}>{t('Add')}</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles(mode).button} onPress={onCloseThisModal}>
-                    <Text style={styles(mode).textStyle}>{t('Close')}</Text>
-                </TouchableOpacity>
+                }}/>
+                <ButtonApp label={t('Close')} onPress={onCloseThisModal}/>
                 <ErrorModalApp modalVisible={isErrorModalVisible} setModalVisible={setErrorModalVisible}
                                errorText={t('IncompleteFields')}/>
             </View>

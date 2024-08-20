@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {DevSettings, Text, TouchableOpacity, View} from 'react-native';
+import {DevSettings, Text, View} from 'react-native';
 import {styles} from './styles';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useDispatch, useSelector} from "react-redux";
@@ -8,10 +8,11 @@ import {RootState} from "../../../redux/store";
 import {XHRRequest} from "../../../utils/XHR";
 import {setUser} from "../../../redux/User/userSlice";
 import {useTranslation} from "react-i18next";
+import {ButtonApp} from "../../ButtonApp/ButtonApp";
 
-export function ChangeThemeModal({onClose}: {onClose: () => void}) {
+export function ChangeThemeModal({onClose}: { onClose: () => void }) {
     const [mode, setMode] = useState(useSelector((state: RootState) => state.theme.mode));
-    const [tempMode, setTempMode] =  useState(mode);
+    const [tempMode, setTempMode] = useState(mode);
     const dispatch = useDispatch();
     const user = useSelector((state: RootState) => state.user);
     const {t} = useTranslation();
@@ -37,26 +38,17 @@ export function ChangeThemeModal({onClose}: {onClose: () => void}) {
     return (
         <View style={styles(mode).container}>
             <Text style={styles(mode).title}>{t('SettingsCT')}</Text>
-            <Text style={[styles(mode).textStyle, styles(mode).warningTitle]}>{t('ChangeThemeWarning')}</Text>
+            <Text style={styles(mode).warningTitle}>{t('ChangeThemeWarning')}</Text>
             {['light', 'dark'].map(innerMode => (
-                <TouchableOpacity
-                    key={innerMode}
-                    style={[styles(mode).optionButton, {
-                        backgroundColor: innerMode === tempMode ? '#007bff' : '#98a2b7',
-                    }]}
-                    onPress={() => handleThemeSelection(innerMode as typeof mode)}
-                >
-                    <Text
-                        style={styles(mode).optionText}>{t(innerMode.charAt(0).toUpperCase() + innerMode.slice(1))}</Text>
-                </TouchableOpacity>
+                <ButtonApp label={t(innerMode.charAt(0).toUpperCase() + innerMode.slice(1))} key={innerMode}
+                           buttonStyle={[styles(mode).optionButton, {
+                               backgroundColor: innerMode === tempMode ? '#007bff' : '#98a2b7',
+                           }]} onPress={() => handleThemeSelection(innerMode as typeof mode)}
+                />
             ))}
             <View style={styles(mode).inputContainer}>
-                <TouchableOpacity style={styles(mode).button} onPress={handleSaveThemeSelection}>
-                    <Text style={styles(mode).textStyle}>{t('Save')}</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles(mode).button} onPress={onClose}>
-                    <Text style={styles(mode).textStyle}>{t('Cancel')}</Text>
-                </TouchableOpacity>
+                <ButtonApp label={t('Save')} onPress={handleSaveThemeSelection}/>
+                <ButtonApp label={t('Cancel')} onPress={onClose}/>
             </View>
         </View>
     );

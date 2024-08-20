@@ -1,4 +1,4 @@
-export interface RememberMeButtonProps {
+export interface IRememberMeButtonProps {
     rememberMe: boolean;
     onPress: () => void;
 }

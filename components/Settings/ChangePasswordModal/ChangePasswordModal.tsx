@@ -1,4 +1,4 @@
-import {Text, TouchableOpacity, View} from "react-native";
+import {Text, View} from "react-native";
 import React from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../../redux/store";
@@ -7,6 +7,7 @@ import {TextInputContainers} from "../../TextInputContainers/TextInputContainers
 import {XHRRequest} from "../../../utils/XHR";
 import {ErrorModalApp} from "../../ErrorModalApp/ErrorModalApp";
 import {useTranslation} from "react-i18next";
+import {ButtonApp} from "../../ButtonApp/ButtonApp";
 
 export function ChangePasswordModal({onClose}: {
     onClose: () => void
@@ -33,7 +34,7 @@ export function ChangePasswordModal({onClose}: {
             <Text style={styles(mode).title}>{t('SettingsCP')}</Text>
             <TextInputContainers inputContainers={inputContainers} timeContainers={[]}/>
             <View style={styles(mode).inputContainer}>
-                <TouchableOpacity style={styles(mode).button} onPress={() => {
+                <ButtonApp label={t('Change')} onPress={() => {
                     if (newPassword !== "") {
                         XHRRequest(dispatch, '/changePassword', {
                             username: user.username,
@@ -43,12 +44,8 @@ export function ChangePasswordModal({onClose}: {
                         setNewPassword('');
                         onCloseThisModal();
                     } else setErrorModalVisible(true);
-                }}>
-                    <Text style={styles(mode).textStyle}>{t('Change')}</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles(mode).button} onPress={onCloseThisModal}>
-                    <Text style={styles(mode).textStyle}>{t('Close')}</Text>
-                </TouchableOpacity>
+                }}/>
+                <ButtonApp label={t('Close')} onPress={onCloseThisModal}/>
                 <ErrorModalApp modalVisible={isErrorModalVisible} setModalVisible={setErrorModalVisible}
                                errorText={"You did not pass a new password. Please fill it out."}/>
             </View>

@@ -24,18 +24,6 @@ export function styles(mode) {
             fontWeight: 'bold',
             alignSelf: 'center'
         },
-        button: {
-            borderRadius: 20,
-            padding: 10,
-            elevation: 2,
-            backgroundColor: styleByTime('#2196F3', '#373737', mode),
-            marginHorizontal: 10
-        },
-        textStyle: {
-            fontWeight: 'bold',
-            textAlign: 'center',
-            color: 'white',
-        },
         inputContainer: {
             flexDirection: 'row',
             marginTop: 20,

@@ -42,6 +42,7 @@ export default {
     Light: 'עיצוב בהיר', Dark: 'עיצוב כהה',
     ChangeThemeWarning: 'אזהרה: שינוי העיצוב יוציא אתכם מהחשבון באופן אוטומאטי!',
     RemoveError: 'הכנסתם כלום, את שם המשתמש שלכם או שם משתמש שלא קיים במערכת. בבקשה למלא כמו שצריך',
-    ColorPicker: 'בחירת צבע'
+    ColorPicker: 'בחירת צבע',
+    AllDay: 'כל היום'
     // other keys...
 };

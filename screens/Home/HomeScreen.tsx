@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Text, TouchableOpacity, View} from 'react-native';
+import {Text, View} from 'react-native';
 import {StackScreenProps} from "@react-navigation/stack";
 import {MainStackParamList} from "../../navigation/MainStackParamList";
 import {styles} from "./styles";
@@ -13,8 +13,9 @@ import {TextInputContainers} from "../../components/TextInputContainers/TextInpu
 import {setDarkMode} from "../../redux/Theme/themeSlice";
 import {ErrorModalApp} from "../../components/ErrorModalApp/ErrorModalApp";
 import {setEvents} from "../../redux/Events/eventsSlice";
-import { useTranslation } from 'react-i18next';
+import {useTranslation} from 'react-i18next';
 import '../../i18n';
+import {ButtonApp} from "../../components/ButtonApp/ButtonApp";
 
 type Props = StackScreenProps<MainStackParamList, 'Home'>;
 
@@ -25,7 +26,7 @@ export default function HomeScreen({navigation}: Props) {
     const [isErrorModalVisible, setErrorModalVisible] = useState(false);
     const dispatch = useDispatch();
     const mode = useSelector((state: RootState) => state.theme.mode);
-    const { t, i18n } = useTranslation();
+    const {t, i18n} = useTranslation();
 
     const inputContainers = [
         {label: t('Username'), state: username, setState: setUsername},
@@ -77,7 +78,7 @@ export default function HomeScreen({navigation}: Props) {
                     setRememberMe(!rememberMe);
                     await AsyncStorage.setItem('rememberMe', JSON.stringify(!rememberMe));
                 }}/>
-                <TouchableOpacity style={styles(mode).button} onPress={() => {
+                <ButtonApp label={t('Login')} onPress={() => {
                     if (username !== "" && password !== "") XHRRequest(dispatch, '/connect', {
                         username: username, password: password
                     }, async () => {
@@ -89,9 +90,7 @@ export default function HomeScreen({navigation}: Props) {
                         navigation.navigate('Calendar');
                     })
                     else setErrorModalVisible(true);
-                }}>
-                    <Text style={styles(mode).textStyle}>{t('Login')}</Text>
-                </TouchableOpacity>
+                }}/>
                 <ErrorModalApp modalVisible={isErrorModalVisible} setModalVisible={setErrorModalVisible}
                                errorText={t("IncompleteFields")}/>
             </View>

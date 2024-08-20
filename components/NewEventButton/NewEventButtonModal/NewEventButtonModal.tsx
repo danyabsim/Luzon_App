@@ -5,9 +5,7 @@ import {XHRRequest} from "../../../utils/XHR";
 import React, {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../../redux/store";
-import {NewEventButtonModalProps} from "./NewEventButtonModalProps";
-import {CancelButton} from "./CancelButton/CancelButton";
-import {SaveButton} from "./SaveButton/SaveButton";
+import {INewEventButtonModalProps} from "./INewEventButtonModalProps";
 import {ModalApp} from "../../ModalApp/ModalApp";
 import {hexToRgbInt} from "../../../constants/AppConverts";
 import {formatDateAndTime, getDatesBetween} from "../../../constants/DateFunctions";
@@ -16,8 +14,10 @@ import {ErrorModalApp} from "../../ErrorModalApp/ErrorModalApp";
 import {useTranslation} from "react-i18next";
 import {DatePickerInputContainers} from "./DatePickerInputContainers/DatePickerInputContainers";
 import {ColorPickerModal} from "./ColorPickerModal/ColorPickerModal";
+import {AllDayOptionSwitch} from "./AllDayOptionSwitch/AllDayOptionSwitch";
+import {ButtonApp} from "../../ButtonApp/ButtonApp";
 
-export function NewEventButtonModal(props: NewEventButtonModalProps) {
+export function NewEventButtonModal(props: INewEventButtonModalProps) {
     const [title, setTitle] = useState("");
     const [startDate, setStartDate] = useState<string | Date>(undefined);
     const [endDate, setEndDate] = useState<string | Date>(undefined);
@@ -25,6 +25,7 @@ export function NewEventButtonModal(props: NewEventButtonModalProps) {
     const [color, setColor] = useState('');
     const [isErrorModalVisible, setErrorModalVisible] = useState(false);
     const [isColorPickerModalVisible, setColorPickerModalVisible] = useState(false);
+    const [isAllDayEnabled, setIsAllDayEnabled] = useState(false);
     const dispatch = useDispatch();
     const user = useSelector((state: RootState) => state.user);
     const mode = useSelector((state: RootState) => state.theme.mode);
@@ -67,13 +68,13 @@ export function NewEventButtonModal(props: NewEventButtonModalProps) {
                                        style={[styles(mode).modalText, styles(mode).input]}/>
                             {i18n.language == 'en' && ColorButton}
                         </View>
-                        {/* All Day Option */}
-                        <DatePickerInputContainers timeContainers={timeContainers}/>
+                        <AllDayOptionSwitch isEnabled={isAllDayEnabled} setIsEnabled={setIsAllDayEnabled}/>
+                        <DatePickerInputContainers timeContainers={timeContainers} isEnabled={isAllDayEnabled}/>
                         <TextInput placeholder={t('Notes')} multiline={true} value={notes} onChangeText={setNotes}
                                    style={[styles(mode).modalText, styles(mode).input]}/>
                         <View style={[styles(mode).inputContainer, marginPerLanguage]}>
-                            <CancelButton closeModal={closeModal}/>
-                            <SaveButton onPress={() => {
+                            <ButtonApp onPress={closeModal} label={t('Cancel')}/>
+                            <ButtonApp label={t('Save')} onPress={() => {
                                 if (startDate === undefined || endDate === undefined || color === '' || title === '') {
                                     setErrorModalVisible(true);
                                     return;

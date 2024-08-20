@@ -1,6 +1,6 @@
 import {Dispatch, SetStateAction} from "react";
 
-export interface FilterProps {
+export interface IFilterProps {
     isMenuOpen: boolean;
     setMenuOpen: Dispatch<SetStateAction<boolean>>;
 }

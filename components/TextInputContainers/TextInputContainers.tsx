@@ -2,12 +2,12 @@ import {styleByOS} from "../../constants/AppStyles";
 import {Text, TextInput, View} from "react-native";
 import {styles} from "./styles";
 import React from "react";
-import {TextInputContainersProps} from "./TextInputContainersProps";
+import {ITextInputContainersProps} from "./ITextInputContainersProps";
 import {useSelector} from "react-redux";
 import {RootState} from "../../redux/store";
 import {useTranslation} from "react-i18next";
 
-export function TextInputContainers({inputContainers, timeContainers}: TextInputContainersProps) {
+export function TextInputContainers({inputContainers, timeContainers}: ITextInputContainersProps) {
     const mode = useSelector((state: RootState) => state.theme.mode);
     const { t, i18n } = useTranslation();
 

@@ -5,10 +5,10 @@ import {useDispatch, useSelector} from "react-redux";
 import {setFilteredOption} from "../../redux/Events/eventsSlice";
 import {RootState} from "../../redux/store";
 import {XHRRequest} from "../../utils/XHR";
-import {FilterProps} from "./FilterProps";
+import {IFilterProps} from "./IFilterProps";
 import {useTranslation} from "react-i18next";
 
-export default function Filter({isMenuOpen, setMenuOpen}: FilterProps) {
+export default function Filter({isMenuOpen, setMenuOpen}: IFilterProps) {
     const [selectedOption, setSelectedOption] = useState(null);
     const buttonRef = useRef(null);
     const dispatch = useDispatch();

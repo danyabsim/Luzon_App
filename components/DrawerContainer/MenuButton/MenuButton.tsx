@@ -1,12 +1,12 @@
 import React from 'react';
 import {Image, Text, TouchableHighlight, View} from 'react-native';
-import {MenuButtonProps} from "./MenuButtonProps";
+import {IMenuButtonProps} from "./IMenuButtonProps";
 import {styles} from './styles';
 import {useSelector} from "react-redux";
 import {RootState} from "../../../redux/store";
 import {useTranslation} from "react-i18next";
 
-export default function MenuButton({onPress, source, title}: MenuButtonProps) {
+export default function MenuButton({onPress, source, title}: IMenuButtonProps) {
     const mode = useSelector((state: RootState) => state.theme.mode);
     const {i18n} = useTranslation();
 

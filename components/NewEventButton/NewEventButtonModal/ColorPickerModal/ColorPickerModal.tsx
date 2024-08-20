@@ -1,14 +1,15 @@
 import {ModalApp} from "../../../ModalApp/ModalApp";
-import {ColorPickerModalProps} from "./ColorPickerModalProps";
+import {IColorPickerModalProps} from "./IColorPickerModalProps";
 import React from "react";
-import {Text, TouchableOpacity, View} from "react-native";
+import {Text, View} from "react-native";
 import {useTranslation} from "react-i18next";
 import {useSelector} from "react-redux";
 import {RootState} from "../../../../redux/store";
 import {styles} from "./styles";
 import ColorPicker from "react-native-wheel-color-picker";
+import {ButtonApp} from "../../../ButtonApp/ButtonApp";
 
-export function ColorPickerModal(props: ColorPickerModalProps) {
+export function ColorPickerModal(props: IColorPickerModalProps) {
     const mode = useSelector((state: RootState) => state.theme.mode);
     const {t} = useTranslation();
 
@@ -29,9 +30,7 @@ export function ColorPickerModal(props: ColorPickerModalProps) {
                             />
                         </View>
                     </View>
-                    <TouchableOpacity style={styles(mode).button} onPress={closeModal}>
-                        <Text style={styles(mode).textStyle}>{t('Close')}</Text>
-                    </TouchableOpacity>
+                    <ButtonApp onPress={closeModal} label={t('Close')}/>
                 </View>
             }
         />

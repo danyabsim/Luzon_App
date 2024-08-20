@@ -2,12 +2,12 @@ import {styles} from "./styles";
 import {Text, TouchableOpacity, View} from "react-native";
 import {rgbIntToHex} from "../../../constants/AppConverts";
 import React from "react";
-import {CalendarItemProps} from "./CalendarItemProps";
+import {ICalendarItemProps} from "./ICalendarItemProps";
 import {useSelector} from "react-redux";
 import {RootState} from "../../../redux/store";
 import {useTranslation} from "react-i18next";
 
-export function CalendarItem({item, onLongPressItem}: CalendarItemProps) {
+export function CalendarItem({item, onLongPressItem}: ICalendarItemProps) {
     const [isExpanded, setExpanded] = React.useState(false);
     const mode = useSelector((state: RootState) => state.theme.mode);
     const {t} = useTranslation();

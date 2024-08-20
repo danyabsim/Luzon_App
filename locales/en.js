@@ -41,6 +41,7 @@ export default {
     Light: 'Light Theme', Dark: 'Dark Theme',
     ChangeThemeWarning: 'Warning: Changing the theme will auto logout from the account!',
     RemoveError: 'You entered nothing, your username or a username that does not exist. Please fill it out properly.',
-    ColorPicker: 'Color Picker'
+    ColorPicker: 'Color Picker',
+    AllDay: 'All Day'
     // other keys...
 };

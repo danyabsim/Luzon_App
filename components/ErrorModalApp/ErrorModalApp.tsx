@@ -1,13 +1,14 @@
 import {ModalApp} from "../ModalApp/ModalApp";
 import React from "react";
-import {Text, TouchableOpacity, View} from 'react-native';
-import {ErrorModalAppProps} from "./ErrorModalAppProps";
+import {Text, View} from 'react-native';
+import {IErrorModalAppProps} from "./IErrorModalAppProps";
 import {useSelector} from "react-redux";
 import {RootState} from "../../redux/store";
 import {styles} from "./styles";
 import {useTranslation} from "react-i18next";
+import {ButtonApp} from "../ButtonApp/ButtonApp";
 
-export function ErrorModalApp(props: ErrorModalAppProps) {
+export function ErrorModalApp(props: IErrorModalAppProps) {
     const mode = useSelector((state: RootState) => state.theme.mode);
     const {t} = useTranslation();
 
@@ -15,9 +16,7 @@ export function ErrorModalApp(props: ErrorModalAppProps) {
         <ModalApp modalVisible={props.modalVisible} setModalVisible={props.setModalVisible} children={
             <View style={styles(mode).container}>
                 <Text style={styles(mode).title}>{t('Error')}: {props.errorText}</Text>
-                <TouchableOpacity style={styles(mode).button} onPress={() => props.setModalVisible(false)}>
-                    <Text style={styles(mode).textStyle}>{t('Close')}</Text>
-                </TouchableOpacity>
+                <ButtonApp onPress={() => props.setModalVisible(false)} label={t('Close')}/>
             </View>
         }/>
     )

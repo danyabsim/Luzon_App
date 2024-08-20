@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Text, TouchableOpacity, View} from 'react-native';
+import {View} from 'react-native';
 import {styles} from "./styles";
 import {ModalApp} from "../../components/ModalApp/ModalApp";
 import {
@@ -12,6 +12,7 @@ import {
 import {useSelector} from "react-redux";
 import {RootState} from "../../redux/store";
 import {useTranslation} from "react-i18next";
+import {ButtonApp} from "../../components/ButtonApp/ButtonApp";
 
 export default function Settings() {
     const isAdmin = useSelector((state: RootState) => state.user.isAdmin);
@@ -39,9 +40,8 @@ export default function Settings() {
                 {label: t('SettingsCT'), type: 'Dark Mode'},
                 {label: t('SettingsCL'), type: 'Language'}
             ].filter(Boolean).map(({label, type}) => (
-                <TouchableOpacity key={type} style={styles(mode).settingItem} onPress={() => openModal(type)}>
-                    <Text style={styles(mode).settingText}>{label}</Text>
-                </TouchableOpacity>
+                <ButtonApp key={type} buttonStyle={styles(mode).settingItem} labelStyle={styles(mode).settingText}
+                           onPress={() => openModal(type)} label={label}/>
             ))}
             <ModalApp modalVisible={modalState.visible} setModalVisible={closeModal}>
                 {ModalContent && <ModalContent onClose={closeModal}/>}
