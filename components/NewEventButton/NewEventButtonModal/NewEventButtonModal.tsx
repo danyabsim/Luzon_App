@@ -45,13 +45,14 @@ export function NewEventButtonModal(props: NewEventButtonModalProps) {
         props.setModalVisible(!props.modalVisible);
     }
 
+    const marginPerLanguage = {
+        marginLeft: i18n.language == 'en' ? 20 : 0,
+        marginRight: i18n.language == 'he' ? 20 : 0
+    };
+
     const ColorButton = <TouchableOpacity
         onPress={() => setColorPickerModalVisible(true)}
-        style={[styles(mode).button, {
-            backgroundColor: color,
-            marginLeft: i18n.language == 'en' ? 20 : 0,
-            marginRight: i18n.language == 'he' ? 20 : 0
-        }]}
+        style={[styles(mode).button, {backgroundColor: color}, marginPerLanguage]}
     />;
 
     return (
@@ -70,10 +71,7 @@ export function NewEventButtonModal(props: NewEventButtonModalProps) {
                         <DatePickerInputContainers timeContainers={timeContainers}/>
                         <TextInput placeholder={t('Notes')} multiline={true} value={notes} onChangeText={setNotes}
                                    style={[styles(mode).modalText, styles(mode).input]}/>
-                        <View style={[styles(mode).inputContainer, {
-                            marginLeft: i18n.language == 'en' ? 20 : 0,
-                            marginRight: i18n.language == 'he' ? 20 : 0
-                        }]}>
+                        <View style={[styles(mode).inputContainer, marginPerLanguage]}>
                             <CancelButton closeModal={closeModal}/>
                             <SaveButton onPress={() => {
                                 if (startDate === undefined || endDate === undefined || color === '' || title === '') {

@@ -30,7 +30,7 @@ export function DatePickerInputContainers({timeContainers}: DatePickerInputConta
                                 setCurrentIndex(index);
                             }}>
                                 <Text style={styles(mode).textStyle}>
-                                    {time.label ? time.label : (time.state !== undefined && `${formatDateAndTime(time.state).date}\n(${formatDateAndTime(time.state).time})`)}
+                                    {time.label}{(time.state !== undefined && `\n${formatDateAndTime(time.state).date}\n(${formatDateAndTime(time.state).time})`)}
                                 </Text>
                             </TouchableOpacity>
                         </View>
