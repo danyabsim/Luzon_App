@@ -1,4 +1,4 @@
-import {TextInput, TouchableOpacity, View} from "react-native";
+import {TextInput, TouchableOpacity, View, Text} from "react-native";
 import {styles} from "./styles";
 import {setEvents} from "../../../redux/Events/eventsSlice";
 import {XHR} from "../../../utils/XHR";
@@ -47,13 +47,13 @@ export function NewEventButtonModal(props: INewEventButtonModalProps) {
     }
 
     const marginPerLanguage = {
-        marginLeft: i18n.language == 'en' ? 20 : 0,
-        marginRight: i18n.language == 'he' ? 20 : 0
+        marginLeft: i18n.language == 'he' ? 20 : 0,
+        marginRight: i18n.language == 'en' ? 20 : 0
     };
 
     const ColorButton = <TouchableOpacity
         onPress={() => setColorPickerModalVisible(true)}
-        style={[styles(mode).button, {backgroundColor: color}, marginPerLanguage]}
+        style={[styles(mode).button, {backgroundColor: color}]}
     />;
 
     return (
@@ -61,43 +61,46 @@ export function NewEventButtonModal(props: INewEventButtonModalProps) {
             onClose={closeModal} modalVisible={props.modalVisible} setModalVisible={props.setModalVisible}
             children={
                 <View>
-                    <View style={{alignItems: i18n.language == 'en' ? 'flex-start' : "flex-end"}}>
-                        <View style={{flexDirection: 'row'}}>
+                    <View style={{alignItems: 'center'}}>
+                        <Text style={styles(mode).title}>{t('AddNewEvent')}</Text>
+                        <View style={[styles(mode).inputContainer]}>
                             {i18n.language == 'he' && ColorButton}
                             <TextInput placeholder={t('Title')} value={title} onChangeText={setTitle}
-                                       style={[styles(mode).modalText, styles(mode).input]}/>
+                                       style={[styles(mode).modalText, styles(mode).input, marginPerLanguage]}/>
                             {i18n.language == 'en' && ColorButton}
                         </View>
-                        <AllDayOptionSwitch isEnabled={isAllDayEnabled} setIsEnabled={setIsAllDayEnabled}/>
-                        <DatePickerInputContainers timeContainers={timeContainers} isEnabled={isAllDayEnabled}/>
-                        <TextInput placeholder={t('Notes')} multiline={true} value={notes} onChangeText={setNotes}
-                                   style={[styles(mode).modalText, styles(mode).input]}/>
-                        <View style={[styles(mode).inputContainer, marginPerLanguage]}>
-                            <ButtonApp onPress={closeModal} label={t('Cancel')}/>
-                            <ButtonApp label={t('Save')} onPress={() => {
-                                if (startDate === undefined || endDate === undefined || color === '' || title === '') {
-                                    setErrorModalVisible(true);
-                                    return;
-                                }
-                                const startDateAndTime = formatDateAndTime(startDate);
-                                const endDateAndTime = formatDateAndTime(endDate);
-                                const dates = getDatesBetween(startDateAndTime.date, endDateAndTime.date);
-                                const XHRTitle = `${startDateAndTime.date} (${startDateAndTime.time}) – ${endDateAndTime.date} (${endDateAndTime.time}): ${title} (${user.username})\0${notes}`;
-                                if (dates !== null) {
-                                    dates.map(async (day) => {
-                                        dispatch(setEvents({}));
-                                        XHR(dispatch, '/addEvent', {
-                                            name: XHRTitle,
-                                            height: hexToRgbInt(color),
-                                            day: formatDateAndTime(day).date
-                                        });
-                                        await TimeOutDelay(300);
-                                        XHR(dispatch, '/connect', {...user});
-                                    })
-                                    closeModal();
-                                }
-                            }}/>
+                        <View style={marginPerLanguage}>
+                            <AllDayOptionSwitch isEnabled={isAllDayEnabled} setIsEnabled={setIsAllDayEnabled}/>
+                            <DatePickerInputContainers timeContainers={timeContainers} isEnabled={isAllDayEnabled}/>
                         </View>
+                        <TextInput placeholder={t('Notes')} multiline={true} value={notes} onChangeText={setNotes}
+                                   style={[styles(mode).modalText, styles(mode).input, marginPerLanguage]}/>
+                    </View>
+                    <View style={[styles(mode).inputContainer]}>
+                        <ButtonApp onPress={closeModal} label={t('Cancel')}/>
+                        <ButtonApp label={t('Save')} onPress={() => {
+                            if (startDate === undefined || endDate === undefined || color === '' || title === '') {
+                                setErrorModalVisible(true);
+                                return;
+                            }
+                            const startDateAndTime = formatDateAndTime(startDate);
+                            const endDateAndTime = formatDateAndTime(endDate);
+                            const dates = getDatesBetween(startDateAndTime.date, endDateAndTime.date);
+                            const XHRTitle = `${startDateAndTime.date} (${startDateAndTime.time}) – ${endDateAndTime.date} (${endDateAndTime.time}): ${title} (${user.username})\0${notes}`;
+                            if (dates !== null) {
+                                dates.map(async (day) => {
+                                    dispatch(setEvents({}));
+                                    XHR(dispatch, '/addEvent', {
+                                        name: XHRTitle,
+                                        height: hexToRgbInt(color),
+                                        day: formatDateAndTime(day).date
+                                    });
+                                    await TimeOutDelay(300);
+                                    XHR(dispatch, '/connect', {...user});
+                                })
+                                closeModal();
+                            }
+                        }}/>
                     </View>
                     <ColorPickerModal color={color} setColor={setColor} modalVisible={isColorPickerModalVisible}
                                       setModalVisible={setColorPickerModalVisible}/>

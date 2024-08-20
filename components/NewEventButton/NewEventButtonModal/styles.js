@@ -5,7 +5,14 @@ export function styles(mode) {
     return StyleSheet.create({
         inputContainer: {
             flexDirection: 'row',
-            alignItems: "center"
+            alignSelf: 'center'
+        },
+        title: {
+            fontSize: 24,
+            fontWeight: 'bold',
+            color: styleByTime('black', 'white', mode),
+            marginBottom: 20,
+            textAlign: 'center',
         },
         modalText: {
             width: 120,
