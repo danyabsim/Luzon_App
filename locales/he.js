@@ -16,7 +16,6 @@ export default {
     SettingsRU: 'הסרת משתמש',
     SettingsCT: 'שינוי עיצוב',
     SettingsCL: 'שינוי שפה',
-    ForgetMe: 'שכח אותי',
     RememberMe: 'זכור אותי',
     ModalClosed: 'הפופ אפ נסגר',
     All: 'הכל',

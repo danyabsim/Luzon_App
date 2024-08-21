@@ -16,7 +16,6 @@ export default {
     SettingsRU: 'Remove User',
     SettingsCT: 'Change Theme',
     SettingsCL: 'Change Language',
-    ForgetMe: 'Forget Me',
     RememberMe: 'Remember Me',
     ModalClosed: 'Modal has been closed.',
     All: 'All',

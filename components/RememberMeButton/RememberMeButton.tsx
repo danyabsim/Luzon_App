@@ -10,7 +10,7 @@ export function RememberMeButton({rememberMe, onPress}: IRememberMeButtonProps) 
     const mode = useSelector((state: RootState) => state.theme.mode);
     const { t, i18n } = useTranslation();
 
-    const TextualLabel = <Text style={styles(mode).rememberMeButtonText}>{rememberMe ? t('ForgetMe') : t('RememberMe')}</Text>;
+    const TextualLabel = <Text style={styles(mode).rememberMeButtonText}>{t('RememberMe')}</Text>;
 
     return (
         <View style={[styles(mode).inputContainer, {alignSelf: i18n.language == 'he' ? "flex-end" : "flex-start"}]}>
