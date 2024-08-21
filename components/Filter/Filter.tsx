@@ -7,6 +7,7 @@ import {RootState} from "../../redux/store";
 import {XHR} from "../../utils/XHR";
 import {IFilterProps} from "./IFilterProps";
 import {useTranslation} from "react-i18next";
+import {OptionItem} from "./OptionItem/OptionItem";
 
 export default function Filter({isMenuOpen, setMenuOpen}: IFilterProps) {
     const [selectedOption, setSelectedOption] = useState(null);
@@ -24,6 +25,12 @@ export default function Filter({isMenuOpen, setMenuOpen}: IFilterProps) {
     React.useEffect(() => {
         XHR(dispatch, '/getAllUserNames', {});
     }, []);
+
+    const handleSelect = (item: {id: number, label: string}) => {
+        setSelectedOption(item);
+        dispatch(setFilteredOption(item.label));
+        setMenuOpen(false);
+    };
 
     return (
         <View style={styles(mode).container}>
@@ -47,18 +54,8 @@ export default function Filter({isMenuOpen, setMenuOpen}: IFilterProps) {
                 >
                     <FlatList
                         data={options}
-                        renderItem={({item}) => (
-                            <TouchableOpacity
-                                key={item.id}
-                                style={[styles(mode).optionItem, styles(mode).elliptical]}
-                                onPress={() => {
-                                    setSelectedOption(item);
-                                    dispatch(setFilteredOption(item.label));
-                                    setMenuOpen(false);
-                                }}
-                            >
-                                <Text style={styles(mode).menuText}>{item.label}</Text>
-                            </TouchableOpacity>
+                        renderItem={({ item }) => (
+                            <OptionItem item={item} mode={mode} onSelect={handleSelect} />
                         )}
                         keyExtractor={(item) => item.id.toString()}
                         style={styles(mode).optionList}

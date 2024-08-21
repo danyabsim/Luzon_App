@@ -7,7 +7,7 @@ export function styles(mode) {
             backgroundColor: styleByTime('white', 'black', mode),
             elevation: 0,
             shadowColor: 'transparent',
-            borderBottomWidth: 0,
+            borderWidth: 0,
         }
     });
 }
