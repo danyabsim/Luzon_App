@@ -30,22 +30,24 @@ export function RemoveUserModal({onClose}: {
     }
 
     return (
-        <View style={styles(mode).container}>
-            <Text style={styles(mode).title}>{t('SettingsRU')}</Text>
-            <TextInputContainers inputContainers={inputContainers} timeContainers={[]}/>
-            <View style={styles(mode).inputContainer}>
-                <ButtonApp label={t('Remove')} onPress={async () => {
-                    if (username !== "" && username !== "admin" && usernames.includes(username)) {
-                        XHR(dispatch, '/removeUser', {username: username});
-                        await TimeOutDelay(300);
-                        XHR(dispatch, '/getAllUserNames', {});
-                        onCloseThisModal();
-                    } else setErrorModalVisible(true);
-                }}/>
-                <ButtonApp label={t('Close')} onPress={onCloseThisModal}/>
-                <ErrorModalApp modalVisible={isErrorModalVisible} setModalVisible={setErrorModalVisible}
-                               errorText={t('RemoveError')}/>
+        <View>
+            <View style={styles(mode).container}>
+                <Text style={styles(mode).title}>{t('SettingsRU')}</Text>
+                <TextInputContainers inputContainers={inputContainers} timeContainers={[]}/>
+                <View style={styles(mode).inputContainer}>
+                    <ButtonApp label={t('Remove')} onPress={async () => {
+                        if (username !== "" && username !== "admin" && usernames.includes(username)) {
+                            XHR(dispatch, '/removeUser', {username: username});
+                            await TimeOutDelay(300);
+                            XHR(dispatch, '/getAllUserNames', {});
+                            onCloseThisModal();
+                        } else setErrorModalVisible(true);
+                    }}/>
+                    <ButtonApp label={t('Close')} onPress={onCloseThisModal}/>
+                </View>
             </View>
+            <ErrorModalApp modalVisible={isErrorModalVisible} setModalVisible={setErrorModalVisible}
+                           errorText={t('RemoveError')}/>
         </View>
     );
 }

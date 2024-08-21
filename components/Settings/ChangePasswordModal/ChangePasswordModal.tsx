@@ -30,25 +30,27 @@ export function ChangePasswordModal({onClose}: {
     }
 
     return (
-        <View style={styles(mode).container}>
-            <Text style={styles(mode).title}>{t('SettingsCP')}</Text>
-            <TextInputContainers inputContainers={inputContainers} timeContainers={[]}/>
-            <View style={styles(mode).inputContainer}>
-                <ButtonApp label={t('Change')} onPress={() => {
-                    if (newPassword !== "") {
-                        XHR(dispatch, '/changePassword', {
-                            username: user.username,
-                            password: user.password,
-                            newPassword: newPassword
-                        });
-                        setNewPassword('');
-                        onCloseThisModal();
-                    } else setErrorModalVisible(true);
-                }}/>
-                <ButtonApp label={t('Close')} onPress={onCloseThisModal}/>
-                <ErrorModalApp modalVisible={isErrorModalVisible} setModalVisible={setErrorModalVisible}
-                               errorText={"You did not pass a new password. Please fill it out."}/>
+        <View>
+            <View style={styles(mode).container}>
+                <Text style={styles(mode).title}>{t('SettingsCP')}</Text>
+                <TextInputContainers inputContainers={inputContainers} timeContainers={[]}/>
+                <View style={styles(mode).inputContainer}>
+                    <ButtonApp label={t('Change')} onPress={() => {
+                        if (newPassword !== "") {
+                            XHR(dispatch, '/changePassword', {
+                                username: user.username,
+                                password: user.password,
+                                newPassword: newPassword
+                            });
+                            setNewPassword('');
+                            onCloseThisModal();
+                        } else setErrorModalVisible(true);
+                    }}/>
+                    <ButtonApp label={t('Close')} onPress={onCloseThisModal}/>
+                </View>
             </View>
+            <ErrorModalApp modalVisible={isErrorModalVisible} setModalVisible={setErrorModalVisible}
+                           errorText={t('ChangePasswordError')}/>
         </View>
     );
 }

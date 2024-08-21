@@ -33,22 +33,24 @@ export function AddUserModal({onClose}: {
     }
 
     return (
-        <View style={styles(mode).container}>
-            <Text style={styles(mode).title}>{t('SettingsAU')}</Text>
-            <TextInputContainers inputContainers={inputContainers} timeContainers={[]}/>
-            <View style={styles(mode).inputContainer}>
-                <ButtonApp label={t('Add')} onPress={async () => {
-                    if (username !== "" && password !== "") {
-                        XHR(dispatch, '/addUser', {username: username, password: password, isAdmin: false});
-                        await TimeOutDelay(300);
-                        XHR(dispatch, '/getAllUserNames', {});
-                        onCloseThisModal();
-                    } else setErrorModalVisible(true);
-                }}/>
-                <ButtonApp label={t('Close')} onPress={onCloseThisModal}/>
-                <ErrorModalApp modalVisible={isErrorModalVisible} setModalVisible={setErrorModalVisible}
-                               errorText={t('IncompleteFields')}/>
+        <View>
+            <View style={styles(mode).container}>
+                <Text style={styles(mode).title}>{t('SettingsAU')}</Text>
+                <TextInputContainers inputContainers={inputContainers} timeContainers={[]}/>
+                <View style={styles(mode).inputContainer}>
+                    <ButtonApp label={t('Add')} onPress={async () => {
+                        if (username !== "" && password !== "") {
+                            XHR(dispatch, '/addUser', {username: username, password: password, isAdmin: false});
+                            await TimeOutDelay(300);
+                            XHR(dispatch, '/getAllUserNames', {});
+                            onCloseThisModal();
+                        } else setErrorModalVisible(true);
+                    }}/>
+                    <ButtonApp label={t('Close')} onPress={onCloseThisModal}/>
+                </View>
             </View>
+            <ErrorModalApp modalVisible={isErrorModalVisible} setModalVisible={setErrorModalVisible}
+                           errorText={t('IncompleteFields')}/>
         </View>
     );
 }

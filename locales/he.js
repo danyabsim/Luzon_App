@@ -6,7 +6,7 @@ export default {
     Username: 'משתמש',
     Password: 'סיסמה',
     Login: 'התחברות',
-    IncompleteFields: 'לפחות אחד מהשדות אינו מלא. אנא מלאו אותם',
+    IncompleteFields: 'לפחות אחד מהשדות אינו מלא. אנא מלאו אותם!',
     COD: 'לו"ז מדור פיתוח',
     LastUpdatedData: 'המידע עודכן פעם אחרונה ב-',
     Admin: 'מפעיל מערכת',
@@ -41,8 +41,9 @@ export default {
     ChangeTheme: 'שינוי עיצוב',
     Light: 'עיצוב בהיר', Dark: 'עיצוב כהה',
     ChangeThemeWarning: 'אזהרה: שינוי העיצוב יוציא אתכם מהחשבון באופן אוטומאטי!',
-    RemoveError: 'הכנסתם כלום, את שם המשתמש שלכם או שם משתמש שלא קיים במערכת. בבקשה למלא כמו שצריך',
+    RemoveError: 'הכנסתם כלום, את שם המשתמש שלכם או שם משתמש שלא קיים במערכת. יש למלא כמו שצריך!',
     ColorPicker: 'בחירת צבע',
-    AllDay: 'כל היום'
+    AllDay: 'כל היום',
+    ChangePasswordError: 'הכנסתם כלום. יש למלא את הסיסמה!'
     // other keys...
 };

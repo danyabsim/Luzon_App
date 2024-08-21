@@ -4,7 +4,6 @@ import {styleByTime} from "../../constants/AppStyles";
 export function styles(mode) {
     return StyleSheet.create({
         container: {
-            flex: 1,
             alignItems: 'center',
             justifyContent: 'center',
         },
