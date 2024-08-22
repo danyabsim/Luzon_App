@@ -9,7 +9,7 @@ export function ButtonApp(props: IButtonAppProps) {
     const mode = useSelector((state: RootState) => state.theme.mode);
 
     return (
-        <TouchableOpacity style={props.buttonStyle || styles(mode).button} onPress={props.onPress}>
+        <TouchableOpacity style={props.buttonStyle || styles(mode).button} onPress={props.onPress} ref={props.ref}>
             <Text style={props.labelStyle || styles(mode).textStyle}>{props.label}</Text>
         </TouchableOpacity>
     );

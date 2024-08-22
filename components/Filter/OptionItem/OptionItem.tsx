@@ -1,6 +1,6 @@
-import {TouchableOpacity, Text} from "react-native";
 import {styles} from "./styles";
 import React from "react";
+import {ButtonApp} from "../../ButtonApp/ButtonApp";
 
 interface IOptionItemProps {
     item: {
@@ -11,12 +11,7 @@ interface IOptionItemProps {
     onSelect: (item: { id: number; label: string }) => void;
 }
 
-export const OptionItem: React.FC<IOptionItemProps> = React.memo(({ item, mode, onSelect }) => (
-    <TouchableOpacity
-        key={item.id}
-        style={[styles(mode).optionItem, styles(mode).elliptical]}
-        onPress={() => onSelect(item)}
-    >
-        <Text style={styles(mode).menuText}>{item.label}</Text>
-    </TouchableOpacity>
+export const OptionItem: React.FC<IOptionItemProps> = React.memo(({item, mode, onSelect}) => (
+    <ButtonApp onPress={() => onSelect(item)} label={item.label} labelStyle={styles(mode).menuText}
+               buttonStyle={[styles(mode).optionItem, styles(mode).elliptical]}/>
 ));

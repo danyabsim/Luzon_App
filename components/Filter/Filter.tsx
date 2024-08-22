@@ -1,5 +1,5 @@
 import React, {useRef, useState} from 'react';
-import {Dimensions, FlatList, Text, TouchableOpacity, View} from 'react-native';
+import {Dimensions, FlatList, Text, View} from 'react-native';
 import {styles} from "./styles";
 import {useDispatch, useSelector} from "react-redux";
 import {setFilteredOption} from "../../redux/Events/eventsSlice";
@@ -8,6 +8,7 @@ import {XHR} from "../../utils/XHR";
 import {IFilterProps} from "./IFilterProps";
 import {useTranslation} from "react-i18next";
 import {OptionItem} from "./OptionItem/OptionItem";
+import {ButtonApp} from "../ButtonApp/ButtonApp";
 
 export default function Filter({isMenuOpen, setMenuOpen}: IFilterProps) {
     const [selectedOption, setSelectedOption] = useState(null);
@@ -26,7 +27,7 @@ export default function Filter({isMenuOpen, setMenuOpen}: IFilterProps) {
         XHR(dispatch, '/getAllUserNames', {});
     }, []);
 
-    const handleSelect = (item: {id: number, label: string}) => {
+    const handleSelect = (item: { id: number, label: string }) => {
         setSelectedOption(item);
         dispatch(setFilteredOption(item.label));
         setMenuOpen(false);
@@ -35,13 +36,10 @@ export default function Filter({isMenuOpen, setMenuOpen}: IFilterProps) {
     return (
         <View style={styles(mode).container}>
             <Text style={styles(mode).menuText}>{t('SelectCalendar')}:</Text>
-            <TouchableOpacity
-                onPress={() => setMenuOpen(!isMenuOpen)}
-                style={[styles(mode).menuButton, {width: buttonWidth}, styles(mode).elliptical]}
-                ref={buttonRef}
-            >
-                <Text style={styles(mode).menuText}>{selectedOption ? selectedOption.label : t('All')}</Text>
-            </TouchableOpacity>
+            <ButtonApp ref={buttonRef} onPress={() => setMenuOpen(!isMenuOpen)}
+                       label={selectedOption ? selectedOption.label : t('All')}
+                       buttonStyle={[styles(mode).menuButton, {width: buttonWidth}, styles(mode).elliptical]}
+                       labelStyle={styles(mode).menuText}/>
             {isMenuOpen && (
                 <View
                     style={[
@@ -54,8 +52,8 @@ export default function Filter({isMenuOpen, setMenuOpen}: IFilterProps) {
                 >
                     <FlatList
                         data={options}
-                        renderItem={({ item }) => (
-                            <OptionItem item={item} mode={mode} onSelect={handleSelect} />
+                        renderItem={({item}) => (
+                            <OptionItem item={item} mode={mode} onSelect={handleSelect}/>
                         )}
                         keyExtractor={(item) => item.id.toString()}
                         style={styles(mode).optionList}
