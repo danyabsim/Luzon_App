@@ -1,9 +1,9 @@
-import {styleByOS} from "../../../../constants/AppStyles";
+import {styleByOS} from "../../../../utils/AppStyles";
 import {View} from "react-native";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import React from "react";
 import {IDatePickerInputContainersProps} from "./IDatePickerInputContainersProps";
-import {formatDateAndTime} from "../../../../constants/DateFunctions";
+import {formatDateAndTime} from "../../../../utils/DateFunctions";
 import {useTranslation} from "react-i18next";
 import {ButtonApp} from "../../../ButtonApp/ButtonApp";
 

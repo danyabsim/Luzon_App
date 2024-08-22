@@ -1,4 +1,4 @@
-import {styleByTime} from "../../constants/AppStyles";
+import {styleByTime} from "../../utils/AppStyles";
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../redux/store";
 import {Image, TouchableOpacity} from "react-native";

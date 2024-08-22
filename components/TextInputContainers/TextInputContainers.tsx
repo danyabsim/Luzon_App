@@ -1,4 +1,4 @@
-import {styleByOS} from "../../constants/AppStyles";
+import {styleByOS} from "../../utils/AppStyles";
 import {Text, TextInput, View} from "react-native";
 import {styles} from "./styles";
 import React from "react";

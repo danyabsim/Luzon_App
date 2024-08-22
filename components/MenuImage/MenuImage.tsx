@@ -2,7 +2,7 @@ import React from 'react';
 import { TouchableOpacity, Image } from 'react-native';
 import styles from './styles';
 import {IMenuImageProps} from "./IMenuImageProps";
-import {styleByTime} from "../../constants/AppStyles";
+import {styleByTime} from "../../utils/AppStyles";
 import {useSelector} from "react-redux";
 import {RootState} from "../../redux/store";
 

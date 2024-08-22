@@ -1,7 +1,7 @@
 import React from 'react';
 import {Image, Text, TouchableOpacity, View} from 'react-native';
 import {ImageLibraryOptions, launchImageLibrary} from 'react-native-image-picker';
-import {styleByTime} from "../../constants/AppStyles";
+import {styleByTime} from "../../utils/AppStyles";
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../redux/store";
 import {styles} from "./styles";

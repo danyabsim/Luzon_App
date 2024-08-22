@@ -5,7 +5,7 @@ import {RootState} from "../../../redux/store";
 import {styles} from "./styles";
 import {TextInputContainers} from "../../TextInputContainers/TextInputContainers";
 import {XHR} from "../../../utils/XHR";
-import {TimeOutDelay} from "../../../constants/TimeOutDelay";
+import {TimeOutDelay} from "../../../utils/TimeOutDelay";
 import {ErrorModalApp} from "../../ErrorModalApp/ErrorModalApp";
 import {useTranslation} from "react-i18next";
 import {ButtonApp} from "../../ButtonApp/ButtonApp";

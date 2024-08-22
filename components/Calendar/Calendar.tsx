@@ -10,7 +10,7 @@ import {XHR} from "../../utils/XHR";
 import {calendarTheme} from "./calendarTheme";
 import {CalendarItem} from "./CalendarItem/CalendarItem";
 import {SureModal} from "./SureModal/SureModal";
-import {TimeOutDelay} from "../../constants/TimeOutDelay";
+import {TimeOutDelay} from "../../utils/TimeOutDelay";
 import {useTranslation} from "react-i18next";
 
 export default function Calendar() {

@@ -1,4 +1,4 @@
-import {styleByTime} from "../../constants/AppStyles";// @ts-ignore
+import {styleByTime} from "../../utils/AppStyles";// @ts-ignore
 import {Theme} from "react-native-calendars";
 
 export function calendarTheme(mode: 'dark' | 'light'): Theme {

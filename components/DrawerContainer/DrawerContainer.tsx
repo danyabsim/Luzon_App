@@ -1,7 +1,7 @@
 import {View} from 'react-native';
 import MenuButton from "./MenuButton/MenuButton";
 import {styles} from "./styles";
-import {styleByTime} from "../../constants/AppStyles";
+import {styleByTime} from "../../utils/AppStyles";
 import {useDispatch, useSelector} from "react-redux";
 import {setUser} from "../../redux/User/userSlice";
 import {RootState} from "../../redux/store";
