@@ -26,7 +26,6 @@ export function NewEventButtonModal(props: INewEventButtonModalProps) {
     const [isErrorModalVisible, setErrorModalVisible] = useState(false);
     const [isColorPickerModalVisible, setColorPickerModalVisible] = useState(false);
     const [isAllDayEnabled, setIsAllDayEnabled] = useState(false);
-    const [errorText, setErrorText] = useState('');
     const dispatch = useDispatch();
     const user = useSelector((state: RootState) => state.user);
     const mode = useSelector((state: RootState) => state.theme.mode);
@@ -81,12 +80,6 @@ export function NewEventButtonModal(props: INewEventButtonModalProps) {
                         <ButtonApp onPress={closeModal} label={t('Cancel')}/>
                         <ButtonApp label={t('Save')} onPress={() => {
                             if (startDate === undefined || endDate === undefined || color === '' || title === '') {
-                                setErrorText(t('IncompleteFields'));
-                                setErrorModalVisible(true);
-                                return;
-                            }
-                            if (!(startDate < endDate)) {
-                                setErrorText(t('NotCompatible'));
                                 setErrorModalVisible(true);
                                 return;
                             }
@@ -112,7 +105,7 @@ export function NewEventButtonModal(props: INewEventButtonModalProps) {
                     <ColorPickerModal color={color} setColor={setColor} modalVisible={isColorPickerModalVisible}
                                       setModalVisible={setColorPickerModalVisible}/>
                     <ErrorModalApp modalVisible={isErrorModalVisible} setModalVisible={setErrorModalVisible}
-                                   errorText={errorText}/>
+                                   errorText={t('IncompleteFields')}/>
                 </View>
             }
         />
