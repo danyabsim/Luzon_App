@@ -73,7 +73,7 @@ export default function HomeScreen({navigation}: Props) {
         <View style={styles(mode).container}>
             <View style={{alignSelf: "center"}}>
                 <Text style={styles(mode).mainText}>{t('COD')}</Text>
-                <TextInputContainers inputContainers={inputContainers} timeContainers={[]}/>
+                <TextInputContainers inputContainers={inputContainers}/>
                 <RememberMeButton rememberMe={rememberMe} onPress={async () => {
                     setRememberMe(!rememberMe);
                     await AsyncStorage.setItem('rememberMe', JSON.stringify(!rememberMe));

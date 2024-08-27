@@ -1,6 +1,6 @@
 import {Dispatch, SetStateAction} from "react";
 
 export interface IDatePickerInputContainersProps {
-    timeContainers: {label: string, state: string | Date, setState: Dispatch<SetStateAction<string | Date>>}[];
+    timeContainers: {label: string, state: Date, setState: Dispatch<SetStateAction<Date>>}[];
     isEnabled: boolean;
 }

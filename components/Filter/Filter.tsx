@@ -36,10 +36,12 @@ export default function Filter({isMenuOpen, setMenuOpen}: IFilterProps) {
     return (
         <View style={styles(mode).container}>
             <Text style={styles(mode).menuText}>{t('SelectCalendar')}:</Text>
-            <ButtonApp ref={buttonRef} onPress={() => setMenuOpen(!isMenuOpen)}
-                       label={selectedOption ? selectedOption.label : t('All')}
-                       buttonStyle={[styles(mode).menuButton, {width: buttonWidth}, styles(mode).elliptical]}
-                       labelStyle={styles(mode).menuText}/>
+            <View ref={buttonRef}>
+                <ButtonApp onPress={() => setMenuOpen(!isMenuOpen)}
+                           label={selectedOption ? selectedOption.label : t('All')}
+                           buttonStyle={[styles(mode).menuButton, {width: buttonWidth}, styles(mode).elliptical]}
+                           labelStyle={styles(mode).menuText}/>
+            </View>
             {isMenuOpen && (
                 <View
                     style={[

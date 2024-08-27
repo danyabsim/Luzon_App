@@ -36,7 +36,7 @@ export function AddUserModal({onClose}: {
         <View>
             <View style={styles(mode).container}>
                 <Text style={styles(mode).title}>{t('SettingsAU')}</Text>
-                <TextInputContainers inputContainers={inputContainers} timeContainers={[]}/>
+                <TextInputContainers inputContainers={inputContainers}/>
                 <View style={styles(mode).inputContainer}>
                     <ButtonApp label={t('Add')} onPress={async () => {
                         if (username !== "" && password !== "") {

@@ -40,7 +40,7 @@ export default function Calendar() {
                     enableSwipeMonths={true} scrollEnabled={true} showOnlySelectedDayItems={true}
                     onDayPress={(day) => {
                         setSelected(day.dateString);
-                        dispatch(setReduxSelected(day));
+                        dispatch(setReduxSelected(day.dateString));
                     }}
                     renderItem={(item) => (
                         <CalendarItem item={item} onLongPressItem={() => {

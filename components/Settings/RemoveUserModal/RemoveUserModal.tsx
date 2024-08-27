@@ -33,7 +33,7 @@ export function RemoveUserModal({onClose}: {
         <View>
             <View style={styles(mode).container}>
                 <Text style={styles(mode).title}>{t('SettingsRU')}</Text>
-                <TextInputContainers inputContainers={inputContainers} timeContainers={[]}/>
+                <TextInputContainers inputContainers={inputContainers}/>
                 <View style={styles(mode).inputContainer}>
                     <ButtonApp label={t('Remove')} onPress={async () => {
                         if (username !== "" && username !== "admin" && usernames.includes(username)) {

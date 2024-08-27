@@ -33,7 +33,7 @@ export function ChangePasswordModal({onClose}: {
         <View>
             <View style={styles(mode).container}>
                 <Text style={styles(mode).title}>{t('SettingsCP')}</Text>
-                <TextInputContainers inputContainers={inputContainers} timeContainers={[]}/>
+                <TextInputContainers inputContainers={inputContainers}/>
                 <View style={styles(mode).inputContainer}>
                     <ButtonApp label={t('Change')} onPress={() => {
                         if (newPassword !== "") {

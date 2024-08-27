@@ -19,8 +19,8 @@ import {ButtonApp} from "../../ButtonApp/ButtonApp";
 
 export function NewEventButtonModal(props: INewEventButtonModalProps) {
     const [title, setTitle] = useState("");
-    const [startDate, setStartDate] = useState<string | Date>(undefined);
-    const [endDate, setEndDate] = useState<string | Date>(undefined);
+    const [startDate, setStartDate] = useState<Date>(undefined);
+    const [endDate, setEndDate] = useState<Date>(undefined);
     const [notes, setNotes] = useState('');
     const [color, setColor] = useState('');
     const [isErrorModalVisible, setErrorModalVisible] = useState(false);
