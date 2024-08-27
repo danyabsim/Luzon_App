@@ -42,6 +42,7 @@ export default {
     RemoveError: 'You entered nothing, your username or a username that does not exist. Please fill it out properly.',
     ColorPicker: 'Color Picker',
     AllDay: 'All Day',
-    ChangePasswordError: 'You did not pass a new password. Please fill it out.'
+    ChangePasswordError: 'You did not pass a new password. Please fill it out.',
+    NotCompatible: 'The dates are not compatible with their names. Please fill it out properly.'
     // other keys...
 };
