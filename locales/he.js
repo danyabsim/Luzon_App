@@ -43,6 +43,7 @@ export default {
     RemoveError: 'הכנסתם כלום, את שם המשתמש שלכם או שם משתמש שלא קיים במערכת. יש למלא כמו שצריך!',
     ColorPicker: 'בחירת צבע',
     AllDay: 'כל היום',
-    ChangePasswordError: 'הכנסתם כלום. יש למלא את הסיסמה!'
+    ChangePasswordError: 'הכנסתם כלום. יש למלא את הסיסמה!',
+    NotCompatible: 'התאריכים לא תואמים לשמם. יש למלא כמו שצריך!'
     // other keys...
 };
