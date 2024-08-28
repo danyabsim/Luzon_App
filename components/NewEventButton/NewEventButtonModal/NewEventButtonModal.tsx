@@ -1,4 +1,4 @@
-import {TextInput, TouchableOpacity, View, Text} from "react-native";
+import {Text, TextInput, TouchableOpacity, View} from "react-native";
 import {styles} from "./styles";
 import {setEvents} from "../../../redux/Events/eventsSlice";
 import {XHR} from "../../../utils/XHR";
@@ -16,6 +16,7 @@ import {DatePickerInputContainers} from "./DatePickerInputContainers/DatePickerI
 import {ColorPickerModal} from "./ColorPickerModal/ColorPickerModal";
 import {AllDayOptionSwitch} from "./AllDayOptionSwitch/AllDayOptionSwitch";
 import {ButtonApp} from "../../ButtonApp/ButtonApp";
+import {styleByOS} from "../../../utils/AppStyles";
 
 export function NewEventButtonModal(props: INewEventButtonModalProps) {
     const [title, setTitle] = useState("");
@@ -37,12 +38,17 @@ export function NewEventButtonModal(props: INewEventButtonModalProps) {
         {label: t('EndDate'), state: endDate, setState: setEndDate},
     ];
 
+    const [textualStartDate, setTextualStartDate] = useState('');
+    const [textualEndDate, setTextualEndDate] = useState('');
+
     const closeModal = () => {
         setTitle('');
         setColor('');
         setNotes('');
         setStartDate(undefined);
         setEndDate(undefined);
+        setTextualStartDate('');
+        setTextualEndDate('');
         props.setModalVisible(!props.modalVisible);
     }
 
@@ -69,6 +75,16 @@ export function NewEventButtonModal(props: INewEventButtonModalProps) {
                                        style={[styles(mode).modalText, styles(mode).input, marginPerLanguage]}/>
                             {i18n.language == 'en' && ColorButton}
                         </View>
+                        {!styleByOS() &&
+                            <View>
+                                <TextInput placeholder={t('StartDate')} value={textualStartDate}
+                                           onChangeText={setTextualStartDate}
+                                           style={[styles(mode).modalText, styles(mode).input, marginPerLanguage]}/>
+                                <TextInput placeholder={t('EndDate')} value={textualEndDate}
+                                           onChangeText={setTextualEndDate}
+                                           style={[styles(mode).modalText, styles(mode).input, marginPerLanguage]}/>
+                            </View>
+                        }
                         <View style={marginPerLanguage}>
                             <AllDayOptionSwitch isEnabled={isAllDayEnabled} setIsEnabled={setIsAllDayEnabled}/>
                             <DatePickerInputContainers timeContainers={timeContainers} isEnabled={isAllDayEnabled}/>
@@ -79,12 +95,12 @@ export function NewEventButtonModal(props: INewEventButtonModalProps) {
                     <View style={[styles(mode).inputContainer]}>
                         <ButtonApp onPress={closeModal} label={t('Cancel')}/>
                         <ButtonApp label={t('Save')} onPress={() => {
-                            if (startDate === undefined || endDate === undefined || color === '' || title === '') {
+                            if ((startDate === undefined && textualStartDate === '') || (endDate === undefined && textualEndDate === '') || color === '' || title === '') {
                                 setErrorModalVisible(true);
                                 return;
                             }
-                            const startDateAndTime = formatDateAndTime(startDate);
-                            const endDateAndTime = formatDateAndTime(endDate);
+                            const startDateAndTime = formatDateAndTime(textualStartDate === '' ? startDate : textualStartDate);
+                            const endDateAndTime = formatDateAndTime(textualEndDate === '' ? endDate : textualEndDate);
                             const dates = getDatesBetween(startDateAndTime.date, endDateAndTime.date);
                             const XHRTitle = `${startDateAndTime.date} (${startDateAndTime.time}) – ${endDateAndTime.date} (${endDateAndTime.time}): ${title} (${user.username})\0${notes}`;
                             if (dates !== null) {

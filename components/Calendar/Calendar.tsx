@@ -43,7 +43,7 @@ export default function Calendar() {
                         dispatch(setReduxSelected(day.dateString));
                     }}
                     renderItem={(item) => (
-                        <CalendarItem item={item} onLongPressItem={() => {
+                        <CalendarItem item={item} onDeleteItem={() => {
                             setItemToRemove(item);
                             setSureModalVisible(true);
                         }}/>

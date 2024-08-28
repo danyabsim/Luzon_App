@@ -15,5 +15,8 @@ export function styles(mode) {
             fontSize: 16,
             color: styleByTime('black', 'white', mode),
         },
+        buttons: {
+            flexDirection: 'row'
+        }
     });
 }

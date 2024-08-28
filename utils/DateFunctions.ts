@@ -1,15 +1,18 @@
-export function formatDateAndTime(dateString: Date | string) {
-    let dateObj: Date;
+export function dateConverter(dateString: Date | string) {
     if (dateString.toString().includes('GMT')) {
         // Format: "Mon May 29 2024 12:00:00 GMT+0300"
-        dateObj = new Date(dateString);
+        return new Date(dateString);
     } else {
         // Format: "2024-05-29 12:00"
         const [datePart, timePart] = dateString.toString().split(' ');
         const [year, month, day] = datePart.split('-');
         const [hours, minutes] = timePart.split(':');
-        dateObj = new Date(parseInt(year), parseInt(month) - 1, parseInt(day), parseInt(hours), parseInt(minutes));
+        return new Date(parseInt(year), parseInt(month) - 1, parseInt(day), parseInt(hours), parseInt(minutes));
     }
+}
+
+export function formatDateAndTime(dateString: Date | string) {
+    const dateObj: Date = dateConverter(dateString);
 
     const year = dateObj.getFullYear();
     const month = String(dateObj.getMonth() + 1).padStart(2, '0');
