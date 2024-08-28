@@ -1,4 +1,4 @@
-import {Text, TextInput, TouchableOpacity, View} from "react-native";
+import {Pressable, Text, TextInput, View} from "react-native";
 import {styles} from "./styles";
 import {setEvents} from "../../../redux/Events/eventsSlice";
 import {XHR} from "../../../utils/XHR";
@@ -57,7 +57,7 @@ export function NewEventButtonModal(props: INewEventButtonModalProps) {
         marginRight: i18n.language == 'en' ? 20 : 0
     };
 
-    const ColorButton = <TouchableOpacity
+    const ColorButton = <Pressable
         onPress={() => setColorPickerModalVisible(true)}
         style={[styles(mode).button, {backgroundColor: color}]}
     />;

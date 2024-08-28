@@ -1,6 +1,6 @@
 import {Alert, Text, View} from "react-native";
 import {Agenda, AgendaEntry, AgendaSchedule} from "react-native-calendars";
-import React from "react";
+import React, {useState} from "react";
 import {styles} from './styles';
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../redux/store";
@@ -14,13 +14,13 @@ import {TimeOutDelay} from "../../utils/TimeOutDelay";
 import {useTranslation} from "react-i18next";
 
 export default function Calendar() {
-    const [sureModalVisible, setSureModalVisible] = React.useState(false);
-    const [selected, setSelected] = React.useState(useSelector((state: RootState) => state.events.selected));
+    const [sureModalVisible, setSureModalVisible] = useState(false);
+    const [selected, setSelected] = useState(useSelector((state: RootState) => state.events.selected));
     const events = useSelector((state: RootState) => state.events.events);
     const user = useSelector((state: RootState) => state.user);
     const filteredOption = useSelector((state: RootState) => state.events.filteredOption);
     const dispatch = useDispatch();
-    const [itemToRemove, setItemToRemove] = React.useState<AgendaEntry>();
+    const [itemToRemove, setItemToRemove] = useState<AgendaEntry>();
     const mode = useSelector((state: RootState) => state.theme.mode);
     const {t} = useTranslation();
 

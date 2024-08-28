@@ -1,5 +1,5 @@
 import React from 'react';
-import {Image, Text, TouchableOpacity, View} from 'react-native';
+import {Image, Text, Pressable, View} from 'react-native';
 import {ImageLibraryOptions, launchImageLibrary} from 'react-native-image-picker';
 import {styleByTime} from "../../utils/AppStyles";
 import {useDispatch, useSelector} from "react-redux";
@@ -17,7 +17,7 @@ export default function SettingsScreen() {
 
     return (
         <View style={styles(mode).container}>
-            <TouchableOpacity onPress={() => {
+            <Pressable onPress={() => {
                 const options: ImageLibraryOptions = {
                     mediaType: 'photo',
                     includeBase64: false,
@@ -39,7 +39,7 @@ export default function SettingsScreen() {
                     style={styles(mode).imageHeader}
                     source={user.image ? user.image : styleByTime(require('../../assets/user (black).png'), require('../../assets/user (white).png'), mode)}
                 />
-            </TouchableOpacity>
+            </Pressable>
             <Text style={styles(mode).text}>{user.username}</Text>
             <Text style={styles(mode).text}>{user.isAdmin ? t('Admin') : t('RegularUser')}</Text>
         </View>

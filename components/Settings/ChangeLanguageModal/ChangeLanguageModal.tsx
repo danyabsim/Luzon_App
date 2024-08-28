@@ -24,7 +24,6 @@ export function ChangeLanguageModal({onClose}: { onClose: () => void }) {
             ))}
             <View style={styles(mode).inputContainer}>
                 <ButtonApp label={t('Save')} onPress={async () => {
-                    console.log(tempLanguage);
                     await i18n.changeLanguage(tempLanguage);
                     await AsyncStorage.setItem('language', JSON.stringify(tempLanguage));
                     onClose();

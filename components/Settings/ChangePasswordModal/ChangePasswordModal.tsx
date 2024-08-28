@@ -1,5 +1,5 @@
 import {Text, View} from "react-native";
-import React from "react";
+import React, {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../../redux/store";
 import {styles} from "./styles";
@@ -12,8 +12,8 @@ import {ButtonApp} from "../../ButtonApp/ButtonApp";
 export function ChangePasswordModal({onClose}: {
     onClose: () => void
 }) {
-    const [newPassword, setNewPassword] = React.useState('');
-    const [isErrorModalVisible, setErrorModalVisible] = React.useState(false);
+    const [newPassword, setNewPassword] = useState('');
+    const [isErrorModalVisible, setErrorModalVisible] = useState(false);
     const user = useSelector((state: RootState) => state.user);
     const mode = useSelector((state: RootState) => state.theme.mode);
     const dispatch = useDispatch();

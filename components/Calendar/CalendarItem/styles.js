@@ -17,6 +17,10 @@ export function styles(mode) {
         },
         buttons: {
             flexDirection: 'row'
+        },
+        image: {
+            width: 30,
+            height: 30
         }
     });
 }

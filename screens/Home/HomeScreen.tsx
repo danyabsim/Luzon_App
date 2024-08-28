@@ -12,7 +12,7 @@ import {RememberMeButton} from "../../components/RememberMeButton/RememberMeButt
 import {TextInputContainers} from "../../components/TextInputContainers/TextInputContainers";
 import {setDarkMode} from "../../redux/Theme/themeSlice";
 import {ErrorModalApp} from "../../components/ErrorModalApp/ErrorModalApp";
-import {setEvents} from "../../redux/Events/eventsSlice";
+import {setEvents, setFilteredOption} from "../../redux/Events/eventsSlice";
 import {useTranslation} from 'react-i18next';
 import '../../i18n';
 import {ButtonApp} from "../../components/ButtonApp/ButtonApp";
@@ -53,8 +53,13 @@ export default function HomeScreen({navigation}: Props) {
             }
         };
         getStatus();
+        dispatch(setFilteredOption(t('All')));
         dispatch(setEvents({}));
     }, []);
+
+    useEffect(() => {
+        dispatch(setFilteredOption(t('All')));
+    }, [i18n.language]);
 
     useEffect(() => {
         const getLanguage = async () => {

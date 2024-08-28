@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {Dimensions, FlatList, Text, View} from 'react-native';
 import {styles} from "./styles";
 import {useDispatch, useSelector} from "react-redux";
@@ -23,7 +23,7 @@ export default function Filter({isMenuOpen, setMenuOpen}: IFilterProps) {
     const buttonWidth = Dimensions.get('window').width * 0.4; // Adjust the percentage as needed
     const mode = useSelector((state: RootState) => state.theme.mode);
 
-    React.useEffect(() => {
+    useEffect(() => {
         XHR(dispatch, '/getAllUserNames', {});
     }, []);
 

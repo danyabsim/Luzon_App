@@ -1,5 +1,5 @@
 import {Text, View} from "react-native";
-import React from "react";
+import React, {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../../redux/store";
 import {styles} from "./styles";
@@ -13,9 +13,9 @@ import {ButtonApp} from "../../ButtonApp/ButtonApp";
 export function AddUserModal({onClose}: {
     onClose: () => void
 }) {
-    const [username, setUsername] = React.useState('');
-    const [password, setPassword] = React.useState('');
-    const [isErrorModalVisible, setErrorModalVisible] = React.useState(false);
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+    const [isErrorModalVisible, setErrorModalVisible] = useState(false);
     const mode = useSelector((state: RootState) => state.theme.mode);
     const dispatch = useDispatch();
 
