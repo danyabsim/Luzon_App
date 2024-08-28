@@ -20,13 +20,15 @@ export function CalendarItemActions({item, onDeleteItem, onEditItem}: ICalendarI
             />
             {areActionsOpen &&
                 <View style={styles.buttonContainer}>
-                    <Pressable style={[styles.elliptical, styles.button]} onPress={onDeleteItem}>
-                        <Image
-                            style={styles.image}
-                            source={styleByTime(require('../../../../assets/deleteItem (black).png'), require('../../../../assets/deleteItem (white).png'), mode)}
-                        />
-                    </Pressable>
-                    {selected && new Date(selected).getDay() >= new Date().getDay() && new Date(selected).getMonth() >= new Date().getMonth() &&
+                    {onDeleteItem &&
+                        <Pressable style={[styles.elliptical, styles.button]} onPress={onDeleteItem}>
+                            <Image
+                                style={styles.image}
+                                source={styleByTime(require('../../../../assets/deleteItem (black).png'), require('../../../../assets/deleteItem (white).png'), mode)}
+                            />
+                        </Pressable>
+                    }
+                    {onEditItem && selected && new Date(selected).getDay() >= new Date().getDay() && new Date(selected).getMonth() >= new Date().getMonth() &&
                         <Pressable style={[styles.elliptical, styles.button]} onPress={onEditItem}>
                             <Image
                                 style={styles.image}

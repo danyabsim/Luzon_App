@@ -30,7 +30,7 @@ export default {
     Notes: 'Notes',
     StartDate: 'Start\nDate',
     EndDate: 'End\nDate',
-    SureQuestion: 'Are You Sure?',
+    SureQuestion: 'Are you sure you want to remove the next item?',
     No: 'No',
     Yes: 'Yes',
     AddNewEvent: 'Add new Event',

@@ -17,8 +17,8 @@ export function CalendarItem({item, onDeleteItem, onEditItem}: ICalendarItemProp
         <View style={styles(mode).item}>
             <CalendarItemActions item={item} onDeleteItem={onDeleteItem} onEditItem={onEditItem}/>
             <Text style={styles(mode).itemText}>{item.name.split('\0')[0]}</Text>
-            <ButtonApp onPress={() => setExpanded(!isExpanded)} label={t(isExpanded ? 'Collapse' : 'Expand')}/>
-            {isExpanded && <Text style={styles(mode).itemText}>{t('Notes')}: {item.name.split('\0')[1]}</Text>}
+            {onDeleteItem && onEditItem && <ButtonApp onPress={() => setExpanded(!isExpanded)} label={t(isExpanded ? 'Collapse' : 'Expand')}/>}
+            {(!onDeleteItem && !onEditItem || isExpanded) && <Text style={styles(mode).itemText}>{t('Notes')}: {item.name.split('\0')[1]}</Text>}
         </View>
     );
 }

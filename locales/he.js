@@ -30,7 +30,7 @@ export default {
     Notes: 'הערות',
     StartDate: 'תאריך\nהתחלה',
     EndDate: 'תאריך\nסיום',
-    SureQuestion: 'האם אתם בטוחים?',
+    SureQuestion: 'האם אתם בטוחים שתרצו למחוק את האירוע הבא?',
     No: 'לא',
     Yes: 'כן',
     AddNewEvent: 'הוספת אירוע חדש',

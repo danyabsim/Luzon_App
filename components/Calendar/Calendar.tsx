@@ -32,6 +32,11 @@ export default function Calendar() {
         );
     }
 
+    const onCloseModal = () => {
+        setItemToRemove(undefined);
+        setSureModalVisible(false);
+    };
+
     return (
         <ErrorBoundary fallback={<Text style={styles(mode).itemText}>Something went wrong</Text>}>
             <View style={styles(mode).container}>
@@ -46,23 +51,25 @@ export default function Calendar() {
                         <CalendarItem item={item} onDeleteItem={() => {
                             setItemToRemove(item);
                             setSureModalVisible(true);
-                        }} onEditItem={() => {}}/>
+                        }} onEditItem={() => {
+                        }}/>
                     )}
                 />
-                <SureModal visible={sureModalVisible} setVisible={setSureModalVisible} onRequestCloseModal={() => {
-                    Alert.alert(t('ModalClosed'));
-                    setSureModalVisible(false);
-                }} onPressNo={() => {
-                    setItemToRemove(null);
-                    setSureModalVisible(false);
-                }} onPressYes={async () => {
-                    dispatch(setEvents({}));
-                    XHR(dispatch, '/removeEvent', {...itemToRemove});
-                    await TimeOutDelay(300);
-                    XHR(dispatch, '/connect', {...user});
-                    setItemToRemove(null);
-                    setSureModalVisible(false);
-                }}/>
+                <SureModal
+                    visible={sureModalVisible} setVisible={setSureModalVisible} item={itemToRemove}
+                    onRequestCloseModal={() => {
+                        Alert.alert(t('ModalClosed'));
+                        onCloseModal();
+                    }}
+                    onPressNo={onCloseModal}
+                    onPressYes={async () => {
+                        dispatch(setEvents({}));
+                        XHR(dispatch, '/removeEvent', {...itemToRemove});
+                        await TimeOutDelay(300);
+                        XHR(dispatch, '/connect', {...user});
+                        onCloseModal();
+                    }}
+                />
             </View>
         </ErrorBoundary>
     );

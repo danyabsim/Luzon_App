@@ -10,9 +10,7 @@ import {ErrorModalApp} from "../../ErrorModalApp/ErrorModalApp";
 import {useTranslation} from "react-i18next";
 import {ButtonApp} from "../../ButtonApp/ButtonApp";
 
-export function AddUserModal({onClose}: {
-    onClose: () => void
-}) {
+export function AddUserModal({onClose}: {onClose: () => void}) {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [isErrorModalVisible, setErrorModalVisible] = useState(false);
