@@ -14,13 +14,6 @@ export function styles(mode) {
         itemText: {
             fontSize: 16,
             color: styleByTime('black', 'white', mode),
-        },
-        buttons: {
-            flexDirection: 'row'
-        },
-        image: {
-            width: 30,
-            height: 30
         }
     });
 }

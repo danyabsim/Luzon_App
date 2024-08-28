@@ -46,7 +46,7 @@ export default function Calendar() {
                         <CalendarItem item={item} onDeleteItem={() => {
                             setItemToRemove(item);
                             setSureModalVisible(true);
-                        }}/>
+                        }} onEditItem={() => {}}/>
                     )}
                 />
                 <SureModal visible={sureModalVisible} setVisible={setSureModalVisible} onRequestCloseModal={() => {
