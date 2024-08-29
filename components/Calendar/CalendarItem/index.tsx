@@ -5,8 +5,8 @@ import {ICalendarItemProps} from "./ICalendarItemProps";
 import {useSelector} from "react-redux";
 import {RootState} from "../../../redux/store";
 import {useTranslation} from "react-i18next";
-import {ButtonApp} from "../../ButtonApp/ButtonApp";
-import {CalendarItemActions} from "./CalendarItemActions/CalendarItemActions";
+import {ButtonApp} from "../../ButtonApp";
+import {CalendarItemActions} from "./CalendarItemActions";
 
 export function CalendarItem({item, onDeleteItem, onEditItem}: ICalendarItemProps) {
     const [isExpanded, setExpanded] = useState(false);

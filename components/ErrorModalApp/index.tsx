@@ -1,4 +1,4 @@
-import {ModalApp} from "../ModalApp/ModalApp";
+import {ModalApp} from "../ModalApp";
 import React from "react";
 import {Text, View} from 'react-native';
 import {IErrorModalAppProps} from "./IErrorModalAppProps";
@@ -6,7 +6,7 @@ import {useSelector} from "react-redux";
 import {RootState} from "../../redux/store";
 import {styles} from "./styles";
 import {useTranslation} from "react-i18next";
-import {ButtonApp} from "../ButtonApp/ButtonApp";
+import {ButtonApp} from "../ButtonApp";
 
 export function ErrorModalApp(props: IErrorModalAppProps) {
     const mode = useSelector((state: RootState) => state.theme.mode);

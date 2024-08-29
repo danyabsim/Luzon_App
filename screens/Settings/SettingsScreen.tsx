@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {View} from 'react-native';
 import {styles} from "./styles";
-import {ModalApp} from "../../components/ModalApp/ModalApp";
+import {ModalApp} from "../../components/ModalApp";
 import {
     AddUserModal,
     ChangeLanguageModal,
@@ -12,7 +12,7 @@ import {
 import {useSelector} from "react-redux";
 import {RootState} from "../../redux/store";
 import {useTranslation} from "react-i18next";
-import {ButtonApp} from "../../components/ButtonApp/ButtonApp";
+import {ButtonApp} from "../../components/ButtonApp";
 
 export default function Settings() {
     const isAdmin = useSelector((state: RootState) => state.user.isAdmin);

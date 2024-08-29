@@ -1,14 +1,14 @@
 import HomeScreen from "../screens/Home/HomeScreen";
 import CalendarScreen from "../screens/Calendar/CalendarScreen";
 import {styles} from "./styles";
-import MenuImage from "../components/MenuImage/MenuImage";
+import MenuImage from "../components/MenuImage";
 import ProfileScreen from "../screens/Profile/ProfileScreen";
 import SettingsScreen from "../screens/Settings/SettingsScreen";
 import {createStackNavigator} from "@react-navigation/stack";
 import {useSelector} from "react-redux";
 import {RootState} from "../redux/store";
 import {useTranslation} from "react-i18next";
-import {RefreshImage} from "../components/RefreshImage/RefreshImage";
+import {RefreshImage} from "../components/RefreshImage";
 
 const Stack = createStackNavigator();
 

@@ -8,14 +8,14 @@ import {useDispatch, useSelector} from "react-redux";
 import {setUser} from "../../redux/User/userSlice";
 import {XHR} from "../../utils/XHR";
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {RememberMeButton} from "../../components/RememberMeButton/RememberMeButton";
-import {TextInputContainers} from "../../components/TextInputContainers/TextInputContainers";
+import {Index} from "../../components/RememberMeButton";
+import {TextInputContainers} from "../../components/TextInputContainers";
 import {setDarkMode} from "../../redux/Theme/themeSlice";
-import {ErrorModalApp} from "../../components/ErrorModalApp/ErrorModalApp";
+import {ErrorModalApp} from "../../components/ErrorModalApp";
 import {setEvents, setFilteredOption} from "../../redux/Events/eventsSlice";
 import {useTranslation} from 'react-i18next';
 import '../../i18n';
-import {ButtonApp} from "../../components/ButtonApp/ButtonApp";
+import {ButtonApp} from "../../components/ButtonApp";
 
 type Props = StackScreenProps<MainStackParamList, 'Home'>;
 
@@ -79,7 +79,7 @@ export default function HomeScreen({navigation}: Props) {
             <View style={{alignSelf: "center"}}>
                 <Text style={styles(mode).mainText}>{t('COD')}</Text>
                 <TextInputContainers inputContainers={inputContainers}/>
-                <RememberMeButton rememberMe={rememberMe} onPress={async () => {
+                <Index rememberMe={rememberMe} onPress={async () => {
                     setRememberMe(!rememberMe);
                     await AsyncStorage.setItem('rememberMe', JSON.stringify(!rememberMe));
                 }}/>

@@ -2,7 +2,7 @@ import {Switch, Text, View} from "react-native";
 import {styles} from "./styles";
 import React from "react";
 import {useSelector} from "react-redux";
-import {RootState} from "../../../../redux/store";
+import {RootState} from "../../../redux/store";
 import {IAllDayOptionSwitchProps} from "./IAllDayOptionSwitchProps";
 import {useTranslation} from "react-i18next";
 

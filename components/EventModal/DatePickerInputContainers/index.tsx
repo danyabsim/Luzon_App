@@ -1,13 +1,13 @@
-import {styleByOS} from "../../../../utils/AppStyles";
+import {styleByOS} from "../../../utils/AppStyles";
 import {View} from "react-native";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import React, {useEffect, useState} from "react";
 import {IDatePickerInputContainersProps} from "./IDatePickerInputContainersProps";
-import {formatDateAndTime} from "../../../../utils/DateFunctions";
+import {formatDateAndTime} from "../../../utils/DateFunctions";
 import {useTranslation} from "react-i18next";
-import {ButtonApp} from "../../../ButtonApp/ButtonApp";
+import {ButtonApp} from "../../ButtonApp";
 import {useSelector} from "react-redux";
-import {RootState} from "../../../../redux/store";
+import {RootState} from "../../../redux/store";
 
 export function DatePickerInputContainers(props: IDatePickerInputContainersProps) {
     const [isDatePickerVisible, setDatePickerVisibility] = useState(false);

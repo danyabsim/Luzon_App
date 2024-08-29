@@ -1,24 +1,24 @@
 import {Pressable, Text, TextInput, View} from "react-native";
 import {styles} from "./styles";
-import {setEvents} from "../../../redux/Events/eventsSlice";
-import {XHR} from "../../../utils/XHR";
+import {setEvents} from "../../redux/Events/eventsSlice";
+import {XHR} from "../../utils/XHR";
 import React, {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {RootState} from "../../../redux/store";
-import {INewEventButtonModalProps} from "./INewEventButtonModalProps";
-import {ModalApp} from "../../ModalApp/ModalApp";
-import {hexToRgbInt} from "../../../utils/AppConverts";
-import {formatDateAndTime, getDatesBetween} from "../../../utils/DateFunctions";
-import {TimeOutDelay} from "../../../utils/TimeOutDelay";
-import {ErrorModalApp} from "../../ErrorModalApp/ErrorModalApp";
+import {RootState} from "../../redux/store";
+import {IEventModalProps} from "./IEventModalProps";
+import {ModalApp} from "../ModalApp";
+import {hexToRgbInt} from "../../utils/AppConverts";
+import {formatDateAndTime, getDatesBetween} from "../../utils/DateFunctions";
+import {TimeOutDelay} from "../../utils/TimeOutDelay";
+import {ErrorModalApp} from "../ErrorModalApp";
 import {useTranslation} from "react-i18next";
-import {DatePickerInputContainers} from "./DatePickerInputContainers/DatePickerInputContainers";
-import {ColorPickerModal} from "./ColorPickerModal/ColorPickerModal";
-import {AllDayOptionSwitch} from "./AllDayOptionSwitch/AllDayOptionSwitch";
-import {ButtonApp} from "../../ButtonApp/ButtonApp";
-import {styleByOS} from "../../../utils/AppStyles";
+import {DatePickerInputContainers} from "./DatePickerInputContainers";
+import {ColorPickerModal} from "./ColorPickerModal";
+import {AllDayOptionSwitch} from "./AllDayOptionSwitch";
+import {ButtonApp} from "../ButtonApp";
+import {styleByOS} from "../../utils/AppStyles";
 
-export function NewEventButtonModal(props: INewEventButtonModalProps) {
+export function EventModal(props: IEventModalProps) {
     const [title, setTitle] = useState("");
     const [startDate, setStartDate] = useState<Date>(undefined);
     const [endDate, setEndDate] = useState<Date>(undefined);

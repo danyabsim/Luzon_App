@@ -1,6 +1,6 @@
 import {styles} from "./styles";
 import React from "react";
-import {ButtonApp} from "../../ButtonApp/ButtonApp";
+import {ButtonApp} from "../../ButtonApp";
 
 interface IOptionItemProps {
     item: {

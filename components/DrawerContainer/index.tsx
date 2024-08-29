@@ -1,5 +1,5 @@
 import {View} from 'react-native';
-import MenuButton from "./MenuButton/MenuButton";
+import MenuButton from "./MenuButton";
 import {styles} from "./styles";
 import {styleByTime} from "../../utils/AppStyles";
 import {useDispatch, useSelector} from "react-redux";

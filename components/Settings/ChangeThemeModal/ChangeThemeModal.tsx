@@ -8,7 +8,7 @@ import {RootState} from "../../../redux/store";
 import {XHR} from "../../../utils/XHR";
 import {setUser} from "../../../redux/User/userSlice";
 import {useTranslation} from "react-i18next";
-import {ButtonApp} from "../../ButtonApp/ButtonApp";
+import {ButtonApp} from "../../ButtonApp";
 
 export function ChangeThemeModal({onClose}: { onClose: () => void }) {
     const [mode, setMode] = useState(useSelector((state: RootState) => state.theme.mode));

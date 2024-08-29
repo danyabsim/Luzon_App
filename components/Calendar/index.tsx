@@ -8,8 +8,8 @@ import {setEvents, setReduxSelected} from "../../redux/Events/eventsSlice";
 import {ErrorBoundary} from "react-error-boundary";
 import {XHR} from "../../utils/XHR";
 import {calendarTheme} from "./calendarTheme";
-import {CalendarItem} from "./CalendarItem/CalendarItem";
-import {SureModal} from "./SureModal/SureModal";
+import {CalendarItem} from "./CalendarItem";
+import {SureModal} from "./SureModal";
 import {TimeOutDelay} from "../../utils/TimeOutDelay";
 import {useTranslation} from "react-i18next";
 

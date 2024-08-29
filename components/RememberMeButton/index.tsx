@@ -6,7 +6,7 @@ import {useSelector} from "react-redux";
 import {RootState} from "../../redux/store";
 import {useTranslation} from "react-i18next";
 
-export function RememberMeButton({rememberMe, onPress}: IRememberMeButtonProps) {
+export function Index({rememberMe, onPress}: IRememberMeButtonProps) {
     const mode = useSelector((state: RootState) => state.theme.mode);
     const {t, i18n} = useTranslation();
 

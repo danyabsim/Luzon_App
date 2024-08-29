@@ -1,8 +1,8 @@
 import {View} from "react-native";
 import React, {useState} from "react";
-import {NewEventButtonModal} from "./NewEventButtonModal/NewEventButtonModal";
+import {EventModal} from "../EventModal";
 import {useTranslation} from "react-i18next";
-import {ButtonApp} from "../ButtonApp/ButtonApp";
+import {ButtonApp} from "../ButtonApp";
 import {useSelector} from "react-redux";
 import {RootState} from "../../redux/store";
 
@@ -13,7 +13,7 @@ export default function NewEventButton() {
 
     return (
         <View>
-            <NewEventButtonModal modalVisible={modalVisible} setModalVisible={setModalVisible}/>
+            <EventModal modalVisible={modalVisible} setModalVisible={setModalVisible}/>
             {selected && new Date(selected).getDay() >= new Date().getDay() && new Date(selected).getMonth() >= new Date().getMonth() && <ButtonApp label={t('AddNewEvent')} onPress={() => setModalVisible(true)}/>}
         </View>
     );

@@ -3,12 +3,12 @@ import React, {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../../redux/store";
 import {styles} from "./styles";
-import {TextInputContainers} from "../../TextInputContainers/TextInputContainers";
+import {TextInputContainers} from "../../TextInputContainers";
 import {XHR} from "../../../utils/XHR";
 import {TimeOutDelay} from "../../../utils/TimeOutDelay";
-import {ErrorModalApp} from "../../ErrorModalApp/ErrorModalApp";
+import {ErrorModalApp} from "../../ErrorModalApp";
 import {useTranslation} from "react-i18next";
-import {ButtonApp} from "../../ButtonApp/ButtonApp";
+import {ButtonApp} from "../../ButtonApp";
 
 export function AddUserModal({onClose}: {onClose: () => void}) {
     const [username, setUsername] = useState('');

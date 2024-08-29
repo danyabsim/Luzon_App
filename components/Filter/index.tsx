@@ -7,8 +7,8 @@ import {RootState} from "../../redux/store";
 import {XHR} from "../../utils/XHR";
 import {IFilterProps} from "./IFilterProps";
 import {useTranslation} from "react-i18next";
-import {OptionItem} from "./OptionItem/OptionItem";
-import {ButtonApp} from "../ButtonApp/ButtonApp";
+import {OptionItem} from "./OptionItem";
+import {ButtonApp} from "../ButtonApp";
 
 export default function Filter({isMenuOpen, setMenuOpen}: IFilterProps) {
     const [selectedOption, setSelectedOption] = useState(null);
