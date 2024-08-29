@@ -33,6 +33,7 @@ export default {
     SureQuestion: 'האם אתם בטוחים שתרצו למחוק את האירוע הבא?',
     No: 'לא',
     Yes: 'כן',
+    EditEvent: 'עריכת אירוע',
     AddNewEvent: 'הוספת אירוע חדש',
     NewPassword: 'סיסמה חדשה',
     Save: 'שמירה',

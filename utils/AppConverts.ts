@@ -20,3 +20,21 @@ export function rgbIntToHex(rgbInt: number) {
     // Convert each component to hexadecimal and concatenate
     return `#${(red << 16 | green << 8 | blue).toString(16).padStart(6, '0')}`;
 }
+
+export function parseEventString(eventString: string) {
+    // Split the input string by ' – ' to get the date range part and the rest
+    const [firstPart, secondPart] = eventString.split(' – ');
+
+    // Extract the first date with time
+    const firstDateTime = firstPart.replace('(', '').replace(')', '');
+
+    // Separate the second date-time and the rest of the text
+    const secondDateTimePart = secondPart.split(': ')[0].replace('(', '').replace(')', '');
+    const textAfterColon = secondPart.split(': ').slice(1).join(': ').replace(/\(.*?\)/g, '').trim();
+
+    return {
+        startDate: firstDateTime,
+        endDate: secondDateTimePart,
+        title: textAfterColon
+    };
+}

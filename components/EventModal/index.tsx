@@ -2,12 +2,12 @@ import {Pressable, Text, TextInput, View} from "react-native";
 import {styles} from "./styles";
 import {setEvents} from "../../redux/Events/eventsSlice";
 import {XHR} from "../../utils/XHR";
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../redux/store";
 import {IEventModalProps} from "./IEventModalProps";
 import {ModalApp} from "../ModalApp";
-import {hexToRgbInt} from "../../utils/AppConverts";
+import {hexToRgbInt, parseEventString, rgbIntToHex} from "../../utils/AppConverts";
 import {formatDateAndTime, getDatesBetween} from "../../utils/DateFunctions";
 import {TimeOutDelay} from "../../utils/TimeOutDelay";
 import {ErrorModalApp} from "../ErrorModalApp";
@@ -30,7 +30,6 @@ export function EventModal(props: IEventModalProps) {
     const dispatch = useDispatch();
     const user = useSelector((state: RootState) => state.user);
     const mode = useSelector((state: RootState) => state.theme.mode);
-
     const {t, i18n} = useTranslation();
 
     const timeContainers = [
@@ -42,6 +41,8 @@ export function EventModal(props: IEventModalProps) {
     const [textualEndDate, setTextualEndDate] = useState('');
 
     const closeModal = () => {
+        props.setModalVisible(!props.modalVisible);
+        if (props.item !== undefined) return;
         setTitle('');
         setColor('');
         setNotes('');
@@ -49,7 +50,6 @@ export function EventModal(props: IEventModalProps) {
         setEndDate(undefined);
         setTextualStartDate('');
         setTextualEndDate('');
-        props.setModalVisible(!props.modalVisible);
     }
 
     const marginPerLanguage = {
@@ -62,6 +62,18 @@ export function EventModal(props: IEventModalProps) {
         style={[styles(mode).button, {backgroundColor: color}]}
     />;
 
+    useEffect(() => {
+        if (props.item === undefined) return;
+        const result = parseEventString(props.item.name.split('\0')[0]);
+        setTitle(result.title);
+        setStartDate(new Date(result.startDate));
+        setEndDate(new Date(result.endDate));
+        setTextualStartDate(result.startDate);
+        setTextualEndDate(result.endDate);
+        setColor(rgbIntToHex(props.item.height));
+        setNotes(props.item.name.split('\0')[1]);
+    }, [props.item]);
+
     return (
         <ModalApp
             onClose={closeModal} modalVisible={props.modalVisible} setModalVisible={props.setModalVisible}
@@ -70,7 +82,8 @@ export function EventModal(props: IEventModalProps) {
                     <View style={{alignItems: 'center'}}>
                         <View style={[styles(mode).inputContainer]}>
                             {i18n.language == 'he' && ColorButton}
-                            <Text style={[styles(mode).title, marginPerLanguage]}>{t('AddNewEvent')}</Text>
+                            <Text
+                                style={[styles(mode).title, marginPerLanguage]}>{props.item ? t('EditEvent') : t('AddNewEvent')}</Text>
                             {i18n.language == 'en' && ColorButton}
                         </View>
                         <TextInput placeholder={t('Title')} value={title} onChangeText={setTitle}
@@ -94,10 +107,14 @@ export function EventModal(props: IEventModalProps) {
                     </View>
                     <View style={[styles(mode).inputContainer]}>
                         <ButtonApp onPress={closeModal} label={t('Cancel')}/>
-                        <ButtonApp label={t('Save')} onPress={() => {
+                        <ButtonApp label={t('Save')} onPress={async () => {
                             if ((startDate === undefined && textualStartDate === '') || (endDate === undefined && textualEndDate === '') || color === '' || title === '') {
                                 setErrorModalVisible(true);
                                 return;
+                            }
+                            if (props.item) {
+                                XHR(dispatch, '/removeEvent', {...props.item});
+                                await TimeOutDelay(300);
                             }
                             const startDateAndTime = formatDateAndTime(textualStartDate === '' ? startDate : textualStartDate);
                             const endDateAndTime = formatDateAndTime(textualEndDate === '' ? endDate : textualEndDate);

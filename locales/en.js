@@ -33,6 +33,7 @@ export default {
     SureQuestion: 'Are you sure you want to remove the next item?',
     No: 'No',
     Yes: 'Yes',
+    EditEvent: 'Edit Event',
     AddNewEvent: 'Add new Event',
     NewPassword: 'New Password',
     Save: 'Save',

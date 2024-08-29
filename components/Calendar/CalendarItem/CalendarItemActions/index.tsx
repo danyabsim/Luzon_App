@@ -5,9 +5,9 @@ import {styleByTime} from "../../../../utils/AppStyles";
 import {rgbIntToHex} from "../../../../utils/AppConverts";
 import {useSelector} from "react-redux";
 import {RootState} from "../../../../redux/store";
-import {ICalendarItemProps} from "../ICalendarItemProps";
+import {ICalendarItemActionsProps} from "./ICalendarItemActionsProps";
 
-export function CalendarItemActions({item, onDeleteItem, onEditItem}: ICalendarItemProps) {
+export function CalendarItemActions({item, onDeleteItem, onEditItem}: ICalendarItemActionsProps) {
     const [areActionsOpen, setActionsOpen] = useState(false);
     const mode = useSelector((state: RootState) => state.theme.mode);
     const selected = useSelector((state: RootState) => state.events.selected);
