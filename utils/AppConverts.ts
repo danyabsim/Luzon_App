@@ -32,9 +32,14 @@ export function parseEventString(eventString: string) {
     const secondDateTimePart = secondPart.split(': ')[0].replace('(', '').replace(')', '');
     const textAfterColon = secondPart.split(': ').slice(1).join(': ').replace(/\(.*?\)/g, '').trim();
 
+    // Extract the content inside the final parentheses (e.g., "admin")
+    const finalBracketContentMatch = secondPart.match(/\(([^)]+)\)$/);
+    const finalBracketContent = finalBracketContentMatch ? finalBracketContentMatch[1] : '';
+
     return {
         startDate: firstDateTime,
         endDate: secondDateTimePart,
-        title: textAfterColon
+        title: textAfterColon,
+        username: finalBracketContent
     };
 }

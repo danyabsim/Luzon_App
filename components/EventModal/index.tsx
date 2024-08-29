@@ -27,6 +27,7 @@ export function EventModal(props: IEventModalProps) {
     const [isErrorModalVisible, setErrorModalVisible] = useState(false);
     const [isColorPickerModalVisible, setColorPickerModalVisible] = useState(false);
     const [isAllDayEnabled, setIsAllDayEnabled] = useState(false);
+    const [itemUsername, setItemUserName] = useState('');
     const dispatch = useDispatch();
     const user = useSelector((state: RootState) => state.user);
     const mode = useSelector((state: RootState) => state.theme.mode);
@@ -70,6 +71,7 @@ export function EventModal(props: IEventModalProps) {
         setEndDate(new Date(result.endDate));
         setTextualStartDate(result.startDate);
         setTextualEndDate(result.endDate);
+        setItemUserName(result.username);
         setColor(rgbIntToHex(props.item.height));
         setNotes(props.item.name.split('\0')[1]);
     }, [props.item]);
@@ -119,7 +121,7 @@ export function EventModal(props: IEventModalProps) {
                             const startDateAndTime = formatDateAndTime(textualStartDate === '' ? startDate : textualStartDate);
                             const endDateAndTime = formatDateAndTime(textualEndDate === '' ? endDate : textualEndDate);
                             const dates = getDatesBetween(startDateAndTime.date, endDateAndTime.date);
-                            const XHRTitle = `${startDateAndTime.date} (${startDateAndTime.time}) – ${endDateAndTime.date} (${endDateAndTime.time}): ${title} (${user.username})\0${notes}`;
+                            const XHRTitle = `${startDateAndTime.date} (${startDateAndTime.time}) – ${endDateAndTime.date} (${endDateAndTime.time}): ${title} (${props.item === undefined ? user.username : itemUsername})\0${notes}`;
                             if (dates !== null) {
                                 dates.map(async (day) => {
                                     dispatch(setEvents({}));
