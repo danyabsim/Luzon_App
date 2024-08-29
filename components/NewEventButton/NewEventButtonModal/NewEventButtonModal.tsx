@@ -68,19 +68,19 @@ export function NewEventButtonModal(props: INewEventButtonModalProps) {
             children={
                 <View>
                     <View style={{alignItems: 'center'}}>
-                        <Text style={styles(mode).title}>{t('AddNewEvent')}</Text>
                         <View style={[styles(mode).inputContainer]}>
                             {i18n.language == 'he' && ColorButton}
-                            <TextInput placeholder={t('Title')} value={title} onChangeText={setTitle}
-                                       style={[styles(mode).modalText, styles(mode).input, marginPerLanguage]}/>
+                            <Text style={[styles(mode).title, marginPerLanguage]}>{t('AddNewEvent')}</Text>
                             {i18n.language == 'en' && ColorButton}
                         </View>
+                        <TextInput placeholder={t('Title')} value={title} onChangeText={setTitle}
+                                   style={[styles(mode).modalText, styles(mode).input, marginPerLanguage]}/>
                         {!styleByOS() &&
                             <View>
-                                <TextInput placeholder={t('StartDate')} value={textualStartDate}
+                                <TextInput placeholder={t('StartDate').replace(/\n/g, ' ')} value={textualStartDate}
                                            onChangeText={setTextualStartDate}
                                            style={[styles(mode).modalText, styles(mode).input, marginPerLanguage]}/>
-                                <TextInput placeholder={t('EndDate')} value={textualEndDate}
+                                <TextInput placeholder={t('EndDate').replace(/\n/g, ' ')} value={textualEndDate}
                                            onChangeText={setTextualEndDate}
                                            style={[styles(mode).modalText, styles(mode).input, marginPerLanguage]}/>
                             </View>
