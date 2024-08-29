@@ -15,8 +15,8 @@ export const styles = StyleSheet.create({
         borderRadius: 10
     },
     image: {
-        width: 24,
-        height: 24,
+        width: 22,
+        height: 22,
     },
     button: {
         marginHorizontal: 4,
