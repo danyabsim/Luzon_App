@@ -1,5 +1,4 @@
 import {StyleSheet} from "react-native";
-import {rgbIntToHex} from "../../../../utils/AppConverts";
 import {styleByTime} from "../../../../utils/AppStyles";
 
 export function styles(mode) {

@@ -8,7 +8,7 @@ import {useTranslation} from "react-i18next";
 
 export function OptionSwitch(props: IOptionSwitchProps) {
     const mode = useSelector((state: RootState) => state.theme.mode);
-    const {t, i18n} = useTranslation();
+    const {i18n} = useTranslation();
 
     const toggleSwitch = () => props.setIsEnabled(previousState => !previousState);
 

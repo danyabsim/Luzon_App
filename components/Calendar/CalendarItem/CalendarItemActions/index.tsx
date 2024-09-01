@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import {Image, Pressable, View} from "react-native";
 import {styles} from "./styles";
 import {styleByTime} from "../../../../utils/AppStyles";
