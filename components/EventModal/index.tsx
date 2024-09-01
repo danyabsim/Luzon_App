@@ -14,7 +14,7 @@ import {ErrorModalApp} from "../ErrorModalApp";
 import {useTranslation} from "react-i18next";
 import {DatePickerInputContainers} from "./DatePickerInputContainers";
 import {ColorPickerModal} from "./ColorPickerModal";
-import {AllDayOptionSwitch} from "./AllDayOptionSwitch";
+import {OptionSwitch} from "./OptionSwitch";
 import {ButtonApp} from "../ButtonApp";
 import {styleByOS} from "../../utils/AppStyles";
 
@@ -27,6 +27,7 @@ export function EventModal(props: IEventModalProps) {
     const [isErrorModalVisible, setErrorModalVisible] = useState(false);
     const [isColorPickerModalVisible, setColorPickerModalVisible] = useState(false);
     const [isAllDayEnabled, setIsAllDayEnabled] = useState(false);
+    const [isAllUsersEnabled, setIsAllUsersEnabled] = useState(false);
     const [itemUsername, setItemUserName] = useState('');
     const dispatch = useDispatch();
     const user = useSelector((state: RootState) => state.user);
@@ -51,6 +52,8 @@ export function EventModal(props: IEventModalProps) {
         setEndDate(undefined);
         setTextualStartDate('');
         setTextualEndDate('');
+        setIsAllDayEnabled(false);
+        setIsAllUsersEnabled(false);
     }
 
     const marginPerLanguage = {
@@ -101,7 +104,14 @@ export function EventModal(props: IEventModalProps) {
                             </View>
                         }
                         <View style={marginPerLanguage}>
-                            <AllDayOptionSwitch isEnabled={isAllDayEnabled} setIsEnabled={setIsAllDayEnabled}/>
+                            <OptionSwitch
+                                label={t('AllDay')}
+                                isEnabled={isAllDayEnabled} setIsEnabled={setIsAllDayEnabled}/>
+                            {user.isAdmin &&
+                                <OptionSwitch
+                                    label={t('AllUsers')}
+                                    isEnabled={isAllUsersEnabled} setIsEnabled={setIsAllUsersEnabled}/>
+                            }
                             <DatePickerInputContainers timeContainers={timeContainers} isEnabled={isAllDayEnabled}/>
                         </View>
                         <TextInput placeholder={t('Notes')} multiline={true} value={notes} onChangeText={setNotes}
@@ -110,7 +120,7 @@ export function EventModal(props: IEventModalProps) {
                     <View style={[styles(mode).inputContainer]}>
                         <ButtonApp onPress={closeModal} label={t('Cancel')}/>
                         <ButtonApp label={t('Save')} onPress={async () => {
-                            if ((startDate === undefined && textualStartDate === '') || (endDate === undefined && textualEndDate === '') || color === '' || title === '') {
+                            if ((startDate === undefined && textualStartDate === '') || (endDate === undefined && textualEndDate === '')) {
                                 setErrorModalVisible(true);
                                 return;
                             }
@@ -118,10 +128,11 @@ export function EventModal(props: IEventModalProps) {
                                 XHR(dispatch, '/removeEvent', {...props.item});
                                 await TimeOutDelay(300);
                             }
+                            if (color === '') setColor('#ffffff');
                             const startDateAndTime = formatDateAndTime(textualStartDate === '' ? startDate : textualStartDate);
                             const endDateAndTime = formatDateAndTime(textualEndDate === '' ? endDate : textualEndDate);
                             const dates = getDatesBetween(startDateAndTime.date, endDateAndTime.date);
-                            const XHRTitle = `${startDateAndTime.date} (${startDateAndTime.time}) – ${endDateAndTime.date} (${endDateAndTime.time}): ${title} (${props.item === undefined ? user.username : itemUsername})\0${notes}`;
+                            const XHRTitle = `${startDateAndTime.date} (${startDateAndTime.time}) – ${endDateAndTime.date} (${endDateAndTime.time}): ${title} (${isAllUsersEnabled ? 'All Users' : props.item === undefined ? user.username : itemUsername})\0${notes}`;
                             if (dates !== null) {
                                 dates.map(async (day) => {
                                     dispatch(setEvents({}));

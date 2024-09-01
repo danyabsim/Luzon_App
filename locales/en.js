@@ -42,9 +42,10 @@ export default {
     ChangeThemeWarning: 'Warning: Changing the theme will auto logout from the account!',
     RemoveError: 'You entered nothing, your username or a username that does not exist. Please fill it out properly.',
     ColorPicker: 'Color Picker',
-    AllDay: 'All Day',
+    AllDay: 'Event for the whole Days',
     ChangePasswordError: 'You did not pass a new password. Please fill it out.',
     Expand: 'Expand',
-    Collapse: 'Collapse'
+    Collapse: 'Collapse',
+    AllUsers: 'Event for all the Users'
     // other keys...
 };

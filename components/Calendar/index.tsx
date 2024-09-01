@@ -22,7 +22,7 @@ export default function Calendar() {
         if (filteredOption == t('All')) return events;
         if (filteredOption == t('None')) return {};
         return Object.fromEntries(
-            Object.entries(events).map(([key, value]) => [key, value.filter(item => item.name.includes(`(${filteredOption})`))])
+            Object.entries(events).map(([key, value]) => [key, value.filter(item => item.name.includes(`(${filteredOption})`) || item.name.includes(`(All Users)`))])
         );
     }
 

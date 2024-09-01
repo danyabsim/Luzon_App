@@ -43,9 +43,10 @@ export default {
     ChangeThemeWarning: 'אזהרה: שינוי העיצוב יוציא אתכם מהחשבון באופן אוטומאטי!',
     RemoveError: 'הכנסתם כלום, את שם המשתמש שלכם או שם משתמש שלא קיים במערכת. יש למלא כמו שצריך!',
     ColorPicker: 'בחירת צבע',
-    AllDay: 'כל היום',
+    AllDay: 'אירוע לכל היום',
     ChangePasswordError: 'הכנסתם כלום. יש למלא את הסיסמה!',
     Expand: 'הרחבה',
-    Collapse: 'הקטנה'
+    Collapse: 'הקטנה',
+    AllUsers: 'אירוע לכלל המשתמשים'
     // other keys...
 };

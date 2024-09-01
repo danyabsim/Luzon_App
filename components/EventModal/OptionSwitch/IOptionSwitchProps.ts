@@ -1,6 +1,7 @@
 import {Dispatch, SetStateAction} from "react";
 
-export interface IAllDayOptionSwitchProps {
+export interface IOptionSwitchProps {
     isEnabled: boolean;
     setIsEnabled:  Dispatch<SetStateAction<boolean>>;
+    label: string;
 }
