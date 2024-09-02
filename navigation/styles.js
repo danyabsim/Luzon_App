@@ -8,6 +8,10 @@ export function styles(mode) {
             elevation: 0,
             shadowColor: 'transparent',
             borderWidth: 0,
-        }
+        },
+        inputContainer: {
+            flexDirection: 'row',
+            alignItems: 'center',
+        },
     });
 }

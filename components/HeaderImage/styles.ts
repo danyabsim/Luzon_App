@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native';
 const styles = StyleSheet.create({
     headerButtonContainer: {
         marginTop: 20,
-        padding: 10,
+        padding: 8,
         justifyContent: 'center'
     },
     headerButtonImage: {
