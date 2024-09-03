@@ -53,7 +53,7 @@ export function SearchScreen({navigation}: Props) {
                         distance: minDistance,
                     };
                 })
-                .filter(result => result.distance < 3) // Filter out items that have no match
+                .filter(result => result.distance < 2) // Filter out items that have no match
                 .sort((a, b) => a.distance - b.distance); // Sort by distance ascending
 
             setBestEvents(matches.map(match => match.item)); // Set the best matches
