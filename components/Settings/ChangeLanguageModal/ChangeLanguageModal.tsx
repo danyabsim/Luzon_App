@@ -5,7 +5,7 @@ import {useSelector} from "react-redux";
 import {RootState} from "../../../redux/store";
 import {useTranslation} from "react-i18next";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import {ButtonApp} from "../../ButtonApp";
+import {ButtonApp} from "../../ButtonApp/ButtonApp";
 
 export function ChangeLanguageModal({onClose}: { onClose: () => void }) {
     const mode = useSelector((state: RootState) => state.theme.mode);

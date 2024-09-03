@@ -1,8 +1,8 @@
 import {View} from "react-native";
 import React, {useState} from "react";
-import {EventModal} from "../EventModal";
+import {EventModal} from "../EventModal/EventModal";
 import {useTranslation} from "react-i18next";
-import {ButtonApp} from "../ButtonApp";
+import {ButtonApp} from "../ButtonApp/ButtonApp";
 import {useSelector} from "react-redux";
 import {RootState} from "../../redux/store";
 

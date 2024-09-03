@@ -6,16 +6,16 @@ import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../redux/store";
 import {IEventModalProps} from "./IEventModalProps";
-import {ModalApp} from "../ModalApp";
+import {ModalApp} from "../ModalApp/ModalApp";
 import {hexToRgbInt, parseEventString, rgbIntToHex} from "../../utils/AppConverts";
 import {formatDateAndTime, getDatesBetween} from "../../utils/DateFunctions";
 import {TimeOutDelay} from "../../utils/TimeOutDelay";
-import {ErrorModalApp} from "../ErrorModalApp";
+import {ErrorModalApp} from "../ErrorModalApp/ErorrModalApp";
 import {useTranslation} from "react-i18next";
-import {DatePickerInputContainers} from "./DatePickerInputContainers";
-import {ColorPickerModal} from "./ColorPickerModal";
-import {OptionSwitch} from "./OptionSwitch";
-import {ButtonApp} from "../ButtonApp";
+import {DatePickerInputContainers} from "./DatePickerInputContainers/DatePickerInputContainers";
+import {ColorPickerModal} from "./ColorPickerModal/ColorPickerModal";
+import {OptionSwitch} from "./OptionSwitch/OptionSwitch";
+import {ButtonApp} from "../ButtonApp/ButtonApp";
 import {styleByOS} from "../../utils/AppStyles";
 
 export function EventModal(props: IEventModalProps) {

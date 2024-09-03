@@ -5,12 +5,12 @@ import {ICalendarItemProps} from "./ICalendarItemProps";
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../../redux/store";
 import {useTranslation} from "react-i18next";
-import {CalendarItemActions} from "./CalendarItemActions";
+import {CalendarItemActions} from "./CalendarItemActions/CalendarItemActions";
 import {setEvents} from "../../../redux/Events/eventsSlice";
 import {XHR} from "../../../utils/XHR";
 import {TimeOutDelay} from "../../../utils/TimeOutDelay";
-import {SureModal} from "./SureModal";
-import {EventModal} from "../../EventModal";
+import {SureModal} from "./SureModal/SureModal";
+import {EventModal} from "../../EventModal/EventModal";
 
 export function CalendarItem({item}: ICalendarItemProps) {
     const [sureModalVisible, setSureModalVisible] = useState(false);

@@ -5,7 +5,7 @@ import React, {useEffect, useState} from "react";
 import {IDatePickerInputContainersProps} from "./IDatePickerInputContainersProps";
 import {formatDateAndTime} from "../../../utils/DateFunctions";
 import {useTranslation} from "react-i18next";
-import {ButtonApp} from "../../ButtonApp";
+import {ButtonApp} from "../../ButtonApp/ButtonApp";
 import {useSelector} from "react-redux";
 import {RootState} from "../../../redux/store";
 

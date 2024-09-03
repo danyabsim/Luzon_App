@@ -1,4 +1,4 @@
-import {DrawerContainer} from "../components/DrawerContainer";
+import {DrawerContainer} from "../components/DrawerContainer/DrawerContainer";
 import {AppNavigator} from "./AppNavigator";
 import {createDrawerNavigator} from "@react-navigation/drawer";
 import {useTranslation} from "react-i18next";

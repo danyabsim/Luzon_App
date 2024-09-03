@@ -1,4 +1,4 @@
-import {ModalApp} from "../../ModalApp";
+import {ModalApp} from "../../ModalApp/ModalApp";
 import {IColorPickerModalProps} from "./IColorPickerModalProps";
 import React from "react";
 import {Text, View} from "react-native";
@@ -7,7 +7,7 @@ import {useSelector} from "react-redux";
 import {RootState} from "../../../redux/store";
 import {styles} from "./styles";
 import ColorPicker from "react-native-wheel-color-picker";
-import {ButtonApp} from "../../ButtonApp";
+import {ButtonApp} from "../../ButtonApp/ButtonApp";
 
 export function ColorPickerModal(props: IColorPickerModalProps) {
     const mode = useSelector((state: RootState) => state.theme.mode);

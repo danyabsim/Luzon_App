@@ -7,7 +7,7 @@ import {setDarkMode} from "../../../redux/Theme/themeSlice";
 import {RootState} from "../../../redux/store";
 import {setUser} from "../../../redux/User/userSlice";
 import {useTranslation} from "react-i18next";
-import {ButtonApp} from "../../ButtonApp";
+import {ButtonApp} from "../../ButtonApp/ButtonApp";
 
 export function ChangeThemeModal({onClose}: { onClose: () => void }) {
     const mode = useSelector((state: RootState) => state.theme.mode);

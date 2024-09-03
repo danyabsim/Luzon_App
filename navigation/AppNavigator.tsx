@@ -7,7 +7,7 @@ import {createStackNavigator} from "@react-navigation/stack";
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../redux/store";
 import {useTranslation} from "react-i18next";
-import {HeaderImage} from "../components/HeaderImage";
+import {HeaderImage} from "../components/HeaderImage/HeaderImage";
 import {styleByTime} from "../utils/AppStyles";
 import {setEvents} from "../redux/Events/eventsSlice";
 import {XHR} from "../utils/XHR";

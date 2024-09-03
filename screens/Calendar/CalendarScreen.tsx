@@ -1,11 +1,11 @@
 import React, {useState} from 'react';
 import {Text, TouchableWithoutFeedback, View} from 'react-native';
-import Calendar from "../../components/Calendar";
-import NewEventButton from "../../components/NewEventButton";
+import Calendar from "../../components/Calendar/Calendar";
+import NewEventButton from "../../components/NewEventButton/NewEventButton";
 import {styles} from './styles';
 import {useSelector} from "react-redux";
 import {RootState} from "../../redux/store";
-import Filter from "../../components/Filter";
+import Filter from "../../components/Filter/Filter";
 import {useTranslation} from "react-i18next";
 
 export default function CalendarScreen() {

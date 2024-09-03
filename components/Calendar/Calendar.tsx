@@ -7,7 +7,7 @@ import {RootState} from "../../redux/store";
 import {setReduxSelected} from "../../redux/Events/eventsSlice";
 import {ErrorBoundary} from "react-error-boundary";
 import {calendarTheme} from "./calendarTheme";
-import {CalendarItem} from "./CalendarItem";
+import {CalendarItem} from "./CalendarItem/CalendarItem";
 import {useTranslation} from "react-i18next";
 
 export default function Calendar() {
