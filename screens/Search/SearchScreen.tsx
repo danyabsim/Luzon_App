@@ -1,5 +1,4 @@
-import * as tf from '@tensorflow/tfjs';
-import * as use from '@tensorflow-models/universal-sentence-encoder';
+import levenshtein from 'js-levenshtein';
 import {useSelector} from "react-redux";
 import {RootState} from "../../redux/store";
 import React, {useEffect, useState} from "react";
@@ -18,17 +17,11 @@ export function SearchScreen({navigation}: Props) {
     const events = useSelector((state: RootState) => state.events.events);
     const mode = useSelector((state: RootState) => state.theme.mode);
     const {t, i18n} = useTranslation();
-    const [model, setModel] = useState<use.UniversalSentenceEncoder>();
 
     useEffect(() => {
-        // Load the Universal Sentence Encoder model
-        use.load().then(setModel);
-    }, []);
+        if (!searchInput || !events) return;
 
-    useEffect(() => {
-        if (!model || searchInput === '') return;
-
-        const calculateBestMatches = async () => {
+        const calculateBestMatches = () => {
             const flattenedItems = Object.entries(events).flatMap(([group, entries]) =>
                 entries.map(entry => ({
                     ...entry,
@@ -36,36 +29,38 @@ export function SearchScreen({navigation}: Props) {
                 }))
             );
 
-            // Get the embeddings for the search input and all items in one batch
-            const searchEmbedding = (await model.embed([searchInput])).arraySync()[0];
-            const titles = flattenedItems.map(item => parseEventString(item.name.split('\0')[0]).title);
-            const itemEmbeddings = (await model.embed(titles)).arraySync();
+            const searchInputLower = searchInput.toLowerCase();
+            const searchLength = searchInputLower.length;
 
-            const searchTensor = tf.tensor1d(searchEmbedding);
+            const matches = flattenedItems
+                .map(item => {
+                    const parsedTitle = parseEventString(item.name.split('\0')[0]).title.toLowerCase();
 
-            // Calculate similarity for each item
-            const matches = itemEmbeddings.map((embedding, index) => {
-                const itemTensor = tf.tensor1d(embedding);
+                    let minDistance = Infinity;
 
-                const dotProduct = tf.dot(searchTensor, itemTensor);
-                const normSearch = searchTensor.norm();
-                const normItem = itemTensor.norm();
-                const similarity = dotProduct.div(normSearch.mul(normItem)).dataSync()[0];
+                    // Iterate over all possible substrings of the same length as searchInput
+                    for (let i = 0; i <= parsedTitle.length - searchLength; i++) {
+                        const substring = parsedTitle.substring(i, i + searchLength);
+                        const distance = levenshtein(searchInputLower, substring);
 
-                return {
-                    item: flattenedItems[index],
-                    similarity,
-                };
-            });
+                        if (distance < minDistance) {
+                            minDistance = distance;
+                        }
+                    }
 
-            const bestMatches = matches.filter(result => result.similarity >= 0.5)
-                .sort((a, b) => b.similarity - a.similarity);
+                    return {
+                        item,
+                        distance: minDistance,
+                    };
+                })
+                .filter(result => result.distance < 3) // Filter out items that have no match
+                .sort((a, b) => a.distance - b.distance); // Sort by distance ascending
 
-            setBestEvents(bestMatches.map(match => match.item));
+            setBestEvents(matches.map(match => match.item)); // Set the best matches
         };
 
         calculateBestMatches();
-    }, [searchInput, events, model]);
+    }, [searchInput, events]);
 
     return (
         <View style={styles(mode).container}>
