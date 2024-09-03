@@ -46,6 +46,8 @@ export default {
     ChangePasswordError: 'You did not pass a new password. Please fill it out.',
     Expand: 'Expand',
     Collapse: 'Collapse',
-    AllUsers: 'Event for all the Users'
+    AllUsers: 'Event for all the Users',
+    NoResult: 'No results were found...',
+    Search: 'Search'
     // other keys...
 };

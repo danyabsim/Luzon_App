@@ -47,6 +47,8 @@ export default {
     ChangePasswordError: 'הכנסתם כלום. יש למלא את הסיסמה!',
     Expand: 'הרחבה',
     Collapse: 'הקטנה',
-    AllUsers: 'אירוע לכלל המשתמשים'
+    AllUsers: 'אירוע לכלל המשתמשים',
+    NoResult: 'לא נמצאה תוצאה...',
+    Search: 'חיפוש'
     // other keys...
 };

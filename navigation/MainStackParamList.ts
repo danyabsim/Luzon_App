@@ -3,4 +3,5 @@ export type MainStackParamList = {
     Calendar: undefined;
     Profile: undefined;
     Settings: undefined;
+    Search: undefined;
 };

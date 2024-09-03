@@ -12,6 +12,7 @@ import {styleByTime} from "../utils/AppStyles";
 import {setEvents} from "../redux/Events/eventsSlice";
 import {XHR} from "../utils/XHR";
 import {View} from "react-native";
+import {SearchScreen} from "../screens/Search/SearchScreen";
 
 const Stack = createStackNavigator();
 
@@ -39,7 +40,9 @@ export const AppNavigator = () => {
 
         const SearchImage = (<HeaderImage
             onPress={() => {
-                // should open Search
+                const currentRoute = navigation.getState().routes[navigation.getState().index].name;
+                if (currentRoute !== 'Search') navigation.navigate('Search');
+                else navigation.goBack();
             }}
             source={styleByTime(require('../assets/search (black).png'), require('../assets/search (white).png'), mode)}
         />);
@@ -65,6 +68,9 @@ export const AppNavigator = () => {
             />
             <Stack.Screen
                 name="Settings" component={SettingsScreen} options={({navigation}) => headerOptions(navigation)}
+            />
+            <Stack.Screen
+                name={"Search"} component={SearchScreen} options={({navigation}) => headerOptions(navigation)}
             />
         </Stack.Navigator>
     );
