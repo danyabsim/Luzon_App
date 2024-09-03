@@ -41,6 +41,7 @@ export function SearchScreen({navigation}: Props) {
                     // Iterate over all possible substrings of the same length as searchInput
                     for (let i = 0; i <= parsedTitle.length - searchLength; i++) {
                         const substring = parsedTitle.substring(i, i + searchLength);
+                        if (substring.length !== searchInputLower.length) continue;
                         const distance = levenshtein(searchInputLower, substring);
 
                         if (distance < minDistance) {
@@ -53,7 +54,7 @@ export function SearchScreen({navigation}: Props) {
                         distance: minDistance,
                     };
                 })
-                .filter(result => result.distance < 2) // Filter out items that have no match
+                .filter(result => result.distance < Math.min(searchInputLower.length, 3)) // Filter out items that have no match
                 .sort((a, b) => a.distance - b.distance); // Sort by distance ascending
 
             setBestEvents(matches.map(match => match.item)); // Set the best matches
