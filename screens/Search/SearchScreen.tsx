@@ -58,7 +58,7 @@ export function SearchScreen({navigation}: Props) {
                 };
             });
 
-            const bestMatches = matches.filter(result => result.similarity >= 0.3)
+            const bestMatches = matches.filter(result => result.similarity >= 0.5)
                 .sort((a, b) => b.similarity - a.similarity);
 
             setBestEvents(bestMatches.map(match => match.item));
