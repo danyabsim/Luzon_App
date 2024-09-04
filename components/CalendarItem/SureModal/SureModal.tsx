@@ -2,11 +2,11 @@ import {Text, View} from "react-native";
 import {styles} from "./styles";
 import React from "react";
 import {ISureModalProps} from "./ISureModalProps";
-import {ModalApp} from "../../../ModalApp/ModalApp";
+import {ModalApp} from "../../ModalApp/ModalApp";
 import {useSelector} from "react-redux";
-import {RootState} from "../../../../redux/store";
+import {RootState} from "../../../redux/store";
 import {useTranslation} from "react-i18next";
-import {ButtonApp} from "../../../ButtonApp/ButtonApp";
+import {ButtonApp} from "../../ButtonApp/ButtonApp";
 import {CalendarItem} from "../CalendarItem";
 
 export function SureModal(props: ISureModalProps) {
@@ -17,7 +17,7 @@ export function SureModal(props: ISureModalProps) {
         <ModalApp modalVisible={props.visible} setModalVisible={props.setVisible} children={
             <View>
                 <Text style={styles(mode).modalText}>{t('SureQuestion')}</Text>
-                {props.item && <CalendarItem item={props.item}/>}
+                {props.item && <CalendarItem item={props.item} isOnCalendar={false}/>}
                 <View style={styles(mode).inputContainer}>
                     <ButtonApp onPress={props.onPressNo} label={t('No')}/>
                     <ButtonApp onPress={props.onPressYes} label={t('Yes')}/>
