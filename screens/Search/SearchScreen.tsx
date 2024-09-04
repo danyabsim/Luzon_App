@@ -5,18 +5,15 @@ import React, {useEffect, useState} from "react";
 import {FlatList, Text, TextInput, View} from "react-native";
 import {styles} from "./styles";
 import {useTranslation} from "react-i18next";
-import {StackScreenProps} from "@react-navigation/stack";
-import {MainStackParamList} from "../../navigation/MainStackParamList";
 import {parseEventString} from "../../utils/AppConverts";
+import {CalendarItem} from "../../components/CalendarItem/CalendarItem";
 
-type Props = StackScreenProps<MainStackParamList, 'Search'>;
-
-export function SearchScreen({navigation}: Props) {
+export function SearchScreen() {
     const [bestEvents, setBestEvents] = useState<{ group: string, name: string, height: number, day: string }[]>();
     const [searchInput, setSearchInput] = useState('');
     const events = useSelector((state: RootState) => state.events.events);
     const mode = useSelector((state: RootState) => state.theme.mode);
-    const {t, i18n} = useTranslation();
+    const {t} = useTranslation();
 
     useEffect(() => {
         if (!searchInput || !events) return;
@@ -74,9 +71,7 @@ export function SearchScreen({navigation}: Props) {
                     keyExtractor={(item, index) => `${item.group}-${index}`}
                     renderItem={({item}) => (
                         <View style={styles(mode).resultItem}>
-                            <Text style={styles(mode).itemText}>{item.name}</Text>
-                            <Text style={styles(mode).itemText}>{item.day}</Text>
-                            <Text style={styles(mode).itemText}>{item.height}</Text>
+                            <CalendarItem item={item} isOnCalendar={false}/>
                         </View>
                     )}
                 />

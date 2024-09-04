@@ -3,16 +3,16 @@ import {Alert, Text, View} from "react-native";
 import React, {useState} from "react";
 import {ICalendarItemProps} from "./ICalendarItemProps";
 import {useDispatch, useSelector} from "react-redux";
-import {RootState} from "../../../redux/store";
+import {RootState} from "../../redux/store";
 import {useTranslation} from "react-i18next";
 import {CalendarItemActions} from "./CalendarItemActions/CalendarItemActions";
-import {setEvents} from "../../../redux/Events/eventsSlice";
-import {XHR} from "../../../utils/XHR";
-import {TimeOutDelay} from "../../../utils/TimeOutDelay";
+import {setEvents} from "../../redux/Events/eventsSlice";
+import {XHR} from "../../utils/XHR";
+import {TimeOutDelay} from "../../utils/TimeOutDelay";
 import {SureModal} from "./SureModal/SureModal";
-import {EventModal} from "../../EventModal/EventModal";
+import {EventModal} from "../EventModal/EventModal";
 
-export function CalendarItem({item}: ICalendarItemProps) {
+export function CalendarItem({item, isOnCalendar}: ICalendarItemProps) {
     const [sureModalVisible, setSureModalVisible] = useState(false);
     const [eventModalVisible, setEventModalVisible] = useState(false);
     const dispatch = useDispatch();
@@ -23,7 +23,11 @@ export function CalendarItem({item}: ICalendarItemProps) {
     return (
         <View>
             <View style={styles(mode).item}>
-                <CalendarItemActions item={item} onDeleteItem={() => setSureModalVisible(true)} onEditItem={() => setEventModalVisible(true)}/>
+                {isOnCalendar ?
+                    <CalendarItemActions item={item} onDeleteItem={() => setSureModalVisible(true)} onEditItem={() => setEventModalVisible(true)}/>
+                :
+                    <CalendarItemActions item={item}/>
+                }
                 <Text style={styles(mode).itemText}>{item.name.split('\0')[0]}</Text>
                 <Text style={styles(mode).itemText}>{t('Notes')}: {item.name.split('\0')[1]}</Text>
             </View>
