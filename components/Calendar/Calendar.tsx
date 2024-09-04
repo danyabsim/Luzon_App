@@ -37,7 +37,7 @@ export default function Calendar() {
                         dispatch(setReduxSelected(day.dateString));
                     }}
                     renderItem={(item) => (
-                        <CalendarItem item={item} isOnCalendar={true}/>
+                        <CalendarItem item={item} areActionsOn={true}/>
                     )}
                 />
             </View>

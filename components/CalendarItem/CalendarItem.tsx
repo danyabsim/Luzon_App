@@ -12,7 +12,7 @@ import {TimeOutDelay} from "../../utils/TimeOutDelay";
 import {SureModal} from "./SureModal/SureModal";
 import {EventModal} from "../EventModal/EventModal";
 
-export function CalendarItem({item, isOnCalendar}: ICalendarItemProps) {
+export function CalendarItem({item, areActionsOn}: ICalendarItemProps) {
     const [sureModalVisible, setSureModalVisible] = useState(false);
     const [eventModalVisible, setEventModalVisible] = useState(false);
     const dispatch = useDispatch();
@@ -23,7 +23,7 @@ export function CalendarItem({item, isOnCalendar}: ICalendarItemProps) {
     return (
         <View>
             <View style={styles(mode).item}>
-                {isOnCalendar ?
+                {areActionsOn ?
                     <CalendarItemActions item={item} onDeleteItem={() => setSureModalVisible(true)} onEditItem={() => setEventModalVisible(true)}/>
                 :
                     <CalendarItemActions item={item}/>

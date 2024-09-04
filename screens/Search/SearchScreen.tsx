@@ -71,7 +71,7 @@ export function SearchScreen() {
                     keyExtractor={(item, index) => `${item.group}-${index}`}
                     renderItem={({item}) => (
                         <View style={styles(mode).resultItem}>
-                            <CalendarItem item={item} isOnCalendar={false}/>
+                            <CalendarItem item={item} areActionsOn={true}/>
                         </View>
                     )}
                 />
