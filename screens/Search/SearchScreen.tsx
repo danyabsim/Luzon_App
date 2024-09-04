@@ -39,14 +39,10 @@ export function SearchScreen({navigation}: Props) {
                     let minDistance = Infinity;
 
                     // Iterate over all possible substrings of the same length as searchInput
-                    for (let i = 0; i <= parsedTitle.length - searchLength; i++) {
-                        const substring = parsedTitle.substring(i, i + searchLength);
-                        if (substring.length !== searchInputLower.length) continue;
+                    for (let i = 0; i < parsedTitle.length; i++) {
+                        const substring = parsedTitle.substring(i, Math.min(i + searchLength, parsedTitle.length));
                         const distance = levenshtein(searchInputLower, substring);
-
-                        if (distance < minDistance) {
-                            minDistance = distance;
-                        }
+                        minDistance = Math.min(minDistance, distance);
                     }
 
                     return {
