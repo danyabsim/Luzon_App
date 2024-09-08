@@ -1,13 +1,13 @@
 import {Text, View} from "react-native";
 import React, {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {RootState} from "../../../redux/store";
+import {RootState} from "../../redux/store";
 import {styles} from "./styles";
-import {TextInputContainers} from "../../TextInputContainers/TextInputContainers";
-import {XHR} from "../../../utils/XHR";
-import {ErrorModalApp} from "../../ErrorModalApp/ErorrModalApp";
+import {TextInputContainers} from "../TextInputContainers/TextInputContainers";
+import {XHR} from "../../utils/XHR";
+import {ErrorModalApp} from "../ErrorModalApp/ErorrModalApp";
 import {useTranslation} from "react-i18next";
-import {ButtonApp} from "../../ButtonApp/ButtonApp";
+import {ButtonApp} from "../ButtonApp/ButtonApp";
 
 export function ChangePasswordModal({onClose}: { onClose: () => void }) {
     const [newPassword, setNewPassword] = useState('');

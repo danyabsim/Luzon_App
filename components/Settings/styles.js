@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {styleByTime} from "../../../utils/AppStyles";
+import {styleByTime} from "../../utils/AppStyles";
 
 export function styles(mode) {
     return StyleSheet.create({
@@ -31,6 +31,8 @@ export function styles(mode) {
         warningTitle: {
             marginBottom: 20,
             color: styleByTime('black', 'white', mode),
+            fontWeight: 'bold',
+            textAlign: 'center',
         }
     });
 }
