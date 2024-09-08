@@ -66,7 +66,7 @@ export const AppNavigator = () => {
                 name="Settings" component={SettingsScreen} options={({navigation}) => headerOptions(navigation)}
             />
             <Stack.Screen
-                name={"Search"} component={SearchScreen} options={({navigation}) => headerOptions(navigation)}
+                name="Search" component={SearchScreen} options={({navigation}) => headerOptions(navigation)}
             />
         </Stack.Navigator>
     );

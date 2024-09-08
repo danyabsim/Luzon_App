@@ -24,8 +24,9 @@ export function CalendarItem({item, areActionsOn}: ICalendarItemProps) {
         <View>
             <View style={styles(mode).item}>
                 {areActionsOn ?
-                    <CalendarItemActions item={item} onDeleteItem={() => setSureModalVisible(true)} onEditItem={() => setEventModalVisible(true)}/>
-                :
+                    <CalendarItemActions item={item} onDeleteItem={() => setSureModalVisible(true)}
+                                         onEditItem={() => setEventModalVisible(true)}/>
+                    :
                     <CalendarItemActions item={item}/>
                 }
                 <Text style={styles(mode).itemText}>{item.name.split('\0')[0]}</Text>

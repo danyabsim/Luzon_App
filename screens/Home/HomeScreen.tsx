@@ -73,7 +73,6 @@ export default function HomeScreen({navigation}: Props) {
         getLanguage();
     }, [i18n]);
 
-
     return (
         <View style={styles(mode).container}>
             <View style={{alignSelf: "center"}}>

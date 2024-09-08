@@ -9,15 +9,12 @@ import {ErrorModalApp} from "../../ErrorModalApp/ErorrModalApp";
 import {useTranslation} from "react-i18next";
 import {ButtonApp} from "../../ButtonApp/ButtonApp";
 
-export function ChangePasswordModal({onClose}: {
-    onClose: () => void
-}) {
+export function ChangePasswordModal({onClose}: { onClose: () => void }) {
     const [newPassword, setNewPassword] = useState('');
     const [isErrorModalVisible, setErrorModalVisible] = useState(false);
     const user = useSelector((state: RootState) => state.user);
     const mode = useSelector((state: RootState) => state.theme.mode);
     const dispatch = useDispatch();
-
     const {t} = useTranslation();
 
     const inputContainers = [

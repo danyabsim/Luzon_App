@@ -32,7 +32,6 @@ export function SearchScreen() {
             const matches = flattenedItems
                 .map(item => {
                     const parsedTitle = parseEventString(item.name.split('\0')[0]).title.toLowerCase();
-
                     let minDistance = Infinity;
 
                     // Iterate over all possible substrings of the same length as searchInput
@@ -42,10 +41,7 @@ export function SearchScreen() {
                         minDistance = Math.min(minDistance, distance);
                     }
 
-                    return {
-                        item,
-                        distance: minDistance,
-                    };
+                    return {item, distance: minDistance};
                 })
                 .filter(result => result.distance < Math.min(searchInputLower.length, 3)) // Filter out items that have no match
                 .sort((a, b) => a.distance - b.distance); // Sort by distance ascending
@@ -59,9 +55,7 @@ export function SearchScreen() {
     return (
         <View style={styles(mode).container}>
             <TextInput
-                placeholder={t('Search')}
-                value={searchInput}
-                onChangeText={setSearchInput}
+                placeholder={t('Search')} value={searchInput} onChangeText={setSearchInput}
                 style={[styles(mode).modalText, styles(mode).input]}
             />
             {searchInput !== '' && bestEvents && bestEvents.length === 0 && <Text>{t('NoResult')}</Text>}

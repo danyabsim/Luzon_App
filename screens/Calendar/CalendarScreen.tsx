@@ -9,11 +9,10 @@ import Filter from "../../components/Filter/Filter";
 import {useTranslation} from "react-i18next";
 
 export default function CalendarScreen() {
+    const [isMenuOpen, setMenuOpen] = useState(false);
     const user = useSelector((state: RootState) => state.user);
     const mode = useSelector((state: RootState) => state.theme.mode);
     const lastUpdated = useSelector((state: RootState) => state.events.lastUpdated);
-    const [isMenuOpen, setMenuOpen] = useState(false);
-
     const {t, i18n} = useTranslation();
 
     return (

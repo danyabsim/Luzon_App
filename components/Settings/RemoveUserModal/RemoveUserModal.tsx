@@ -10,9 +10,7 @@ import {ErrorModalApp} from "../../ErrorModalApp/ErorrModalApp";
 import {useTranslation} from "react-i18next";
 import {ButtonApp} from "../../ButtonApp/ButtonApp";
 
-export function RemoveUserModal({onClose}: {
-    onClose: () => void
-}) {
+export function RemoveUserModal({onClose}: { onClose: () => void }) {
     const [username, setUsername] = useState('');
     const [isErrorModalVisible, setErrorModalVisible] = useState(false);
     const mode = useSelector((state: RootState) => state.theme.mode);

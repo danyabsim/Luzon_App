@@ -16,7 +16,6 @@ export function AddUserModal({onClose}: {onClose: () => void}) {
     const [isErrorModalVisible, setErrorModalVisible] = useState(false);
     const mode = useSelector((state: RootState) => state.theme.mode);
     const dispatch = useDispatch();
-
     const {t} = useTranslation();
 
     const inputContainers = [
