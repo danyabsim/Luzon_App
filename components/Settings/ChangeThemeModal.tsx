@@ -22,7 +22,6 @@ export function ChangeThemeModal({onClose}: { onClose: () => void }) {
     const handleSaveThemeSelection = async () => {
         dispatch(setDarkMode(tempMode));
         await AsyncStorage.setItem('darkMode', JSON.stringify(tempMode));
-        console.log(`Selected theme: ${tempMode}`);
         dispatch(setUser({username: '', password: ''}));
         DevSettings.reload();
     }
