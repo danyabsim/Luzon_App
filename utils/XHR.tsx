@@ -1,7 +1,7 @@
 import {UnknownAction} from "@reduxjs/toolkit";
 import {Dispatch} from "react";
 import {setEvents} from "../redux/Events/eventsSlice";
-import {setImage, setIsAdmin} from "../redux/User/userSlice";
+import {setIsAdmin} from "../redux/User/userSlice";
 import {setUsernames} from "../redux/Filter/filterSlice";
 
 export function XHR(dispatch: Dispatch<UnknownAction>, urlFunction: string, itemToSend: any, extraCode?: () => void) {
@@ -13,9 +13,8 @@ export function XHR(dispatch: Dispatch<UnknownAction>, urlFunction: string, item
             if (xhr.status === 200) {
                 const response = JSON.parse(xhr.responseText);
                 if (urlFunction === '/connect') {
-                    const {isAdmin, image, userHistory} = response;
+                    const {isAdmin, userHistory} = response;
                     dispatch(setIsAdmin(isAdmin));
-                    dispatch(setImage(image));
                     // Ensure that response is an array
                     if (Array.isArray(userHistory)) {
                         const eventsByDay = {};

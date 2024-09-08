@@ -19,7 +19,7 @@ export default function CalendarScreen() {
     return (
         <TouchableWithoutFeedback onPress={() => isMenuOpen && setMenuOpen(false)}>
             <View style={styles(mode).container}>
-                <Text style={[styles(mode).mainText, styles(mode).plainText]}>{t('COD')}</Text>
+                <Text style={[styles(mode).mainText, styles(mode).plainText]}>{t('COD')} – {user.username}</Text>
                 {user.isAdmin && <Filter isMenuOpen={isMenuOpen} setMenuOpen={setMenuOpen}/>}
                 <Text
                     style={styles(mode).plainText}>{t('LastUpdatedData')}{new Date(lastUpdated).toLocaleString(i18n.language == 'en' ? 'en-GB' : 'he', {
