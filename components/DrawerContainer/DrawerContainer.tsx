@@ -10,7 +10,6 @@ import {useTranslation} from "react-i18next";
 export function DrawerContainer({navigation}: any) {
     const dispatch = useDispatch();
     const mode = useSelector((state: RootState) => state.theme.mode);
-    const image = useSelector((state: RootState) => state.user.image);
     const {t} = useTranslation();
 
     return (
@@ -21,14 +20,6 @@ export function DrawerContainer({navigation}: any) {
                     source={styleByTime(require('../../assets/home (black).png'), require('../../assets/home (white).png'), mode)}
                     onPress={() => {
                         navigation.navigate('Calendar');
-                        navigation.closeDrawer();
-                    }}
-                />
-                <MenuButton
-                    title={t("Profile")}
-                    source={image ? image : styleByTime(require('../../assets/user (black).png'), require('../../assets/user (white).png'), mode)}
-                    onPress={() => {
-                        navigation.navigate('Profile');
                         navigation.closeDrawer();
                     }}
                 />

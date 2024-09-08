@@ -1,7 +1,6 @@
 import HomeScreen from "../screens/Home/HomeScreen";
 import CalendarScreen from "../screens/Calendar/CalendarScreen";
 import {styles} from "./styles";
-import ProfileScreen from "../screens/Profile/ProfileScreen";
 import SettingsScreen from "../screens/Settings/SettingsScreen";
 import {createStackNavigator} from "@react-navigation/stack";
 import {useDispatch, useSelector} from "react-redux";
@@ -62,9 +61,6 @@ export const AppNavigator = () => {
             <Stack.Screen options={{headerShown: false}} name="Home" component={HomeScreen}/>
             <Stack.Screen
                 name="Calendar" component={CalendarScreen} options={({navigation}) => headerOptions(navigation)}
-            />
-            <Stack.Screen
-                name="Profile" component={ProfileScreen} options={({navigation}) => headerOptions(navigation)}
             />
             <Stack.Screen
                 name="Settings" component={SettingsScreen} options={({navigation}) => headerOptions(navigation)}

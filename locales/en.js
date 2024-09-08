@@ -1,6 +1,5 @@
 export default {
     Home: 'Home',
-    Profile: 'Profile',
     Settings: 'Settings',
     Logout: 'Log out',
     Username: 'Username',
@@ -9,8 +8,6 @@ export default {
     IncompleteFields: 'One of the fields is incomplete. Please fill them out.',
     COD: 'Calendar of Development',
     LastUpdatedData: 'The events data was last updated on ',
-    Admin: 'Admin',
-    RegularUser: 'Regular User',
     SettingsCP: 'Change Password',
     SettingsAU: 'Add User',
     SettingsRU: 'Remove User',

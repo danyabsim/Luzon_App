@@ -1,6 +1,5 @@
 export default {
     Home: 'בית',
-    Profile: 'פרופיל',
     Settings: 'הגדרות',
     Logout: 'יציאה',
     Username: 'משתמש',
@@ -9,8 +8,6 @@ export default {
     IncompleteFields: 'לפחות אחד מהשדות אינו מלא. אנא מלאו אותם!',
     COD: 'לו"ז מדור פיתוח',
     LastUpdatedData: 'המידע עודכן פעם אחרונה ב-',
-    Admin: 'מפעיל מערכת',
-    RegularUser: 'משתמש רגיל',
     SettingsCP: 'החלפה סיסמה',
     SettingsAU: 'הוספת משתמש',
     SettingsRU: 'הסרת משתמש',
