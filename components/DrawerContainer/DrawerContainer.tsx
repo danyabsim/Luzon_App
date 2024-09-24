@@ -2,44 +2,44 @@ import {View} from 'react-native';
 import MenuButton from "./MenuButton/MenuButton";
 import {styles} from "./styles";
 import {styleByTime} from "../../utils/AppStyles";
-import {useDispatch, useSelector} from "react-redux";
-import {setUser} from "../../redux/User/userSlice";
+import {useSelector} from "react-redux";
 import {RootState} from "../../redux/store";
 import {useTranslation} from "react-i18next";
 
 export function DrawerContainer({navigation}: any) {
-    const dispatch = useDispatch();
     const mode = useSelector((state: RootState) => state.theme.mode);
     const {t} = useTranslation();
+
+    const menuItems = [
+        {
+            titleKey: "Home", target: "Calendar",
+            icon: styleByTime(require('../../assets/home (black).png'), require('../../assets/home (white).png'), mode)
+        },
+        {
+            titleKey: "Settings", target: "Settings",
+            icon: styleByTime(require('../../assets/settings (black).png'), require('../../assets/settings (white).png'), mode)
+        },
+        {
+            titleKey: "Logout", target: "Home",
+            icon: styleByTime(require('../../assets/logout (black).png'), require('../../assets/logout (white).png'), mode)
+        }
+    ];
+
+    const renderMenuButton = (item: { titleKey: string; target: string; icon: any }) => (
+        <MenuButton
+            title={t(item.titleKey)}
+            source={item.icon}
+            onPress={() => {
+                navigation.navigate(item.target);
+                navigation.closeDrawer();
+            }}
+        />
+    );
 
     return (
         <View style={[styles(mode).content]}>
             <View style={[styles(mode).container]}>
-                <MenuButton
-                    title={t("Home")}
-                    source={styleByTime(require('../../assets/home (black).png'), require('../../assets/home (white).png'), mode)}
-                    onPress={() => {
-                        navigation.navigate('Calendar');
-                        navigation.closeDrawer();
-                    }}
-                />
-                <MenuButton
-                    title={t("Settings")}
-                    source={styleByTime(require('../../assets/settings (black).png'), require('../../assets/settings (white).png'), mode)}
-                    onPress={() => {
-                        navigation.navigate('Settings');
-                        navigation.closeDrawer();
-                    }}
-                />
-                <MenuButton
-                    title={t("Logout")}
-                    source={styleByTime(require('../../assets/logout (black).png'), require('../../assets/logout (white).png'), mode)}
-                    onPress={async () => {
-                        dispatch(setUser({username: '', password: ''}));
-                        navigation.navigate('Home');
-                        navigation.closeDrawer();
-                    }}
-                />
+                {menuItems.map(item => renderMenuButton(item))}
             </View>
         </View>
     );
