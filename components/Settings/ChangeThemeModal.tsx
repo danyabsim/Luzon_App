@@ -8,6 +8,7 @@ import {RootState} from "../../redux/store";
 import {setUser} from "../../redux/User/userSlice";
 import {useTranslation} from "react-i18next";
 import {ButtonApp} from "../ButtonApp/ButtonApp";
+import {styleByOS} from "../../utils/AppStyles";
 
 export function ChangeThemeModal({onClose}: { onClose: () => void }) {
     const mode = useSelector((state: RootState) => state.theme.mode);
@@ -22,9 +23,10 @@ export function ChangeThemeModal({onClose}: { onClose: () => void }) {
     const handleSaveThemeSelection = async () => {
         dispatch(setDarkMode(tempMode));
         await AsyncStorage.setItem('darkMode', JSON.stringify(tempMode));
-        dispatch(setUser({username: '', password: ''}));
-        onClose();
-        DevSettings.reload();
+        if (styleByOS()) {
+            dispatch(setUser({username: '', password: ''}));
+            DevSettings.reload();
+        } else onClose();
     }
 
     return (
