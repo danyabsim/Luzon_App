@@ -12,28 +12,33 @@ import {setEvents} from "../redux/Events/eventsSlice";
 import {XHR} from "../utils/XHR";
 import {View} from "react-native";
 import {SearchScreen} from "../screens/Search/SearchScreen";
+import {useState} from "react";
+import {TimeOutDelay} from "../utils/TimeOutDelay";
 
 const Stack = createStackNavigator();
 
 export const AppNavigator = () => {
     const dispatch = useDispatch();
+    const [isOnRefresh, setOnRefresh] = useState(false);
     const user = useSelector((state: RootState) => state.user);
     const mode = useSelector((state: RootState) => state.theme.mode);
     const {i18n} = useTranslation();
 
     const headerOptions = (navigation: any) => {
         const MenuImage = (<HeaderImage
-            onPress={() => {
-                navigation.openDrawer()
-            }}
+            onPress={() => navigation.openDrawer()}
             source={styleByTime(require('../assets/menu (black).png'), require('../assets/menu (white).png'), mode)}
         />);
 
         const RefreshImage = (<HeaderImage
-            onPress={() => {
+            onPress={async () => {
+                setOnRefresh(true);
+                await TimeOutDelay(300);
                 dispatch(setEvents({}));
                 XHR(dispatch, '/connect', {...user});
+                setOnRefresh(false);
             }}
+            disabled={isOnRefresh}
             source={styleByTime(require('../assets/refresh (black).png'), require('../assets/refresh (white).png'), mode)}
         />);
 
