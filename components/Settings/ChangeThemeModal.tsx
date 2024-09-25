@@ -23,6 +23,7 @@ export function ChangeThemeModal({onClose}: { onClose: () => void }) {
         dispatch(setDarkMode(tempMode));
         await AsyncStorage.setItem('darkMode', JSON.stringify(tempMode));
         dispatch(setUser({username: '', password: ''}));
+        onClose();
         DevSettings.reload();
     }
 
