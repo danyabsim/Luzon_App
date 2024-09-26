@@ -5,10 +5,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useDispatch, useSelector} from "react-redux";
 import {setDarkMode} from "../../redux/Theme/themeSlice";
 import {RootState} from "../../redux/store";
-import {setUser} from "../../redux/User/userSlice";
 import {useTranslation} from "react-i18next";
 import {ButtonApp} from "../ButtonApp/ButtonApp";
-import {styleByOS} from "../../utils/AppStyles";
 
 export function ChangeThemeModal({onClose}: { onClose: () => void }) {
     const mode = useSelector((state: RootState) => state.theme.mode);
@@ -23,10 +21,8 @@ export function ChangeThemeModal({onClose}: { onClose: () => void }) {
     const handleSaveThemeSelection = async () => {
         dispatch(setDarkMode(tempMode));
         await AsyncStorage.setItem('darkMode', JSON.stringify(tempMode));
-        if (styleByOS()) {
-            dispatch(setUser({username: '', password: ''}));
-            DevSettings.reload();
-        } else onClose();
+        onClose();
+        DevSettings.reload();
     }
 
     return (
