@@ -54,9 +54,9 @@ export const AppNavigator = () => {
         return {
             title: "",
             headerStyle: styles(mode).headerStyle,
-            headerLeft: () => i18n.language == 'en' ? MenuImage :
+            headerLeft: () => i18n.language == 'en' ? MenuImage() :
                 <View style={styles(mode).inputContainer}><Text>{SearchImage()} {RefreshImage()}</Text></View>,
-            headerRight: () => i18n.language == 'he' ? MenuImage :
+            headerRight: () => i18n.language == 'he' ? MenuImage() :
                 <View style={styles(mode).inputContainer}><Text>{SearchImage()} {RefreshImage()}</Text></View>
         } as StackNavigationOptions;
     }
