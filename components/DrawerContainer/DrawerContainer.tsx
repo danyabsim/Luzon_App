@@ -29,6 +29,7 @@ export function DrawerContainer({navigation}: any) {
         <MenuButton
             title={t(item.titleKey)}
             source={item.icon}
+            key={item.target}
             onPress={() => {
                 navigation.navigate(item.target);
                 navigation.closeDrawer();
