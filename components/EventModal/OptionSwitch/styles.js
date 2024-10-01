@@ -7,7 +7,7 @@ export function styles(mode) {
             width: 120,
             marginBottom: 15,
             fontSize: 20,
-            paddingRight: 10,
+            paddingRight: 5,
             color: styleByTime('black', 'white', mode)
         },
     });
