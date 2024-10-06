@@ -11,7 +11,13 @@ interface IOptionItemProps {
     onSelect: (item: { id: number; label: string }) => void;
 }
 
-export const OptionItem: React.FC<IOptionItemProps> = React.memo(({item, mode, onSelect}) => (
-    <ButtonApp onPress={() => onSelect(item)} label={item.label} labelStyle={styles(mode).menuText}
-               buttonStyle={[styles(mode).optionItem, styles(mode).elliptical]}/>
-));
+export const OptionItem: React.FC<IOptionItemProps> = React.memo(
+    ({ item, mode = "light", onSelect }) => (
+        <ButtonApp
+            onPress={() => onSelect(item)}
+            label={item.label}
+            labelStyle={styles(mode).menuText}
+            buttonStyle={[styles(mode).optionItem, styles(mode).elliptical]}
+        />
+    )
+);
