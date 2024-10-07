@@ -15,7 +15,6 @@ export function OptionItems(props: IOptionItemsProps) {
                     onPress={() => props.changeValue(optionItem)}
                     key={props.valueList.indexOf(optionItem)}
                     label={props.labelList[props.valueList.indexOf(optionItem)]}
-                    labelStyle={styles(mode).menuText}
                     buttonStyle={[styles(mode).optionItem, styles(mode).elliptical, {
                         backgroundColor: optionItem == props.value ? '#007bff' : '#98a2b7',
                     }]}

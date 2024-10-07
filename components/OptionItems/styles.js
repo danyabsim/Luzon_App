@@ -7,10 +7,6 @@ export function styles(mode) {
             borderCurve: "circular",
             borderRadius: 10
         },
-        menuText: {
-            fontSize: 16,
-            color: styleByTime('black', 'white', mode)
-        },
         optionItem: {
             padding: 10,
             borderRadius: 5,

@@ -7,6 +7,9 @@ export function styles(mode) {
             borderCurve: "circular",
             borderRadius: 10
         },
+        container: {
+            alignItems: 'center',
+        },
         menuContainer: {
             position: 'absolute',
             backgroundColor: styleByTime('white', 'black', mode),
