@@ -13,11 +13,11 @@ export function ErrorModalApp(props: IErrorModalAppProps) {
     const {t} = useTranslation();
 
     return (
-        <ModalApp modalVisible={props.modalVisible} setModalVisible={props.setModalVisible} children={
+        <ModalApp modalVisible={props.modalVisible} setModalVisible={props.setModalVisible}>
             <View style={styles(mode).container}>
                 <Text style={styles(mode).title}>{t('Error')}: {props.errorText}</Text>
                 <ButtonApp onPress={() => props.setModalVisible(false)} label={t('Close')}/>
             </View>
-        }/>
+        </ModalApp>
     )
 }

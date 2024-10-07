@@ -18,21 +18,18 @@ export function ColorPickerModal(props: IColorPickerModalProps) {
     }
 
     return (
-        <ModalApp
-            onClose={closeModal} modalVisible={props.modalVisible} setModalVisible={props.setModalVisible}
-            children={
-                <View style={styles(mode).container}>
-                    <Text style={styles(mode).title}>{t('ColorPicker')}</Text>
-                    <View style={styles(mode).sectionContainer}>
-                        <View>
-                            <ColorPicker color={props.color} onColorChange={(color) => props.setColor(color)}
-                                         thumbSize={50} sliderSize={50} row={false} palette={[]}
-                            />
-                        </View>
+        <ModalApp onClose={closeModal} modalVisible={props.modalVisible} setModalVisible={props.setModalVisible}>
+            <View style={styles(mode).container}>
+                <Text style={styles(mode).title}>{t('ColorPicker')}</Text>
+                <View style={styles(mode).sectionContainer}>
+                    <View>
+                        <ColorPicker color={props.color} onColorChange={(color) => props.setColor(color)}
+                                     thumbSize={50} sliderSize={50} row={false} palette={[]}
+                        />
                     </View>
-                    <ButtonApp onPress={closeModal} label={t('Close')}/>
                 </View>
-            }
-        />
+                <ButtonApp onPress={closeModal} label={t('Close')}/>
+            </View>
+        </ModalApp>
     );
 }

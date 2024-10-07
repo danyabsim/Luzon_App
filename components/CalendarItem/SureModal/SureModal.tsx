@@ -14,15 +14,13 @@ export function SureModal(props: ISureModalProps) {
     const {t} = useTranslation();
 
     return (
-        <ModalApp modalVisible={props.visible} setModalVisible={props.setVisible} children={
-            <View>
-                <Text style={styles(mode).modalText}>{t('SureQuestion')}</Text>
-                {props.item && <CalendarItem item={props.item} areActionsOn={false}/>}
-                <View style={styles(mode).inputContainer}>
-                    <ButtonApp onPress={props.onPressNo} label={t('No')}/>
-                    <ButtonApp onPress={props.onPressYes} label={t('Yes')}/>
-                </View>
+        <ModalApp modalVisible={props.visible} setModalVisible={props.setVisible}>
+            <Text style={styles(mode).modalText}>{t('SureQuestion')}</Text>
+            {props.item && <CalendarItem item={props.item} areActionsOn={false}/>}
+            <View style={styles(mode).inputContainer}>
+                <ButtonApp onPress={props.onPressNo} label={t('No')}/>
+                <ButtonApp onPress={props.onPressYes} label={t('Yes')}/>
             </View>
-        }/>
+        </ModalApp>
     );
 }

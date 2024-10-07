@@ -80,80 +80,75 @@ export function EventModal(props: IEventModalProps) {
     }, [props.item]);
 
     return (
-        <ModalApp
-            onClose={closeModal} modalVisible={props.modalVisible} setModalVisible={props.setModalVisible}
-            children={
-                <View>
-                    <View style={{alignItems: 'center'}}>
-                        <View style={[styles(mode).inputContainer]}>
-                            {i18n.language == 'he' && ColorButton}
-                            <Text
-                                style={[styles(mode).title, marginPerLanguage]}>{props.item ? t('EditEvent') : t('AddNewEvent')}</Text>
-                            {i18n.language == 'en' && ColorButton}
-                        </View>
-                        <TextInput placeholder={t('Title')} value={title} onChangeText={setTitle}
-                                   style={[styles(mode).modalText, styles(mode).input, marginPerLanguage]}/>
-                        {!styleByOS() &&
-                            <View>
-                                <TextInput placeholder={t('StartDate').replace(/\n/g, ' ')} value={textualStartDate}
-                                           onChangeText={setTextualStartDate}
-                                           style={[styles(mode).modalText, styles(mode).input, marginPerLanguage]}/>
-                                <TextInput placeholder={t('EndDate').replace(/\n/g, ' ')} value={textualEndDate}
-                                           onChangeText={setTextualEndDate}
-                                           style={[styles(mode).modalText, styles(mode).input, marginPerLanguage]}/>
-                            </View>
-                        }
-                        <View style={marginPerLanguage}>
-                            <OptionSwitch
-                                label={t('AllDay')}
-                                isEnabled={isAllDayEnabled} setIsEnabled={setIsAllDayEnabled}/>
-                            {user.isAdmin &&
-                                <OptionSwitch
-                                    label={t('AllUsers')}
-                                    isEnabled={isAllUsersEnabled} setIsEnabled={setIsAllUsersEnabled}/>
-                            }
-                            <DatePickerInputContainers timeContainers={timeContainers} isEnabled={isAllDayEnabled}/>
-                        </View>
-                        <TextInput placeholder={t('Notes')} multiline={true} value={notes} onChangeText={setNotes}
-                                   style={[styles(mode).modalText, styles(mode).input, marginPerLanguage]}/>
-                    </View>
-                    <View style={[styles(mode).inputContainer]}>
-                        <ButtonApp onPress={closeModal} label={t('Cancel')}/>
-                        <ButtonApp label={t('Save')} onPress={async () => {
-                            if ((startDate === undefined && textualStartDate === '') || (endDate === undefined && textualEndDate === '')) {
-                                setErrorModalVisible(true);
-                                return;
-                            }
-                            if (props.item) {
-                                XHR(dispatch, '/removeEvent', {...props.item});
-                                await TimeOutDelay(300);
-                            }
-                            if (color === '') setColor('#ffffff');
-                            const startDateAndTime = formatDateAndTime(textualStartDate === '' ? startDate : textualStartDate);
-                            const endDateAndTime = formatDateAndTime(textualEndDate === '' ? endDate : textualEndDate);
-                            const dates = getDatesBetween(startDateAndTime.date, endDateAndTime.date);
-                            const XHRTitle = `${startDateAndTime.date} (${startDateAndTime.time}) – ${endDateAndTime.date} (${endDateAndTime.time}): ${title} (${isAllUsersEnabled ? 'All Users' : props.item === undefined ? user.username : itemUsername})\0${notes}`;
-                            if (dates !== null) {
-                                dates.map(async (day) => {
-                                    dispatch(setEvents({}));
-                                    XHR(dispatch, '/addEvent', {
-                                        name: XHRTitle,
-                                        height: hexToRgbInt(color),
-                                        day: formatDateAndTime(day).date
-                                    });
-                                    await TimeOutDelay(300);
-                                    XHR(dispatch, '/connect', {...user});
-                                })
-                                closeModal();
-                            }
-                        }}/>
-                    </View>
-                    <ColorPickerModal color={color} setColor={setColor} modalVisible={isColorPickerModalVisible}
-                                      setModalVisible={setColorPickerModalVisible}/>
-                    <ErrorModalApp modalVisible={isErrorModalVisible} setModalVisible={setErrorModalVisible}
-                                   errorText={t('IncompleteFields')}/>
+        <ModalApp onClose={closeModal} modalVisible={props.modalVisible} setModalVisible={props.setModalVisible}>
+            <View style={{alignItems: 'center'}}>
+                <View style={[styles(mode).inputContainer]}>
+                    {i18n.language == 'he' && ColorButton}
+                    <Text
+                        style={[styles(mode).title, marginPerLanguage]}>{props.item ? t('EditEvent') : t('AddNewEvent')}</Text>
+                    {i18n.language == 'en' && ColorButton}
                 </View>
-            }
-        />
+                <TextInput placeholder={t('Title')} value={title} onChangeText={setTitle}
+                           style={[styles(mode).modalText, styles(mode).input, marginPerLanguage]}/>
+                {!styleByOS() &&
+                    <View>
+                        <TextInput placeholder={t('StartDate').replace(/\n/g, ' ')} value={textualStartDate}
+                                   onChangeText={setTextualStartDate}
+                                   style={[styles(mode).modalText, styles(mode).input, marginPerLanguage]}/>
+                        <TextInput placeholder={t('EndDate').replace(/\n/g, ' ')} value={textualEndDate}
+                                   onChangeText={setTextualEndDate}
+                                   style={[styles(mode).modalText, styles(mode).input, marginPerLanguage]}/>
+                    </View>
+                }
+                <View style={marginPerLanguage}>
+                    <OptionSwitch
+                        label={t('AllDay')}
+                        isEnabled={isAllDayEnabled} setIsEnabled={setIsAllDayEnabled}/>
+                    {user.isAdmin &&
+                        <OptionSwitch
+                            label={t('AllUsers')}
+                            isEnabled={isAllUsersEnabled} setIsEnabled={setIsAllUsersEnabled}/>
+                    }
+                    <DatePickerInputContainers timeContainers={timeContainers} isEnabled={isAllDayEnabled}/>
+                </View>
+                <TextInput placeholder={t('Notes')} multiline={true} value={notes} onChangeText={setNotes}
+                           style={[styles(mode).modalText, styles(mode).input, marginPerLanguage]}/>
+            </View>
+            <View style={[styles(mode).inputContainer]}>
+                <ButtonApp onPress={closeModal} label={t('Cancel')}/>
+                <ButtonApp label={t('Save')} onPress={async () => {
+                    if ((startDate === undefined && textualStartDate === '') || (endDate === undefined && textualEndDate === '')) {
+                        setErrorModalVisible(true);
+                        return;
+                    }
+                    if (props.item) {
+                        XHR(dispatch, '/removeEvent', {...props.item});
+                        await TimeOutDelay(300);
+                    }
+                    if (color === '') setColor('#ffffff');
+                    const startDateAndTime = formatDateAndTime(textualStartDate === '' ? startDate : textualStartDate);
+                    const endDateAndTime = formatDateAndTime(textualEndDate === '' ? endDate : textualEndDate);
+                    const dates = getDatesBetween(startDateAndTime.date, endDateAndTime.date);
+                    const XHRTitle = `${startDateAndTime.date} (${startDateAndTime.time}) – ${endDateAndTime.date} (${endDateAndTime.time}): ${title} (${isAllUsersEnabled ? 'All Users' : props.item === undefined ? user.username : itemUsername})\0${notes}`;
+                    if (dates !== null) {
+                        dates.map(async (day) => {
+                            dispatch(setEvents({}));
+                            XHR(dispatch, '/addEvent', {
+                                name: XHRTitle,
+                                height: hexToRgbInt(color),
+                                day: formatDateAndTime(day).date
+                            });
+                            await TimeOutDelay(300);
+                            XHR(dispatch, '/connect', {...user});
+                        })
+                        closeModal();
+                    }
+                }}/>
+            </View>
+            <ColorPickerModal color={color} setColor={setColor} modalVisible={isColorPickerModalVisible}
+                              setModalVisible={setColorPickerModalVisible}/>
+            <ErrorModalApp modalVisible={isErrorModalVisible} setModalVisible={setErrorModalVisible}
+                           errorText={t('IncompleteFields')}/>
+        </ModalApp>
     );
 }
