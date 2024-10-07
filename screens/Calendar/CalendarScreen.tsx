@@ -9,17 +9,15 @@ import Filter from "../../components/Filter/Filter";
 import {useTranslation} from "react-i18next";
 
 export default function CalendarScreen() {
-    const [isMenuOpen, setMenuOpen] = useState(false);
     const user = useSelector((state: RootState) => state.user);
     const mode = useSelector((state: RootState) => state.theme.mode);
     const lastUpdated = useSelector((state: RootState) => state.events.lastUpdated);
     const {t, i18n} = useTranslation();
 
     return (
-        <TouchableWithoutFeedback onPress={() => isMenuOpen && setMenuOpen(false)}>
             <View style={styles(mode).container}>
                 <Text style={[styles(mode).mainText, styles(mode).plainText]}>{t('COD')} – {user.username}</Text>
-                {user.isAdmin && <Filter isMenuOpen={isMenuOpen} setMenuOpen={setMenuOpen}/>}
+                {user.isAdmin && <Filter/>}
                 <Text
                     style={styles(mode).plainText}>{t('LastUpdatedData')}{new Date(lastUpdated).toLocaleString(i18n.language == 'en' ? 'en-GB' : 'he', {
                     day: '2-digit',
@@ -32,6 +30,5 @@ export default function CalendarScreen() {
                 <Calendar/>
                 <NewEventButton/>
             </View>
-        </TouchableWithoutFeedback>
     );
 }

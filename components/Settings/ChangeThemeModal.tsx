@@ -7,6 +7,7 @@ import {setDarkMode} from "../../redux/Theme/themeSlice";
 import {RootState} from "../../redux/store";
 import {useTranslation} from "react-i18next";
 import {ButtonApp} from "../ButtonApp/ButtonApp";
+import {OptionItems} from "../OptionItems/OptionItems";
 
 export function ChangeThemeModal({onClose}: { onClose: () => void }) {
     const mode = useSelector((state: RootState) => state.theme.mode);
@@ -29,13 +30,7 @@ export function ChangeThemeModal({onClose}: { onClose: () => void }) {
         <View style={styles(mode).container}>
             <Text style={styles(mode).title}>{t('SettingsCT')}</Text>
             <Text style={styles(mode).warningTitle}>{t('ChangeThemeWarning')}</Text>
-            {["light", "dark"].map(innerMode => (
-                <ButtonApp label={t(innerMode.charAt(0).toUpperCase() + innerMode.slice(1))} key={innerMode}
-                           buttonStyle={[styles(mode).optionButton, {
-                               backgroundColor: innerMode == tempMode ? '#007bff' : '#98a2b7',
-                           }]} onPress={() => handleThemeSelection(innerMode as typeof mode)}
-                />
-            ))}
+            <OptionItems labelList={[t("Light"), t("Dark")]} valueList={["light", "dark"]} value={tempMode} changeValue={handleThemeSelection}/>
             <View style={styles(mode).inputContainer}>
                 <ButtonApp label={t('Save')} onPress={handleSaveThemeSelection}/>
                 <ButtonApp label={t('Cancel')} onPress={onClose}/>

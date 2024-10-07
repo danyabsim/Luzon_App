@@ -1,5 +1,5 @@
 import {StyleSheet} from "react-native";
-import {styleByTime} from "../../../utils/AppStyles";
+import {styleByTime} from "../../utils/AppStyles";
 
 export function styles(mode) {
     return StyleSheet.create({
@@ -12,10 +12,10 @@ export function styles(mode) {
             color: styleByTime('black', 'white', mode)
         },
         optionItem: {
-            paddingVertical: 8,
-            alignItems: 'center',
-            borderWidth: 1,
-            borderColor: '#ccc',
+            padding: 10,
+            borderRadius: 5,
+            marginBottom: 10,
+            width: '100%'
         }
     });
 }

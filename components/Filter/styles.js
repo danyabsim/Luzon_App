@@ -22,23 +22,5 @@ export function styles(mode) {
             fontSize: 16,
             color: styleByTime('black', 'white', mode)
         },
-        menuContainer: {
-            position: 'absolute',
-            backgroundColor: styleByTime('white', 'black', mode),
-            maxHeight: 200,
-            overflow: 'hidden',
-        },
-        optionList: {
-            maxHeight: 150,
-        },
-        optionListContent: {
-            flexGrow: 1,
-        },
-        optionItem: {
-            paddingVertical: 8,
-            alignItems: 'center',
-            borderWidth: 1,
-            borderColor: '#ccc',
-        }
     });
 }
