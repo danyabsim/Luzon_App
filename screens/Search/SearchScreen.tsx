@@ -41,6 +41,14 @@ export function SearchScreen() {
                         minDistance = Math.min(minDistance, distance);
                     }
 
+                    const parsedNotes = (item.name.split('\0')[1]).toLowerCase();
+                    // Iterate over all possible substrings of the same length as searchInput
+                    for (let i = 0; i < parsedNotes.length; i++) {
+                        const substring = parsedNotes.substring(i, Math.min(i + searchLength, parsedNotes.length));
+                        const distance = levenshtein(searchInputLower, substring);
+                        minDistance = Math.min(minDistance, distance);
+                    }
+
                     return {item, distance: minDistance};
                 })
                 .filter(result => result.distance < Math.min(searchInputLower.length, 3)) // Filter out items that have no match
