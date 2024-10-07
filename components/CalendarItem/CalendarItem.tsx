@@ -32,22 +32,26 @@ export function CalendarItem({item, areActionsOn}: ICalendarItemProps) {
                 <Text style={styles(mode).itemText}>{item.name.split('\0')[0]}</Text>
                 <Text style={styles(mode).itemText}>{t('Notes')}: {item.name.split('\0')[1]}</Text>
             </View>
-            <SureModal
-                visible={sureModalVisible} setVisible={setSureModalVisible} item={item}
-                onRequestCloseModal={() => {
-                    Alert.alert(t('ModalClosed'));
-                    setSureModalVisible(false);
-                }}
-                onPressNo={() => setSureModalVisible(false)}
-                onPressYes={async () => {
-                    dispatch(setEvents({}));
-                    XHR(dispatch, '/removeEvent', {...item});
-                    await TimeOutDelay(300);
-                    XHR(dispatch, '/connect', {...user});
-                    setSureModalVisible(false);
-                }}
-            />
-            <EventModal modalVisible={eventModalVisible} setModalVisible={setEventModalVisible} item={item}/>
+            {areActionsOn &&
+                <View>
+                    <SureModal
+                        visible={sureModalVisible} setVisible={setSureModalVisible} item={item}
+                        onRequestCloseModal={() => {
+                            Alert.alert(t('ModalClosed'));
+                            setSureModalVisible(false);
+                        }}
+                        onPressNo={() => setSureModalVisible(false)}
+                        onPressYes={async () => {
+                            dispatch(setEvents({}));
+                            XHR(dispatch, '/removeEvent', {...item});
+                            await TimeOutDelay(300);
+                            XHR(dispatch, '/connect', {...user});
+                            setSureModalVisible(false);
+                        }}
+                    />
+                    <EventModal modalVisible={eventModalVisible} setModalVisible={setEventModalVisible} item={item}/>
+                </View>
+            }
         </View>
     );
 }
