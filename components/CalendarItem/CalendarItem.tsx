@@ -8,7 +8,6 @@ import {useTranslation} from "react-i18next";
 import {CalendarItemActions} from "./CalendarItemActions/CalendarItemActions";
 import {setEvents} from "../../redux/Events/eventsSlice";
 import {XHR} from "../../utils/XHR";
-import {TimeOutDelay} from "../../utils/TimeOutDelay";
 import {SureModal} from "./SureModal/SureModal";
 import {EventModal} from "../EventModal/EventModal";
 
@@ -43,9 +42,8 @@ export function CalendarItem({item, areActionsOn}: ICalendarItemProps) {
                         onPressNo={() => setSureModalVisible(false)}
                         onPressYes={async () => {
                             dispatch(setEvents({}));
-                            XHR(dispatch, '/removeEvent', {...item});
-                            await TimeOutDelay(300);
-                            XHR(dispatch, '/connect', {...user});
+                            await XHR(dispatch, '/removeEvent', {...item});
+                            await XHR(dispatch, '/connect', {...user});
                             setSureModalVisible(false);
                         }}
                     />

@@ -35,7 +35,7 @@ export const AppNavigator = () => {
                 setOnRefresh(true);
                 await TimeOutDelay(300);
                 dispatch(setEvents({}));
-                XHR(dispatch, '/connect', {...user});
+                await XHR(dispatch, '/connect', {...user});
                 setOnRefresh(false);
             }}
             disabled={isOnRefresh}

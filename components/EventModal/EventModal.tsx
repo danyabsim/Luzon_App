@@ -9,7 +9,6 @@ import {IEventModalProps} from "./IEventModalProps";
 import {ModalApp} from "../ModalApp/ModalApp";
 import {hexToRgbInt, parseEventString, rgbIntToHex} from "../../utils/AppConverts";
 import {formatDateAndTime, getDatesBetween} from "../../utils/DateFunctions";
-import {TimeOutDelay} from "../../utils/TimeOutDelay";
 import {ErrorModalApp} from "../ErrorModalApp/ErorrModalApp";
 import {useTranslation} from "react-i18next";
 import {DatePickerInputContainers} from "./DatePickerInputContainers/DatePickerInputContainers";
@@ -122,8 +121,7 @@ export function EventModal(props: IEventModalProps) {
                         return;
                     }
                     if (props.item) {
-                        XHR(dispatch, '/removeEvent', {...props.item});
-                        await TimeOutDelay(300);
+                        await XHR(dispatch, '/removeEvent', {...props.item});
                     }
                     if (color === '') setColor('#ffffff');
                     const startDateAndTime = formatDateAndTime(textualStartDate === '' ? startDate : textualStartDate);
@@ -133,13 +131,12 @@ export function EventModal(props: IEventModalProps) {
                     if (dates !== null) {
                         dates.map(async (day) => {
                             dispatch(setEvents({}));
-                            XHR(dispatch, '/addEvent', {
+                            await XHR(dispatch, '/addEvent', {
                                 name: XHRTitle,
                                 height: hexToRgbInt(color),
                                 day: formatDateAndTime(day).date
                             });
-                            await TimeOutDelay(300);
-                            XHR(dispatch, '/connect', {...user});
+                            await XHR(dispatch, '/connect', {...user});
                         })
                         closeModal();
                     }

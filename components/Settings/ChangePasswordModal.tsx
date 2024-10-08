@@ -32,9 +32,9 @@ export function ChangePasswordModal({onClose}: { onClose: () => void }) {
                 <Text style={styles(mode).title}>{t('SettingsCP')}</Text>
                 <TextInputContainers inputContainers={inputContainers}/>
                 <View style={styles(mode).inputContainer}>
-                    <ButtonApp label={t('Change')} onPress={() => {
+                    <ButtonApp label={t('Change')} onPress={async () => {
                         if (newPassword !== "") {
-                            XHR(dispatch, '/changePassword', {
+                            await XHR(dispatch, '/changePassword', {
                                 username: user.username,
                                 password: user.password,
                                 newPassword: newPassword

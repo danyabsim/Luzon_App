@@ -5,12 +5,11 @@ import {RootState} from "../../redux/store";
 import {styles} from "./styles";
 import {TextInputContainers} from "../TextInputContainers/TextInputContainers";
 import {XHR} from "../../utils/XHR";
-import {TimeOutDelay} from "../../utils/TimeOutDelay";
 import {ErrorModalApp} from "../ErrorModalApp/ErorrModalApp";
 import {useTranslation} from "react-i18next";
 import {ButtonApp} from "../ButtonApp/ButtonApp";
 
-export function AddUserModal({onClose}: {onClose: () => void}) {
+export function AddUserModal({onClose}: { onClose: () => void }) {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [isErrorModalVisible, setErrorModalVisible] = useState(false);
@@ -37,9 +36,8 @@ export function AddUserModal({onClose}: {onClose: () => void}) {
                 <View style={styles(mode).inputContainer}>
                     <ButtonApp label={t('Add')} onPress={async () => {
                         if (username !== "" && password !== "") {
-                            XHR(dispatch, '/addUser', {username: username, password: password, isAdmin: false});
-                            await TimeOutDelay(300);
-                            XHR(dispatch, '/getAllUserNames', {});
+                            await XHR(dispatch, '/addUser', {username: username, password: password, isAdmin: false});
+                            await XHR(dispatch, '/getAllUserNames', {});
                             onCloseThisModal();
                         } else setErrorModalVisible(true);
                     }}/>

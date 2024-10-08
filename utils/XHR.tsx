@@ -4,9 +4,11 @@ import {setEvents} from "../redux/Events/eventsSlice";
 import {setIsAdmin} from "../redux/User/userSlice";
 import {setUsernames} from "../redux/Filter/filterSlice";
 
-export function XHR(dispatch: Dispatch<UnknownAction>, urlFunction: string, itemToSend: any, extraCode?: () => void) {
+export async function XHR(dispatch: Dispatch<UnknownAction>, urlFunction: string, itemToSend: any, extraCode?: () => void) {
     const xhr = new XMLHttpRequest();
-    xhr.open('POST', 'http://192.168.50.45:3000' + urlFunction);
+    xhr.open('POST', 'http://localhost:3000' + urlFunction); // to run only on the computer
+    // xhr.open('POST', 'http://192.168.50.45:3000' + urlFunction); // to run with the phone and the computer.
+    // The final version will have the ip address of the AWS server which is not running yet...
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.onreadystatechange = function () {
         if (xhr.readyState === XMLHttpRequest.DONE) {

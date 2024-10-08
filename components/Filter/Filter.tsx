@@ -19,7 +19,10 @@ export default function Filter() {
     const [filterModalVisible, setFilterModalVisible] = useState(false);
 
     useEffect(() => {
-        XHR(dispatch, '/getAllUserNames', {});
+        const getAllUserNames = async () => {
+            await XHR(dispatch, '/getAllUserNames', {});
+        }
+        getAllUserNames();
     }, []);
 
     return (
