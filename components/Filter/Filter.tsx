@@ -25,7 +25,7 @@ export default function Filter() {
     return (
         <View>
             <View style={styles(mode).container}>
-                <Text style={styles(mode).menuText}>{t('SelectCalendar')}:</Text>
+                <Text style={styles(mode).menuText}>{t('CurrentCalendar')}:</Text>
                 <ButtonApp onPress={() => setFilterModalVisible(true)}
                            label={selectedOption ? selectedOption : t('All')}
                            buttonStyle={[styles(mode).menuButton, {width: buttonWidth}, styles(mode).elliptical]}

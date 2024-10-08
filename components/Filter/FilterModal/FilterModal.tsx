@@ -2,7 +2,7 @@ import {IFilterModalProps} from "./IFilterModalProps";
 import {ModalApp} from "../../ModalApp/ModalApp";
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../../redux/store";
-import {View, Text} from "react-native";
+import {Text, View} from "react-native";
 import {styles} from "./styles";
 import {useTranslation} from "react-i18next";
 import {OptionItems} from "../../OptionItems/OptionItems";
@@ -16,7 +16,7 @@ export function FilterModal(props: IFilterModalProps) {
     const {t} = useTranslation();
     const dispatch = useDispatch();
 
-    const options = [t('All'), t('None'), ...usernames];
+    const options = [t('All'), ...usernames];
 
     const handleSelect = (item: string) => {
         props.setSelectedOption(item);
@@ -27,15 +27,13 @@ export function FilterModal(props: IFilterModalProps) {
     return (
         <ModalApp modalVisible={props.modalVisible} setModalVisible={props.setModalVisible}>
             <View style={styles(mode).container}>
-                <View style={[styles(mode).menuContainer, styles(mode).elliptical]}>
-                    <OptionItems
-                        valueList={options.map(item => item)}
-                        labelList={options.map(item => item)}
-                        value={props.selectedOption} changeValue={handleSelect}
-                    />
-                    <Text>{props.selectedOption}</Text>
-                    <ButtonApp label={t('Close')} onPress={() => props.setModalVisible(false)}/>
-                </View>
+                <Text style={styles(mode).title}>{t('SelectCalendar')}</Text>
+                <OptionItems
+                    valueList={options.map(item => item)}
+                    labelList={options.map(item => item)}
+                    value={props.selectedOption} changeValue={handleSelect}
+                />
+                <ButtonApp label={t('Close')} onPress={() => props.setModalVisible(false)}/>
             </View>
         </ModalApp>
     );
