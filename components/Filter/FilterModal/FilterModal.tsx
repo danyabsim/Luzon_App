@@ -29,8 +29,8 @@ export function FilterModal(props: IFilterModalProps) {
             <View style={styles(mode).container}>
                 <Text style={styles(mode).title}>{t('SelectCalendar')}</Text>
                 <OptionItems
-                    valueList={options.map(item => item)}
-                    labelList={options.map(item => item)}
+                    valueList={options}
+                    labelList={options}
                     value={props.selectedOption} changeValue={handleSelect}
                 />
                 <ButtonApp label={t('Close')} onPress={() => props.setModalVisible(false)}/>
