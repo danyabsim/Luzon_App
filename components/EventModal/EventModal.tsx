@@ -74,6 +74,8 @@ export function EventModal(props: IEventModalProps) {
         setTextualStartDate(result.startDate);
         setTextualEndDate(result.endDate);
         setItemUserName(result.username);
+        if (formatDateAndTime(result.startDate).time === "00:00" && formatDateAndTime(result.endDate).time === "23:59") setIsAllDayEnabled(true);
+        if (result.username === "All Users") setIsAllUsersEnabled(true);
         setColor(rgbIntToHex(props.item.height));
         setNotes(props.item.name.split('\0')[1]);
     }, [props.item]);
@@ -126,6 +128,10 @@ export function EventModal(props: IEventModalProps) {
                     if (color === '') setColor('#ffffff');
                     const startDateAndTime = formatDateAndTime(textualStartDate === '' ? startDate : textualStartDate);
                     const endDateAndTime = formatDateAndTime(textualEndDate === '' ? endDate : textualEndDate);
+                    if (isAllDayEnabled) {
+                        startDateAndTime.time = '00:00';
+                        endDateAndTime.time = '23:59';
+                    }
                     const dates = getDatesBetween(startDateAndTime.date, endDateAndTime.date);
                     const XHRTitle = `${startDateAndTime.date} (${startDateAndTime.time}) – ${endDateAndTime.date} (${endDateAndTime.time}): ${title} (${isAllUsersEnabled ? 'All Users' : props.item === undefined ? user.username : itemUsername})\0${notes}`;
                     if (dates !== null) {
