@@ -33,7 +33,7 @@ export default function Calendar() {
             }
         }
         filterEvents();
-    }, [filteredOption]);
+    }, [events, filteredOption]);
 
 
     return (
