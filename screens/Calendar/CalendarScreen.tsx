@@ -32,7 +32,7 @@ export default function CalendarScreen() {
 
     return (
         <View style={styles(mode).container}>
-            <Text style={[styles(mode).mainText, styles(mode).plainText]}>{t('COD')} – {user.username}</Text>
+            <Text style={[styles(mode).mainText, styles(mode).plainText]}>{t('CalendarOfDevelopment')} – {user.username}</Text>
             {user.isAdmin && <Filter/>}
             <Text
                 style={styles(mode).plainText}>{t('LastUpdatedData')}{new Date(lastUpdated).toLocaleString(i18n.language == 'en' ? 'en-GB' : 'he', {
