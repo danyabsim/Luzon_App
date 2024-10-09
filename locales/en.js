@@ -6,7 +6,7 @@ export default {
     Password: 'Password',
     Login: 'Log in',
     IncompleteFields: 'One of the fields is incomplete. Please fill them out.',
-    COD: 'Calendar of Development',
+    CalendarOfDevelopment: 'Calendar of Development',
     LastUpdatedData: 'The events data was last updated on ',
     SettingsCP: 'Change Password',
     SettingsAU: 'Add User',

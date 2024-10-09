@@ -100,7 +100,7 @@ export default function HomeScreen({navigation}: Props) {
     return (
         <View style={styles(mode).container}>
             <View style={{alignSelf: "center"}}>
-                <Text style={styles(mode).mainText}>{t('COD')}</Text>
+                <Text style={styles(mode).mainText}>{t('CalendarOfDevelopment')}</Text>
                 <TextInputContainers inputContainers={inputContainers}/>
                 <RememberMeButton rememberMe={rememberMe} onPress={async () => {
                     setRememberMe(!rememberMe);

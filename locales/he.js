@@ -6,7 +6,7 @@ export default {
     Password: 'סיסמה',
     Login: 'התחברות',
     IncompleteFields: 'לפחות אחד מהשדות אינו מלא. אנא מלאו אותם!',
-    COD: 'לו"ז מדור פיתוח',
+    CalendarOfDevelopment: 'לו"ז מדור פיתוח',
     LastUpdatedData: 'המידע עודכן פעם אחרונה ב-',
     SettingsCP: 'החלפה סיסמה',
     SettingsAU: 'הוספת משתמש',
