@@ -1,3 +1,3 @@
 export interface IThemeReducerState {
-    mode: 'dark' | 'light'
+    mode: 'dark' | 'light';
 }
