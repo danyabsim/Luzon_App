@@ -8,7 +8,7 @@ import {useTranslation} from "react-i18next";
 import {CalendarItemActions} from "./CalendarItemActions/CalendarItemActions";
 import {setEvents} from "../../redux/Events/eventsSlice";
 import {XHR} from "../../utils/XHR";
-import {SureModal} from "./SureModal/SureModal";
+import {SureDeleteModal} from "./SureDeleteModal/SureDeleteModal";
 import {EventModal} from "../EventModal/EventModal";
 
 export function CalendarItem({item, areActionsOn}: ICalendarItemProps) {
@@ -33,7 +33,7 @@ export function CalendarItem({item, areActionsOn}: ICalendarItemProps) {
             </View>
             {areActionsOn &&
                 <View>
-                    <SureModal
+                    <SureDeleteModal
                         visible={sureModalVisible} setVisible={setSureModalVisible} item={item}
                         onRequestCloseModal={() => {
                             Alert.alert(t('ModalClosed'));

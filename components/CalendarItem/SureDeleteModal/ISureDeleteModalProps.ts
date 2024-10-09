@@ -1,7 +1,7 @@
 import {Dispatch, SetStateAction} from "react";
 import {AgendaEntry} from "react-native-calendars";
 
-export interface ISureModalProps {
+export interface ISureDeleteModalProps {
     visible: boolean;
     setVisible: Dispatch<SetStateAction<boolean>>;
     onRequestCloseModal: () => void;
