@@ -5,6 +5,7 @@ import {styleByTime} from "../../utils/AppStyles";
 import {useSelector} from "react-redux";
 import {RootState} from "../../redux/store";
 import {useTranslation} from "react-i18next";
+import {CommonActions} from "@react-navigation/native";
 
 export function DrawerContainer({navigation}: any) {
     const mode = useSelector((state: RootState) => state.theme.mode);
@@ -31,7 +32,16 @@ export function DrawerContainer({navigation}: any) {
             source={item.icon}
             key={item.target}
             onPress={() => {
-                navigation.navigate(item.target);
+                if (item.target === "Home") {
+                    navigation.dispatch(
+                        CommonActions.reset({
+                            index: 0, // The index of the active route
+                            routes: [{ name: 'Home' }], // The screen you want to navigate to
+                        })
+                    );
+                } else {
+                    navigation.navigate(item.target);
+                }
                 navigation.closeDrawer();
             }}
         />

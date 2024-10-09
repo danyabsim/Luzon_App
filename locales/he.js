@@ -46,6 +46,8 @@ export default {
     Collapse: 'הקטנה',
     AllUsers: 'אירוע לכלל המשתמשים',
     NoResult: 'לא נמצאה תוצאה...',
-    Search: 'חיפוש'
+    Search: 'חיפוש',
+    HoldOn: 'חכו רגע!',
+    ExitQuestion: 'האם אתם בטוחים שאתם רוצים לצאת מהאפליצקיה?'
     // other keys...
 };

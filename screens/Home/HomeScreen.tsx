@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Text, View} from 'react-native';
+import {Alert, BackHandler, Text, View} from 'react-native';
 import {StackScreenProps} from "@react-navigation/stack";
 import {MainStackParamList} from "../../navigation/MainStackParamList";
 import {styles} from "./styles";
@@ -16,6 +16,7 @@ import {setEvents, setFilteredOption} from "../../redux/Events/eventsSlice";
 import {useTranslation} from 'react-i18next';
 import '../../i18n';
 import {ButtonApp} from "../../components/ButtonApp/ButtonApp";
+import { CommonActions } from '@react-navigation/native';
 
 type Props = StackScreenProps<MainStackParamList, 'Home'>;
 
@@ -73,6 +74,29 @@ export default function HomeScreen({navigation}: Props) {
         getLanguage();
     }, [i18n]);
 
+    useEffect(() => {
+        // Handler for the back button
+        const backAction = () => {
+            Alert.alert(t("HoldOn"), t("ExitQuestion"), [
+                {
+                    text: t("No"),
+                    onPress: () => null,
+                },
+                { text: t("Yes"), onPress: () => BackHandler.exitApp() }
+            ]);
+            return true; // Prevent default back action
+        };
+
+        // Add event listener for back press
+        const backHandler = BackHandler.addEventListener(
+            "hardwareBackPress",
+            backAction
+        );
+
+        // Cleanup the event listener on unmount
+        return () => backHandler.remove();
+    }, []);
+
     return (
         <View style={styles(mode).container}>
             <View style={{alignSelf: "center"}}>
@@ -91,7 +115,12 @@ export default function HomeScreen({navigation}: Props) {
                         await AsyncStorage.setItem('password', JSON.stringify(rememberMe ? password : ''));
                         setUsername(rememberMe ? username : '');
                         setPassword(rememberMe ? password : '');
-                        navigation.navigate('Calendar');
+                        navigation.dispatch(
+                            CommonActions.reset({
+                                index: 0, // The index of the active route
+                                routes: [{ name: 'Calendar' }], // The screen you want to navigate to
+                            })
+                        );
                     })
                     else setErrorModalVisible(true);
                 }}/>

@@ -45,6 +45,8 @@ export default {
     Collapse: 'Collapse',
     AllUsers: 'Event for all the Users',
     NoResult: 'No results were found...',
-    Search: 'Search'
+    Search: 'Search',
+    HoldOn: 'Hold on!',
+    ExitQuestion: 'Are you sure you want to exit?'
     // other keys...
 };
