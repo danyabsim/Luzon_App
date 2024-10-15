@@ -90,7 +90,7 @@ export function EventModal(props: IEventModalProps) {
                     {i18n.language == 'en' && ColorButton}
                 </View>
                 <TextInput placeholder={t('Title')} value={title} onChangeText={setTitle}
-                           style={[styles(mode).modalText, styles(mode).input, marginPerLanguage]}/>
+                           style={[styles(mode).modalText, styles(mode).input, marginPerLanguage]} maxLength={100}/>
                 {!styleByOS() &&
                     <View>
                         <TextInput placeholder={t('StartDate').replace(/\n/g, ' ')} value={textualStartDate}
@@ -113,7 +113,7 @@ export function EventModal(props: IEventModalProps) {
                     <DatePickerInputContainers timeContainers={timeContainers} isEnabled={isAllDayEnabled}/>
                 </View>
                 <TextInput placeholder={t('Notes')} multiline={true} value={notes} onChangeText={setNotes}
-                           style={[styles(mode).modalText, styles(mode).input, marginPerLanguage]}/>
+                           style={[styles(mode).modalText, styles(mode).input, marginPerLanguage]} maxLength={500}/>
             </View>
             <View style={[styles(mode).inputContainer]}>
                 <ButtonApp onPress={closeModal} label={t('Cancel')}/>
