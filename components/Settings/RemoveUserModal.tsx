@@ -13,7 +13,7 @@ export function RemoveUserModal({onClose}: { onClose: () => void }) {
     const [username, setUsername] = useState('');
     const [isErrorModalVisible, setErrorModalVisible] = useState(false);
     const mode = useSelector((state: RootState) => state.theme.mode);
-    const usernames = useSelector((state: RootState) => state.filter.usernames);
+    const usernames = useSelector((state: RootState) => state.events.usernames);
     const dispatch = useDispatch();
     const {t} = useTranslation();
 

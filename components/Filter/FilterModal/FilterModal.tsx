@@ -12,7 +12,7 @@ import {setFilteredOption} from "../../../redux/Events/eventsSlice";
 
 export function FilterModal(props: IFilterModalProps) {
     const mode = useSelector((state: RootState) => state.theme.mode);
-    const usernames = useSelector((state: RootState) => state.filter.usernames);
+    const usernames = useSelector((state: RootState) => state.events.usernames);
     const {t} = useTranslation();
     const dispatch = useDispatch();
 

@@ -5,4 +5,5 @@ export interface IEventsReducerState {
     selected: string;
     filteredOption: string;
     lastUpdated: string;
+    usernames: string[];
 }

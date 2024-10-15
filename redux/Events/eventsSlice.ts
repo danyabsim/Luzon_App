@@ -14,9 +14,12 @@ const eventsSlice = createSlice({
         },
         setFilteredOption: (state, action) => {
             state.filteredOption = action.payload;
+        },
+        setUsernames: (state, action) => {
+            state.usernames = action.payload;
         }
     },
 });
 
-export const {setReduxSelected, setEvents, setFilteredOption} = eventsSlice.actions;
+export const {setReduxSelected, setEvents, setFilteredOption, setUsernames} = eventsSlice.actions;
 export default eventsSlice.reducer;

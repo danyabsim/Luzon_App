@@ -1,8 +1,7 @@
 import {UnknownAction} from "@reduxjs/toolkit";
 import {Dispatch} from "react";
-import {setEvents} from "../redux/Events/eventsSlice";
+import {setEvents, setUsernames} from "../redux/Events/eventsSlice";
 import {setIsAdmin} from "../redux/User/userSlice";
-import {setUsernames} from "../redux/Filter/filterSlice";
 
 export async function XHR(dispatch: Dispatch<UnknownAction>, urlFunction: string, itemToSend: any, extraCode?: () => void) {
     const xhr = new XMLHttpRequest();
