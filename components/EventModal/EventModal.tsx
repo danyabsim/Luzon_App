@@ -116,7 +116,6 @@ export function EventModal(props: IEventModalProps) {
                            style={[styles(mode).modalText, styles(mode).input, marginPerLanguage]}/>
             </View>
             <View style={[styles(mode).inputContainer]}>
-                <ButtonApp onPress={closeModal} label={t('Cancel')}/>
                 <ButtonApp label={t('Save')} onPress={async () => {
                     if ((startDate === undefined && textualStartDate === '') || (endDate === undefined && textualEndDate === '')) {
                         setErrorModalVisible(true);
@@ -147,6 +146,7 @@ export function EventModal(props: IEventModalProps) {
                         closeModal();
                     }
                 }}/>
+                <ButtonApp onPress={closeModal} label={t('Cancel')}/>
             </View>
             <ColorPickerModal color={color} setColor={setColor} modalVisible={isColorPickerModalVisible}
                               setModalVisible={setColorPickerModalVisible}/>
