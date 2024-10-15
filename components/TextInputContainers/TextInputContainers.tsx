@@ -20,7 +20,7 @@ export function TextInputContainers({inputContainers}: ITextInputContainersProps
                 <View key={index} style={styles(mode).inputContainer}>
                     {i18n.language == 'en' && TextualLabel(input)}
                     <TextInput style={[styles(mode).modalText, styles(mode).input]} onChangeText={input.setState}
-                               value={input.state as string}
+                               value={input.state as string} maxLength={100}
                                secureTextEntry={input.label.includes(t('Password'))} // Hide password
                     />
                     {i18n.language == 'he' && TextualLabel(input)}
