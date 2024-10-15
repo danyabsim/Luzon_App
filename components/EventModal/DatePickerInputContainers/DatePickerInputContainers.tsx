@@ -1,4 +1,4 @@
-import {styleByOS} from "../../../utils/AppStyles";
+import {isPhoneOS} from "../../../utils/AppStyles";
 import {View} from "react-native";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import React, {useEffect, useState} from "react";
@@ -29,7 +29,7 @@ export function DatePickerInputContainers(props: IDatePickerInputContainersProps
 
     return (
         <View>
-            {styleByOS() &&
+            {isPhoneOS() &&
                 <View style={{
                     flexDirection: 'row',
                     marginLeft: i18n.language == 'en' ? 20 : 0,

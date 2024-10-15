@@ -4,6 +4,6 @@ export function styleByTime(lightSetting: any, darkSetting: any, mode: 'dark' | 
     return mode === 'dark' ? darkSetting : lightSetting;
 }
 
-export function styleByOS() {
+export function isPhoneOS() {
     return (Platform.OS === "ios" || Platform.OS === "android");
 }

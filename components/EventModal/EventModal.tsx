@@ -15,7 +15,7 @@ import {DatePickerInputContainers} from "./DatePickerInputContainers/DatePickerI
 import {ColorPickerModal} from "./ColorPickerModal/ColorPickerModal";
 import {OptionSwitch} from "./OptionSwitch/OptionSwitch";
 import {ButtonApp} from "../ButtonApp/ButtonApp";
-import {styleByOS} from "../../utils/AppStyles";
+import {isPhoneOS} from "../../utils/AppStyles";
 
 export function EventModal(props: IEventModalProps) {
     const [title, setTitle] = useState("");
@@ -91,7 +91,7 @@ export function EventModal(props: IEventModalProps) {
                 </View>
                 <TextInput placeholder={t('Title')} value={title} onChangeText={setTitle}
                            style={[styles(mode).modalText, styles(mode).input, marginPerLanguage]} maxLength={100}/>
-                {!styleByOS() &&
+                {!isPhoneOS() &&
                     <View>
                         <TextInput placeholder={t('StartDate').replace(/\n/g, ' ')} value={textualStartDate}
                                    onChangeText={setTextualStartDate}
