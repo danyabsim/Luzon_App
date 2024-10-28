@@ -52,11 +52,9 @@ export default function LandingScreen() {
     return (
         <BottomNavigation
             barStyle={{backgroundColor: styleByTime("white", "#373737", mode)}}
-            activeColor="blue"
-            activeIndicatorStyle={{backgroundColor: "transparent"}}
+            activeColor="blue" activeIndicatorStyle={{backgroundColor: "transparent"}}
             inactiveColor={styleByTime("gray", "white", mode)}
-            navigationState={{index, routes}}
-            onIndexChange={setIndex}
+            navigationState={{index, routes}} onIndexChange={setIndex}
             renderScene={({route}) => {
                 switch (route.key) {
                     case "Calendar":
@@ -70,9 +68,7 @@ export default function LandingScreen() {
             renderIcon={({route}) => (
                 <View style={{alignItems: "center"}}>{getIcon(route.key, route.key === routes[index].key)}</View>
             )}
-            shifting={false}
-            labeled={true}
-            sceneAnimationEnabled={true}
+            shifting={false} labeled={true} sceneAnimationEnabled={true}
         />
     );
 }
