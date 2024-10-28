@@ -7,6 +7,7 @@ import {styles} from "./styles";
 import {useTranslation} from "react-i18next";
 import {parseEventString} from "../../utils/AppConverts";
 import {CalendarItem} from "../../components/CalendarItem/CalendarItem";
+import {styleByTime} from "../../utils/AppStyles";
 
 export function SearchScreen() {
     const [bestEvents, setBestEvents] = useState<{ group: string, name: string, height: number, day: string }[]>();
@@ -64,6 +65,7 @@ export function SearchScreen() {
         <View style={styles(mode).container}>
             <TextInput
                 placeholder={t('Search')} value={searchInput} onChangeText={setSearchInput}
+                placeholderTextColor={styleByTime('grey', 'white', mode)}
                 style={[styles(mode).modalText, styles(mode).input]}
             />
             {searchInput !== '' && bestEvents && bestEvents.length === 0 && <Text>{t('NoResult')}</Text>}
