@@ -15,8 +15,8 @@ export default function LandingScreen() {
     const {t, i18n} = useTranslation();
 
     const routes = useMemo(() => [
-        { key: 'Calendar', title: t('Calendar') },
-        { key: 'Search', title: t('Search') },
+        {key: 'Calendar', title: t('Calendar')},
+        {key: 'Search', title: t('Search')},
     ], [i18n.language]); // Recompute routes when language changes
 
     useFocusEffect(
@@ -27,20 +27,21 @@ export default function LandingScreen() {
         }, [])
     );
 
-    const getIcon = (routeKey: string) => {
+    const getIcon = (routeKey: string, isActive: boolean) => {
+        const iconStyle = {width: 24, height: 24, tintColor: isActive ? "blue" : "gray"};
         switch (routeKey) {
             case "Calendar":
                 return (
                     <Image
                         source={styleByTime(require('../../assets/calendar (black).png'), require('../../assets/calendar (white).png'), mode)}
-                        style={{width: 24, height: 24}}
+                        style={iconStyle}
                     />
                 );
             case "Search":
                 return (
                     <Image
                         source={styleByTime(require('../../assets/search (black).png'), require('../../assets/search (white).png'), mode)}
-                        style={{width: 24, height: 24}}
+                        style={iconStyle}
                     />
                 );
             default:
@@ -52,6 +53,7 @@ export default function LandingScreen() {
         <BottomNavigation
             barStyle={{backgroundColor: styleByTime("white", "#373737", mode)}}
             activeColor="blue"
+            activeIndicatorStyle={{backgroundColor: "transparent"}}
             inactiveColor={styleByTime("gray", "white", mode)}
             navigationState={{index, routes}}
             onIndexChange={setIndex}
@@ -66,7 +68,7 @@ export default function LandingScreen() {
                 }
             }}
             renderIcon={({route}) => (
-                <View style={{alignItems: "center"}}>{getIcon(route.key)}</View>
+                <View style={{alignItems: "center"}}>{getIcon(route.key, route.key === routes[index].key)}</View>
             )}
             shifting={false}
             labeled={true}
