@@ -1,20 +1,30 @@
-import {View} from "react-native";
-import React, {useState} from "react";
-import {EventModal} from "../EventModal/EventModal";
-import {useTranslation} from "react-i18next";
-import {ButtonApp} from "../ButtonApp/ButtonApp";
-import {useSelector} from "react-redux";
+import React, {useState} from 'react';
+import {View} from 'react-native';
+import {FAB, Portal, Provider} from 'react-native-paper';
+import {EventModal} from '../EventModal/EventModal';
+import {styles} from "./styles";
 import {RootState} from "../../redux/store";
+import {useSelector} from "react-redux";
 
 export default function NewEventButton() {
     const [modalVisible, setModalVisible] = useState(false);
-    const {t} = useTranslation();
-    const selected = useSelector((state: RootState) => state.events.selected);
+    const mode = useSelector((state: RootState) => state.theme.mode);
 
     return (
         <View>
+            {/* Main content */}
             <EventModal modalVisible={modalVisible} setModalVisible={setModalVisible}/>
-            {selected && new Date(selected).getDay() >= new Date().getDay() && new Date(selected).getMonth() >= new Date().getMonth() && <ButtonApp label={t('AddNewEvent')} onPress={() => setModalVisible(true)}/>}
+            <Provider>
+                {/* FAB placed inside Portal to overlay on top */}
+                <Portal>
+                    <FAB
+                        style={styles(mode).fab}
+                        icon="plus-thick"
+                        color="white"
+                        onPress={() => setModalVisible(true)}
+                    />
+                </Portal>
+            </Provider>
         </View>
     );
 }

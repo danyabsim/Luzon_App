@@ -5,6 +5,7 @@ export function styles(mode) {
     return StyleSheet.create({
         container: {
             flex: 1,
+            position: 'relative',
             justifyContent: 'center',
             backgroundColor: styleByTime('white', 'black', mode),
             elevation: 2,
