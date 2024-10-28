@@ -38,7 +38,7 @@ export default function Calendar() {
 
     return (
         <ErrorBoundary fallback={<Text style={styles(mode).itemText}>Something went wrong</Text>}>
-            <View style={styles(mode).container}>
+            <View key={mode} style={styles(mode).container}>
                 <Agenda
                     theme={calendarTheme(mode)} items={filteredEvents} selected={selected} collapsable={true}
                     enableSwipeMonths={true} scrollEnabled={true} showOnlySelectedDayItems={true}

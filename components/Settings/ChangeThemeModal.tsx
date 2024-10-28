@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {DevSettings, Text, View} from 'react-native';
+import {Text, View} from 'react-native';
 import {styles} from './styles';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useDispatch, useSelector} from "react-redux";
@@ -23,14 +23,13 @@ export function ChangeThemeModal({onClose}: { onClose: () => void }) {
         dispatch(setDarkMode(tempMode));
         await AsyncStorage.setItem('darkMode', JSON.stringify(tempMode));
         onClose();
-        DevSettings.reload();
     }
 
     return (
         <View style={styles(mode).container}>
             <Text style={styles(mode).title}>{t('SettingsCT')}</Text>
-            <Text style={styles(mode).warningTitle}>{t('ChangeThemeWarning')}</Text>
-            <OptionItems labelList={[t("Light"), t("Dark")]} valueList={["light", "dark"]} value={tempMode} changeValue={handleThemeSelection}/>
+            <OptionItems labelList={[t("Light"), t("Dark")]} valueList={["light", "dark"]} value={tempMode}
+                         changeValue={handleThemeSelection}/>
             <View style={styles(mode).inputContainer}>
                 <ButtonApp label={t('Save')} onPress={handleSaveThemeSelection}/>
                 <ButtonApp label={t('Cancel')} onPress={onClose}/>
