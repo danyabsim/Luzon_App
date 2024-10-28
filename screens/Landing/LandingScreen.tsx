@@ -1,58 +1,76 @@
-import {useCallback, useState} from "react";
+import {useCallback, useMemo, useState} from "react";
 import {BottomNavigation} from "react-native-paper";
 import {SearchScreen} from "../Search/SearchScreen";
 import CalendarScreen from "../Calendar/CalendarScreen";
 import {useFocusEffect} from "@react-navigation/native";
-import {BackHandler} from "react-native";
+import {BackHandler, Image, View} from "react-native";
 import {styleByTime} from "../../utils/AppStyles";
 import {useSelector} from "react-redux";
 import {RootState} from "../../redux/store";
+import {useTranslation} from "react-i18next";
 
 export default function LandingScreen() {
     const [index, setIndex] = useState(0);
     const mode = useSelector((state: RootState) => state.theme.mode);
+    const {t, i18n} = useTranslation();
 
-    const [routes] = useState([
-        {
-            key: 'Calendar',
-            title: 'Calendar',
-            icon: styleByTime(require('../../assets/search (black).png'), require('../../assets/search (white).png'), mode)
-        },
-        {
-            key: 'Search',
-            title: 'Search',
-            icon: styleByTime(require('../../assets/home (black).png'), require('../../assets/home (white).png'), mode)
-        },
-    ]);
+    const routes = useMemo(() => [
+        { key: 'Calendar', title: t('Calendar') },
+        { key: 'Search', title: t('Search') },
+    ], [i18n.language]); // Recompute routes when language changes
 
     useFocusEffect(
         useCallback(() => {
-            // Handler to disable the back button
-            const onBackPress = () => {
-                return true; // Returning true disables the default back button behavior
-            };
-
-            // Add the event listener when the screen is focused
+            const onBackPress = () => true;
             BackHandler.addEventListener('hardwareBackPress', onBackPress);
-
-            // Remove the event listener when the screen is unfocused or unmounted
             return () => BackHandler.removeEventListener('hardwareBackPress', onBackPress);
         }, [])
     );
 
+    const getIcon = (routeKey: string) => {
+        switch (routeKey) {
+            case "Calendar":
+                return (
+                    <Image
+                        source={styleByTime(require('../../assets/calendar (black).png'), require('../../assets/calendar (white).png'), mode)}
+                        style={{width: 24, height: 24}}
+                    />
+                );
+            case "Search":
+                return (
+                    <Image
+                        source={styleByTime(require('../../assets/search (black).png'), require('../../assets/search (white).png'), mode)}
+                        style={{width: 24, height: 24}}
+                    />
+                );
+            default:
+                return null;
+        }
+    };
+
     return (
         <BottomNavigation
-            barStyle={{backgroundColor: 'white'}}
+            barStyle={{backgroundColor: styleByTime("white", "#373737", mode)}}
+            activeColor="blue"
+            inactiveColor={styleByTime("gray", "white", mode)}
             navigationState={{index, routes}}
             onIndexChange={setIndex}
             renderScene={({route}) => {
                 switch (route.key) {
-                    case 'Calendar':
+                    case "Calendar":
                         return <CalendarScreen/>;
-                    case 'Search':
+                    case "Search":
                         return <SearchScreen/>;
+                    default:
+                        return null;
                 }
             }}
+            renderIcon={({route}) => (
+                <View style={{alignItems: "center"}}>{getIcon(route.key)}</View>
+            )}
+            shifting={false}
+            labeled={true}
+            sceneAnimationEnabled={true}
         />
     );
 }

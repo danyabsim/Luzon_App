@@ -47,6 +47,7 @@ export default {
     AllUsers: 'אירוע לכלל המשתמשים',
     NoResult: 'לא נמצאה תוצאה...',
     Search: 'חיפוש',
+    Calendar: 'לוח שנה',
     HoldOn: 'חכו רגע!',
     ExitQuestion: 'האם אתם בטוחים שאתם רוצים לצאת מהאפליצקיה?'
     // other keys...

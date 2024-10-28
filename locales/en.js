@@ -46,6 +46,7 @@ export default {
     AllUsers: 'Event for all the Users',
     NoResult: 'No results were found...',
     Search: 'Search',
+    Calendar: 'Calendar',
     HoldOn: 'Hold on!',
     ExitQuestion: 'Are you sure you want to exit?'
     // other keys...
