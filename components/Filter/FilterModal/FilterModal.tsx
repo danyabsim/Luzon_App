@@ -17,7 +17,7 @@ export function FilterModal(props: IFilterModalProps) {
     const {t, i18n} = useTranslation();
     const dispatch = useDispatch();
 
-    const options = useMemo(() => [t('All'), ...usernames], [i18n.language]); // Recompute options when language changes
+    const options = useMemo(() => [t('All'), ...usernames], [i18n.language, usernames]); // Recompute options when language changes
 
     useFocusEffect(
         useCallback(() => {
