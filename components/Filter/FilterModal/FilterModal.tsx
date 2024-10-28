@@ -29,7 +29,7 @@ export function FilterModal(props: IFilterModalProps) {
             return () => {
                 // Code to run when component loses focus (if necessary)
             };
-        }, [dispatch, props]) // Add dependencies to ensure proper memoization
+        }, [i18n.language]) // Add dependencies to ensure proper memoization
     );
 
     const handleSelect = (item: string) => {
@@ -43,8 +43,7 @@ export function FilterModal(props: IFilterModalProps) {
             <View style={styles(mode).container}>
                 <Text style={styles(mode).title}>{t('SelectCalendar')}</Text>
                 <OptionItems
-                    valueList={options}
-                    labelList={options}
+                    valueList={options} labelList={options}
                     value={props.selectedOption} changeValue={handleSelect}
                 />
                 <ButtonApp label={t('Close')} onPress={() => props.setModalVisible(false)}/>
