@@ -35,7 +35,6 @@ export function FilterModal(props: IFilterModalProps) {
     const handleSelect = (item: string) => {
         props.setSelectedOption(item);
         dispatch(setFilteredOption(item));
-        props.setModalVisible(false);
     };
 
     return (
