@@ -10,10 +10,10 @@ import {HeaderImage} from "../components/HeaderImage/HeaderImage";
 import {styleByTime} from "../utils/AppStyles";
 import {setEvents} from "../redux/Events/eventsSlice";
 import {XHR} from "../utils/XHR";
-import {View, Text} from "react-native";
 import {SearchScreen} from "../screens/Search/SearchScreen";
 import {useState} from "react";
 import {TimeOutDelay} from "../utils/TimeOutDelay";
+import LandingScreen from "../screens/Landing/LandingScreen";
 
 const Stack = createStackNavigator();
 
@@ -42,22 +42,11 @@ export const AppNavigator = () => {
             source={styleByTime(require('../assets/refresh (black).png'), require('../assets/refresh (white).png'), mode)}
         />;
 
-        const SearchImage = () => <HeaderImage
-            onPress={() => {
-                const currentRoute = navigation.getState().routes[navigation.getState().index].name;
-                if (currentRoute !== 'Search') navigation.navigate('Search');
-                else navigation.goBack();
-            }}
-            source={styleByTime(require('../assets/search (black).png'), require('../assets/search (white).png'), mode)}
-        />;
-
         return {
             title: "",
             headerStyle: styles(mode).headerStyle,
-            headerLeft: () => i18n.language == 'en' ? MenuImage() :
-                <View style={styles(mode).inputContainer}><Text>{SearchImage()} {RefreshImage()}</Text></View>,
-            headerRight: () => i18n.language == 'he' ? MenuImage() :
-                <View style={styles(mode).inputContainer}><Text>{SearchImage()} {RefreshImage()}</Text></View>
+            headerLeft: () => i18n.language == 'en' ? MenuImage() : RefreshImage(),
+            headerRight: () => i18n.language == 'he' ? MenuImage() : RefreshImage()
         } as StackNavigationOptions;
     }
 
@@ -72,6 +61,9 @@ export const AppNavigator = () => {
             />
             <Stack.Screen
                 name="Search" component={SearchScreen} options={({navigation}) => headerOptions(navigation)}
+            />
+            <Stack.Screen
+                name="Landing" component={LandingScreen} options={({navigation}) => headerOptions(navigation)}
             />
         </Stack.Navigator>
     );

@@ -118,7 +118,7 @@ export default function HomeScreen({navigation}: Props) {
                         navigation.dispatch(
                             CommonActions.reset({
                                 index: 0, // The index of the active route
-                                routes: [{ name: 'Calendar' }], // The screen you want to navigate to
+                                routes: [{ name: 'Landing' }], // The screen you want to navigate to
                             })
                         );
                     })

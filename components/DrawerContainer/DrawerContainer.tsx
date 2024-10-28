@@ -13,7 +13,7 @@ export function DrawerContainer({navigation}: any) {
 
     const menuItems = [
         {
-            titleKey: "Home", target: "Calendar",
+            titleKey: "Home", target: "Landing",
             icon: styleByTime(require('../../assets/home (black).png'), require('../../assets/home (white).png'), mode)
         },
         {
