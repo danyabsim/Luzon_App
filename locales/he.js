@@ -49,6 +49,9 @@ export default {
     HoldOn: 'חכו רגע!',
     ExitQuestion: 'האם אתם בטוחים שאתם רוצים לצאת מהאפליצקיה?',
     PasswordCheckFailed: 'לא עברתם את הבדיקות לסיסמה! אנא מלאו אותם בהתאם!',
-    UserExists: 'שם משתמש זה קיים במערכת. אנא מלאו שם משתמשם אחר!'
+    UserExists: 'שם משתמש זה קיים במערכת. אנא מלאו שם משתמשם אחר!',
+    PasswordCheckLength: 'לפחות שמונה תווים',
+    PasswordCheckLetter: 'לפחות אות אנגלית אחת',
+    PasswordCheckNumber: 'לפחות ספרה אחת'
     // other keys...
 };

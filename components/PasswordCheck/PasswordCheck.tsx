@@ -4,9 +4,11 @@ import {useSelector} from "react-redux";
 import {RootState} from "../../redux/store";
 import {styles} from "./styles";
 import {useEffect} from "react";
+import {useTranslation} from "react-i18next";
 
 export function PasswordCheck(props: IPasswordCheckProps) {
     const mode = useSelector((state: RootState) => state.theme.mode);
+    const {t} = useTranslation();
 
     function checkCharacters() {
         return props.password.length < 8;
@@ -28,15 +30,15 @@ export function PasswordCheck(props: IPasswordCheckProps) {
         <View>
             <View style={styles(mode).rowContainer}>
                 <View style={checkCharacters() ? styles(mode).emptyBox : styles(mode).fullBox}/>
-                <Text style={styles(mode).conditionText}>8+ characters</Text>
+                <Text style={styles(mode).conditionText}>{t('PasswordCheckLength')}</Text>
             </View>
             <View style={styles(mode).rowContainer}>
                 <View style={checkEnglishLetter() ? styles(mode).emptyBox : styles(mode).fullBox}/>
-                <Text style={styles(mode).conditionText}>At least 1 English letter</Text>
+                <Text style={styles(mode).conditionText}>{t('PasswordCheckLetter')}</Text>
             </View>
             <View style={styles(mode).rowContainer}>
                 <View style={checkNumber() ? styles(mode).emptyBox : styles(mode).fullBox}/>
-                <Text style={styles(mode).conditionText}>At least 1 number</Text>
+                <Text style={styles(mode).conditionText}>{t('PasswordCheckNumber')}</Text>
             </View>
         </View>
     );

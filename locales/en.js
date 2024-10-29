@@ -48,6 +48,9 @@ export default {
     HoldOn: 'Hold on!',
     ExitQuestion: 'Are you sure you want to exit?',
     PasswordCheckFailed: 'You did not complete the password checks! Please complete them!',
-    UserExists: 'This username already exists. Please write another username!'
+    UserExists: 'This username already exists. Please write another username!',
+    PasswordCheckLength: 'At least 8 characters',
+    PasswordCheckLetter: 'At least 1 English letter',
+    PasswordCheckNumber: 'At least 1 number'
     // other keys...
 };
