@@ -28,7 +28,7 @@ export default function LandingScreen() {
     );
 
     const getIcon = (routeKey: string, isActive: boolean) => {
-        const iconStyle = {width: 24, height: 24, tintColor: isActive ? "blue" : "gray"};
+        const iconStyle = {width: 24, height: 24, tintColor: isActive ? "#7265e3" : "gray"};
         switch (routeKey) {
             case "Calendar":
                 return (
@@ -52,7 +52,7 @@ export default function LandingScreen() {
     return (
         <BottomNavigation
             barStyle={{backgroundColor: styleByTime("white", "#373737", mode)}}
-            activeColor="blue" activeIndicatorStyle={{backgroundColor: "transparent"}}
+            activeColor="#7265e3" activeIndicatorStyle={{backgroundColor: "transparent"}}
             inactiveColor={styleByTime("gray", "white", mode)}
             navigationState={{index, routes}} onIndexChange={setIndex}
             renderScene={({route}) => {
