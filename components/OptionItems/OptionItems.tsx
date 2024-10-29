@@ -16,7 +16,7 @@ export function OptionItems(props: IOptionItemsProps) {
                     key={props.valueList.indexOf(optionItem)}
                     label={props.labelList[props.valueList.indexOf(optionItem)]}
                     buttonStyle={[styles(mode).optionItem, styles(mode).elliptical, {
-                        backgroundColor: optionItem == props.value ? '#7265e3' : '#373737',
+                        backgroundColor: optionItem == props.value ? '#7265e3' : 'grey',
                     }]}
                 />
             ))}
