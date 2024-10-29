@@ -16,6 +16,7 @@ export function AddUserModal({onClose}: { onClose: () => void }) {
     const [passedCheck, setPassedCheck] = useState(false);
     const [isErrorModalVisible, setErrorModalVisible] = useState(false);
     const mode = useSelector((state: RootState) => state.theme.mode);
+    const usernames = useSelector((state: RootState) => state.events.usernames);
     const dispatch = useDispatch();
     const {t} = useTranslation();
 
@@ -38,7 +39,7 @@ export function AddUserModal({onClose}: { onClose: () => void }) {
                 <PasswordCheck password={password} setPassedCheck={setPassedCheck}/>
                 <View style={styles(mode).inputContainer}>
                     <ButtonApp label={t('Add')} onPress={async () => {
-                        if (username !== "" && password !== "" && passedCheck) {
+                        if (username !== "" && password !== "" && !usernames.includes(username) && passedCheck) {
                             await XHR(dispatch, '/addUser', {username: username, password: password, isAdmin: false});
                             await XHR(dispatch, '/getAllUserNames', {});
                             onCloseThisModal();
@@ -48,7 +49,7 @@ export function AddUserModal({onClose}: { onClose: () => void }) {
                 </View>
             </View>
             <ErrorModalApp modalVisible={isErrorModalVisible} setModalVisible={setErrorModalVisible}
-                           errorText={passedCheck ? t('IncompleteFields') : t('PasswordCheckFailed')}/>
+                           errorText={usernames.includes(username) ? t('UserExists') : (passedCheck ? t('IncompleteFields') : t('PasswordCheckFailed'))}/>
         </View>
     );
 }

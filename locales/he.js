@@ -48,6 +48,7 @@ export default {
     Calendar: 'לוח שנה',
     HoldOn: 'חכו רגע!',
     ExitQuestion: 'האם אתם בטוחים שאתם רוצים לצאת מהאפליצקיה?',
-    PasswordCheckFailed: 'לא עברתם את הבדיקות לסיסמה! אנא מלאו אותם בהתאם!'
+    PasswordCheckFailed: 'לא עברתם את הבדיקות לסיסמה! אנא מלאו אותם בהתאם!',
+    UserExists: 'שם משתמש זה קיים במערכת. אנא מלאו שם משתמשם אחר!'
     // other keys...
 };

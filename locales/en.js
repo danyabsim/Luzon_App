@@ -47,6 +47,7 @@ export default {
     Calendar: 'Calendar',
     HoldOn: 'Hold on!',
     ExitQuestion: 'Are you sure you want to exit?',
-    PasswordCheckFailed: 'You did not complete the password checks! Please complete them!'
+    PasswordCheckFailed: 'You did not complete the password checks! Please complete them!',
+    UserExists: 'This username already exists. Please write another username!'
     // other keys...
 };
