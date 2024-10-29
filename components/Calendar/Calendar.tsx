@@ -42,6 +42,7 @@ export default function Calendar() {
                 <Agenda
                     theme={calendarTheme(mode)} items={filteredEvents} selected={selected} collapsable={true}
                     enableSwipeMonths={true} scrollEnabled={true} showOnlySelectedDayItems={true}
+                    renderEmptyData={() => null}
                     onDayPress={(day) => {
                         setSelected(day.dateString);
                         dispatch(setReduxSelected(day.dateString));
