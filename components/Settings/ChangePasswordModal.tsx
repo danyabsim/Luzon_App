@@ -8,9 +8,11 @@ import {XHR} from "../../utils/XHR";
 import {ErrorModalApp} from "../ErrorModalApp/ErorrModalApp";
 import {useTranslation} from "react-i18next";
 import {ButtonApp} from "../ButtonApp/ButtonApp";
+import {PasswordCheck} from "../PasswordCheck/PasswordCheck";
 
 export function ChangePasswordModal({onClose}: { onClose: () => void }) {
     const [newPassword, setNewPassword] = useState('');
+    const [passedCheck, setPassedCheck] = useState(false);
     const [isErrorModalVisible, setErrorModalVisible] = useState(false);
     const user = useSelector((state: RootState) => state.user);
     const mode = useSelector((state: RootState) => state.theme.mode);
@@ -31,9 +33,10 @@ export function ChangePasswordModal({onClose}: { onClose: () => void }) {
             <View style={styles(mode).container}>
                 <Text style={styles(mode).title}>{t('SettingsCP')}</Text>
                 <TextInputContainers inputContainers={inputContainers}/>
+                <PasswordCheck password={newPassword} setPassedCheck={setPassedCheck}/>
                 <View style={styles(mode).inputContainer}>
                     <ButtonApp label={t('Change')} onPress={async () => {
-                        if (newPassword !== "") {
+                        if (newPassword !== "" && passedCheck) {
                             await XHR(dispatch, '/changePassword', {
                                 username: user.username,
                                 password: user.password,
@@ -47,7 +50,7 @@ export function ChangePasswordModal({onClose}: { onClose: () => void }) {
                 </View>
             </View>
             <ErrorModalApp modalVisible={isErrorModalVisible} setModalVisible={setErrorModalVisible}
-                           errorText={t('ChangePasswordError')}/>
+                           errorText={passedCheck ? t('IncompleteFields') : t('PasswordCheckFailed')}/>
         </View>
     );
 }

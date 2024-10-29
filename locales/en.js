@@ -39,7 +39,6 @@ export default {
     RemoveError: 'You entered nothing, your username or a username that does not exist. Please fill it out properly.',
     ColorPicker: 'Color Picker',
     AllDay: 'Event for the whole Days',
-    ChangePasswordError: 'You did not pass a new password. Please fill it out.',
     Expand: 'Expand',
     Collapse: 'Collapse',
     AllUsers: 'Event for all the Users',
@@ -47,6 +46,7 @@ export default {
     Search: 'Search',
     Calendar: 'Calendar',
     HoldOn: 'Hold on!',
-    ExitQuestion: 'Are you sure you want to exit?'
+    ExitQuestion: 'Are you sure you want to exit?',
+    PasswordCheckFailed: 'You did not complete the password checks! Please complete them!'
     // other keys...
 };

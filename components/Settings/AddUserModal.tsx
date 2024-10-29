@@ -8,10 +8,12 @@ import {XHR} from "../../utils/XHR";
 import {ErrorModalApp} from "../ErrorModalApp/ErorrModalApp";
 import {useTranslation} from "react-i18next";
 import {ButtonApp} from "../ButtonApp/ButtonApp";
+import {PasswordCheck} from "../PasswordCheck/PasswordCheck";
 
 export function AddUserModal({onClose}: { onClose: () => void }) {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [passedCheck, setPassedCheck] = useState(false);
     const [isErrorModalVisible, setErrorModalVisible] = useState(false);
     const mode = useSelector((state: RootState) => state.theme.mode);
     const dispatch = useDispatch();
@@ -33,9 +35,10 @@ export function AddUserModal({onClose}: { onClose: () => void }) {
             <View style={styles(mode).container}>
                 <Text style={styles(mode).title}>{t('SettingsAU')}</Text>
                 <TextInputContainers inputContainers={inputContainers}/>
+                <PasswordCheck password={password} setPassedCheck={setPassedCheck}/>
                 <View style={styles(mode).inputContainer}>
                     <ButtonApp label={t('Add')} onPress={async () => {
-                        if (username !== "" && password !== "") {
+                        if (username !== "" && password !== "" && passedCheck) {
                             await XHR(dispatch, '/addUser', {username: username, password: password, isAdmin: false});
                             await XHR(dispatch, '/getAllUserNames', {});
                             onCloseThisModal();
@@ -45,7 +48,7 @@ export function AddUserModal({onClose}: { onClose: () => void }) {
                 </View>
             </View>
             <ErrorModalApp modalVisible={isErrorModalVisible} setModalVisible={setErrorModalVisible}
-                           errorText={t('IncompleteFields')}/>
+                           errorText={passedCheck ? t('IncompleteFields') : t('PasswordCheckFailed')}/>
         </View>
     );
 }

@@ -40,7 +40,6 @@ export default {
     RemoveError: 'הכנסתם כלום, את שם המשתמש שלכם או שם משתמש שלא קיים במערכת. יש למלא כמו שצריך!',
     ColorPicker: 'בחירת צבע',
     AllDay: 'אירוע לכל היום',
-    ChangePasswordError: 'הכנסתם כלום. יש למלא את הסיסמה!',
     Expand: 'הרחבה',
     Collapse: 'הקטנה',
     AllUsers: 'אירוע לכלל המשתמשים',
@@ -48,6 +47,7 @@ export default {
     Search: 'חיפוש',
     Calendar: 'לוח שנה',
     HoldOn: 'חכו רגע!',
-    ExitQuestion: 'האם אתם בטוחים שאתם רוצים לצאת מהאפליצקיה?'
+    ExitQuestion: 'האם אתם בטוחים שאתם רוצים לצאת מהאפליצקיה?',
+    PasswordCheckFailed: 'לא עברתם את הבדיקות לסיסמה! אנא מלאו אותם בהתאם!'
     // other keys...
 };
