@@ -15,7 +15,7 @@ export default {
     SettingsCL: 'Change Language',
     RememberMe: 'Remember Me',
     ModalClosed: 'Modal has been closed.',
-    All: 'All of the calendars',
+    All: 'All Calendars',
     Add: 'Add',
     Remove: 'Remove',
     Close: 'Close',
