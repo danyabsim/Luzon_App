@@ -21,7 +21,7 @@ export function PasswordCheck({password, setPassedCheck}: IPasswordCheckProps) {
     }, [checks]);
 
     return (
-        <View>
+        <View style={{alignItems: i18n.language == 'en' ? 'flex-start' : "flex-end"}}>
             {[
                 {check: checks.length, label: t('PasswordCheckLength')},
                 {check: checks.letter, label: t('PasswordCheckLetter')},
