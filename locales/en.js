@@ -51,6 +51,7 @@ export default {
     UserExists: 'This username already exists. Please write another username!',
     PasswordCheckLength: 'At least 8 characters',
     PasswordCheckLetter: 'At least 1 English letter',
-    PasswordCheckNumber: 'At least 1 number'
+    PasswordCheckNumber: 'At least 1 number',
+    OptionItemsSelection: 'The option in purple is the selected one, while the options in grey are the one you did not choose.'
     // other keys...
 };

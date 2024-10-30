@@ -4,12 +4,16 @@ import {ButtonApp} from "../ButtonApp/ButtonApp";
 import {useSelector} from "react-redux";
 import {RootState} from "../../redux/store";
 import {IOptionItemsProps} from "./IOptionItemsProps";
+import {View, Text} from "react-native";
+import {useTranslation} from "react-i18next";
 
 export function OptionItems(props: IOptionItemsProps) {
     const mode = useSelector((state: RootState) => state.theme.mode);
+    const {t} = useTranslation();
 
     return (
-        <>
+        <View>
+            <Text style={styles(mode).optionItemsSelectionTitle}>{t('OptionItemsSelection')}</Text>
             {props.valueList.map(optionItem => (
                 <ButtonApp
                     onPress={() => props.changeValue(optionItem)}
@@ -20,6 +24,6 @@ export function OptionItems(props: IOptionItemsProps) {
                     }]}
                 />
             ))}
-        </>
+        </View>
     );
 }

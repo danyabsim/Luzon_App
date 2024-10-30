@@ -12,6 +12,12 @@ export function styles(mode) {
             borderRadius: 5,
             marginBottom: 10,
             width: '100%'
+        },
+        optionItemsSelectionTitle: {
+            marginBottom: 20,
+            color: styleByTime('black', 'white', mode),
+            fontWeight: 'bold',
+            textAlign: 'center',
         }
     });
 }

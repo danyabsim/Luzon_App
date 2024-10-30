@@ -28,11 +28,5 @@ export function styles(mode) {
             flexDirection: 'row',
             marginTop: 20,
         },
-        warningTitle: {
-            marginBottom: 20,
-            color: styleByTime('black', 'white', mode),
-            fontWeight: 'bold',
-            textAlign: 'center',
-        }
     });
 }

@@ -52,6 +52,7 @@ export default {
     UserExists: 'שם משתמש זה קיים במערכת. אנא מלאו שם משתמשם אחר!',
     PasswordCheckLength: 'לפחות שמונה תווים',
     PasswordCheckLetter: 'לפחות אות אנגלית אחת',
-    PasswordCheckNumber: 'לפחות ספרה אחת'
+    PasswordCheckNumber: 'לפחות ספרה אחת',
+    OptionItemsSelection: 'האפשרות המסומנת בסגול היא האפשרות שבחרתם ואילו האפשרויות המסומונת באפור הן האפשרויות שלא בחרתם.'
     // other keys...
 };
