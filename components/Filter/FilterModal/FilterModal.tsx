@@ -7,34 +7,34 @@ import {styles} from "./styles";
 import {useTranslation} from "react-i18next";
 import {OptionItems} from "../../OptionItems/OptionItems";
 import {ButtonApp} from "../../ButtonApp/ButtonApp";
-import React, {useCallback, useMemo} from "react";
+import React, {useCallback, useMemo, useState} from "react";
 import {setFilteredOption} from "../../../redux/Events/eventsSlice";
 import {useFocusEffect} from "@react-navigation/native";
 
 export function FilterModal(props: IFilterModalProps) {
     const mode = useSelector((state: RootState) => state.theme.mode);
     const usernames = useSelector((state: RootState) => state.events.usernames);
+    const filteredOption = useSelector((state: RootState) => state.events.filteredOption);
     const {t, i18n} = useTranslation();
     const dispatch = useDispatch();
 
+    const [tempFilteredOption, setTempFilteredOption] = useState(filteredOption);
     const options = useMemo(() => [t('All'), ...usernames], [i18n.language, usernames]); // Recompute options when language changes
 
     useFocusEffect(
         useCallback(() => {
-            // Set selected option and dispatch action every time the component is focused
-            props.setSelectedOption(t('All'));
-            dispatch(setFilteredOption('All'));
-
-            // Optional cleanup (if needed when unfocusing)
-            return () => {
-                // Code to run when component loses focus (if necessary)
-            };
-        }, [i18n.language]) // Add dependencies to ensure proper memoization
+            if (!options.includes(filteredOption)) dispatch(setFilteredOption(t('All')));
+        }, [options, filteredOption, dispatch, i18n.language])
     );
 
-    const handleSelect = (item: string) => {
-        props.setSelectedOption(item);
-        dispatch(setFilteredOption(item));
+    const handleSave = () => {
+        dispatch(setFilteredOption(tempFilteredOption));
+        props.setModalVisible(false);
+    };
+
+    const handleCancel = () => {
+        setTempFilteredOption(filteredOption);
+        props.setModalVisible(false);
     };
 
     return (
@@ -43,9 +43,12 @@ export function FilterModal(props: IFilterModalProps) {
                 <Text style={styles(mode).title}>{t('SelectCalendar')}</Text>
                 <OptionItems
                     valueList={options} labelList={options}
-                    value={props.selectedOption} changeValue={handleSelect}
+                    value={tempFilteredOption} changeValue={setTempFilteredOption}
                 />
-                <ButtonApp label={t('Close')} onPress={() => props.setModalVisible(false)}/>
+                <View style={styles(mode).inputContainer}>
+                    <ButtonApp label={t('Save')} onPress={handleSave}/>
+                    <ButtonApp label={t('Cancel')} onPress={handleCancel}/>
+                </View>
             </View>
         </ModalApp>
     );

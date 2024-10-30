@@ -14,8 +14,8 @@ export default function Filter() {
 
     const buttonWidth = Dimensions.get('window').width * 0.4; // Adjust the percentage as needed
     const mode = useSelector((state: RootState) => state.theme.mode);
+    const filteredOption = useSelector((state: RootState) => state.events.filteredOption);
 
-    const [selectedOption, setSelectedOption] = useState(t('All'));
     const [filterModalVisible, setFilterModalVisible] = useState(false);
 
     useEffect(() => {
@@ -30,12 +30,11 @@ export default function Filter() {
             <View style={styles(mode).container}>
                 <Text style={styles(mode).menuText}>{t('CurrentCalendar')}:</Text>
                 <ButtonApp onPress={() => setFilterModalVisible(true)}
-                           label={selectedOption ? selectedOption : t('All')}
+                           label={filteredOption ? filteredOption : t('All')}
                            buttonStyle={[styles(mode).menuButton, {width: buttonWidth}, styles(mode).elliptical]}
                            labelStyle={styles(mode).menuText}/>
             </View>
-            <FilterModal selectedOption={selectedOption} setSelectedOption={setSelectedOption}
-                         modalVisible={filterModalVisible} setModalVisible={setFilterModalVisible}/>
+            <FilterModal modalVisible={filterModalVisible} setModalVisible={setFilterModalVisible}/>
         </View>
     );
 }

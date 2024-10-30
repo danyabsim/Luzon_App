@@ -12,5 +12,9 @@ export function styles(mode) {
             color: styleByTime('black', 'white', mode),
             marginBottom: 20,
         },
+        inputContainer: {
+            flexDirection: 'row',
+            marginTop: 20,
+        },
     });
 }
