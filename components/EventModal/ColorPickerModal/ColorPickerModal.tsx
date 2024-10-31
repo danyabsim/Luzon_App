@@ -14,7 +14,7 @@ export function ColorPickerModal(props: IColorPickerModalProps) {
     const {t} = useTranslation();
 
     const closeModal = () => {
-        props.setModalVisible(!props.modalVisible);
+        props.setModalVisible(false);
     }
 
     return (
