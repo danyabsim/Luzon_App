@@ -4,7 +4,7 @@ import {ButtonApp} from "../ButtonApp/ButtonApp";
 import {useSelector} from "react-redux";
 import {RootState} from "../../redux/store";
 import {IOptionItemsProps} from "./IOptionItemsProps";
-import {View, Text} from "react-native";
+import {Text} from "react-native";
 import {useTranslation} from "react-i18next";
 
 export function OptionItems(props: IOptionItemsProps) {
@@ -12,7 +12,7 @@ export function OptionItems(props: IOptionItemsProps) {
     const {t} = useTranslation();
 
     return (
-        <View>
+        <>
             <Text style={styles(mode).optionItemsSelectionTitle}>{t('OptionItemsSelection')}</Text>
             {props.valueList.map(optionItem => (
                 <ButtonApp
@@ -24,6 +24,6 @@ export function OptionItems(props: IOptionItemsProps) {
                     }]}
                 />
             ))}
-        </View>
+        </>
     );
 }
