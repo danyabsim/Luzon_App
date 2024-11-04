@@ -7,6 +7,7 @@ import {XHR} from "../../utils/XHR";
 import {useTranslation} from "react-i18next";
 import {ButtonApp} from "../ButtonApp/ButtonApp";
 import {FilterModal} from "./FilterModal/FilterModal";
+import {ServerSubURL} from "../../constants/ServerSubURL";
 
 export default function Filter() {
     const dispatch = useDispatch();
@@ -20,7 +21,7 @@ export default function Filter() {
 
     useEffect(() => {
         const getAllUserNames = async () => {
-            await XHR(dispatch, '/getAllUserNames', {});
+            await XHR(dispatch, ServerSubURL.GetAllUserNames, {});
         }
         getAllUserNames();
     }, []);

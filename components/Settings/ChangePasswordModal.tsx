@@ -9,6 +9,7 @@ import {ErrorModalApp} from "../ErrorModalApp/ErorrModalApp";
 import {useTranslation} from "react-i18next";
 import {ButtonApp} from "../ButtonApp/ButtonApp";
 import {PasswordCheck} from "../PasswordCheck/PasswordCheck";
+import {ServerSubURL} from "../../constants/ServerSubURL";
 
 export function ChangePasswordModal({onClose}: { onClose: () => void }) {
     const [newPassword, setNewPassword] = useState('');
@@ -37,7 +38,7 @@ export function ChangePasswordModal({onClose}: { onClose: () => void }) {
                 <View style={styles(mode).inputContainer}>
                     <ButtonApp label={t('Change')} onPress={async () => {
                         if (newPassword !== "" && passedCheck) {
-                            await XHR(dispatch, '/changePassword', {
+                            await XHR(dispatch, ServerSubURL.ChangePassword, {
                                 username: user.username,
                                 password: user.password,
                                 newPassword: newPassword

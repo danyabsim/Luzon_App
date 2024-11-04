@@ -14,6 +14,7 @@ import {SearchScreen} from "../screens/Search/SearchScreen";
 import {useState} from "react";
 import {TimeOutDelay} from "../utils/TimeOutDelay";
 import LandingScreen from "../screens/Landing/LandingScreen";
+import {ServerSubURL} from "../constants/ServerSubURL";
 
 const Stack = createStackNavigator();
 
@@ -35,7 +36,7 @@ export const AppNavigator = () => {
                 setOnRefresh(true);
                 await TimeOutDelay(300);
                 dispatch(setEvents({}));
-                await XHR(dispatch, '/connect', {...user});
+                await XHR(dispatch, ServerSubURL.Connect, {...user});
                 setOnRefresh(false);
             }}
             disabled={isOnRefresh}

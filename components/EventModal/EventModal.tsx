@@ -16,6 +16,7 @@ import {ColorPickerModal} from "./ColorPickerModal/ColorPickerModal";
 import {OptionSwitch} from "./OptionSwitch/OptionSwitch";
 import {ButtonApp} from "../ButtonApp/ButtonApp";
 import {isPhoneOS} from "../../utils/AppStyles";
+import {ServerSubURL} from "../../constants/ServerSubURL";
 
 export function EventModal(props: IEventModalProps) {
     const [title, setTitle] = useState("");
@@ -122,7 +123,7 @@ export function EventModal(props: IEventModalProps) {
                         return;
                     }
                     if (props.item) {
-                        await XHR(dispatch, '/removeEvent', {...props.item});
+                        await XHR(dispatch, ServerSubURL.RemoveEVent, {...props.item});
                     }
                     if (color === '') setColor('#ffffff');
                     const startDateAndTime = formatDateAndTime(textualStartDate === '' ? startDate : textualStartDate);
@@ -136,12 +137,12 @@ export function EventModal(props: IEventModalProps) {
                     if (dates !== null) {
                         dates.map(async (day) => {
                             dispatch(setEvents({}));
-                            await XHR(dispatch, '/addEvent', {
+                            await XHR(dispatch, ServerSubURL.AddEvent, {
                                 name: XHRTitle,
                                 height: hexToRgbInt(color),
                                 day: formatDateAndTime(day).date
                             });
-                            await XHR(dispatch, '/connect', {...user});
+                            await XHR(dispatch, ServerSubURL.Connect, {...user});
                         })
                         closeModal();
                     }

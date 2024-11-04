@@ -17,6 +17,7 @@ import {useTranslation} from 'react-i18next';
 import '../../i18n';
 import {ButtonApp} from "../../components/ButtonApp/ButtonApp";
 import { CommonActions } from '@react-navigation/native';
+import {ServerSubURL} from "../../constants/ServerSubURL";
 
 type Props = StackScreenProps<MainStackParamList, 'Home'>;
 
@@ -107,7 +108,7 @@ export default function HomeScreen({navigation}: Props) {
                     await AsyncStorage.setItem('rememberMe', JSON.stringify(!rememberMe));
                 }}/>
                 <ButtonApp labelStyle={styles(mode).textStyle} label={t('Login')} onPress={async () => {
-                    if (username !== "" && password !== "") await XHR(dispatch, '/connect', {
+                    if (username !== "" && password !== "") await XHR(dispatch, ServerSubURL.Connect, {
                         username: username, password: password
                     }, async () => {
                         dispatch(setUser({username: username, password: password}));

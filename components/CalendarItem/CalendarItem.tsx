@@ -10,6 +10,7 @@ import {setEvents} from "../../redux/Events/eventsSlice";
 import {XHR} from "../../utils/XHR";
 import {SureDeleteModal} from "./SureDeleteModal/SureDeleteModal";
 import {EventModal} from "../EventModal/EventModal";
+import {ServerSubURL} from "../../constants/ServerSubURL";
 
 export function CalendarItem({item, areActionsOn}: ICalendarItemProps) {
     const [sureModalVisible, setSureModalVisible] = useState(false);
@@ -42,8 +43,8 @@ export function CalendarItem({item, areActionsOn}: ICalendarItemProps) {
                         onPressNo={() => setSureModalVisible(false)}
                         onPressYes={async () => {
                             dispatch(setEvents({}));
-                            await XHR(dispatch, '/removeEvent', {...item});
-                            await XHR(dispatch, '/connect', {...user});
+                            await XHR(dispatch, ServerSubURL.RemoveEVent, {...item});
+                            await XHR(dispatch, ServerSubURL.Connect, {...user});
                             setSureModalVisible(false);
                         }}
                     />

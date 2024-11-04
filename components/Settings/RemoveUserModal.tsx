@@ -8,6 +8,7 @@ import {XHR} from "../../utils/XHR";
 import {ErrorModalApp} from "../ErrorModalApp/ErorrModalApp";
 import {useTranslation} from "react-i18next";
 import {ButtonApp} from "../ButtonApp/ButtonApp";
+import {ServerSubURL} from "../../constants/ServerSubURL";
 
 export function RemoveUserModal({onClose}: { onClose: () => void }) {
     const [username, setUsername] = useState('');
@@ -34,8 +35,8 @@ export function RemoveUserModal({onClose}: { onClose: () => void }) {
                 <View style={styles(mode).inputContainer}>
                     <ButtonApp label={t('Remove')} onPress={async () => {
                         if (username !== "" && username !== "admin" && usernames.includes(username)) {
-                            await XHR(dispatch, '/removeUser', {username: username});
-                            await XHR(dispatch, '/getAllUserNames', {});
+                            await XHR(dispatch, ServerSubURL.RemoveUser, {username: username});
+                            await XHR(dispatch, ServerSubURL.GetAllUserNames, {});
                             onCloseThisModal();
                         } else setErrorModalVisible(true);
                     }}/>

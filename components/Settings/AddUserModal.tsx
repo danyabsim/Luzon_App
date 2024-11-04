@@ -9,6 +9,7 @@ import {ErrorModalApp} from "../ErrorModalApp/ErorrModalApp";
 import {useTranslation} from "react-i18next";
 import {ButtonApp} from "../ButtonApp/ButtonApp";
 import {PasswordCheck} from "../PasswordCheck/PasswordCheck";
+import {ServerSubURL} from "../../constants/ServerSubURL";
 
 export function AddUserModal({onClose}: { onClose: () => void }) {
     const [username, setUsername] = useState('');
@@ -40,8 +41,8 @@ export function AddUserModal({onClose}: { onClose: () => void }) {
                 <View style={styles(mode).inputContainer}>
                     <ButtonApp label={t('Add')} onPress={async () => {
                         if (username !== "" && password !== "" && !usernames.includes(username) && passedCheck) {
-                            await XHR(dispatch, '/addUser', {username: username, password: password, isAdmin: false});
-                            await XHR(dispatch, '/getAllUserNames', {});
+                            await XHR(dispatch, ServerSubURL.AddUser, {username: username, password: password, isAdmin: false});
+                            await XHR(dispatch, ServerSubURL.GetAllUserNames, {});
                             onCloseThisModal();
                         } else setErrorModalVisible(true);
                     }}/>

@@ -2,6 +2,7 @@ import {UnknownAction} from "@reduxjs/toolkit";
 import {Dispatch} from "react";
 import {setEvents, setUsernames} from "../redux/Events/eventsSlice";
 import {setIsAdmin} from "../redux/User/userSlice";
+import {ServerSubURL} from "../constants/ServerSubURL";
 
 export async function XHR(dispatch: Dispatch<UnknownAction>, urlFunction: string, itemToSend: any, extraCode?: () => void) {
     const xhr = new XMLHttpRequest();
@@ -13,7 +14,7 @@ export async function XHR(dispatch: Dispatch<UnknownAction>, urlFunction: string
         if (xhr.readyState === XMLHttpRequest.DONE) {
             if (xhr.status === 200) {
                 const response = JSON.parse(xhr.responseText);
-                if (urlFunction === '/connect') {
+                if (urlFunction === ServerSubURL.Connect) {
                     const {isAdmin, userHistory} = response;
                     dispatch(setIsAdmin(isAdmin));
                     // Ensure that response is an array
@@ -31,7 +32,7 @@ export async function XHR(dispatch: Dispatch<UnknownAction>, urlFunction: string
                     } else {
                         console.error('Invalid response format: expected an array.');
                     }
-                } else if (urlFunction === '/getAllUserNames') {
+                } else if (urlFunction === ServerSubURL.GetAllUserNames) {
                     dispatch(setUsernames(response));
                 }
             } else {
