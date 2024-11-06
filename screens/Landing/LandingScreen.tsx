@@ -33,14 +33,14 @@ export default function LandingScreen() {
             case "Calendar":
                 return (
                     <Image
-                        source={styleByTime(require('../../assets/calendar (black).png'), require('../../assets/calendar (white).png'), mode)}
+                        source={require('../../assets/calendar.png')}
                         style={iconStyle}
                     />
                 );
             case "Search":
                 return (
                     <Image
-                        source={styleByTime(require('../../assets/search (black).png'), require('../../assets/search (white).png'), mode)}
+                        source={require('../../assets/search.png')}
                         style={iconStyle}
                     />
                 );

@@ -7,7 +7,6 @@ import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../redux/store";
 import {useTranslation} from "react-i18next";
 import {HeaderImage} from "../components/HeaderImage/HeaderImage";
-import {styleByTime} from "../utils/AppStyles";
 import {setEvents} from "../redux/Events/eventsSlice";
 import {XHR} from "../utils/XHR";
 import {SearchScreen} from "../screens/Search/SearchScreen";
@@ -28,7 +27,7 @@ export const AppNavigator = () => {
     const headerOptions = (navigation: any) => {
         const MenuImage = () => <HeaderImage
             onPress={() => navigation.openDrawer()}
-            source={styleByTime(require('../assets/menu (black).png'), require('../assets/menu (white).png'), mode)}
+            source={require('../assets/menu.png')}
         />;
 
         const RefreshImage = () => <HeaderImage
@@ -40,7 +39,7 @@ export const AppNavigator = () => {
                 setOnRefresh(false);
             }}
             disabled={isOnRefresh}
-            source={styleByTime(require('../assets/refresh (black).png'), require('../assets/refresh (white).png'), mode)}
+            source={require('../assets/refresh.png')}
         />;
 
         return {

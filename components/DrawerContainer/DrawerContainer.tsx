@@ -1,7 +1,6 @@
 import {View} from 'react-native';
 import MenuButton from "./MenuButton/MenuButton";
 import {styles} from "./styles";
-import {styleByTime} from "../../utils/AppStyles";
 import {useSelector} from "react-redux";
 import {RootState} from "../../redux/store";
 import {useTranslation} from "react-i18next";
@@ -12,18 +11,9 @@ export function DrawerContainer({navigation}: any) {
     const {t} = useTranslation();
 
     const menuItems = [
-        {
-            titleKey: "Home", target: "Landing",
-            icon: styleByTime(require('../../assets/home (black).png'), require('../../assets/home (white).png'), mode)
-        },
-        {
-            titleKey: "Settings", target: "Settings",
-            icon: styleByTime(require('../../assets/settings (black).png'), require('../../assets/settings (white).png'), mode)
-        },
-        {
-            titleKey: "Logout", target: "Home",
-            icon: styleByTime(require('../../assets/logout (black).png'), require('../../assets/logout (white).png'), mode)
-        }
+        {titleKey: "Home", target: "Landing", icon: require('../../assets/home.png')},
+        {titleKey: "Settings", target: "Settings", icon: require('../../assets/settings.png')},
+        {titleKey: "Logout", target: "Home", icon: require('../../assets/logout.png')}
     ];
 
     const renderMenuButton = (item: { titleKey: string; target: string; icon: any }) => (
@@ -36,7 +26,7 @@ export function DrawerContainer({navigation}: any) {
                     navigation.dispatch(
                         CommonActions.reset({
                             index: 0, // The index of the active route
-                            routes: [{ name: 'Home' }], // The screen you want to navigate to
+                            routes: [{name: 'Home'}], // The screen you want to navigate to
                         })
                     );
                 } else {

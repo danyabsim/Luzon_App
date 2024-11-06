@@ -12,7 +12,8 @@ export function styles(mode) {
         },
         btnIcon: {
             height: 30,
-            width: 30
+            width: 30,
+            tintColor: styleByTime('black', 'white', mode)
         },
         btnText: {
             fontSize: 18,

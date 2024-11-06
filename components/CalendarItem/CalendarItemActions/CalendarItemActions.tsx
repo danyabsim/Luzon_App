@@ -1,7 +1,6 @@
 import React, {useState} from "react";
 import {Image, Pressable, View} from "react-native";
 import {styles} from "./styles";
-import {styleByTime} from "../../../utils/AppStyles";
 import {parseEventString, rgbIntToHex} from "../../../utils/AppConverts";
 import {useSelector} from "react-redux";
 import {RootState} from "../../../redux/store";
@@ -26,7 +25,7 @@ export function CalendarItemActions({item, onDeleteItem, onEditItem}: ICalendarI
                         <Pressable style={[styles(mode).elliptical, styles(mode).button]} onPress={onDeleteItem}>
                             <Image
                                 style={styles(mode).image}
-                                source={styleByTime(require('../../../assets/deleteItem (black).png'), require('../../../assets/deleteItem (white).png'), mode)}
+                                source={require('../../../assets/deleteItem.png')}
                             />
                         </Pressable>
                     }
@@ -34,7 +33,7 @@ export function CalendarItemActions({item, onDeleteItem, onEditItem}: ICalendarI
                         <Pressable style={[styles(mode).elliptical, styles(mode).button]} onPress={onEditItem}>
                             <Image
                                 style={styles(mode).image}
-                                source={styleByTime(require('../../../assets/editItem (black).png'), require('../../../assets/editItem (white).png'), mode)}
+                                source={require('../../../assets/editItem.png')}
                             />
                         </Pressable>
                     }

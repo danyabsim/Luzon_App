@@ -19,6 +19,7 @@ export function styles(mode) {
         image: {
             width: 22,
             height: 22,
+            tintColor: styleByTime('black', 'white', mode)
         },
         button: {
             marginHorizontal: 4,
